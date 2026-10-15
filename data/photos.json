@@ -1,5 +1,5 @@
 {
-  "_note": "Real photos only, each verified against its Unsplash location tag. Free to use under the Unsplash License (unsplash.com/license). Served from Unsplash's image CDN. Replace or add your own photos any time: put a file in assets/img/ and set src to its path.",
+  "_note": "Real photos only, each verified against its location tag on Unsplash or Pexels (both free for commercial use). Replace or add your own photos any time: put a file in assets/img/ and set src to its path.",
   "dallas-skyline": {
     "src": "photo-1621904878414-d4ca4756bd7e",
     "by": "R K",
@@ -65,5 +65,33 @@
     "by": "Matthew Lancaster",
     "page": "https://unsplash.com/photos/vSc0f1OuIRw",
     "place": "Fort Worth skyline at night"
+  },
+  "las-colinas-lake-carolyn": {
+    "src": "https://images.pexels.com/photos/30398544/pexels-photo-30398544.jpeg",
+    "by": "Akshata Rajesh Ram",
+    "page": "https://www.pexels.com/photo/riverside-urban-pathway-with-cityscape-view-30398544/",
+    "place": "Lake Carolyn, Las Colinas",
+    "site": "Pexels"
+  },
+  "rockwall-harbor": {
+    "src": "https://images.pexels.com/photos/38010365/pexels-photo-38010365.jpeg",
+    "by": "Gavin Young",
+    "page": "https://www.pexels.com/photo/scenic-walkway-by-harbor-with-lighthouse-view-38010365/",
+    "place": "The Harbor, Rockwall",
+    "site": "Pexels"
+  },
+  "addison-aerial": {
+    "src": "https://images.pexels.com/photos/34069354/pexels-photo-34069354.jpeg",
+    "by": "ALI",
+    "page": "https://www.pexels.com/photo/aerial-view-of-urban-landscape-on-sunny-day-34069354/",
+    "place": "Addison from above",
+    "site": "Pexels"
+  },
+  "plano-shops": {
+    "src": "https://images.pexels.com/photos/36922099/pexels-photo-36922099.jpeg",
+    "by": "Koushalya Karthikeyan",
+    "page": "https://www.pexels.com/photo/charming-urban-street-cafe-scene-with-brick-buildings-36922099/",
+    "place": "Shops in Plano",
+    "site": "Pexels"
   }
 }
