@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Schools · The Dallas Real Estate Internet</title>
+<meta name="description" content="Official Texas Education Agency A–F ratings for every public school district and campus across Dallas–Fort Worth, plus private schools, by neighborhood.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main class="wrap section" style="padding-top:2rem">
+  <div class="sec-head">
+    <div><span class="eyebrow">Schools</span><h1 style="font-size:var(--step-4)">Schools across DFW</h1>
+      <p class="lede">Official state ratings for every public school, district by district, plus private schools near each area. Pick an area to see the schools around it.</p></div>
+  </div>
+  <div class="filters">
+    <label for="area-pick" style="flex:1 1 280px">Choose an area
+      <select id="area-pick"></select></label>
+  </div>
+  <section id="area-schools"></section>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="sec-head"><div><span class="eyebrow">All districts</span><h2>District ratings at a glance</h2><p class="lede">Every school district serving our 27 areas, with its official 2026 TEA rating.</p></div></div>
+    <div class="district-cards" id="all-districts"><p class="muted">Loading official ratings…</p></div>
+  </section>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="grid grid-3">
+      <div class="card"><h3>What the A–F ratings measure</h3><p class="muted" style="font-size:.92rem">The Texas Education Agency grades every public district and campus each year on student achievement, school progress, and how well schools close gaps between student groups.</p><a class="link" href="https://txschools.gov/?lng=en" target="_blank" rel="noopener">TXschools.gov ↗</a></div>
+      <div class="card"><h3>Look past the letter</h3><p class="muted" style="font-size:.92rem">Every school's report card shows test results, class sizes, programs and more. Visit, talk to parents, and read reviews before you decide.</p></div>
+      <div class="card"><h3>Confirm the zone</h3><p class="muted" style="font-size:.92rem">District lines don't follow city limits, and zones change. Always confirm the assigned school for a specific address with the district before you buy or lease.</p></div>
+    </div>
+    <p class="muted" style="font-size:.82rem;margin-top:1.2rem">We share official, published data and links to independent reviews. We don't rank schools or recommend neighborhoods based on them. Choosing a school is your call, and a local expert can help you find the information you need.</p>
+  </section>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/schools.js"></script>
+<script>
+(function () {
+  const { esc, loadJSON } = window.DREI;
+  const S = window.DREI_SCHOOLS;
+  loadJSON("data/neighborhoods.json").then((d) => {
+    const N = [...d.neighborhoods].sort((a, b) => a.name.localeCompare(b.name));
+    const pick = document.getElementById("area-pick");
+    pick.innerHTML = N.map((n) => `<option value="${esc(n.id)}">${esc(n.name)}</option>`).join("");
+    const show = () => {
+      const n = N.find((x) => x.id === pick.value) || N[0];
+      document.getElementById("area-schools").innerHTML = `<h2 style="margin-bottom:.8rem">${esc(n.name)}</h2><div id="sbox"></div><p style="margin-top:1rem"><a class="link" href="neighborhoods.html#${esc(n.id)}">Full ${esc(n.name)} profile →</a></p>`;
+      S.render(document.getElementById("sbox"), n);
+      history.replaceState(null, "", "#" + n.id);
+    };
+    const h = location.hash.slice(1);
+    if (N.some((n) => n.id === h)) pick.value = h; else pick.value = "frisco";
+    pick.addEventListener("change", show);
+    show();
+    const all = [...new Set(N.flatMap((n) => n.isd.map((s) => s.replace(/\s*\(.*?\)\s*/g, "").trim())))];
+    S.districtRatings(all).then(({ rows }) => {
+      document.getElementById("all-districts").innerHTML = rows.sort((a, b) => a.name.localeCompare(b.name)).map((r) => `
+        <a class="dcard" href="https://txschools.gov/?view=district&id=${esc(r.id)}&tab=overview&lng=en" target="_blank" rel="noopener">${S.badge(r.rating)}<span><strong>${esc(r.name)}</strong><small>TXschools.gov ↗</small></span></a>`).join("");
+    }).catch(() => { document.getElementById("all-districts").innerHTML = `<p class="muted">Couldn't load ratings. See <a class="link" href="https://txschools.gov/?lng=en">TXschools.gov</a>.</p>`; });
+  });
+})();
+</script>
+</body>
+</html>
