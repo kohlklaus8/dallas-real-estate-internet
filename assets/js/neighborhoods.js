@@ -1,18 +1,12 @@
 (function () {
-  const { esc, tier, shields, store, track, loadJSON, money } = window.DREI;
+  const { esc, tier, shields, store, track, loadJSON, money, areaCard, photoUrl, photoCredit } = window.DREI;
+  let PHOTOS = {};
   const KEY_LABEL = window.DREI_BRAIN.KEY_LABEL;
   const listView = document.getElementById("list-view");
   const detailView = document.getElementById("detail-view");
   let DATA = null;
 
-  const card = (n) => `<a class="card" href="#${esc(n.id)}">
-      <div class="meta"><span>${esc(n.submarket)}</span></div>
-      <h3>${esc(n.name)}</h3>
-      ${tier(n.price_tier)}
-      <p class="muted" style="font-size:.93rem">${esc(n.lifestyle_summary)}</p>
-      <div class="tags">${n.best_for.map((b) => `<span class="tag">${esc(b)}</span>`).join("")}</div>
-      ${shields(n.routes)}
-    </a>`;
+  const card = (n) => areaCard(n, PHOTOS, DATA.neighborhoods.indexOf(n));
 
   function renderList() {
     const q = document.getElementById("f-q").value.trim().toLowerCase();
@@ -24,7 +18,7 @@
       return JSON.stringify([n.name, n.city, n.submarket, n.routes, n.amenities, n.home_types, n.best_for, n.lifestyle_summary, n.isd]).toLowerCase().includes(q);
     });
     rows.sort((a, b) => (sort === "name" ? a.name.localeCompare(b.name) : b.scores[sort] - a.scores[sort] || a.name.localeCompare(b.name)));
-    document.getElementById("areas").innerHTML = rows.map(card).join("") || `<p class="muted">No areas match. Try "lake", "DART" or "new build".</p>`;
+    document.getElementById("areas").className = "areas"; document.getElementById("areas").innerHTML = rows.map(card).join("") || `<p class="muted">No areas match. Try "lake", "DART" or "new build".</p>`;
     document.getElementById("count").textContent = `${rows.length} of ${DATA.neighborhoods.length} areas · profiles updated ${DATA.meta.last_updated}`;
   }
 
@@ -38,6 +32,7 @@
     detailView.innerHTML = `
       <p><a class="link" href="#">← All neighborhoods</a></p>
       <header class="detail-head">
+        ${n.photo && PHOTOS[n.photo] ? `<figure style="margin:0"><div class="detail-photo" role="img" aria-label="${esc(PHOTOS[n.photo].place)}" style="background-image:url('${photoUrl(PHOTOS[n.photo], 1600)}')"></div><figcaption class="stamp">${esc(PHOTOS[n.photo].place)} · ${photoCredit(PHOTOS[n.photo])}</figcaption></figure>` : ""}
         <span class="eyebrow">${esc(n.submarket)}</span>
         <h1 style="font-size:var(--step-4)">${esc(n.name)}</h1>
         <p class="lede">${esc(n.lifestyle_summary)}</p>
@@ -105,8 +100,8 @@
     if (n) { renderDetail(n); window.scrollTo(0, 0); } else { document.title = "Neighborhoods · Dallas Real Estate Internet"; renderList(); }
   }
 
-  loadJSON("data/neighborhoods.json").then((d) => {
-    DATA = d;
+  Promise.all([loadJSON("data/neighborhoods.json"), loadJSON("data/photos.json").catch(() => ({}))]).then(([d, P]) => {
+    DATA = d; PHOTOS = P;
     ["f-q", "f-tier", "f-sort"].forEach((id) => document.getElementById(id).addEventListener("input", renderList));
     window.addEventListener("hashchange", route);
     route();

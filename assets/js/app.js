@@ -1,13 +1,39 @@
 /* Shared site shell: header, footer, storage, analytics events, lead handoff, data loading. */
 (function () {
   const C = window.DREI_CONFIG || {};
-  const NAV = [
-    ["ask.html", "Ask Dallas AI"],
-    ["neighborhoods.html", "Neighborhoods"],
-    ["market.html", "Market"],
-    ["tools.html", "Tools"],
-    ["intelligence.html", "Intelligence"],
-    ["about.html", "About"],
+  const MENU = [
+    { label: "Why DFW", key: "why", items: [
+      ["why.html", "Why people move here", "Jobs, no state income tax, lifestyle"],
+      ["why.html#costs", "Cost of living & taxes", "What a DFW budget looks like"],
+      ["why.html#getting-around", "Getting around", "Highways, toll roads, DART, airports"],
+      ["market.html", "The housing market now", "Plain-English market dashboard"],
+    ] },
+    { label: "Neighborhoods", key: "areas", wide: true, groups: [
+      ["Collin County North", [["frisco", "Frisco"], ["mckinney", "McKinney"], ["prosper", "Prosper"], ["celina", "Celina"], ["anna-melissa", "Anna & Melissa"], ["princeton", "Princeton"], ["little-elm", "Little Elm"]]],
+      ["Plano & US 75", [["west-plano", "West Plano"], ["downtown-east-plano", "Downtown & East Plano"], ["allen", "Allen"], ["richardson", "Richardson"], ["murphy", "Murphy"], ["wylie", "Wylie"], ["lucas-fairview", "Lucas & Fairview"]]],
+      ["Dallas & close-in", [["preston-hollow", "Preston Hollow"], ["far-north-dallas", "Far North Dallas"], ["addison", "Addison"], ["carrollton", "Carrollton"], ["the-colony", "The Colony"]]],
+    ], foot: [["neighborhoods.html", "All neighborhoods"], ["tools.html#fit", "Where should I live?"], ["tools.html#compare", "Compare areas"]] },
+    { label: "Moving Here", key: "moving", items: [
+      ["intelligence.html#dfw-moving-checklist", "First 90 days checklist", "Licenses, registration, homestead"],
+      ["intelligence.html#choosing-electricity-in-dfw", "Electricity & utilities", "How to pick a plan"],
+      ["intelligence.html#moving-to-dfw-from-california", "Relocating from out of state", "What surprises people"],
+      ["index.html#guide", "Free DFW Relocation Guide", "Get it by email"],
+      ["intelligence.html#moving", "All moving guides", ""],
+    ] },
+    { label: "Living Here", key: "living", items: [
+      ["intelligence.html#toll-roads-101", "Toll roads 101", "TollTags, DNT, SH 121"],
+      ["intelligence.html#downtown-squares-north-of-dallas", "Small-town squares", "Weekend-worthy downtowns"],
+      ["neighborhoods.html#the-colony", "Lake life", "Lewisville Lake & Lake Lavon"],
+      ["intelligence.html#living", "All living guides", ""],
+    ] },
+    { label: "Real Estate", key: "re", items: [
+      ["market.html", "Market dashboard", "Prices, inventory, timing"],
+      ["tools.html#affordability", "Buying: what can I afford?", "Texas taxes included"],
+      ["tools.html#proceeds", "Selling: what would I net?", "Itemized proceeds"],
+      ["tools.html#move", "Moving up or down", "Sell and buy, next payment"],
+      ["intelligence.html#muds-and-pids-explained", "New construction & MUD taxes", ""],
+      ["intelligence.html#real-estate", "All real estate guides", ""],
+    ] },
   ];
   const here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
 
@@ -75,27 +101,58 @@
   function header() {
     const el = document.getElementById("site-header");
     if (!el) return;
-    const links = NAV.map(([href, label]) => `<li><a href="${href}"${href === here ? ' aria-current="page"' : ""}>${label}</a></li>`).join("");
+    const cur = here + (location.hash || "");
+    const link = ([href, title, sub]) => `<a href="${href}"${href === cur ? ' aria-current="page"' : ""}>${esc(title)}${sub ? `<span>${esc(sub)}</span>` : ""}</a>`;
+    const isCur = (m) => (m.items || []).some(([h]) => h.split("#")[0] === here && here !== "index.html" && (!h.includes("#") || h === cur)) || (m.key === "areas" && here === "neighborhoods.html");
+    const panels = MENU.map((m) => `
+      <li><details class="dd${isCur(m) ? " is-current" : ""}"><summary>${esc(m.label)}</summary>
+        <div class="panel${m.wide ? " wide" : ""}">
+          ${m.groups ? m.groups.map(([g, list]) => `<div><h5>${esc(g)}</h5>${list.map(([id, n]) => link([`neighborhoods.html#${id}`, n])).join("")}</div>`).join("") : m.items.map(link).join("")}
+          ${m.foot ? `<div class="foot">${m.foot.map(([h, t]) => `<a href="${h}">${esc(t)} →</a>`).join("")}</div>` : ""}
+        </div></details></li>`).join("");
     el.className = "site-header";
     el.innerHTML = `
-      <div class="wrap nav">
-        <a class="brand" href="index.html" aria-label="${esc(C.BRAND_NAME)} home">
-          <span class="brand-mark" aria-hidden="true">D</span>
-          <span class="brand-name">${esc(C.BRAND_NAME)}<small>${esc(C.LAUNCH_AREA)}</small></span>
-        </a>
-        <ul class="nav-links" id="nav-links">${links}</ul>
-        <div class="nav-actions">
-          <a class="btn btn-ghost btn-sm hide-sm" href="profile.html"${here === "profile.html" ? ' aria-current="page"' : ""}>My Profile</a>
-          <button class="btn btn-brass btn-sm" type="button" data-handoff="nav"><span class="lbl-long">Talk to a local expert</span><span class="lbl-short">Get help</span></button>
-          <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" id="menu-btn">Menu</button>
+      <div class="wrap hdr">
+        <a class="logo" href="index.html" aria-label="${esc(C.BRAND_NAME)} home"><i aria-hidden="true">D</i><span><b>${esc(C.BRAND_NAME)}</b><small>Live · Move · Invest in DFW</small></span></a>
+        <ul class="menu" id="menu">${panels}
+          <li><details class="dd"><summary>Tools</summary><div class="panel">
+            ${[["tools.html#fit", "Where should I live?", "A shortlist in a minute"], ["tools.html#affordability", "What can I afford?", ""], ["tools.html#proceeds", "Seller proceeds", ""], ["tools.html#move", "Move calculator", ""], ["tools.html#compare", "Compare areas", ""], ["profile.html", "My saved stuff", "Areas, questions, results"]].map(link).join("")}
+          </div></details></li>
+        </ul>
+        <div class="hdr-actions">
+          <a class="btn btn-ghost btn-sm hide-sm" href="ask.html">Ask AI</a>
+          <button class="btn btn-brass btn-sm" type="button" data-handoff="nav"><span class="lbl-long">Talk to ${esc(C.AGENT_NAME.split(" ")[0])}</span><span class="lbl-short">Help</span></button>
+          <button class="burger" type="button" aria-expanded="false" aria-controls="menu" id="burger">Menu</button>
         </div>
       </div>`;
-    const btn = document.getElementById("menu-btn");
-    btn.addEventListener("click", () => {
-      const ul = document.getElementById("nav-links");
-      const open = ul.classList.toggle("open");
-      btn.setAttribute("aria-expanded", String(open));
+    const dds = [...el.querySelectorAll("details.dd")];
+    dds.forEach((d) => d.addEventListener("toggle", () => { if (d.open) dds.forEach((o) => o !== d && (o.open = false)); }));
+    document.addEventListener("click", (e) => { if (!el.contains(e.target)) dds.forEach((d) => (d.open = false)); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") dds.forEach((d) => (d.open = false)); });
+    el.querySelectorAll(".panel a").forEach((a) => a.addEventListener("click", () => { dds.forEach((d) => (d.open = false)); document.getElementById("menu").classList.remove("open"); }));
+    const burger = document.getElementById("burger");
+    burger.addEventListener("click", () => {
+      const open = document.getElementById("menu").classList.toggle("open");
+      burger.setAttribute("aria-expanded", String(open));
+      burger.textContent = open ? "Close" : "Menu";
     });
+  }
+
+  function photoUrl(p, w = 1200) {
+    if (!p) return "";
+    return /^(https?:|assets\/)/.test(p.src) ? p.src : `https://images.unsplash.com/${p.src}?auto=format&fit=crop&w=${w}&q=70`;
+  }
+  const GRADS = ["#1463f3,#58b4ff", "#0b8f83,#7be0c9", "#ff7a1a,#ffc36b", "#7a5af5,#b9a6ff", "#d63f74,#ff9cb8", "#2a7de0,#7fd1e8", "#21924a,#9be3a8"];
+  function areaCard(n, photos, i = 0) {
+    const p = n.photo && photos ? photos[n.photo] : null;
+    const style = p ? `background-image:url('${photoUrl(p, 800)}')` : `background:linear-gradient(140deg,${GRADS[i % GRADS.length]})`;
+    return `<a class="area" href="neighborhoods.html#${esc(n.id)}" data-id="${esc(n.id)}">
+      <div class="ph${p ? " photo" : ""}" style="${style}"${p ? ` role="img" aria-label="${esc(p.place)}"` : ""}><b>${esc(n.name)}</b><span class="price" title="Relative price tier">${"$".repeat(n.price_tier)}</span></div>
+      <div class="body"><p>${esc(n.lifestyle_summary)}</p><div class="tags">${n.best_for.slice(0, 2).map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+      ${p ? `<span class="stamp">Photo: ${esc(p.by)} / Unsplash</span>` : ""}</div></a>`;
+  }
+  function photoCredit(p) {
+    return p ? `Photo: <a href="${esc(p.page)}" target="_blank" rel="noopener">${esc(p.by)}</a> / Unsplash` : "";
   }
 
   function footer() {
@@ -107,12 +164,12 @@
       <div class="wrap">
         <div class="footer-grid">
           <div class="stack">
-            <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-name">${esc(C.BRAND_NAME)}</span></a>
-            <p class="muted">${esc(C.TAGLINE)}. Local intelligence first; a licensed human when you want one.</p>
+            <a class="logo" href="index.html"><i aria-hidden="true">D</i><span><b>${esc(C.BRAND_NAME)}</b></span></a>
+            <p class="muted">${esc(C.TAGLINE)}. Your guide to living, moving and investing in Dallas–Fort Worth.</p>
           </div>
           <div><h4>Explore</h4><ul>
-            <li><a href="ask.html">Ask Dallas AI</a></li><li><a href="neighborhoods.html">Neighborhoods</a></li>
-            <li><a href="market.html">Market</a></li><li><a href="intelligence.html">Intelligence</a></li></ul></div>
+            <li><a href="why.html">Why DFW</a></li><li><a href="neighborhoods.html">Neighborhoods</a></li><li><a href="intelligence.html#moving">Moving Here</a></li>
+            <li><a href="intelligence.html#living">Living Here</a></li><li><a href="intelligence.html#real-estate">Real Estate</a></li><li><a href="ask.html">Ask AI</a></li></ul></div>
           <div><h4>Tools</h4><ul>
             <li><a href="tools.html#affordability">Affordability</a></li><li><a href="tools.html#move">Move calculator</a></li>
             <li><a href="tools.html#proceeds">Seller proceeds</a></li><li><a href="tools.html#compare">Compare areas</a></li>
@@ -130,7 +187,7 @@
           </div>
           ${C.BROKER_NAME ? `<p>${esc(C.AGENT_NAME)} is a licensed real estate sales agent sponsored by ${esc(C.BROKER_NAME)}.</p>` : ""}
           <p>Equal Housing Opportunity. Neighborhood information is editorial and general in nature. It does not describe or rank areas by the characteristics of the people who live there. AI answers and calculator results are estimates, not appraisals, lending decisions, or legal or tax advice. Verify all figures before you rely on them.</p>
-          <p>© ${year} ${esc(C.BRAND_NAME)}</p>
+          <p>Photos by Unsplash photographers, credited on each image. © ${year} ${esc(C.BRAND_NAME)}</p>
         </div>
       </div>`;
   }
@@ -245,5 +302,5 @@
   loadAnalytics();
   track("page_view", { page: here });
 
-  window.DREI = { C, esc, money, pct, store, track, loadJSON, tier, shield, shields, openHandoff, TIER_LABEL };
+  window.DREI = { C, esc, money, pct, store, track, loadJSON, tier, shield, shields, openHandoff, TIER_LABEL, photoUrl, photoCredit, areaCard, GRADS };
 })();

@@ -257,7 +257,7 @@
     }
 
     // 10. Relocation
-    if (has(q, /moving (here )?from|relocat|california|chicago|new york|out of state|move to (dallas|dfw|texas)/)) {
+    if (has(q, /moving (here )?from|relocat|california|chicago|new york|out of state|move to (dallas|dfw|texas)|moving to (dallas|dfw|texas|north texas)/)) {
       out.intent = "relocation";
       const a = art("moving-to-dfw-from-california");
       out.html = `<p>Welcome, in advance. The big adjustments people mention are no state income tax but higher property taxes, MUD/PID districts in new construction, and choosing an area by drive time.</p>` +

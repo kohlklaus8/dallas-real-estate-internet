@@ -4,7 +4,7 @@
  */
 window.DREI_CONFIG = {
   // Brand
-  BRAND_NAME: "Dallas Real Estate Internet",
+  BRAND_NAME: "The Dallas Real Estate Internet", // e.g. "The Dallas Intranet" — changes the name everywhere
   BRAND_SHORT: "Dallas RE Internet",
   AI_NAME: "Ask Dallas AI",
   TAGLINE: "The Internet for Living, Moving & Investing in North Texas",

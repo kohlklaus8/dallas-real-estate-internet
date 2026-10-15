@@ -1,31 +1,56 @@
 (function () {
-  const { esc, tier, shields, store, track, loadJSON } = window.DREI;
-  const go = (q) => { if (!q.trim()) return; store.set("pendingQ", q.trim()); track("ask", { from: "home" }); location.href = "ask.html"; };
-  document.getElementById("hero-form").addEventListener("submit", (e) => { e.preventDefault(); go(document.getElementById("hero-q").value); });
-  document.querySelectorAll("#hero-chips .chip").forEach((b) => b.addEventListener("click", () => go(b.textContent)));
+  const { C, esc, store, track, loadJSON, photoUrl, photoCredit, areaCard, GRADS } = window.DREI;
+  const q = document.getElementById("hero-q");
+  const go = (text) => { text = String(text || "").trim(); if (!text) { q.focus(); return; } store.set("pendingQ", text); track("ask", { from: "home" }); location.href = "ask.html"; };
+  document.getElementById("hero-form").addEventListener("submit", (e) => { e.preventDefault(); go(q.value); });
+  document.querySelectorAll("#hero-chips button").forEach((b) => b.addEventListener("click", () => go(b.textContent)));
 
-  loadJSON("data/neighborhoods.json").then((d) => {
-    const pick = ["frisco", "richardson", "mckinney"].map((id) => d.neighborhoods.find((n) => n.id === id)).filter(Boolean);
-    document.getElementById("featured-areas").innerHTML = pick.map(card).join("");
+  document.getElementById("ag-init").textContent = C.AGENT_NAME.split(" ").map((w) => w[0]).join("").slice(0, 2);
+  document.getElementById("ag-line").textContent = `${C.AGENT_NAME}, ${C.AGENT_TITLE} · your local guide to buying, selling and moving in DFW`;
+
+  // Relocation guide signup (lead magnet)
+  document.getElementById("guide-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const f = e.target, msg = document.getElementById("g-msg");
+    const data = { name: f.name.value.trim(), email: f.email.value.trim() };
+    if (!data.name || !/.+@.+\..+/.test(data.email)) { msg.textContent = "Add your first name and a valid email."; msg.style.color = "var(--bad)"; return; }
+    const brief = { ...data, goal: "Relocate to North Texas", request: "DFW Relocation Guide", source: "home-guide", submitted_at: new Date().toISOString(), profile: store.get("profile", {}) };
+    store.set("profile", { ...store.get("profile", {}), name: data.name, email: data.email });
+    store.push("requests", { ...brief, timeline: "—" }, 20);
+    let sent = false;
+    if (C.LEAD_ENDPOINT) { try { sent = (await fetch(C.LEAD_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(brief) })).ok; } catch (e2) {} }
+    track("handoff_submit", { kind: "guide", sent });
+    f.innerHTML = sent
+      ? `<p style="font-weight:700;color:var(--teal)">You're in, ${esc(data.name)}! Watch your inbox for the guide.</p><p style="font-size:.9rem">Start now: <a class="link" href="intelligence.html#dfw-moving-checklist">the first-90-days checklist</a> · <a class="link" href="tools.html#fit">Where should I live?</a></p>`
+      : `<p style="font-weight:700">Thanks, ${esc(data.name)}! Email ${esc(C.AGENT_EMAIL)} and Kohl will send the guide personally.</p><p style="font-size:.9rem">Start now: <a class="link" href="intelligence.html#dfw-moving-checklist">the first-90-days checklist</a> · <a class="link" href="tools.html#fit">Where should I live?</a></p>`;
+  });
+
+  Promise.all([loadJSON("data/photos.json"), loadJSON("data/neighborhoods.json"), loadJSON("data/articles.json")]).then(([P, N, A]) => {
+    const hero = P["dallas-skyline"];
+    if (hero) {
+      document.getElementById("hero").classList.add("has-photo");
+      document.getElementById("hero-photo").style.backgroundImage = `url('${photoUrl(hero, 1800)}')`;
+      document.getElementById("hero-credit").innerHTML = photoCredit(hero);
+    }
+
+    const FEATURED = ["frisco", "mckinney", "richardson", "the-colony", "anna-melissa", "preston-hollow"];
+    const grid = document.getElementById("area-grid");
+    const render = (f) => {
+      const list = f === "all" ? FEATURED.map((id) => N.neighborhoods.find((n) => n.id === id)).filter(Boolean)
+        : [...N.neighborhoods].sort((a, b) => b.scores[f] - a.scores[f] || a.name.localeCompare(b.name)).slice(0, 6);
+      grid.innerHTML = list.map((n, i) => areaCard(n, P, N.neighborhoods.indexOf(n))).join("");
+    };
+    const btns = [...document.querySelectorAll("#pfilters button")];
+    btns.forEach((b) => b.addEventListener("click", () => { btns.forEach((x) => x.setAttribute("aria-pressed", String(x === b))); render(b.dataset.f); track("filter_areas", { f: b.dataset.f }); }));
+    render("all");
+
+    const S = A.sections || {};
+    const latest = [...A.articles].sort((a, b) => (b.photo ? 1 : 0) - (a.photo ? 1 : 0) || b.date.localeCompare(a.date)).slice(0, 3);
+    document.getElementById("posts").innerHTML = latest.map((a, i) => {
+      const p = a.photo ? P[a.photo] : null;
+      return `<a class="post" href="intelligence.html#${esc(a.slug)}">
+        <div class="ph" style="${p ? `background-image:url('${photoUrl(p, 700)}')` : `background:linear-gradient(140deg,${GRADS[i]})`}"${p ? ` role="img" aria-label="${esc(p.place)}"` : ""}></div>
+        <span class="cat">${esc((S[a.section] || {}).name || a.format)}</span><h3>${esc(a.title)}</h3><p>${esc(a.dek)}</p></a>`;
+    }).join("");
   }).catch(() => {});
-
-  loadJSON("data/articles.json").then((d) => {
-    const a = d.articles.find((x) => x.slug === "frisco-vs-plano") || d.articles[0];
-    document.getElementById("featured-story").innerHTML = `
-      <span class="eyebrow">Featured story · ${esc(a.format)}</span>
-      <h3>${esc(a.title)}</h3>
-      <p class="muted">${esc(a.dek)}</p>
-      <div><a class="btn" href="intelligence.html#${esc(a.slug)}">Read the guide</a></div>`;
-  }).catch(() => {});
-
-  function card(n) {
-    return `<a class="card" href="neighborhoods.html#${esc(n.id)}">
-      <div class="meta"><span>${esc(n.submarket)}</span></div>
-      <h3>${esc(n.name)}</h3>
-      ${tier(n.price_tier)}
-      <p class="muted" style="font-size:.93rem">${esc(n.lifestyle_summary)}</p>
-      ${shields(n.routes)}
-    </a>`;
-  }
-  window.DREI.areaCard = card;
 })();
