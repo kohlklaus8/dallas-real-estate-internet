@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Explore DFW · The Dallas Real Estate Internet</title>
+<meta name="description" content="What's being built, where to eat and drink, things to do, sports, an events calendar and local accounts to follow across Dallas–Fort Worth.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main>
+  <section class="hero2 slim" id="hero">
+    <div class="photo" id="hero-photo" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="eyebrow">Explore DFW</span>
+      <h1>What's happening in <em>Dallas–Fort Worth</em>.</h1>
+      <p class="sub">New developments, places locals love, game days and the events calendar, all in one spot.</p>
+    </div>
+    <span class="credit" id="hero-credit"></span>
+  </section>
+  <div class="wrap section" style="padding-top:1.5rem">
+    <nav class="xtabs" role="tablist" aria-label="Explore sections">
+      <a role="tab" href="#developments" data-t="developments">What's being built</a>
+      <a role="tab" href="#eat" data-t="eat">Eat &amp; drink</a>
+      <a role="tab" href="#do" data-t="do">Things to do</a>
+      <a role="tab" href="#sports" data-t="sports">Sports</a>
+      <a role="tab" href="#calendar" data-t="calendar">Events calendar</a>
+      <a role="tab" href="#follow" data-t="follow">Follow local</a>
+    </nav>
+    <p class="stamp" id="checked"></p>
+    <section data-p="developments" class="xpanel"></section>
+    <section data-p="eat" class="xpanel" hidden></section>
+    <section data-p="do" class="xpanel" hidden></section>
+    <section data-p="sports" class="xpanel" hidden></section>
+    <section data-p="calendar" class="xpanel" hidden></section>
+    <section data-p="follow" class="xpanel" hidden></section>
+    <div class="note" style="margin-top:2rem">Know something we should add, like a new restaurant, an event or a development in your area? <button class="link" type="button" data-handoff="explore-tip" data-reason="I have a tip for the Explore page:" style="background:none;border:0;padding:0;font:inherit;cursor:pointer">Send us a tip</button>.</div>
+  </div>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/explore.js"></script>
+</body>
+</html>

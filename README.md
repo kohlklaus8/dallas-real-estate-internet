@@ -52,14 +52,20 @@ Pick one option and set `LEAD_ENDPOINT` in `config.js`:
 
 Each request carries a context brief: goal, timeline, recent questions, saved areas, latest tool results and an intent score. Your first call starts where the AI left off. With no endpoint set, visitors see your phone and email plus a copy-ready summary.
 
-## 4. Keep the data honest
+## 4. Keep it fresh (Explore page)
+
+Everything on **Explore** (developments, eat & drink, things to do, sports, events calendar, follow local) lives in `data/explore.json`.
+Edit it right on GitHub (open the file, click the pencil, save). Update `last_checked` when you review it; that date shows on the site.
+Photos live in `data/photos.json`. Each one is a verified, location-tagged Unsplash photo or your own file in `assets/img/`.
+
+## 5. Keep the data honest
 
 - **Market numbers:** update `data/market.json` monthly from NTREIS/MLS. Every figure needs `as_of` and `source`. Leave a value `null` rather than estimate it. The dashboard and AI show only what's filled in.
 - **Neighborhood metrics:** each profile has a `metrics` block (`median_price`, `inventory`, `days_on_market`, `as_of`), and it stays `null` until you load verified data.
 - **New areas:** copy a profile in `data/neighborhoods.json`. Scores are 0–5 and relative. Keep them about places, never people.
 - **Articles:** add to `data/articles.json` (blocks: `p`, `h2`, `ul`, `note`).
 
-## 5. Before you promote it publicly (launch checklist)
+## 6. Before you promote it publicly (launch checklist)
 
 - [ ] **TREC broker disclosure:** add your sponsoring broker's name to `BROKER_NAME` in `config.js`. TREC advertising rules require it in ads, and the footer shows it automatically.
 - [ ] **IABS form:** fill out TREC's *Information About Brokerage Services* form, save it as `assets/docs/IABS.pdf`, and point `IABS_URL` at it. The Consumer Protection Notice link is already in the footer.
