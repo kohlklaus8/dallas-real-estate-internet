@@ -1,0 +1,104 @@
+{
+  "articles": [
+    {
+      "slug": "texas-tax-proration-when-you-sell",
+      "format": "Tax/Cost Explainer",
+      "title": "Selling in Texas? Here's why you'll credit the buyer for this year's property taxes",
+      "dek": "Texas property taxes are paid in arrears. That one fact shows up on every seller's closing statement.",
+      "date": "2026-10-15",
+      "read_min": 4,
+      "areas": [],
+      "tool": "proceeds",
+      "body": [
+        ["p", "In Texas, property taxes for a calendar year aren't due until the end of January of the following year. So when you sell in, say, September, nobody has paid this year's taxes yet. The buyer will pay the full bill next January."],
+        ["p", "To make that fair, the title company prorates. You, the seller, credit the buyer for the days you owned the home this year, from January 1 through the closing date. The credit appears as a deduction on your settlement statement."],
+        ["h2", "A quick way to estimate it"],
+        ["ul", ["Take last year's total tax bill (or the current estimate if values or rates changed).", "Divide by 365 to get a daily amount.", "Multiply by the number of days from January 1 to closing."]],
+        ["p", "If last year's bill was $9,000 and you close on July 1, you've owned about 181 days of this year. That makes the credit roughly $9,000 ÷ 365 × 181 ≈ $4,460."],
+        ["h2", "What changes the number"],
+        ["ul", ["Exemptions that drop off at sale, like homestead or over-65.", "A new appraisal or tax rate. Title companies often prorate on the prior year and settle up later if the contract allows.", "MUD or PID assessments, which are prorated or handled separately depending on how they're billed."]],
+        ["p", "Our Seller Proceeds tool includes this proration automatically. Enter your annual tax bill and target closing date."],
+        ["note", "This is general information, not tax advice. Your title company's settlement statement is the final word."]
+      ],
+      "source": "Editorial (DREI). Verify specifics with your title company and county tax office."
+    },
+    {
+      "slug": "frisco-vs-plano",
+      "format": "Neighborhood Deep Dive",
+      "title": "Frisco vs. Plano: how to actually choose",
+      "dek": "Both are excellent. The right answer depends on commute, home age and what you want within ten minutes of your front door.",
+      "date": "2026-10-15",
+      "read_min": 5,
+      "areas": ["frisco", "west-plano", "downtown-east-plano"],
+      "tool": "compare",
+      "body": [
+        ["p", "\"Frisco or Plano?\" is the most common question we hear from people moving to North Texas. Here's the framework we use, with no rankings and no hype."],
+        ["h2", "1. Where do you drive every day?"],
+        ["p", "If your work is at Legacy, both are close, and West Plano is usually closer. If you head into Uptown or Downtown Dallas regularly, Plano saves you real time. East Plano adds DART rail as an option. If your work is in Frisco or along SH 121, Frisco wins."],
+        ["h2", "2. How new do you want the house to be?"],
+        ["p", "Plano is largely built out, with homes mostly from the 1980s–2000s, mature trees and established streets. Frisco has far more 2010s and new-construction inventory. Newer usually means fewer immediate repairs, but often smaller lots and sometimes MUD or PID taxes."],
+        ["h2", "3. What's your carrying cost, not just your price?"],
+        ["p", "Compare the full tax rate for each specific address, HOA dues and insurance. Two homes at the same price can differ by hundreds of dollars a month."],
+        ["h2", "4. What do you want nearby?"],
+        ["p", "Frisco centers on sports and entertainment: The Star, Toyota Stadium and Riders Field. Plano has Legacy West's walkable dining, Willow Bend and, on the east side, a historic downtown with rail."],
+        ["note", "Run the side-by-side in our Compare tool, or ask Dallas AI: \"Compare Frisco vs. Plano for a 25-minute commute to Uptown.\""]
+      ],
+      "source": "Editorial (DREI)."
+    },
+    {
+      "slug": "moving-to-dfw-from-california",
+      "format": "Relocation Guide",
+      "title": "Moving to DFW from California: the five things that surprise people",
+      "dek": "No state income tax is real. So are higher property taxes. Here's how the math and the lifestyle actually change.",
+      "date": "2026-10-15",
+      "read_min": 6,
+      "areas": [],
+      "tool": "affordability",
+      "body": [
+        ["p", "Every month, families relocate to North Texas from California, Illinois, New York and elsewhere. These are the adjustments that come up again and again."],
+        ["h2", "1. No state income tax, but property tax does the work"],
+        ["p", "Texas has no personal state income tax. Local services are funded heavily by property taxes, so combined rates are higher than most Californians are used to. Budget the tax bill as a real monthly cost, not an afterthought."],
+        ["h2", "2. Homestead exemptions matter"],
+        ["p", "Once you own and live in your home, file a homestead exemption with the county appraisal district. It reduces the taxable value and caps how fast your homestead's appraised value can rise each year. Check your appraisal district for current amounts and deadlines."],
+        ["h2", "3. MUDs and PIDs in new construction"],
+        ["p", "Many new communities are financed by Municipal Utility Districts or Public Improvement Districts. These add to your tax rate or appear as a separate assessment. Always compare the total rate by address."],
+        ["h2", "4. The car is the commute"],
+        ["p", "Toll roads such as the Dallas North Tollway, SH 121 and the Bush Turnpike are part of daily life, and DART rail serves only some suburbs. Pick your area by drive time to the places you actually go."],
+        ["h2", "5. You get more house. Decide what you'll do with it."],
+        ["p", "Many buyers find their budget stretches further here. The best decisions come from deciding in advance what matters more: space, newness, commute or walkability."],
+        ["note", "Start with the Where Should I Live? tool. It ranks areas by commute, budget and priorities, never by who lives there."]
+      ],
+      "source": "Editorial (DREI). Verify tax specifics with your county appraisal district."
+    },
+    {
+      "slug": "muds-and-pids-explained",
+      "format": "Tax/Cost Explainer",
+      "title": "MUDs and PIDs: the line item new-construction buyers miss",
+      "dek": "Two homes, same price, different monthly cost. Here's why, and how to check before you sign.",
+      "date": "2026-10-15",
+      "read_min": 4,
+      "areas": ["celina", "prosper", "anna-melissa", "princeton", "frisco", "mckinney", "little-elm"],
+      "tool": "affordability",
+      "body": [
+        ["p", "Across fast-growing North Texas, developers often fund roads, water and sewer through special districts. The two you'll see most:"],
+        ["ul", ["MUD (Municipal Utility District): a taxing district that levies its own property tax rate on top of city, county and school district rates.", "PID (Public Improvement District): an assessment, often a fixed annual installment, that pays for improvements in that specific community."]],
+        ["h2", "Why it matters"],
+        ["p", "Special districts can add meaningfully to your annual bill. They affect your monthly payment, your affordability and, eventually, your resale comparison."],
+        ["h2", "How to check"],
+        ["ul", ["Ask for the full combined tax rate for the specific address.", "Read the MUD/PID notices that come with the contract. Texas law requires certain disclosures.", "Look up the property on the county appraisal district site."]],
+        ["note", "In our Affordability tool, enter the combined rate, not the base city rate."]
+      ],
+      "source": "Editorial (DREI). Confirm district details for any specific property."
+    }
+  ],
+  "formats": [
+    { "name": "Market Brief", "cadence": "Weekly", "example": "What changed in Dallas housing this week?" },
+    { "name": "Neighborhood Deep Dive", "cadence": "1–2 / week", "example": "What $750K buys in McKinney" },
+    { "name": "Development Watch", "cadence": "Weekly / biweekly", "example": "New development announced along US 380" },
+    { "name": "Builder Incentive Report", "cadence": "Monthly", "example": "Current incentives worth knowing" },
+    { "name": "Tax/Cost Explainer", "cadence": "Monthly", "example": "What property taxes actually mean in Prosper" },
+    { "name": "Data Story", "cadence": "Weekly", "example": "Inventory moved — what does that mean?" },
+    { "name": "Relocation Guide", "cadence": "Ongoing", "example": "Moving from Chicago to DFW" },
+    { "name": "AI FAQ", "cadence": "Ongoing", "example": "One hyperlocal question, answered per page" }
+  ]
+}

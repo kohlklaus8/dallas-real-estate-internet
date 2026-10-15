@@ -1,0 +1,20 @@
+{
+  "_instructions": "Update monthly from your licensed MLS (NTREIS) or market report. Every figure needs an as_of date and a source. Leave a value null rather than estimate it. The Market page and the AI only display what is filled in here.",
+  "region": "Collin County + North Dallas",
+  "as_of": null,
+  "source": null,
+  "summary": null,
+  "metrics": {
+    "median_price": { "label": "Median sold price", "value": null, "unit": "usd", "change_yoy_pct": null },
+    "active_listings": { "label": "Active listings", "value": null, "unit": "count", "change_yoy_pct": null },
+    "months_inventory": { "label": "Months of inventory", "value": null, "unit": "months", "change_yoy_pct": null },
+    "days_on_market": { "label": "Median days on market", "value": null, "unit": "days", "change_yoy_pct": null },
+    "sale_to_list": { "label": "Sale-to-list ratio", "value": null, "unit": "pct", "change_yoy_pct": null },
+    "rate_30yr": { "label": "30-yr fixed rate (avg)", "value": null, "unit": "pct", "as_of": null, "source": null }
+  },
+  "series": {
+    "_note": "Monthly history, oldest first. Example row: {\"month\": \"2026-09\", \"median_price\": 0, \"active_listings\": 0, \"months_inventory\": 0}",
+    "monthly": []
+  },
+  "by_area": []
+}
