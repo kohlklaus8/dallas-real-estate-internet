@@ -553,3 +553,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .followbar a { display: inline-flex; gap: .45rem; align-items: center; padding: .5rem .9rem; border-radius: 999px; border: 1.5px solid var(--line); text-decoration: none; font-weight: 700; font-size: .88rem; background: var(--surface); }
 .followbar a:hover { border-color: #d6249f; color: #b0207f; }
 .followbar a i { width: 16px; height: 16px; border-radius: 5px; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+
+/* ---------- Schools ---------- */
+.grade { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; font-weight: 800; font-size: 1rem; color: #fff; flex-shrink: 0; }
+.g-A { background: #16794a; } .g-B { background: #2f8f3a; } .g-C { background: #c9850d; } .g-D { background: #d0581b; } .g-F { background: #b03a2e; } .g-na { background: #8a93a6; font-size: .72rem; }
+.district-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .6rem; }
+.dcard { display: flex; gap: .7rem; align-items: center; padding: .7rem .8rem; border: 1px solid var(--line); border-radius: 14px; text-decoration: none; background: var(--surface); }
+.dcard:hover { border-color: var(--sky); }
+.dcard strong { display: block; font-size: .95rem; }
+.dcard small { color: var(--mute); font-size: .78rem; }
+details.lvl { border: 1px solid var(--line); border-radius: 14px; margin-bottom: .6rem; background: var(--surface); }
+details.lvl > summary { cursor: pointer; padding: .8rem 1rem; font-weight: 800; list-style: none; }
+details.lvl > summary::-webkit-details-marker { display: none; }
+details.lvl > summary::before { content: "▸ "; color: var(--sky); }
+details.lvl[open] > summary::before { content: "▾ "; }
+details.lvl .table-wrap { border: 0; border-top: 1px solid var(--line); border-radius: 0 0 14px 14px; }
+details.lvl td { vertical-align: middle; }
