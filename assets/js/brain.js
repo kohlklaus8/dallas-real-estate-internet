@@ -251,11 +251,12 @@
     if (has(q, /\b(school|schools|isd|district)\b/)) {
       out.intent = "schools";
       const scope = areas.length ? areas : [];
-      out.html = `<p>I list which school districts serve an area, but I don't rank schools. For performance data, the Texas Education Agency publishes official accountability ratings, and each ISD has an address-lookup tool for attendance zones.</p>` +
+      out.html = `<p>Our <a class="link" href="schools.html${scope.length ? "#" + esc(scope[0].id) : ""}">Schools page</a> shows the official Texas Education Agency A–F rating for every public district and campus near each area, plus private schools, with links to each report card and real parent reviews. I don't rank schools or pick neighborhoods by them, but I can tell you which districts serve an area:</p>` +
         (scope.length ? list(scope.map((n) => `${areaLink(n)}: ${esc(n.isd.join(", "))}`)) : `<p>Name an area (for example, "schools in Murphy") and I'll list the districts that serve it.</p>`) +
         `<p class="muted">District boundaries don't follow city lines, so always verify by address.</p>`;
       out.sources = scope.map(src);
       out.followups = ["Where should I live?", "Compare Allen vs. Murphy"];
+      out.html += `<p><a class="btn btn-sm" href="schools.html${scope.length ? "#" + esc(scope[0].id) : ""}">See school ratings</a></p>`;
       return out;
     }
 

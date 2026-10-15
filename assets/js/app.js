@@ -14,7 +14,7 @@
       ["Dallas & close-in", [["preston-hollow", "Preston Hollow"], ["far-north-dallas", "Far North Dallas"], ["addison", "Addison"], ["carrollton", "Carrollton"], ["the-colony", "The Colony"]]],
       ["East & the lakes", [["rockwall", "Rockwall"], ["rowlett", "Rowlett"], ["garland", "Garland"], ["wylie", "Wylie"]]],
       ["West & Mid-Cities", [["las-colinas", "Las Colinas (Irving)"], ["grapevine", "Grapevine"], ["flower-mound", "Flower Mound"], ["arlington", "Arlington"], ["fort-worth", "Fort Worth"]]],
-    ], foot: [["neighborhoods.html", "All neighborhoods"], ["tools.html#fit", "Where should I live?"], ["tools.html#compare", "Compare areas"]] },
+    ], foot: [["neighborhoods.html", "All neighborhoods"], ["schools.html", "Schools by area"], ["tools.html#fit", "Where should I live?"], ["tools.html#compare", "Compare areas"]] },
     { label: "Explore", key: "explore", items: [
       ["explore.html#developments", "What's being built", "New developments, updated regularly"],
       ["explore.html#eat", "Eat & drink", "Restaurants and bars locals love"],
@@ -26,6 +26,7 @@
     ] },
     { label: "Moving Here", key: "moving", items: [
       ["intelligence.html#dfw-moving-checklist", "First 90 days checklist", "Licenses, registration, homestead"],
+      ["schools.html", "Schools", "Official ratings for every public school"],
       ["intelligence.html#choosing-electricity-in-dfw", "Electricity & utilities", "How to pick a plan"],
       ["intelligence.html#moving-to-dfw-from-california", "Relocating from out of state", "What surprises people"],
       ["index.html#guide", "Free DFW Relocation Guide", "Get it by email"],
@@ -175,7 +176,7 @@
             <p class="muted">${esc(C.TAGLINE)}. Your guide to living, moving and investing in Dallas–Fort Worth.</p>
           </div>
           <div><h4>Explore</h4><ul>
-            <li><a href="why.html">Why DFW</a></li><li><a href="neighborhoods.html">Neighborhoods</a></li><li><a href="intelligence.html#moving">Moving Here</a></li>
+            <li><a href="why.html">Why DFW</a></li><li><a href="neighborhoods.html">Neighborhoods</a></li><li><a href="schools.html">Schools</a></li><li><a href="intelligence.html#moving">Moving Here</a></li>
             <li><a href="intelligence.html#living">Living Here</a></li><li><a href="intelligence.html#real-estate">Real Estate</a></li><li><a href="ask.html">Ask AI</a></li></ul></div>
           <div><h4>Tools</h4><ul>
             <li><a href="tools.html#affordability">Affordability</a></li><li><a href="tools.html#move">Move calculator</a></li>

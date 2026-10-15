@@ -77,7 +77,14 @@
             <a class="link" href="tools.html#compare" id="cmp-link">Compare ${esc(n.name)} with another area →</a>
           </div>
         </aside>
-      </div>`;
+      </div>
+      <section class="stack" id="schools" style="gap:.6rem;margin-top:2.5rem">
+        <div class="sec-head" style="margin-bottom:.4rem"><div><span class="eyebrow">Schools</span><h2 style="font-size:var(--step-3)">Schools in and around ${esc(n.name)}</h2>
+        <p class="lede">Official state ratings for every public school nearby, plus private options. Tap any school for its full report card and real parent reviews.</p></div>
+        <a class="btn btn-ghost" href="schools.html#${esc(n.id)}">Schools page →</a></div>
+        <div id="schools-box"></div>
+      </section>`;
+    if (window.DREI_SCHOOLS) window.DREI_SCHOOLS.render(document.getElementById("schools-box"), n);
     document.getElementById("save-btn").addEventListener("click", (e) => {
       const s = store.get("saved", []);
       const i = s.indexOf(n.id);
