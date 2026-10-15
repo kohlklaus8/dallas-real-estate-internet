@@ -16,6 +16,8 @@
     "preston-hollow": ["preston hollow"], addison: ["addison"], carrollton: ["carrollton"], "the-colony": ["the colony", "grandscape"],
     "little-elm": ["little elm"], wylie: ["wylie"], murphy: ["murphy"], "lucas-fairview": ["lucas", "fairview"],
     "anna-melissa": ["anna", "melissa"], princeton: ["princeton"],
+    rockwall: ["rockwall"], rowlett: ["rowlett", "sapphire bay"], garland: ["garland"], grapevine: ["grapevine"], "flower-mound": ["flower mound"],
+    "las-colinas": ["las colinas", "irving"], arlington: ["arlington"], "fort-worth": ["fort worth", "ft worth"],
   };
 
   function findAreas(q, list) {
@@ -26,6 +28,7 @@
       for (const a of al) {
         if (s.includes(" " + a + " ")) {
           // "plano" alone maps to both Plano profiles only if no more specific alias matched
+          if (a === "fort worth" && s.includes(" dallas fort worth ")) continue;
           if (a === "plano" && (s.includes(" west plano ") || s.includes(" east plano ") || s.includes(" downtown plano ") || s.includes(" legacy "))) continue;
           hits.push(n); break;
         }

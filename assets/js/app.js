@@ -10,21 +10,26 @@
     ] },
     { label: "Neighborhoods", key: "areas", wide: true, groups: [
       ["Collin County North", [["frisco", "Frisco"], ["mckinney", "McKinney"], ["prosper", "Prosper"], ["celina", "Celina"], ["anna-melissa", "Anna & Melissa"], ["princeton", "Princeton"], ["little-elm", "Little Elm"]]],
-      ["Plano & US 75", [["west-plano", "West Plano"], ["downtown-east-plano", "Downtown & East Plano"], ["allen", "Allen"], ["richardson", "Richardson"], ["murphy", "Murphy"], ["wylie", "Wylie"], ["lucas-fairview", "Lucas & Fairview"]]],
+      ["Plano & US 75", [["west-plano", "West Plano"], ["downtown-east-plano", "Downtown & East Plano"], ["allen", "Allen"], ["richardson", "Richardson"], ["murphy", "Murphy"], ["lucas-fairview", "Lucas & Fairview"]]],
       ["Dallas & close-in", [["preston-hollow", "Preston Hollow"], ["far-north-dallas", "Far North Dallas"], ["addison", "Addison"], ["carrollton", "Carrollton"], ["the-colony", "The Colony"]]],
+      ["East & the lakes", [["rockwall", "Rockwall"], ["rowlett", "Rowlett"], ["garland", "Garland"], ["wylie", "Wylie"]]],
+      ["West & Mid-Cities", [["las-colinas", "Las Colinas (Irving)"], ["grapevine", "Grapevine"], ["flower-mound", "Flower Mound"], ["arlington", "Arlington"], ["fort-worth", "Fort Worth"]]],
     ], foot: [["neighborhoods.html", "All neighborhoods"], ["tools.html#fit", "Where should I live?"], ["tools.html#compare", "Compare areas"]] },
+    { label: "Explore", key: "explore", items: [
+      ["explore.html#developments", "What's being built", "New developments, updated regularly"],
+      ["explore.html#eat", "Eat & drink", "Restaurants and bars locals love"],
+      ["explore.html#do", "Things to do", "Parks, museums, downtowns"],
+      ["explore.html#sports", "Sports", "Teams, venues, schedules"],
+      ["explore.html#calendar", "Events calendar", "What's happening and when"],
+      ["explore.html#follow", "Follow local", "Instagram accounts worth following"],
+      ["intelligence.html#living", "Living here guides", "Toll roads, squares, lakes"],
+    ] },
     { label: "Moving Here", key: "moving", items: [
       ["intelligence.html#dfw-moving-checklist", "First 90 days checklist", "Licenses, registration, homestead"],
       ["intelligence.html#choosing-electricity-in-dfw", "Electricity & utilities", "How to pick a plan"],
       ["intelligence.html#moving-to-dfw-from-california", "Relocating from out of state", "What surprises people"],
       ["index.html#guide", "Free DFW Relocation Guide", "Get it by email"],
       ["intelligence.html#moving", "All moving guides", ""],
-    ] },
-    { label: "Living Here", key: "living", items: [
-      ["intelligence.html#toll-roads-101", "Toll roads 101", "TollTags, DNT, SH 121"],
-      ["intelligence.html#downtown-squares-north-of-dallas", "Small-town squares", "Weekend-worthy downtowns"],
-      ["neighborhoods.html#the-colony", "Lake life", "Lewisville Lake & Lake Lavon"],
-      ["intelligence.html#living", "All living guides", ""],
     ] },
     { label: "Real Estate", key: "re", items: [
       ["market.html", "Market dashboard", "Prices, inventory, timing"],

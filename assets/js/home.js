@@ -25,6 +25,17 @@
       : `<p style="font-weight:700">Thanks, ${esc(data.name)}! Email ${esc(C.AGENT_EMAIL)} and Kohl will send the guide personally.</p><p style="font-size:.9rem">Start now: <a class="link" href="intelligence.html#dfw-moving-checklist">the first-90-days checklist</a> · <a class="link" href="tools.html#fit">Where should I live?</a></p>`;
   });
 
+  loadJSON("data/explore.json").then((E) => {
+    const today = new Date().toISOString().slice(0, 10);
+    const fd = (iso, o) => new Date(iso + "T12:00:00").toLocaleDateString("en-US", o);
+    const ev = E.events.filter((e) => (e.end || e.start) >= today).sort((a, b) => a.start.localeCompare(b.start)).slice(0, 3);
+    document.getElementById("home-events").innerHTML = ev.map((e) => `<a class="evrow" href="${esc(e.url)}" target="_blank" rel="noopener"><span class="evdate"><b>${fd(e.start, { month: "short" })}</b>${fd(e.start, { day: "numeric" })}</span><span><strong>${esc(e.name)}</strong><small>${esc(e.city)}</small></span></a>`).join("");
+    const order = { "Under construction": 0, "Open": 1, "Complete": 2, "Scheduled": 3, "Stalled": 4 };
+    const dv = [...E.developments].sort((a, b) => (order[a.status] ?? 5) - (order[b.status] ?? 5)).slice(0, 3);
+    document.getElementById("home-devs").innerHTML = dv.map((d) => `<a class="evrow" href="explore.html#developments"><span class="evdate" style="background:var(--sky-soft);color:var(--sky);font-size:.62rem;text-align:center;padding:.2rem">${esc(d.status)}</span><span><strong>${esc(d.name)}</strong><small>${esc(d.city)} · ${esc(d.timing)}</small></span></a>`).join("");
+    document.getElementById("home-follow").innerHTML = E.social.slice(0, 6).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener"><i aria-hidden="true"></i>@${esc(s.handle)}</a>`).join("");
+  }).catch(() => {});
+
   Promise.all([loadJSON("data/photos.json"), loadJSON("data/neighborhoods.json"), loadJSON("data/articles.json")]).then(([P, N, A]) => {
     const hero = P["dallas-skyline"];
     if (hero) {
@@ -33,7 +44,8 @@
       document.getElementById("hero-credit").innerHTML = photoCredit(hero);
     }
 
-    const FEATURED = ["frisco", "mckinney", "richardson", "the-colony", "anna-melissa", "preston-hollow"];
+    document.getElementById("all-areas").textContent = `All ${N.neighborhoods.length} areas →`;
+    const FEATURED = ["frisco", "fort-worth", "mckinney", "arlington", "rockwall", "richardson"];
     const grid = document.getElementById("area-grid");
     const render = (f) => {
       const list = f === "all" ? FEATURED.map((id) => N.neighborhoods.find((n) => n.id === id)).filter(Boolean)
