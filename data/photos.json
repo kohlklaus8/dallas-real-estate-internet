@@ -1,5 +1,5 @@
 {
-  "_note": "Real photos only, each verified against its location tag on Unsplash or Pexels (both free for commercial use). Replace or add your own photos any time: put a file in assets/img/ and set src to its path.",
+  "_note": "Real photos only, each verified against its location: Unsplash and Pexels (free for commercial use) and Wikimedia Commons (free licenses; credit shown with license). Replace or add your own photos any time: put a file in assets/img/ and set src to its path.",
   "dallas-skyline": {
     "src": "photo-1621904878414-d4ca4756bd7e",
     "by": "R K",
@@ -93,5 +93,133 @@
     "page": "https://www.pexels.com/photo/charming-urban-street-cafe-scene-with-brick-buildings-36922099/",
     "place": "Shops in Plano",
     "site": "Pexels"
+  },
+  "commons-allen": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/City_of_Allen_Water_Tower_and_Storage.jpg",
+    "by": "DronePhotographer",
+    "page": "https://commons.wikimedia.org/wiki/File:City_of_Allen_Water_Tower_and_Storage.jpg",
+    "place": "Allen water tower, with US 75 behind it",
+    "site": "Wikimedia Commons",
+    "license": "CC0"
+  },
+  "commons-prosper": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Front_Prosper_Town_Hall.jpg",
+    "by": "Ranch9613",
+    "page": "https://commons.wikimedia.org/wiki/File:Front_Prosper_Town_Hall.jpg",
+    "place": "Prosper Town Hall",
+    "site": "Wikimedia Commons",
+    "license": "CC0"
+  },
+  "commons-celina": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Celina%2C_Texas.jpg",
+    "by": "Nicolas Henderson",
+    "page": "https://commons.wikimedia.org/wiki/File:Celina%2C_Texas.jpg",
+    "place": "Downtown Celina",
+    "site": "Wikimedia Commons",
+    "license": "CC BY 2.0"
+  },
+  "commons-richardson": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Richardson_August_2019_01_%28plaza%29.jpg",
+    "by": "Michael Barera",
+    "page": "https://commons.wikimedia.org/wiki/File:Richardson_August_2019_01_%28plaza%29.jpg",
+    "place": "A plaza in Richardson",
+    "site": "Wikimedia Commons",
+    "license": "CC BY-SA 4.0"
+  },
+  "commons-carrollton": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Carrollton_July_2019_11_%28Carrollton_Square_gazebo%29.jpg",
+    "by": "Michael Barera",
+    "page": "https://commons.wikimedia.org/wiki/File:Carrollton_July_2019_11_%28Carrollton_Square_gazebo%29.jpg",
+    "place": "Gazebo on Downtown Carrollton's square",
+    "site": "Wikimedia Commons",
+    "license": "CC BY-SA 4.0"
+  },
+  "commons-little-elm": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Beard_Park_in_Little_Elm%2C_Texas.jpg",
+    "by": "Babytexcoco",
+    "page": "https://commons.wikimedia.org/wiki/File:Beard_Park_in_Little_Elm%2C_Texas.jpg",
+    "place": "Beard Park, Little Elm",
+    "site": "Wikimedia Commons",
+    "license": "CC BY-SA 4.0"
+  },
+  "commons-wylie": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown_Wylie_Texas_Wiki_%281_of_1%29.jpg",
+    "by": "Renelibrary",
+    "page": "https://commons.wikimedia.org/wiki/File:Downtown_Wylie_Texas_Wiki_%281_of_1%29.jpg",
+    "place": "Historic Downtown Wylie",
+    "site": "Wikimedia Commons",
+    "license": "CC BY-SA 4.0"
+  },
+  "commons-princeton": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Princeton2022Oct11.jpg",
+    "by": "Pinecar",
+    "page": "https://commons.wikimedia.org/wiki/File:Princeton2022Oct11.jpg",
+    "place": "Sunrise in Princeton",
+    "site": "Wikimedia Commons",
+    "license": "CC0"
+  },
+  "commons-rowlett": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Downtown_Rowlett_Station_July_2015_01.jpg",
+    "by": "Michael Barera",
+    "page": "https://commons.wikimedia.org/wiki/File:Downtown_Rowlett_Station_July_2015_01.jpg",
+    "place": "DART's Downtown Rowlett Station",
+    "site": "Wikimedia Commons",
+    "license": "CC BY-SA 4.0"
+  },
+  "commons-garland": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Lake_Ray_Hubbard_Transit_Center.jpg",
+    "by": "Baseball Watcher",
+    "page": "https://commons.wikimedia.org/wiki/File:Lake_Ray_Hubbard_Transit_Center.jpg",
+    "place": "Lake Ray Hubbard Transit Center, Garland",
+    "site": "Wikimedia Commons",
+    "license": "CC BY-SA 4.0"
+  },
+  "commons-grapevine": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/GrapevineTX_MainSt_04Mar2018.jpg",
+    "by": "diego_bf109",
+    "page": "https://commons.wikimedia.org/wiki/File:GrapevineTX_MainSt_04Mar2018.jpg",
+    "place": "Historic Main Street, Grapevine",
+    "site": "Wikimedia Commons",
+    "license": "CC BY-SA 2.0"
+  },
+  "commons-flower-mound": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/North_Shore_Trail_-_panoramio.jpg",
+    "by": "Dameon Hudson",
+    "page": "https://commons.wikimedia.org/wiki/File:North_Shore_Trail_-_panoramio.jpg",
+    "place": "North Shore Trail on Grapevine Lake",
+    "site": "Wikimedia Commons",
+    "license": "CC BY 3.0"
+  },
+  "commons-far-north-dallas": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Far_North_Dallas%2C_Dallas%2C_TX%2C_USA_-_panoramio_%288%29.jpg",
+    "by": "matt henry",
+    "page": "https://commons.wikimedia.org/wiki/File:Far_North_Dallas%2C_Dallas%2C_TX%2C_USA_-_panoramio_%288%29.jpg",
+    "place": "Far North Dallas",
+    "site": "Wikimedia Commons",
+    "license": "CC BY-SA 3.0"
+  },
+  "commons-preston-hollow": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/House_at_Preston_Hollow%2C_Dallas%2C_Texas_2.JPG",
+    "by": "Ansem27",
+    "page": "https://commons.wikimedia.org/wiki/File:House_at_Preston_Hollow%2C_Dallas%2C_Texas_2.JPG",
+    "place": "A home in Preston Hollow",
+    "site": "Wikimedia Commons",
+    "license": "CC BY-SA 3.0"
+  },
+  "commons-lucas-fairview": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Hart_Road_detail_-_Detail_of_Fairview%2C_TX.jpg",
+    "by": "Fairsaka",
+    "page": "https://commons.wikimedia.org/wiki/File:Hart_Road_detail_-_Detail_of_Fairview%2C_TX.jpg",
+    "place": "Pastureland along Hart Road, Fairview",
+    "site": "Wikimedia Commons",
+    "license": "Public domain"
+  },
+  "commons-downtown-east-plano": {
+    "src": "https://commons.wikimedia.org/wiki/Special:FilePath/A_wooded_boardwalk_trail_in_Oak_Point_Park_in_Plano%2C_Texas%2C_USA.jpg",
+    "by": "Jackilometresan",
+    "page": "https://commons.wikimedia.org/wiki/File:A_wooded_boardwalk_trail_in_Oak_Point_Park_in_Plano%2C_Texas%2C_USA.jpg",
+    "place": "Boardwalk trail in Oak Point Park, Plano",
+    "site": "Wikimedia Commons",
+    "license": "CC0"
   }
 }
