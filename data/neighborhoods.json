@@ -2,7 +2,7 @@
   "meta": {
     "version": "0.1.0",
     "last_updated": "2026-10-15",
-    "coverage": "North Dallas & Collin County launch wedge",
+    "coverage": "Dallas–Fort Worth: North Dallas, Collin County, the East lakes and the West Mid-Cities",
     "method": "Editorial profiles written from local knowledge. Scores are 0–5 relative comparisons inside this coverage area, not ratings. Price tiers are relative. Market metrics (median price, inventory, days on market) stay null until loaded from a licensed MLS/market data source.",
     "score_keys": {
       "new_construction": "Share of newer (2010+) and new-build homes",
@@ -1286,6 +1286,548 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15"
+    },
+    {
+      "id": "rockwall",
+      "name": "Rockwall",
+      "city": "Rockwall",
+      "submarket": "East · Lake Ray Hubbard",
+      "price_tier": 3,
+      "home_types": [
+        "Single-family",
+        "Lakefront",
+        "New build"
+      ],
+      "home_age": "Mostly 1990s–present, with active new construction",
+      "lot_profile": "Standard to large lots; lakefront and lake-view options",
+      "hoa": "HOAs common in newer communities",
+      "tax_profile": "Rockwall County rates. Some newer areas carry special districts, so check by address.",
+      "isd": [
+        "Rockwall ISD",
+        "Royse City ISD (parts)"
+      ],
+      "routes": [
+        "I-30",
+        "SH 205"
+      ],
+      "commute_profile": "I-30 runs west across Lake Ray Hubbard into Dallas. Peak-hour bridge traffic is the main tradeoff.",
+      "amenities": [
+        "The Harbor Rockwall",
+        "Lake Ray Hubbard",
+        "Downtown Rockwall square"
+      ],
+      "development": "Steady residential and retail growth along I-30 and SH 205.",
+      "lifestyle_summary": "Lakeside living east of Dallas, with The Harbor's waterfront dining and a small-town square.",
+      "pros": [
+        "Lake views and waterfront dining",
+        "Newer homes",
+        "Small-town downtown"
+      ],
+      "cons": [
+        "I-30 bridge traffic at peak hours",
+        "Far from the north job corridors",
+        "Prices higher than nearby Rowlett"
+      ],
+      "best_for": [
+        "Lake lovers",
+        "East Dallas commuters",
+        "Move-up buyers"
+      ],
+      "scores": {
+        "new_construction": 3,
+        "lot_size": 3,
+        "amenities": 3,
+        "commute_dallas": 2,
+        "commute_north": 1,
+        "rail": 0,
+        "lake": 5,
+        "value": 2
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-15"
+    },
+    {
+      "id": "rowlett",
+      "name": "Rowlett",
+      "city": "Rowlett",
+      "submarket": "East · Lake Ray Hubbard",
+      "price_tier": 2,
+      "home_types": [
+        "Single-family",
+        "Lakefront",
+        "Townhome"
+      ],
+      "home_age": "Mostly 1980s–2000s, with newer pockets",
+      "lot_profile": "Standard lots; many lake-adjacent streets",
+      "hoa": "Mix; many older areas have no mandatory HOA",
+      "tax_profile": "Dallas/Rockwall county rates. Check by address.",
+      "isd": [
+        "Garland ISD",
+        "Rockwall ISD (parts)"
+      ],
+      "routes": [
+        "PGBT",
+        "I-30",
+        "DART Blue Line"
+      ],
+      "commute_profile": "The Bush Turnpike and I-30 reach Dallas and Richardson. The DART Blue Line ends at Downtown Rowlett.",
+      "amenities": [
+        "Lake Ray Hubbard",
+        "Downtown Rowlett",
+        "Paddle Point Park"
+      ],
+      "development": "Sapphire Bay, a planned lakefront resort district, has housing built but its resort pieces remain unbuilt. The city issued a notice of default to the developer in January 2026.",
+      "lifestyle_summary": "Lake-adjacent homes at moderate prices, with a rail line into Dallas.",
+      "pros": [
+        "Lake access at moderate prices",
+        "DART rail at Downtown Rowlett",
+        "Bush Turnpike access"
+      ],
+      "cons": [
+        "Older housing in many areas",
+        "Sapphire Bay's future is uncertain",
+        "Fewer big-retail options"
+      ],
+      "best_for": [
+        "Value seekers",
+        "Lake lovers",
+        "Rail commuters"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 2,
+        "amenities": 2,
+        "commute_dallas": 3,
+        "commute_north": 2,
+        "rail": 3,
+        "lake": 5,
+        "value": 4
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-15"
+    },
+    {
+      "id": "garland",
+      "name": "Garland",
+      "city": "Garland",
+      "submarket": "East · Dallas County",
+      "price_tier": 1,
+      "home_types": [
+        "Single-family",
+        "Townhome"
+      ],
+      "home_age": "Mostly 1950s–1990s, with newer infill",
+      "lot_profile": "Standard suburban lots",
+      "hoa": "Many neighborhoods have no mandatory HOA",
+      "tax_profile": "Dallas County rates. Garland Power & Light is a city-owned utility, so most residents don't shop for electricity providers.",
+      "isd": [
+        "Garland ISD"
+      ],
+      "routes": [
+        "I-635",
+        "I-30",
+        "PGBT",
+        "DART Blue Line"
+      ],
+      "commute_profile": "Several freeways plus DART Blue Line stations reach Dallas and Richardson.",
+      "amenities": [
+        "Firewheel Town Center",
+        "Historic Downtown Garland square",
+        "Lake Ray Hubbard (east)"
+      ],
+      "development": "Downtown Garland redevelopment around the square and rail station.",
+      "lifestyle_summary": "One of the most affordable places close to Dallas, with rail access and a revitalized downtown.",
+      "pros": [
+        "Lower entry prices close to Dallas",
+        "DART rail",
+        "Municipal electric utility"
+      ],
+      "cons": [
+        "Older homes may need updates",
+        "Big city with very different neighborhoods",
+        "Fewer new builds"
+      ],
+      "best_for": [
+        "First-time buyers",
+        "Investors",
+        "Rail commuters"
+      ],
+      "scores": {
+        "new_construction": 1,
+        "lot_size": 2,
+        "amenities": 3,
+        "commute_dallas": 4,
+        "commute_north": 2,
+        "rail": 4,
+        "lake": 3,
+        "value": 5
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-15"
+    },
+    {
+      "id": "grapevine",
+      "name": "Grapevine",
+      "city": "Grapevine",
+      "submarket": "West · Mid-Cities",
+      "price_tier": 3,
+      "home_types": [
+        "Single-family",
+        "Townhome",
+        "Historic homes"
+      ],
+      "home_age": "Historic core plus 1980s–2000s neighborhoods",
+      "lot_profile": "Standard lots; larger lots near the lake",
+      "hoa": "Varies; historic areas have preservation rules",
+      "tax_profile": "Mostly Tarrant County. Check by address.",
+      "isd": [
+        "Grapevine-Colleyville ISD"
+      ],
+      "routes": [
+        "SH 114",
+        "SH 121",
+        "TEXRail",
+        "DART Silver Line"
+      ],
+      "commute_profile": "Next to DFW Airport. SH 114 and SH 121 reach Dallas, Las Colinas and Fort Worth. TEXRail runs from Grapevine Main to Fort Worth, and the DART Silver Line serves the airport area.",
+      "amenities": [
+        "Historic Main Street",
+        "Grapevine Lake",
+        "Gaylord Texan",
+        "Grapevine Vintage Railroad",
+        "Wineries"
+      ],
+      "development": "Ongoing Main Street and lake-area investment; the city brands itself the Christmas Capital of Texas.",
+      "lifestyle_summary": "A historic Main Street with wineries and festivals, right next to DFW Airport.",
+      "pros": [
+        "Unbeatable airport access",
+        "Walkable historic Main Street",
+        "Grapevine Lake"
+      ],
+      "cons": [
+        "Limited inventory",
+        "Airport noise in some areas",
+        "Higher prices"
+      ],
+      "best_for": [
+        "Frequent flyers",
+        "Buyers who want walkability",
+        "Lake lovers"
+      ],
+      "scores": {
+        "new_construction": 1,
+        "lot_size": 3,
+        "amenities": 4,
+        "commute_dallas": 3,
+        "commute_north": 3,
+        "rail": 3,
+        "lake": 4,
+        "value": 2
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-15"
+    },
+    {
+      "id": "flower-mound",
+      "name": "Flower Mound",
+      "city": "Flower Mound",
+      "submarket": "West · Denton County",
+      "price_tier": 3,
+      "home_types": [
+        "Single-family",
+        "Estate lots"
+      ],
+      "home_age": "Mostly 1990s–2010s",
+      "lot_profile": "Larger lots and preserved open space",
+      "hoa": "HOAs common",
+      "tax_profile": "Denton County rates. Check by address.",
+      "isd": [
+        "Lewisville ISD",
+        "Argyle ISD (parts)",
+        "Northwest ISD (parts)"
+      ],
+      "routes": [
+        "FM 2499",
+        "I-35E",
+        "SH 121"
+      ],
+      "commute_profile": "Close to DFW Airport and the SH 121 corridor. Dallas is a moderate drive.",
+      "amenities": [
+        "Grapevine Lake (north shore)",
+        "Parker Square",
+        "Trails and parks"
+      ],
+      "development": "Low-density growth guided by the town's master plan.",
+      "lifestyle_summary": "Spacious, quiet and green, with larger lots and quick airport access.",
+      "pros": [
+        "Larger lots and open space",
+        "Close to DFW Airport",
+        "Quiet residential feel"
+      ],
+      "cons": [
+        "Few walkable districts",
+        "Higher price tier",
+        "Car-dependent"
+      ],
+      "best_for": [
+        "Move-up families",
+        "Frequent flyers",
+        "Buyers who want space"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 4,
+        "amenities": 2,
+        "commute_dallas": 2,
+        "commute_north": 3,
+        "rail": 0,
+        "lake": 3,
+        "value": 2
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-15"
+    },
+    {
+      "id": "las-colinas",
+      "name": "Las Colinas",
+      "city": "Irving",
+      "submarket": "West · Irving",
+      "price_tier": 3,
+      "home_types": [
+        "Condo",
+        "Townhome",
+        "Single-family",
+        "Urban apartments"
+      ],
+      "home_age": "1970s master plan to present, with lots of newer urban product",
+      "lot_profile": "Small to standard lots; many condo and townhome options",
+      "hoa": "Most condos and townhomes have HOA dues",
+      "tax_profile": "Dallas County rates. Check by address.",
+      "isd": [
+        "Irving ISD",
+        "Carrollton-Farmers Branch ISD (parts)",
+        "Coppell ISD (parts)"
+      ],
+      "routes": [
+        "SH 114",
+        "PGBT",
+        "I-635",
+        "DART Orange Line"
+      ],
+      "commute_profile": "Central to DFW Airport, Dallas and the corporate offices in the Urban Center. DART's Orange Line serves Las Colinas.",
+      "amenities": [
+        "Mandalay Canal",
+        "Lake Carolyn",
+        "Toyota Music Factory",
+        "Mustangs of Las Colinas"
+      ],
+      "development": "Continued office, hotel and residential growth in the Urban Center.",
+      "lifestyle_summary": "A master-planned business district with canals, lakes and lock-and-leave living between Dallas and the airport.",
+      "pros": [
+        "Central between Dallas and the airport",
+        "Walkable canal district",
+        "Lots of corporate jobs nearby"
+      ],
+      "cons": [
+        "Fewer traditional single-family streets",
+        "HOA dues common",
+        "Can feel quiet after hours"
+      ],
+      "best_for": [
+        "Young professionals",
+        "Corporate relocations",
+        "Downsizers"
+      ],
+      "scores": {
+        "new_construction": 3,
+        "lot_size": 1,
+        "amenities": 4,
+        "commute_dallas": 4,
+        "commute_north": 3,
+        "rail": 4,
+        "lake": 2,
+        "value": 3
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-15"
+    },
+    {
+      "id": "arlington",
+      "name": "Arlington",
+      "city": "Arlington",
+      "submarket": "West · Mid-Cities",
+      "price_tier": 2,
+      "home_types": [
+        "Single-family",
+        "Townhome"
+      ],
+      "home_age": "Mostly 1970s–2000s, with newer areas to the south",
+      "lot_profile": "Standard suburban lots",
+      "hoa": "Mix of HOA and non-HOA neighborhoods",
+      "tax_profile": "Tarrant County rates. Check by address.",
+      "isd": [
+        "Arlington ISD",
+        "Mansfield ISD (parts)"
+      ],
+      "routes": [
+        "I-30",
+        "I-20",
+        "SH 360"
+      ],
+      "commute_profile": "Between Dallas and Fort Worth. Arlington uses on-demand rideshare transit (Via) instead of fixed bus routes.",
+      "amenities": [
+        "AT&T Stadium",
+        "Globe Life Field",
+        "Six Flags Over Texas",
+        "Texas Live!",
+        "UT Arlington"
+      ],
+      "development": "Continued growth around the Entertainment District.",
+      "lifestyle_summary": "Home of the Cowboys and Rangers: the entertainment capital of the metroplex, centrally placed between Dallas and Fort Worth.",
+      "pros": [
+        "Entertainment District",
+        "Central between both cities",
+        "Moderate prices"
+      ],
+      "cons": [
+        "Event-day traffic",
+        "Few rail options",
+        "Car-dependent"
+      ],
+      "best_for": [
+        "Sports fans",
+        "Two-city commuters",
+        "Value seekers"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 2,
+        "amenities": 4,
+        "commute_dallas": 2,
+        "commute_north": 1,
+        "rail": 0,
+        "lake": 2,
+        "value": 4
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-15",
+      "photo": "arlington-att-stadium"
+    },
+    {
+      "id": "fort-worth",
+      "name": "Fort Worth",
+      "city": "Fort Worth",
+      "submarket": "West · Tarrant County",
+      "price_tier": 2,
+      "home_types": [
+        "Single-family",
+        "Historic homes",
+        "Urban condos",
+        "New build"
+      ],
+      "home_age": "Everything from 1900s historic districts to brand-new suburbs",
+      "lot_profile": "Varies widely by neighborhood",
+      "hoa": "Varies widely",
+      "tax_profile": "Tarrant County rates. Some newer areas carry special districts, so check by address.",
+      "isd": [
+        "Fort Worth ISD",
+        "Keller ISD (parts)",
+        "Northwest ISD (parts)",
+        "Crowley ISD (parts)"
+      ],
+      "routes": [
+        "I-30",
+        "I-35W",
+        "I-820",
+        "Chisholm Trail Pkwy",
+        "TEXRail"
+      ],
+      "commute_profile": "Its own job center, with a downtown, medical district and industry. Dallas is a 45-minute-plus drive, so most residents work in Fort Worth.",
+      "amenities": [
+        "Stockyards",
+        "Sundance Square",
+        "Cultural District museums",
+        "Dickies Arena",
+        "Trinity Trails"
+      ],
+      "development": "Large growth across the city, including Panther Island along the Trinity River and new master-planned suburbs.",
+      "lifestyle_summary": "A big city with a Western heart: museums, the Stockyards, a lively downtown and neighborhoods at every price point.",
+      "pros": [
+        "Distinct culture and downtown",
+        "Wide range of prices",
+        "Strong arts scene"
+      ],
+      "cons": [
+        "Far from Dallas job centers",
+        "Huge city with uneven neighborhoods",
+        "New suburbs can be far out"
+      ],
+      "best_for": [
+        "Fort Worth workers",
+        "Culture lovers",
+        "Value seekers"
+      ],
+      "scores": {
+        "new_construction": 3,
+        "lot_size": 3,
+        "amenities": 4,
+        "commute_dallas": 1,
+        "commute_north": 0,
+        "rail": 2,
+        "lake": 2,
+        "value": 4
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-15",
+      "photo": "fort-worth-sundance-mural"
     }
   ]
 }

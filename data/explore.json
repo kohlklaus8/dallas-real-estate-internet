@@ -1,0 +1,457 @@
+{
+  "_how_to_update": "Edit this file on GitHub (pencil icon). Each list is independent. Add an item by copying an existing one. Keep 'last_checked' honest — it shows on the site.",
+  "last_checked": "2026-10-15",
+  "developments": [
+    {
+      "name": "Universal Kids Resort",
+      "city": "Frisco",
+      "type": "Entertainment",
+      "status": "Open",
+      "timing": "Opened July 1, 2026",
+      "summary": "Universal's first theme park designed for families with young kids, with a themed hotel, at the Fields area of Frisco.",
+      "source": "Visit Frisco",
+      "url": "https://www.visitfrisco.com/press-room/new-next"
+    },
+    {
+      "name": "Fields West",
+      "city": "Frisco",
+      "type": "Mixed-use",
+      "status": "Under construction",
+      "timing": "Openings begin Q3 2027, continuing into 2028",
+      "summary": "Shops, dining, offices and residences on the west side of the Fields development, near the PGA of America headquarters.",
+      "source": "Visit Frisco",
+      "url": "https://www.visitfrisco.com/press-room/new-next"
+    },
+    {
+      "name": "2027 PGA Championship at Fields Ranch",
+      "city": "Frisco",
+      "type": "Event venue",
+      "status": "Scheduled",
+      "timing": "May 17–23, 2027",
+      "summary": "One of golf's four majors comes to PGA Frisco's Fields Ranch course.",
+      "source": "Visit Frisco",
+      "url": "https://www.visitfrisco.com/press-room/new-next"
+    },
+    {
+      "name": "Grand Park, Phase I",
+      "city": "Frisco",
+      "type": "Park",
+      "status": "Under construction",
+      "timing": "Broke ground April 2026; targeted October 2027",
+      "summary": "The first $43M phase of Frisco's long-planned central park, including the Civic Room.",
+      "source": "Visit Frisco",
+      "url": "https://www.visitfrisco.com/press-room/new-next"
+    },
+    {
+      "name": "Toyota Stadium renovation",
+      "city": "Frisco",
+      "type": "Sports",
+      "status": "Under construction",
+      "timing": "West and north sides closed from fall 2026; target is FC Dallas' first 2028 home match",
+      "summary": "A major rebuild of FC Dallas' home stadium, with an entertainment district and hotel planned nearby.",
+      "source": "Visit Frisco",
+      "url": "https://www.visitfrisco.com/press-room/new-next"
+    },
+    {
+      "name": "Frisco Rail District downtown reinvestment",
+      "city": "Frisco",
+      "type": "Downtown",
+      "status": "Complete",
+      "timing": "Ribbon cutting October 13, 2026",
+      "summary": "An $83M upgrade to Frisco's historic downtown streets and public spaces.",
+      "source": "Visit Frisco",
+      "url": "https://www.visitfrisco.com/press-room/new-next"
+    },
+    {
+      "name": "Collin Creek redevelopment",
+      "city": "Plano",
+      "type": "Mixed-use",
+      "status": "Under construction",
+      "timing": "Construction continues through 2028",
+      "summary": "The former Collin Creek Mall site is becoming homes, apartments, retail and two new parks. About 200 households already live there.",
+      "source": "Community Impact (June 2026)",
+      "url": "https://communityimpact.com/plano/government/mixed-use-development-construction-near-collin-creek-mall-to-continue-through-2028/"
+    },
+    {
+      "name": "DART Silver Line",
+      "city": "Plano to DFW Airport",
+      "type": "Transit",
+      "status": "Open",
+      "timing": "Opened October 2025",
+      "summary": "Commuter rail linking Plano, Richardson, Addison, Carrollton, Coppell, Grapevine and DFW Airport, a new east-west option across the north metro.",
+      "source": "WSP / DART",
+      "url": "https://www.wsp.com/en-us/news/2025/dart-silver-line-regional-rail-grand-opening"
+    },
+    {
+      "name": "Sapphire Bay",
+      "city": "Rowlett",
+      "type": "Mixed-use",
+      "status": "Stalled",
+      "timing": "City issued a notice of default to the developer in January 2026",
+      "summary": "A planned lakefront resort district on Lake Ray Hubbard. Apartments and homes are built, but the promised resort, lagoon and commercial core remain undeveloped.",
+      "source": "ResortX (citing NBC DFW)",
+      "url": "https://www.resortx.com/sapphire-bay/"
+    }
+  ],
+  "eat": [
+    {
+      "name": "Pecan Lodge",
+      "city": "Dallas · Deep Ellum",
+      "kind": "Barbecue",
+      "why": "Destination Texas barbecue. Expect a line on weekends.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Pecan+Lodge+Dallas+TX"
+    },
+    {
+      "name": "Terry Black's Barbecue",
+      "city": "Dallas · Deep Ellum",
+      "kind": "Barbecue",
+      "why": "Big, classic Central Texas-style barbecue hall.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Terry+Black%27s+Barbecue+Dallas+TX"
+    },
+    {
+      "name": "Hutchins BBQ",
+      "city": "McKinney & Frisco",
+      "kind": "Barbecue",
+      "why": "A North Texas favorite with locations in both cities.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Hutchins+BBQ+McKinney+TX"
+    },
+    {
+      "name": "Heim Barbecue",
+      "city": "Fort Worth",
+      "kind": "Barbecue",
+      "why": "Fort Worth barbecue known for its bacon burnt ends.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Heim+Barbecue+Fort+Worth+TX"
+    },
+    {
+      "name": "Joe T. Garcia's",
+      "city": "Fort Worth",
+      "kind": "Tex-Mex",
+      "why": "A family-run Fort Worth institution, famous for its garden patio.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Joe+T.+Garcia%27s+Fort+Worth+TX"
+    },
+    {
+      "name": "Javier's",
+      "city": "Dallas",
+      "kind": "Mexican",
+      "why": "Long-running, white-tablecloth Mexico City-style cuisine.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Javier%27s+Dallas+TX"
+    },
+    {
+      "name": "Babe's Chicken Dinner House",
+      "city": "Carrollton, Garland & more",
+      "kind": "Southern",
+      "why": "Family-style fried chicken and sides in historic buildings.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Babe%27s+Chicken+Dinner+House+Carrollton+TX"
+    },
+    {
+      "name": "Al Biernat's",
+      "city": "Dallas",
+      "kind": "Steakhouse",
+      "why": "A classic Dallas steakhouse for big occasions.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Al+Biernat%27s+Dallas+TX"
+    },
+    {
+      "name": "Uchi Dallas",
+      "city": "Dallas · Uptown",
+      "kind": "Japanese",
+      "why": "Creative sushi and small plates from the Austin-born group.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Uchi+Dallas+Dallas+TX"
+    },
+    {
+      "name": "Velvet Taco",
+      "city": "Many DFW locations",
+      "kind": "Tacos",
+      "why": "Dallas-born, creative tacos. A local go-to.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Velvet+Taco+Many+DFW+locations+TX"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Katy Trail Ice House",
+      "city": "Dallas · Uptown",
+      "kind": "Beer garden",
+      "why": "A big patio right on the Katy Trail.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Katy+Trail+Ice+House+Dallas+TX"
+    },
+    {
+      "name": "Truck Yard",
+      "city": "Dallas & The Colony",
+      "kind": "Outdoor bar",
+      "why": "Food trucks, live music and backyard vibes, including at Grandscape.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Truck+Yard+Dallas+TX"
+    },
+    {
+      "name": "The Rustic",
+      "city": "Dallas · Uptown",
+      "kind": "Patio & live music",
+      "why": "Big patio with live music most nights.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Rustic+Dallas+TX"
+    },
+    {
+      "name": "Billy Bob's Texas",
+      "city": "Fort Worth · Stockyards",
+      "kind": "Honky-tonk",
+      "why": "A world-famous honky-tonk with live country music and bull riding.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Billy+Bob%27s+Texas+Fort+Worth+TX"
+    },
+    {
+      "name": "Deep Ellum Brewing Co.",
+      "city": "Dallas · Deep Ellum",
+      "kind": "Brewery",
+      "why": "A Dallas craft beer pioneer in the heart of Deep Ellum.",
+      "reviews": "https://www.google.com/maps/search/?api=1&query=Deep+Ellum+Brewing+Co.+Dallas+TX"
+    }
+  ],
+  "do": [
+    {
+      "name": "Klyde Warren Park",
+      "city": "Dallas",
+      "kind": "Park",
+      "why": "A deck park over the freeway with food trucks, events and lawn games.",
+      "url": "https://www.klydewarrenpark.org/"
+    },
+    {
+      "name": "Dallas Arboretum",
+      "city": "Dallas · White Rock Lake",
+      "kind": "Garden",
+      "why": "Seasonal festivals on White Rock Lake. Holiday at the Arboretum opens November 11, 2026.",
+      "url": "https://www.dallasarboretum.org/"
+    },
+    {
+      "name": "Perot Museum of Nature and Science",
+      "city": "Dallas",
+      "kind": "Museum",
+      "why": "Hands-on science museum that's great with kids.",
+      "url": "https://www.perotmuseum.org/"
+    },
+    {
+      "name": "Fort Worth Stockyards",
+      "city": "Fort Worth",
+      "kind": "Historic district",
+      "why": "Twice-daily cattle drives, rodeos and Western shopping.",
+      "url": "https://www.fortworthstockyards.org/"
+    },
+    {
+      "name": "Kimbell Art Museum",
+      "city": "Fort Worth",
+      "kind": "Museum",
+      "why": "A world-class collection in a landmark building in the Cultural District.",
+      "url": "https://kimbellart.org/"
+    },
+    {
+      "name": "Six Flags Over Texas",
+      "city": "Arlington",
+      "kind": "Theme park",
+      "why": "The original Six Flags park, next to the stadiums.",
+      "url": "https://www.sixflags.com/overtexas"
+    },
+    {
+      "name": "Universal Kids Resort",
+      "city": "Frisco",
+      "kind": "Theme park",
+      "why": "Opened July 2026, built for families with young kids.",
+      "url": "https://www.universalkidsresort.com/"
+    },
+    {
+      "name": "Historic Main Street Grapevine",
+      "city": "Grapevine",
+      "kind": "Downtown",
+      "why": "Wineries, shops and the Grapevine Vintage Railroad.",
+      "url": "https://www.grapevinetexasusa.com/"
+    },
+    {
+      "name": "The Harbor Rockwall",
+      "city": "Rockwall",
+      "kind": "Waterfront",
+      "why": "Lakefront dining and sunsets on Lake Ray Hubbard.",
+      "url": "https://www.google.com/maps/search/?api=1&query=The+Harbor+Rockwall+Rockwall+TX"
+    },
+    {
+      "name": "Historic Downtown McKinney",
+      "city": "McKinney",
+      "kind": "Downtown",
+      "why": "Shops, restaurants and events around the square.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Historic+Downtown+McKinney+McKinney+TX"
+    },
+    {
+      "name": "Mandalay Canal",
+      "city": "Las Colinas, Irving",
+      "kind": "Walkable district",
+      "why": "Canal-side walks and restaurants in the Urban Center.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Mandalay+Canal+Las+Colinas+TX"
+    },
+    {
+      "name": "The Star",
+      "city": "Frisco",
+      "kind": "Sports & dining",
+      "why": "Dallas Cowboys headquarters with restaurants and events.",
+      "url": "https://www.google.com/maps/search/?api=1&query=The+Star+Frisco+TX"
+    }
+  ],
+  "sports": [
+    {
+      "team": "Dallas Cowboys",
+      "league": "NFL",
+      "venue": "AT&T Stadium, Arlington",
+      "url": "https://www.dallascowboys.com/schedule/"
+    },
+    {
+      "team": "Texas Rangers",
+      "league": "MLB",
+      "venue": "Globe Life Field, Arlington",
+      "url": "https://www.mlb.com/rangers/schedule"
+    },
+    {
+      "team": "Dallas Mavericks",
+      "league": "NBA",
+      "venue": "American Airlines Center, Dallas",
+      "url": "https://www.mavs.com/schedule/"
+    },
+    {
+      "team": "Dallas Stars",
+      "league": "NHL",
+      "venue": "American Airlines Center, Dallas",
+      "url": "https://www.nhl.com/stars/schedule"
+    },
+    {
+      "team": "FC Dallas",
+      "league": "MLS",
+      "venue": "Toyota Stadium, Frisco (under renovation)",
+      "url": "https://www.fcdallas.com/schedule/"
+    },
+    {
+      "team": "Dallas Wings",
+      "league": "WNBA",
+      "venue": "See team site",
+      "url": "https://wings.wnba.com/schedule"
+    },
+    {
+      "team": "Frisco RoughRiders",
+      "league": "Minor League Baseball",
+      "venue": "Riders Field, Frisco",
+      "url": "https://www.milb.com/frisco/schedule"
+    },
+    {
+      "team": "Dallas Renegades",
+      "league": "UFL",
+      "venue": "Toyota Stadium, Frisco",
+      "url": "https://www.theufl.com/"
+    }
+  ],
+  "events": [
+    {
+      "name": "State Fair of Texas",
+      "start": "2026-09-25",
+      "end": "2026-10-18",
+      "city": "Dallas · Fair Park",
+      "kind": "Festival",
+      "url": "https://bigtex.com/",
+      "source": "Fair Park"
+    },
+    {
+      "name": "Holiday at the Arboretum (final year of the 12 Days of Christmas gazebos)",
+      "start": "2026-11-11",
+      "end": null,
+      "city": "Dallas Arboretum",
+      "kind": "Holiday",
+      "url": "https://www.dallasarboretum.org/holiday",
+      "source": "FOX 4"
+    },
+    {
+      "name": "Christmas Capital of Texas season + Carol of Lights",
+      "start": "2026-11-23",
+      "end": null,
+      "city": "Grapevine · Main Street",
+      "kind": "Holiday",
+      "url": "https://www.grapevinetexasusa.com/",
+      "source": "Grapevine CVB"
+    },
+    {
+      "name": "Parade of Lights",
+      "start": "2026-12-03",
+      "end": null,
+      "city": "Grapevine · Main Street",
+      "kind": "Holiday",
+      "url": "https://www.grapevinetexasusa.com/",
+      "source": "Grapevine CVB"
+    },
+    {
+      "name": "BMW Dallas Marathon race weekend",
+      "start": "2026-12-11",
+      "end": "2026-12-13",
+      "city": "Dallas · Downtown",
+      "kind": "Race",
+      "url": "https://www.dallasmarathon.com/",
+      "source": "dallasmarathon.com"
+    },
+    {
+      "name": "Fort Worth Stock Show & Rodeo",
+      "start": "2027-01-15",
+      "end": "2027-02-06",
+      "city": "Fort Worth · Will Rogers",
+      "kind": "Rodeo",
+      "url": "https://www.fwssr.com/",
+      "source": "Event listing; confirm at fwssr.com"
+    },
+    {
+      "name": "PGA Championship",
+      "start": "2027-05-17",
+      "end": "2027-05-23",
+      "city": "Frisco · Fields Ranch",
+      "kind": "Golf",
+      "url": "https://www.pgachampionship.com/",
+      "source": "Visit Frisco"
+    }
+  ],
+  "social": [
+    {
+      "name": "Dallasites101",
+      "handle": "dallasites101",
+      "url": "https://www.instagram.com/dallasites101/",
+      "about": "Dallas food, events and things to do",
+      "platform": "Instagram"
+    },
+    {
+      "name": "Visit Dallas",
+      "handle": "visit_dallas",
+      "url": "https://www.instagram.com/visit_dallas/",
+      "about": "Things to do in Dallas",
+      "platform": "Instagram"
+    },
+    {
+      "name": "Dallas Food Nerd",
+      "handle": "dallasfoodnerd",
+      "url": "https://www.instagram.com/dallasfoodnerd/",
+      "about": "Where to eat in Dallas",
+      "platform": "Instagram"
+    },
+    {
+      "name": "Dallas Observer",
+      "handle": "dallasobserver",
+      "url": "https://www.instagram.com/dallasobserver/",
+      "about": "Local news, food, music and culture",
+      "platform": "Instagram"
+    },
+    {
+      "name": "Visit Fort Worth",
+      "handle": "visitfortworth",
+      "url": "https://www.instagram.com/visitfortworth/",
+      "about": "Fort Worth events and attractions",
+      "platform": "Instagram"
+    },
+    {
+      "name": "Visit Grapevine",
+      "handle": "visitgrapevine",
+      "url": "https://www.instagram.com/visitgrapevine/",
+      "about": "Grapevine festivals, wineries and Main Street",
+      "platform": "Instagram"
+    },
+    {
+      "name": "CandysDirt",
+      "handle": "candysdirt",
+      "url": "https://www.instagram.com/candysdirt/",
+      "about": "Dallas real estate news",
+      "platform": "Instagram"
+    }
+  ]
+}
