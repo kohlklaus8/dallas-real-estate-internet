@@ -1,0 +1,11 @@
+{
+  "_note": "Real photos only, each verified against its Unsplash location tag. Free to use under the Unsplash License (unsplash.com/license). Served from Unsplash's image CDN. Replace or add your own photos any time: put a file in assets/img/ and set src to its path.",
+  "dallas-skyline": { "src": "photo-1621904878414-d4ca4756bd7e", "by": "R K", "page": "https://unsplash.com/photos/h1n7o0yb0sE", "place": "Downtown Dallas skyline" },
+  "dallas-aerial": { "src": "photo-1691635188006-78cfe07dadcc", "by": "Daniel", "page": "https://unsplash.com/photos/wfZLSJB-T_c", "place": "Dallas highways from above" },
+  "deep-ellum": { "src": "photo-1592409065737-a253f2900fa8", "by": "Corey Collins", "page": "https://unsplash.com/photos/IAPhiFploCo", "place": "Deep Ellum, Dallas" },
+  "frisco-water-tower": { "src": "photo-1623621029767-913a0c0038b4", "by": "Nancy Jo Lambert", "page": "https://unsplash.com/photos/r5cDYwm27T0", "place": "Frisco water tower" },
+  "mckinney-downtown": { "src": "photo-1772209253872-0a33f4aa409d", "by": "adam roye", "page": "https://unsplash.com/photos/8XZavNUe9zo", "place": "Historic downtown McKinney" },
+  "mckinney-adriatica": { "src": "photo-1719535217504-40e08efa53b7", "by": "S. Laiba Ali", "page": "https://unsplash.com/photos/5ijAAnOTn1s", "place": "Adriatica bell tower, McKinney" },
+  "lewisville-lake": { "src": "photo-1691951577488-20e781c034c9", "by": "Yash Mannepalli", "page": "https://unsplash.com/photos/WzdasYGD1Ww", "place": "Lewisville Lake shoreline" },
+  "fort-worth-stockyards": { "src": "photo-1692417880021-429a69d8d96a", "by": "Yash Mannepalli", "page": "https://unsplash.com/photos/zPhYj34f1Mw", "place": "Fort Worth Stockyards" }
+}
