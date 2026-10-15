@@ -7,17 +7,9 @@
 
   function developments() {
     const cities = [...new Set(E.developments.map((d) => d.city))];
-    return `<div class="sec-head"><div><h2>What's being built</h2><p class="lede">Major projects shaping where people live, work and play. Each one links to its source.</p></div></div>
+    return `<div class="sec-head"><div><h2>What's being built</h2><p class="lede">Major projects shaping where people live, work and play. Follow the line from what just opened to what's coming next. Swipe or scroll sideways to see more.</p></div></div>
       <div class="chips" id="dev-filter"><button class="chip on" type="button" data-c="">All</button>${cities.map((c) => `<button class="chip" type="button" data-c="${esc(c)}">${esc(c)}</button>`).join("")}</div>
-      <div class="devs" id="devs">${E.developments.map((d) => `
-        <article class="dev" data-city="${esc(d.city)}">
-          <div class="dev-top"><span class="status ${STATUS[d.status] || "plan"}">${esc(d.status)}</span><span class="tag">${esc(d.type)}</span></div>
-          <h3>${esc(d.name)}</h3>
-          <span class="dev-city">${esc(d.city)}</span>
-          <p>${esc(d.summary)}</p>
-          <p class="when">${esc(d.timing)}</p>
-          <a class="stamp" href="${esc(d.url)}" target="_blank" rel="noopener">Source: ${esc(d.source)} ↗</a>
-        </article>`).join("")}</div>`;
+      <div id="devs">${window.DREI_DEVS.render(E.developments)}</div>`;
   }
   function places(list, title, lede) {
     return `<div class="sec-head"><div><h2>${title}</h2><p class="lede">${lede}</p></div></div>
@@ -86,7 +78,7 @@
     if (tab === "follow") p.innerHTML = follow();
     if (tab === "developments") p.querySelectorAll("#dev-filter .chip").forEach((b) => b.addEventListener("click", () => {
       p.querySelectorAll("#dev-filter .chip").forEach((x) => x.classList.toggle("on", x === b));
-      p.querySelectorAll(".dev").forEach((d) => (d.hidden = b.dataset.c && d.dataset.city !== b.dataset.c));
+      window.DREI_DEVS.filter(p.querySelector("#devs"), b.dataset.c);
     }));
     if (tab === "calendar") p.querySelectorAll("[data-mv]").forEach((b) => b.addEventListener("click", () => {
       const [y, m] = month.split("-").map(Number); const d = new Date(y, m - 1 + Number(b.dataset.mv), 1);

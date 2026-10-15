@@ -30,9 +30,7 @@
     const fd = (iso, o) => new Date(iso + "T12:00:00").toLocaleDateString("en-US", o);
     const ev = E.events.filter((e) => (e.end || e.start) >= today).sort((a, b) => a.start.localeCompare(b.start)).slice(0, 3);
     document.getElementById("home-events").innerHTML = ev.map((e) => `<a class="evrow" href="${esc(e.url)}" target="_blank" rel="noopener"><span class="evdate"><b>${fd(e.start, { month: "short" })}</b>${fd(e.start, { day: "numeric" })}</span><span><strong>${esc(e.name)}</strong><small>${esc(e.city)}</small></span></a>`).join("");
-    const order = { "Under construction": 0, "Open": 1, "Complete": 2, "Scheduled": 3, "Stalled": 4 };
-    const dv = [...E.developments].sort((a, b) => (order[a.status] ?? 5) - (order[b.status] ?? 5)).slice(0, 3);
-    document.getElementById("home-devs").innerHTML = dv.map((d) => `<a class="evrow" href="explore.html#developments"><span class="evdate" style="background:var(--sky-soft);color:var(--sky);font-size:.62rem;text-align:center;padding:.2rem">${esc(d.status)}</span><span><strong>${esc(d.name)}</strong><small>${esc(d.city)} · ${esc(d.timing)}</small></span></a>`).join("");
+    document.getElementById("home-devs").innerHTML = window.DREI_DEVS.render(E.developments, { compact: true });
     document.getElementById("home-follow").innerHTML = E.social.slice(0, 6).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener"><i aria-hidden="true"></i>@${esc(s.handle)}</a>`).join("");
   }).catch(() => {});
 
