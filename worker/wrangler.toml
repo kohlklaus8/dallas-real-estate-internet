@@ -1,0 +1,15 @@
+name = "dallas-re-ai"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+[vars]
+# Claude model ID. Check https://docs.claude.com/en/docs/about-claude/models for current IDs.
+MODEL = "claude-sonnet-4-5"
+# Where the website lives (GitHub Pages URL or your custom domain). The Worker reads /data/*.json from here.
+SITE_URL = "https://YOUR-GITHUB-USERNAME.github.io/dallas-real-estate-internet"
+# Comma-separated list of sites allowed to call this Worker.
+ALLOWED_ORIGINS = "https://YOUR-GITHUB-USERNAME.github.io"
+
+# Secrets (set with `npx wrangler secret put NAME`, never commit them):
+#   ANTHROPIC_API_KEY
+#   LEAD_WEBHOOK   (optional)
