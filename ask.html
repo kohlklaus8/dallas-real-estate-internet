@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ask Dallas AI · Dallas Real Estate Internet</title>
+<meta name="description" content="Ask Dallas AI about neighborhoods, commutes, property taxes, selling and moving in North Dallas and Collin County.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main class="wrap section" style="padding-top:2rem">
+  <div class="stack" style="gap:.4rem;margin-bottom:1.5rem">
+    <span class="eyebrow">Ask Dallas AI</span>
+    <h1 style="font-size:var(--step-3)">Tell Dallas Real Estate AI what you're trying to figure out.</h1>
+  </div>
+  <div class="chat-shell">
+    <section class="chat" aria-label="Conversation">
+      <div class="chat-head">
+        <strong style="font-size:.95rem">Conversation</strong>
+        <div style="display:flex;gap:.5rem;align-items:center">
+          <span class="mode-pill" id="mode-pill">Demo mode</span>
+          <button class="btn btn-ghost btn-sm" type="button" id="clear-btn">New conversation</button>
+        </div>
+      </div>
+      <div class="log" id="log" aria-live="polite"></div>
+      <form class="chat-form" id="chat-form">
+        <label class="sr-only" for="chat-q">Your question</label>
+        <input id="chat-q" autocomplete="off" placeholder="Ask about an area, a commute, taxes, selling…">
+        <button class="btn btn-brass" type="submit">Send</button>
+      </form>
+    </section>
+    <aside class="stack">
+      <div class="card">
+        <span class="eyebrow">What I'm good at</span>
+        <ul class="clean" style="font-size:.92rem">
+          <li>19 areas across North Dallas &amp; Collin County</li>
+          <li>Comparing neighborhoods side by side</li>
+          <li>Commute and lifestyle tradeoffs</li>
+          <li>Texas tax quirks: MUDs, PIDs, proration</li>
+          <li>Pointing you to the right calculator</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="eyebrow">How answers are built</span>
+        <p style="font-size:.9rem" class="muted">Local answers come from our neighborhood profiles and guides, and each one shows its source and date. Math runs in deterministic calculators. Market figures appear only when a verified snapshot is loaded. Nothing is invented.</p>
+      </div>
+      <div class="card" id="context-card">
+        <span class="eyebrow">Your context</span>
+        <div id="context-body" style="font-size:.9rem"></div>
+        <a class="link" href="profile.html" style="font-size:.9rem">Edit my profile →</a>
+      </div>
+      <div class="handoff">
+        <strong>Prefer a person?</strong>
+        <p style="font-size:.9rem">A local REALTOR® gets a summary of this conversation, so you don't repeat yourself.</p>
+        <div><button class="btn btn-brass btn-sm" type="button" data-handoff="ask-sidebar">Talk to a local expert</button></div>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/calc.js"></script>
+<script src="assets/js/brain.js"></script>
+<script src="assets/js/ask.js"></script>
+</body>
+</html>

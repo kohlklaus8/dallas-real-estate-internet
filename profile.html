@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Profile · Dallas Real Estate Internet</title>
+<meta name="description" content="Your saved preferences, areas, questions and tool results.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main class="wrap section" style="padding-top:2rem">
+  <div class="section-head">
+    <div><span class="eyebrow">My Profile</span><h1 style="font-size:var(--step-3)">Your preferences, saved areas and history</h1>
+      <p class="lede">Stored only in this browser. Accounts with cross-device sync and email alerts are coming next.</p></div>
+  </div>
+  <div class="two-col">
+    <form class="form card" id="pf" novalidate>
+      <h2 style="font-size:var(--step-2)">Preferences</h2>
+      <div class="form-row">
+        <label for="p-name">Name<input id="p-name" name="name" autocomplete="name"></label>
+        <label for="p-email">Email<input id="p-email" name="email" type="email" autocomplete="email"></label>
+      </div>
+      <div class="form-row">
+        <label for="p-role">I'm looking to<select id="p-role" name="role"><option value="">—</option><option>Buy</option><option>Sell</option><option>Buy and sell</option><option>Relocate to North Texas</option><option>Invest</option><option>Just exploring</option></select></label>
+        <label for="p-timeline">Timeline<select id="p-timeline" name="timeline"><option value="">—</option><option>0–3 months</option><option>3–6 months</option><option>6–12 months</option><option>12+ months</option><option>Not sure</option></select></label>
+      </div>
+      <div class="form-row">
+        <label for="p-budget">Budget<input id="p-budget" name="budget" placeholder="e.g. $500K–$650K"></label>
+        <label for="p-commute">Commute destination<input id="p-commute" name="commute" placeholder="e.g. Legacy West"></label>
+      </div>
+      <div class="form-row">
+        <label for="p-beds">Beds / baths<input id="p-beds" name="beds" placeholder="e.g. 4 / 3"></label>
+        <label for="p-homeType">Home type<input id="p-homeType" name="homeType" placeholder="e.g. Single-family, new build"></label>
+      </div>
+      <label for="p-priorities">Lifestyle priorities<textarea id="p-priorities" name="priorities" placeholder="e.g. a yard for the dog, near trails, under 30 minutes to work"></textarea></label>
+      <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap"><button class="btn btn-brass" type="submit">Save preferences</button><span class="stamp" id="pf-status" role="status"></span></div>
+    </form>
+    <aside class="stack">
+      <div class="card"><span class="eyebrow">Saved areas</span><div id="saved"></div></div>
+      <div class="card"><span class="eyebrow">Latest tool results</span><div id="tools"></div></div>
+    </aside>
+  </div>
+  <section class="section" style="padding-bottom:0">
+    <div class="grid grid-2">
+      <div class="card"><span class="eyebrow">Recent questions</span><div id="questions"></div><a class="link" href="ask.html">Continue the conversation →</a></div>
+      <div class="card"><span class="eyebrow">Requests sent</span><div id="requests"></div></div>
+    </div>
+    <div class="card" style="margin-top:1rem">
+      <span class="eyebrow">Your data</span>
+      <p class="muted" style="font-size:.9rem">Everything on this page lives in this browser's storage. Clearing it removes your preferences, saved areas, conversation and tool inputs from this device.</p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn btn-ghost btn-sm" type="button" id="clear">Clear my data</button><span id="confirm" hidden><button class="btn btn-sm" type="button" id="clear-yes" style="border-color:var(--bad);color:var(--bad)">Yes, clear everything</button> <button class="btn btn-ghost btn-sm" type="button" id="clear-no">Cancel</button></span></div>
+    </div>
+  </section>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/profile.js"></script>
+</body>
+</html>

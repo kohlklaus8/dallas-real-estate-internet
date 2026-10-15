@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About · Dallas Real Estate Internet</title>
+<meta name="description" content="Who's behind the Dallas Real Estate Internet, how the AI works, and how to reach a local REALTOR®.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main class="wrap section" style="padding-top:2rem">
+  <div class="two-col">
+    <div class="stack" style="gap:1.25rem">
+      <span class="eyebrow">About &amp; human help</span>
+      <h1 style="font-size:var(--step-4)">Built by a local REALTOR® who'd rather be useful than loud.</h1>
+      <p class="lede">The Dallas Real Estate Internet is a local intelligence platform for people buying, selling, moving to or investing in North Texas. The goal is simple: give you real answers before you ever need to ask for an agent.</p>
+      <p>Most real-estate websites are built to capture your contact information. This one is built to help you understand neighborhoods, the market and your numbers, with a person available when your questions turn into plans.</p>
+      <h2 style="font-size:var(--step-2);margin-top:1rem">How the AI works</h2>
+      <ul class="clean">
+        <li><strong>Grounded in local data.</strong> Answers draw on our neighborhood profiles, guides and verified market snapshots, with sources and dates shown.</li>
+        <li><strong>Math runs in calculators.</strong> Payments, proceeds and affordability run in deterministic tools. The AI never guesses them.</li>
+        <li><strong>No invented numbers.</strong> If we don't have a verified figure, we say so instead of estimating.</li>
+        <li><strong>Fair housing by design.</strong> We describe places, never the people who live there.</li>
+        <li><strong>Professionals for professional questions.</strong> Legal, tax, lending and appraisal questions go to licensed experts.</li>
+      </ul>
+      <h2 style="font-size:var(--step-2);margin-top:1rem">Services</h2>
+      <div class="grid grid-2">
+        <div class="card"><h3>Buying &amp; relocating</h3><p class="muted" style="font-size:.93rem">Area shortlists, tours, new-construction guidance and offer strategy across North Dallas &amp; Collin County.</p></div>
+        <div class="card"><h3>Selling</h3><p class="muted" style="font-size:.93rem">Pricing from current MLS data, preparation advice and a clear net-proceeds plan.</p></div>
+        <div class="card"><h3>Moving up or down</h3><p class="muted" style="font-size:.93rem">Sequencing the sale and the purchase: contingencies, lease-backs and timing.</p></div>
+        <div class="card"><h3>Investing &amp; rentals</h3><p class="muted" style="font-size:.93rem">Rental-ready areas, cash-flow basics and property management options.</p></div>
+      </div>
+    </div>
+    <aside class="stack">
+      <div class="card" style="gap:1rem">
+        <div style="display:flex;gap:.9rem;align-items:center">
+          <div class="brand-mark" style="width:56px;height:56px;font-size:1.5rem" aria-hidden="true" id="initials">K</div>
+          <div><h3 id="agent-name"></h3><span class="muted" id="agent-title"></span></div>
+        </div>
+        <dl style="display:grid;grid-template-columns:auto 1fr;gap:.4rem .9rem;margin:0;font-size:.95rem">
+          <dt class="muted">Phone</dt><dd style="margin:0"><a class="link" id="agent-phone"></a></dd>
+          <dt class="muted">Email</dt><dd style="margin:0;overflow-wrap:anywhere"><a class="link" id="agent-email"></a></dd>
+          <dt class="muted">Area</dt><dd style="margin:0" id="agent-area"></dd>
+        </dl>
+        <button class="btn btn-brass" type="button" data-handoff="about">Send a request</button>
+        <a class="btn btn-ghost" id="agent-cal" target="_blank" rel="noopener" hidden>Book a time</a>
+      </div>
+      <div class="note" style="font-size:.88rem">Requests include a short summary of your questions and tool results from this device, so the first conversation starts where the AI left off. You can review it in <a class="link" href="profile.html">My Profile</a>.</div>
+    </aside>
+  </div>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function () {
+  const C = window.DREI_CONFIG;
+  document.getElementById("agent-name").textContent = C.AGENT_NAME;
+  document.getElementById("agent-title").textContent = C.AGENT_TITLE + (C.BROKER_NAME ? " · " + C.BROKER_NAME : "");
+  document.getElementById("initials").textContent = C.AGENT_NAME.split(" ").map((w) => w[0]).join("").slice(0, 2);
+  const ph = document.getElementById("agent-phone"); ph.textContent = C.AGENT_PHONE; ph.href = "tel:" + C.AGENT_PHONE.replace(/[^0-9+]/g, "");
+  const em = document.getElementById("agent-email"); em.textContent = C.AGENT_EMAIL; em.href = "mailto:" + C.AGENT_EMAIL;
+  document.getElementById("agent-area").textContent = C.LAUNCH_AREA;
+  if (C.CALENDAR_URL) { const c = document.getElementById("agent-cal"); c.href = C.CALENDAR_URL; c.hidden = false; }
+})();
+</script>
+</body>
+</html>

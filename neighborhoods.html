@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neighborhoods · Dallas Real Estate Internet</title>
+<meta name="description" content="Editorial profiles of 19 North Dallas and Collin County areas: home types, commutes, taxes, tradeoffs and who each area fits.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main class="wrap section" style="padding-top:2rem">
+  <div id="list-view">
+    <div class="section-head">
+      <div><span class="eyebrow">Neighborhoods</span><h1 style="font-size:var(--step-3)">North Dallas &amp; Collin County, area by area</h1>
+        <p class="lede">Editorial profiles focused on the place itself: homes, commutes, taxes and tradeoffs.</p></div>
+    </div>
+    <div class="filters">
+      <label class="sr-only" for="f-q">Search areas</label>
+      <input id="f-q" placeholder="Search by name, route or feature (e.g. lake, DART, Tollway)">
+      <label class="sr-only" for="f-tier">Price tier</label>
+      <select id="f-tier"><option value="">Any price tier</option><option value="1">Entry</option><option value="2">Moderate</option><option value="3">Upper-middle</option><option value="4">Luxury</option></select>
+      <label class="sr-only" for="f-sort">Sort</label>
+      <select id="f-sort"><option value="name">A–Z</option><option value="commute_dallas">Closest to Dallas core</option><option value="commute_north">Closest to Legacy/Frisco jobs</option><option value="new_construction">Most new construction</option><option value="value">Most home for the money</option><option value="lot_size">Largest lots</option></select>
+    </div>
+    <p class="stamp" id="count"></p>
+    <div class="grid grid-3" id="areas"></div>
+    <p class="note" style="margin-top:1.5rem">Price tiers are relative within this coverage area. Market metrics such as median price and days on market appear once a verified MLS snapshot is loaded. Until then, we leave them blank rather than estimate.</p>
+  </div>
+  <article id="detail-view" hidden></article>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/brain.js"></script>
+<script src="assets/js/neighborhoods.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dallas Real Estate Internet</title>
+<meta name="description" content="Ask anything about living, moving and investing in North Dallas and Collin County. Local neighborhood intelligence, market context and planning tools, plus a local expert when you want one.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-kicker">Dallas — The Internet for Living, Moving &amp; Investing in North Texas</p>
+      <h1>Don't search for real estate.<br><em>Ask about it.</em></h1>
+      <p class="lede">Neighborhood intelligence, market context and planning tools for North Dallas and Collin County. A local REALTOR® is one click away when you want one.</p>
+      <form class="prompt" id="hero-form" role="search">
+        <label class="sr-only" for="hero-q">What are you trying to figure out?</label>
+        <input id="hero-q" name="q" placeholder="What are you trying to figure out?" autocomplete="off">
+        <button class="btn btn-brass" type="submit">Ask</button>
+      </form>
+      <div class="chips" id="hero-chips">
+        <button class="chip" type="button">Where should I live?</button>
+        <button class="chip" type="button">Should I sell?</button>
+        <button class="chip" type="button">What can I afford?</button>
+        <button class="chip" type="button">Compare Frisco vs. Plano</button>
+        <button class="chip" type="button">What's a MUD tax?</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-label="Start here">
+    <div class="entries">
+      <a class="entry" href="tools.html#fit"><span class="eyebrow">Buyers &amp; relocators</span><h3>Find a home</h3><p>Rank areas by commute, budget and what you want nearby.</p><span class="arrow">Where should I live? →</span></a>
+      <a class="entry" href="market.html"><span class="eyebrow">Everyone</span><h3>Understand the market</h3><p>Plain-English reads on inventory, pricing and what's changing.</p><span class="arrow">Market dashboard →</span></a>
+      <a class="entry" href="tools.html#move"><span class="eyebrow">Owners</span><h3>Plan a move</h3><p>Estimate equity, net proceeds and what your next payment looks like.</p><span class="arrow">Move calculator →</span></a>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">Neighborhood intelligence</span><h2>Know the place before you tour it</h2></div>
+      <a class="link" href="neighborhoods.html">All 19 areas →</a>
+    </div>
+    <div class="grid grid-3" id="featured-areas"></div>
+  </section>
+
+  <section class="section wrap" style="padding-top:0">
+    <div class="grid grid-2">
+      <div class="card" id="featured-story"></div>
+      <div class="card">
+        <span class="eyebrow">Featured tool · Seller proceeds</span>
+        <h3>What would you actually walk away with?</h3>
+        <p class="muted">Enter a target price, your payoff and your tax bill. We itemize brokerage fees, the owner's title policy and Texas's year-to-date property tax proration that many sellers don't expect.</p>
+        <div><a class="btn" href="tools.html#proceeds">Estimate my net proceeds</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap section cta-band">
+      <div class="stack">
+        <span class="eyebrow">Human help, when you want it</span>
+        <h2>Questions turning into plans?</h2>
+        <p class="lede">Talk with a local REALTOR® who already knows what you've been asking, so you won't have to start over.</p>
+      </div>
+      <div><button class="btn btn-brass" type="button" data-handoff="home-band">Talk to a local expert</button></div>
+    </div>
+  </section>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/home.js"></script>
+</body>
+</html>

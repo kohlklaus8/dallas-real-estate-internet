@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tools · Dallas Real Estate Internet</title>
+<meta name="description" content="Affordability, move, seller net proceeds, neighborhood comparison and Where Should I Live? tools for North Texas, with Texas property-tax math built in.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main class="wrap section" style="padding-top:2rem">
+  <div class="stack" style="gap:.4rem;margin-bottom:1.25rem">
+    <span class="eyebrow">Tools</span>
+    <h1 style="font-size:var(--step-3)">Run the numbers before you run the errands</h1>
+    <p class="lede">Every calculation here is deterministic and transparent. The fields start with example values. Replace them with yours.</p>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Tools">
+    <a class="tab" role="tab" href="#affordability" data-tab="affordability">Affordability</a>
+    <a class="tab" role="tab" href="#move" data-tab="move">Move calculator</a>
+    <a class="tab" role="tab" href="#proceeds" data-tab="proceeds">Seller proceeds</a>
+    <a class="tab" role="tab" href="#compare" data-tab="compare">Compare areas</a>
+    <a class="tab" role="tab" href="#fit" data-tab="fit">Where should I live?</a>
+  </nav>
+  <section id="panel-affordability" data-panel="affordability" hidden></section>
+  <section id="panel-move" data-panel="move" hidden></section>
+  <section id="panel-proceeds" data-panel="proceeds" hidden></section>
+  <section id="panel-compare" data-panel="compare" hidden></section>
+  <section id="panel-fit" data-panel="fit" hidden></section>
+  <p class="muted" style="font-size:.85rem;margin-top:2rem">Estimates for planning only. Not a loan approval, appraisal, or legal or tax advice. Brokerage compensation is negotiable and is not set by law. Confirm figures with your lender, title company and a licensed professional.</p>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/calc.js"></script>
+<script src="assets/js/brain.js"></script>
+<script src="assets/js/tools.js"></script>
+</body>
+</html>

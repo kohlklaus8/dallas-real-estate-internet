@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Market · Dallas Real Estate Internet</title>
+<meta name="description" content="North Dallas and Collin County housing market dashboard with verified, dated figures and plain-English interpretation.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header id="site-header"></header>
+<main class="wrap section" style="padding-top:2rem">
+  <div class="section-head">
+    <div><span class="eyebrow">Market</span><h1 style="font-size:var(--step-3)" id="m-title">North Dallas &amp; Collin County market</h1>
+      <p class="lede" id="m-summary"></p></div>
+    <span class="stamp" id="m-asof"></span>
+  </div>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="grid grid-2" style="margin-top:1.5rem">
+    <div class="card">
+      <span class="eyebrow">Market temperature</span>
+      <h3 id="temp-head">Months of inventory</h3>
+      <div class="gauge" aria-hidden="true" id="gauge"></div>
+      <div class="gauge-labels"><span>Seller's · &lt;4</span><span>Balanced · 4–6</span><span>Buyer's · 6+</span></div>
+      <p class="muted" style="font-size:.9rem" id="temp-text"></p>
+    </div>
+    <div class="card" id="trend-card">
+      <span class="eyebrow">Trend</span>
+      <h3>Median price, monthly</h3>
+      <div id="trend"></div>
+    </div>
+  </div>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="section-head"><div><span class="eyebrow">Plain English</span><h2>How to read this market</h2></div></div>
+    <div class="grid grid-3">
+      <div class="card"><h3>Months of inventory</h3><p class="muted" style="font-size:.93rem">Active listings divided by monthly sales: how long today's supply would last with no new listings. It's the single best read on who has leverage.</p></div>
+      <div class="card"><h3>Days on market &amp; sale-to-list</h3><p class="muted" style="font-size:.93rem">Fast sales near or above list price mean little room to negotiate. Longer days and lower ratios mean concessions, repairs and rate buy-downs are on the table.</p></div>
+      <div class="card"><h3>Rates vs. price</h3><p class="muted" style="font-size:.93rem">A one-point move in mortgage rates changes your payment more than a modest price cut. Builders often use rate buy-downs, so compare the payment, not just the price.</p></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="section-head"><div><span class="eyebrow">By area</span><h2>Area snapshot</h2></div><a class="link" href="neighborhoods.html">Neighborhood profiles →</a></div>
+    <div id="by-area"></div>
+  </section>
+
+  <section class="band" style="margin-top:3rem;border-radius:var(--radius)">
+    <div class="section cta-band" style="padding-left:max(16px, 1.5rem);padding-right:max(16px, 1.5rem)">
+      <div class="stack"><span class="eyebrow">Your price band, your street</span><h2>Want today's numbers for a specific area?</h2><p class="lede">A local REALTOR® can pull current MLS data for your exact neighborhood and price range.</p></div>
+      <div><button class="btn btn-brass" type="button" data-handoff="market" data-reason="I'd like current market numbers for my area and price range.">Request a market report</button></div>
+    </div>
+  </section>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/market.js"></script>
+</body>
+</html>
