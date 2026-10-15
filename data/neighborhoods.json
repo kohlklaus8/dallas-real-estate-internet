@@ -88,7 +88,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "frisco-water-tower"
+      "photo": "frisco-water-tower",
+      "geo": {
+        "lat": 33.15,
+        "lon": -96.823,
+        "radius_mi": 5.5
+      }
     },
     {
       "id": "west-plano",
@@ -156,7 +161,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "plano-shops"
+      "photo": "plano-shops",
+      "geo": {
+        "lat": 33.06,
+        "lon": -96.79,
+        "radius_mi": 3.5
+      }
     },
     {
       "id": "downtown-east-plano",
@@ -223,7 +233,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-downtown-east-plano"
+      "photo": "commons-downtown-east-plano",
+      "geo": {
+        "lat": 33.02,
+        "lon": -96.7,
+        "radius_mi": 3
+      }
     },
     {
       "id": "mckinney",
@@ -294,7 +309,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "mckinney-downtown"
+      "photo": "mckinney-downtown",
+      "geo": {
+        "lat": 33.198,
+        "lon": -96.64,
+        "radius_mi": 5.5
+      }
     },
     {
       "id": "allen",
@@ -361,7 +381,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-allen"
+      "photo": "commons-allen",
+      "geo": {
+        "lat": 33.103,
+        "lon": -96.671,
+        "radius_mi": 3.5
+      }
     },
     {
       "id": "prosper",
@@ -428,7 +453,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-prosper"
+      "photo": "commons-prosper",
+      "geo": {
+        "lat": 33.236,
+        "lon": -96.801,
+        "radius_mi": 4
+      }
     },
     {
       "id": "celina",
@@ -495,7 +525,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-celina"
+      "photo": "commons-celina",
+      "geo": {
+        "lat": 33.325,
+        "lon": -96.784,
+        "radius_mi": 4
+      }
     },
     {
       "id": "richardson",
@@ -565,7 +600,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-richardson"
+      "photo": "commons-richardson",
+      "geo": {
+        "lat": 32.96,
+        "lon": -96.722,
+        "radius_mi": 3.5
+      }
     },
     {
       "id": "far-north-dallas",
@@ -633,7 +673,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-far-north-dallas"
+      "photo": "commons-far-north-dallas",
+      "geo": {
+        "lat": 32.97,
+        "lon": -96.81,
+        "radius_mi": 2.5
+      }
     },
     {
       "id": "preston-hollow",
@@ -700,7 +745,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-preston-hollow"
+      "photo": "commons-preston-hollow",
+      "geo": {
+        "lat": 32.88,
+        "lon": -96.81,
+        "radius_mi": 2.5
+      }
     },
     {
       "id": "addison",
@@ -769,7 +819,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "addison-aerial"
+      "photo": "addison-aerial",
+      "geo": {
+        "lat": 32.961,
+        "lon": -96.83,
+        "radius_mi": 2
+      }
     },
     {
       "id": "carrollton",
@@ -840,7 +895,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-carrollton"
+      "photo": "commons-carrollton",
+      "geo": {
+        "lat": 32.99,
+        "lon": -96.89,
+        "radius_mi": 4
+      }
     },
     {
       "id": "the-colony",
@@ -906,7 +966,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "lewisville-lake"
+      "photo": "lewisville-lake",
+      "geo": {
+        "lat": 33.09,
+        "lon": -96.885,
+        "radius_mi": 3
+      }
     },
     {
       "id": "little-elm",
@@ -974,7 +1039,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-little-elm"
+      "photo": "commons-little-elm",
+      "geo": {
+        "lat": 33.163,
+        "lon": -96.937,
+        "radius_mi": 3.5
+      }
     },
     {
       "id": "wylie",
@@ -1039,7 +1109,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-wylie"
+      "photo": "commons-wylie",
+      "geo": {
+        "lat": 33.015,
+        "lon": -96.539,
+        "radius_mi": 3.5
+      }
     },
     {
       "id": "murphy",
@@ -1103,7 +1178,12 @@
         "as_of": null
       },
       "source": "Editorial (DREI)",
-      "last_updated": "2026-10-15"
+      "last_updated": "2026-10-15",
+      "geo": {
+        "lat": 33.015,
+        "lon": -96.613,
+        "radius_mi": 2
+      }
     },
     {
       "id": "lucas-fairview",
@@ -1172,7 +1252,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-lucas-fairview"
+      "photo": "commons-lucas-fairview",
+      "geo": {
+        "lat": 33.09,
+        "lon": -96.585,
+        "radius_mi": 3.5
+      }
     },
     {
       "id": "anna-melissa",
@@ -1237,7 +1322,12 @@
         "as_of": null
       },
       "source": "Editorial (DREI)",
-      "last_updated": "2026-10-15"
+      "last_updated": "2026-10-15",
+      "geo": {
+        "lat": 33.295,
+        "lon": -96.57,
+        "radius_mi": 4
+      }
     },
     {
       "id": "princeton",
@@ -1299,7 +1389,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-princeton"
+      "photo": "commons-princeton",
+      "geo": {
+        "lat": 33.18,
+        "lon": -96.498,
+        "radius_mi": 3.5
+      }
     },
     {
       "id": "rockwall",
@@ -1365,7 +1460,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "rockwall-harbor"
+      "photo": "rockwall-harbor",
+      "geo": {
+        "lat": 32.931,
+        "lon": -96.46,
+        "radius_mi": 4.5
+      }
     },
     {
       "id": "rowlett",
@@ -1432,7 +1532,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-rowlett"
+      "photo": "commons-rowlett",
+      "geo": {
+        "lat": 32.903,
+        "lon": -96.564,
+        "radius_mi": 3.5
+      }
     },
     {
       "id": "garland",
@@ -1498,7 +1603,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-garland"
+      "photo": "commons-garland",
+      "geo": {
+        "lat": 32.912,
+        "lon": -96.639,
+        "radius_mi": 4.5
+      }
     },
     {
       "id": "grapevine",
@@ -1567,7 +1677,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-grapevine"
+      "photo": "commons-grapevine",
+      "geo": {
+        "lat": 32.934,
+        "lon": -97.078,
+        "radius_mi": 3.5
+      }
     },
     {
       "id": "flower-mound",
@@ -1634,7 +1749,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "commons-flower-mound"
+      "photo": "commons-flower-mound",
+      "geo": {
+        "lat": 33.046,
+        "lon": -97.083,
+        "radius_mi": 4
+      }
     },
     {
       "id": "las-colinas",
@@ -1705,7 +1825,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "las-colinas-lake-carolyn"
+      "photo": "las-colinas-lake-carolyn",
+      "geo": {
+        "lat": 32.88,
+        "lon": -96.945,
+        "radius_mi": 2.5
+      }
     },
     {
       "id": "arlington",
@@ -1773,7 +1898,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "arlington-att-stadium"
+      "photo": "arlington-att-stadium",
+      "geo": {
+        "lat": 32.736,
+        "lon": -97.108,
+        "radius_mi": 5
+      }
     },
     {
       "id": "fort-worth",
@@ -1847,7 +1977,12 @@
       },
       "source": "Editorial (DREI)",
       "last_updated": "2026-10-15",
-      "photo": "fort-worth-sundance-mural"
+      "photo": "fort-worth-sundance-mural",
+      "geo": {
+        "lat": 32.755,
+        "lon": -97.335,
+        "radius_mi": 4
+      }
     }
   ]
 }

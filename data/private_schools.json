@@ -1,0 +1,204 @@
+{
+  "_note": "Private schools aren't rated by the state. This is a starter list of well-established schools near each area, not a ranking. Add more any time.",
+  "schools": {
+    "preston-hollow": [
+      {
+        "name": "St. Mark's School of Texas",
+        "city": "Dallas",
+        "grades": "1–12 (boys)",
+        "affiliation": "Independent",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=St.+Mark%27s+School+of+Texas+Dallas+TX"
+      },
+      {
+        "name": "The Hockaday School",
+        "city": "Dallas",
+        "grades": "PK–12 (girls)",
+        "affiliation": "Independent",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=The+Hockaday+School+Dallas+TX"
+      },
+      {
+        "name": "Episcopal School of Dallas",
+        "city": "Dallas",
+        "grades": "PK–12",
+        "affiliation": "Episcopal",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Episcopal+School+of+Dallas+Dallas+TX"
+      },
+      {
+        "name": "Jesuit College Preparatory School of Dallas",
+        "city": "Dallas",
+        "grades": "9–12 (boys)",
+        "affiliation": "Catholic",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Jesuit+College+Preparatory+School+of+Dallas+Dallas+TX"
+      },
+      {
+        "name": "Ursuline Academy of Dallas",
+        "city": "Dallas",
+        "grades": "9–12 (girls)",
+        "affiliation": "Catholic",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Ursuline+Academy+of+Dallas+Dallas+TX"
+      },
+      {
+        "name": "The Lamplighter School",
+        "city": "Dallas",
+        "grades": "PK–4",
+        "affiliation": "Independent",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=The+Lamplighter+School+Dallas+TX"
+      }
+    ],
+    "far-north-dallas": [
+      {
+        "name": "Greenhill School",
+        "city": "Addison",
+        "grades": "PK–12",
+        "affiliation": "Independent",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Greenhill+School+Addison+TX"
+      },
+      {
+        "name": "Trinity Christian Academy",
+        "city": "Addison",
+        "grades": "K–12",
+        "affiliation": "Christian",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Trinity+Christian+Academy+Addison+TX"
+      },
+      {
+        "name": "Jesuit College Preparatory School of Dallas",
+        "city": "Dallas",
+        "grades": "9–12 (boys)",
+        "affiliation": "Catholic",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Jesuit+College+Preparatory+School+of+Dallas+Dallas+TX"
+      }
+    ],
+    "addison": [
+      {
+        "name": "Greenhill School",
+        "city": "Addison",
+        "grades": "PK–12",
+        "affiliation": "Independent",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Greenhill+School+Addison+TX"
+      },
+      {
+        "name": "Trinity Christian Academy",
+        "city": "Addison",
+        "grades": "K–12",
+        "affiliation": "Christian",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Trinity+Christian+Academy+Addison+TX"
+      }
+    ],
+    "west-plano": [
+      {
+        "name": "Prestonwood Christian Academy",
+        "city": "Plano",
+        "grades": "PK–12",
+        "affiliation": "Christian",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Prestonwood+Christian+Academy+Plano+TX"
+      },
+      {
+        "name": "John Paul II High School",
+        "city": "Plano",
+        "grades": "9–12",
+        "affiliation": "Catholic",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=John+Paul+II+High+School+Plano+TX"
+      }
+    ],
+    "downtown-east-plano": [
+      {
+        "name": "Prestonwood Christian Academy",
+        "city": "Plano",
+        "grades": "PK–12",
+        "affiliation": "Christian",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Prestonwood+Christian+Academy+Plano+TX"
+      },
+      {
+        "name": "John Paul II High School",
+        "city": "Plano",
+        "grades": "9–12",
+        "affiliation": "Catholic",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=John+Paul+II+High+School+Plano+TX"
+      }
+    ],
+    "frisco": [
+      {
+        "name": "Legacy Christian Academy",
+        "city": "Frisco",
+        "grades": "PK–12",
+        "affiliation": "Christian",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Legacy+Christian+Academy+Frisco+TX"
+      }
+    ],
+    "las-colinas": [
+      {
+        "name": "Cistercian Preparatory School",
+        "city": "Irving",
+        "grades": "5–12 (boys)",
+        "affiliation": "Catholic",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Cistercian+Preparatory+School+Irving+TX"
+      }
+    ],
+    "grapevine": [
+      {
+        "name": "Grapevine Faith Christian School",
+        "city": "Grapevine",
+        "grades": "PK–12",
+        "affiliation": "Christian",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Grapevine+Faith+Christian+School+Grapevine+TX"
+      }
+    ],
+    "flower-mound": [
+      {
+        "name": "Coram Deo Academy",
+        "city": "Flower Mound",
+        "grades": "K–12",
+        "affiliation": "Christian (classical)",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Coram+Deo+Academy+Flower+Mound+TX"
+      }
+    ],
+    "rockwall": [
+      {
+        "name": "Heritage Christian Academy",
+        "city": "Rockwall",
+        "grades": "PK–12",
+        "affiliation": "Christian",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Heritage+Christian+Academy+Rockwall+TX"
+      }
+    ],
+    "fort-worth": [
+      {
+        "name": "Fort Worth Country Day",
+        "city": "Fort Worth",
+        "grades": "K–12",
+        "affiliation": "Independent",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Fort+Worth+Country+Day+Fort+Worth+TX"
+      },
+      {
+        "name": "Trinity Valley School",
+        "city": "Fort Worth",
+        "grades": "K–12",
+        "affiliation": "Independent",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Trinity+Valley+School+Fort+Worth+TX"
+      },
+      {
+        "name": "All Saints' Episcopal School",
+        "city": "Fort Worth",
+        "grades": "PK–12",
+        "affiliation": "Episcopal",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=All+Saints%27+Episcopal+School+Fort+Worth+TX"
+      },
+      {
+        "name": "Nolan Catholic High School",
+        "city": "Fort Worth",
+        "grades": "9–12",
+        "affiliation": "Catholic",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=Nolan+Catholic+High+School+Fort+Worth+TX"
+      }
+    ],
+    "arlington": [
+      {
+        "name": "The Oakridge School",
+        "city": "Arlington",
+        "grades": "PK–12",
+        "affiliation": "Independent",
+        "reviews": "https://www.google.com/maps/search/?api=1&query=The+Oakridge+School+Arlington+TX"
+      }
+    ]
+  }
+}
