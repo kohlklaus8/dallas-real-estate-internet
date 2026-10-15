@@ -145,6 +145,7 @@
 
   function photoUrl(p, w = 1200) {
     if (!p) return "";
+    if (/images\.pexels\.com/.test(p.src)) return `${p.src}?auto=compress&cs=tinysrgb&w=${w}`;
     return /^(https?:|assets\/)/.test(p.src) ? p.src : `https://images.unsplash.com/${p.src}?auto=format&fit=crop&w=${w}&q=70`;
   }
   const GRADS = ["#1463f3,#58b4ff", "#0b8f83,#7be0c9", "#ff7a1a,#ffc36b", "#7a5af5,#b9a6ff", "#d63f74,#ff9cb8", "#2a7de0,#7fd1e8", "#21924a,#9be3a8"];
@@ -154,10 +155,10 @@
     return `<a class="area" href="neighborhoods.html#${esc(n.id)}" data-id="${esc(n.id)}">
       <div class="ph${p ? " photo" : ""}" style="${style}"${p ? ` role="img" aria-label="${esc(p.place)}"` : ""}><b>${esc(n.name)}</b><span class="price" title="Relative price tier">${"$".repeat(n.price_tier)}</span></div>
       <div class="body"><p>${esc(n.lifestyle_summary)}</p><div class="tags">${n.best_for.slice(0, 2).map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>
-      ${p ? `<span class="stamp">Photo: ${esc(p.by)} / Unsplash</span>` : ""}</div></a>`;
+      ${p ? `<span class="stamp">Photo: ${esc(p.by)} / ${esc(p.site || "Unsplash")}</span>` : ""}</div></a>`;
   }
   function photoCredit(p) {
-    return p ? `Photo: <a href="${esc(p.page)}" target="_blank" rel="noopener">${esc(p.by)}</a> / Unsplash` : "";
+    return p ? `Photo: <a href="${esc(p.page)}" target="_blank" rel="noopener">${esc(p.by)}</a> / ${esc(p.site || "Unsplash")}` : "";
   }
 
   function footer() {
@@ -192,7 +193,7 @@
           </div>
           ${C.BROKER_NAME ? `<p>${esc(C.AGENT_NAME)} is a licensed real estate sales agent sponsored by ${esc(C.BROKER_NAME)}.</p>` : ""}
           <p>Equal Housing Opportunity. Neighborhood information is editorial and general in nature. It does not describe or rank areas by the characteristics of the people who live there. AI answers and calculator results are estimates, not appraisals, lending decisions, or legal or tax advice. Verify all figures before you rely on them.</p>
-          <p>Photos by Unsplash photographers, credited on each image. © ${year} ${esc(C.BRAND_NAME)}</p>
+          <p>Photos by Unsplash and Pexels photographers, credited on each image. © ${year} ${esc(C.BRAND_NAME)}</p>
         </div>
       </div>`;
   }
