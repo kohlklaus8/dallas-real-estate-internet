@@ -93,7 +93,14 @@
         "lat": 33.15,
         "lon": -96.823,
         "radius_mi": 5.5
-      }
+      },
+      "market_city": "Frisco",
+      "zips": [
+        "75033",
+        "75034",
+        "75035",
+        "75036"
+      ]
     },
     {
       "id": "west-plano",
@@ -166,7 +173,13 @@
         "lat": 33.06,
         "lon": -96.79,
         "radius_mi": 3.5
-      }
+      },
+      "market_city": "Plano",
+      "zips": [
+        "75093",
+        "75024",
+        "75025"
+      ]
     },
     {
       "id": "downtown-east-plano",
@@ -238,7 +251,13 @@
         "lat": 33.02,
         "lon": -96.7,
         "radius_mi": 3
-      }
+      },
+      "market_city": "Plano",
+      "zips": [
+        "75074",
+        "75075",
+        "75023"
+      ]
     },
     {
       "id": "mckinney",
@@ -314,7 +333,14 @@
         "lat": 33.198,
         "lon": -96.64,
         "radius_mi": 5.5
-      }
+      },
+      "market_city": "McKinney",
+      "zips": [
+        "75069",
+        "75070",
+        "75071",
+        "75072"
+      ]
     },
     {
       "id": "allen",
@@ -386,7 +412,12 @@
         "lat": 33.103,
         "lon": -96.671,
         "radius_mi": 3.5
-      }
+      },
+      "market_city": "Allen",
+      "zips": [
+        "75002",
+        "75013"
+      ]
     },
     {
       "id": "prosper",
@@ -458,7 +489,11 @@
         "lat": 33.236,
         "lon": -96.801,
         "radius_mi": 4
-      }
+      },
+      "market_city": "Prosper",
+      "zips": [
+        "75078"
+      ]
     },
     {
       "id": "celina",
@@ -530,7 +565,11 @@
         "lat": 33.325,
         "lon": -96.784,
         "radius_mi": 4
-      }
+      },
+      "market_city": "Celina",
+      "zips": [
+        "75009"
+      ]
     },
     {
       "id": "richardson",
@@ -605,7 +644,13 @@
         "lat": 32.96,
         "lon": -96.722,
         "radius_mi": 3.5
-      }
+      },
+      "market_city": "Richardson",
+      "zips": [
+        "75080",
+        "75081",
+        "75082"
+      ]
     },
     {
       "id": "far-north-dallas",
@@ -678,7 +723,13 @@
         "lat": 32.97,
         "lon": -96.81,
         "radius_mi": 2.5
-      }
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75252",
+        "75287",
+        "75248"
+      ]
     },
     {
       "id": "preston-hollow",
@@ -750,7 +801,13 @@
         "lat": 32.88,
         "lon": -96.81,
         "radius_mi": 2.5
-      }
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75225",
+        "75229",
+        "75230"
+      ]
     },
     {
       "id": "addison",
@@ -824,7 +881,11 @@
         "lat": 32.961,
         "lon": -96.83,
         "radius_mi": 2
-      }
+      },
+      "market_city": "Addison",
+      "zips": [
+        "75001"
+      ]
     },
     {
       "id": "carrollton",
@@ -900,7 +961,13 @@
         "lat": 32.99,
         "lon": -96.89,
         "radius_mi": 4
-      }
+      },
+      "market_city": "Carrollton",
+      "zips": [
+        "75006",
+        "75007",
+        "75010"
+      ]
     },
     {
       "id": "the-colony",
@@ -971,7 +1038,11 @@
         "lat": 33.09,
         "lon": -96.885,
         "radius_mi": 3
-      }
+      },
+      "market_city": "The Colony",
+      "zips": [
+        "75056"
+      ]
     },
     {
       "id": "little-elm",
@@ -1044,7 +1115,11 @@
         "lat": 33.163,
         "lon": -96.937,
         "radius_mi": 3.5
-      }
+      },
+      "market_city": "Little Elm",
+      "zips": [
+        "75068"
+      ]
     },
     {
       "id": "wylie",
@@ -1114,7 +1189,11 @@
         "lat": 33.015,
         "lon": -96.539,
         "radius_mi": 3.5
-      }
+      },
+      "market_city": "Wylie",
+      "zips": [
+        "75098"
+      ]
     },
     {
       "id": "murphy",
@@ -1183,7 +1262,11 @@
         "lat": 33.015,
         "lon": -96.613,
         "radius_mi": 2
-      }
+      },
+      "market_city": "Murphy",
+      "zips": [
+        "75094"
+      ]
     },
     {
       "id": "lucas-fairview",
@@ -1257,7 +1340,9 @@
         "lat": 33.09,
         "lon": -96.585,
         "radius_mi": 3.5
-      }
+      },
+      "market_city": "Lucas",
+      "zips": []
     },
     {
       "id": "anna-melissa",
@@ -1327,7 +1412,12 @@
         "lat": 33.295,
         "lon": -96.57,
         "radius_mi": 4
-      }
+      },
+      "market_city": "Anna",
+      "zips": [
+        "75409",
+        "75454"
+      ]
     },
     {
       "id": "princeton",
@@ -1394,7 +1484,11 @@
         "lat": 33.18,
         "lon": -96.498,
         "radius_mi": 3.5
-      }
+      },
+      "market_city": "Princeton",
+      "zips": [
+        "75407"
+      ]
     },
     {
       "id": "rockwall",
@@ -1465,7 +1559,12 @@
         "lat": 32.931,
         "lon": -96.46,
         "radius_mi": 4.5
-      }
+      },
+      "market_city": "Rockwall",
+      "zips": [
+        "75032",
+        "75087"
+      ]
     },
     {
       "id": "rowlett",
@@ -1537,7 +1636,12 @@
         "lat": 32.903,
         "lon": -96.564,
         "radius_mi": 3.5
-      }
+      },
+      "market_city": "Rowlett",
+      "zips": [
+        "75088",
+        "75089"
+      ]
     },
     {
       "id": "garland",
@@ -1608,7 +1712,15 @@
         "lat": 32.912,
         "lon": -96.639,
         "radius_mi": 4.5
-      }
+      },
+      "market_city": "Garland",
+      "zips": [
+        "75040",
+        "75041",
+        "75042",
+        "75043",
+        "75044"
+      ]
     },
     {
       "id": "grapevine",
@@ -1682,7 +1794,11 @@
         "lat": 32.934,
         "lon": -97.078,
         "radius_mi": 3.5
-      }
+      },
+      "market_city": "Grapevine",
+      "zips": [
+        "76051"
+      ]
     },
     {
       "id": "flower-mound",
@@ -1754,7 +1870,12 @@
         "lat": 33.046,
         "lon": -97.083,
         "radius_mi": 4
-      }
+      },
+      "market_city": "Flower Mound",
+      "zips": [
+        "75022",
+        "75028"
+      ]
     },
     {
       "id": "las-colinas",
@@ -1830,7 +1951,13 @@
         "lat": 32.88,
         "lon": -96.945,
         "radius_mi": 2.5
-      }
+      },
+      "market_city": "Irving",
+      "zips": [
+        "75038",
+        "75039",
+        "75063"
+      ]
     },
     {
       "id": "arlington",
@@ -1903,7 +2030,22 @@
         "lat": 32.736,
         "lon": -97.108,
         "radius_mi": 5
-      }
+      },
+      "market_city": "Arlington",
+      "zips": [
+        "76001",
+        "76002",
+        "76006",
+        "76010",
+        "76011",
+        "76012",
+        "76013",
+        "76014",
+        "76015",
+        "76016",
+        "76017",
+        "76018"
+      ]
     },
     {
       "id": "fort-worth",
@@ -1982,7 +2124,16 @@
         "lat": 32.755,
         "lon": -97.335,
         "radius_mi": 4
-      }
+      },
+      "market_city": "Fort Worth",
+      "zips": [
+        "76102",
+        "76104",
+        "76107",
+        "76109",
+        "76110",
+        "76116"
+      ]
     }
   ]
 }
