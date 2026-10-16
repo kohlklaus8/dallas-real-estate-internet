@@ -591,3 +591,25 @@ details.lvl td { vertical-align: middle; }
 .tl-item a.stamp { text-decoration: none; } .tl-item a.stamp:hover { color: var(--sky); }
 .tl-compact .tl-item { margin-bottom: .4rem; }
 @media (max-width: 560px) { .tl-track { grid-auto-columns: 82%; } }
+
+/* Area "at a glance" (plain-English replacement for 0-5 bars) */
+.glance .gl-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "k dots" "v dots"; column-gap: .8rem; padding: .55rem 0; border-top: 1px solid var(--line); }
+.glance .gl-row:first-of-type { border-top: 0; }
+.gl-k { grid-area: k; font-size: .78rem; color: var(--mute); font-weight: 600; }
+.gl-v { grid-area: v; font-size: .98rem; }
+.gl-v.lv2 { color: var(--teal); } .gl-v.lv1 { color: var(--ink); } .gl-v.lv0 { color: var(--ink-2); font-weight: 600; }
+.gl-dots { grid-area: dots; align-self: center; display: flex; gap: 4px; }
+.gl-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--line); }
+.gl-dots i.on { background: var(--teal); border-color: var(--teal); }
+
+/* Area market snapshot */
+.mks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+@media (max-width: 640px) { .mks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.mk { background: var(--surface); padding: .9rem 1rem; display: grid; gap: .15rem; }
+.mk .k { font-size: .78rem; color: var(--mute); font-weight: 600; }
+.mk strong { font-size: 1.35rem; letter-spacing: -.01em; }
+.mk small { font-size: .78rem; color: var(--mute); font-weight: 600; }
+.mk small.up { color: var(--good); } .mk small.down { color: var(--bad); }
+
+.tags { align-items: flex-start; align-content: flex-start; }
+.two-col > .stack { align-content: start; }
