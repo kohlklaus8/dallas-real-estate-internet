@@ -11,14 +11,14 @@
   loadJSON("data/market.json").then((M) => {
     const loaded = !!M.as_of;
     document.getElementById("m-summary").textContent = M.summary || (loaded ? "" : "Verified figures appear here once the first MLS snapshot is loaded. We leave the dashboard blank rather than show estimates.");
-    document.getElementById("m-asof").textContent = loaded ? `Data as of ${M.as_of} · ${M.source || ""}` : "Status: awaiting first verified snapshot";
+    document.getElementById("m-asof").textContent = loaded ? `Data through ${M.as_of} · checked ${M.fetched || ""}` : "Status: awaiting first verified snapshot";
 
     document.getElementById("kpis").innerHTML = Object.values(M.metrics).map((m) => {
       const v = fmt(m);
       const chg = m.change_yoy_pct;
       return `<div class="kpi"><span class="k">${esc(m.label)}</span>
         <span class="v">${v ? esc(v) : '<span class="pending" style="font-size:.85rem">Pending</span>'}</span>
-        ${chg != null ? `<span class="stamp" style="color:${chg >= 0 ? "var(--good)" : "var(--bad)"}">${chg >= 0 ? "▲" : "▼"} ${Math.abs(chg)}% YoY</span>` : `<span class="stamp">${m.as_of ? "as of " + esc(m.as_of) : "&nbsp;"}</span>`}</div>`;
+        ${chg != null ? `<span class="stamp" style="color:${chg >= 0 ? "var(--good)" : "var(--bad)"}">${chg >= 0 ? "▲" : "▼"} ${Math.abs(chg)}% vs. last year</span>` : `<span class="stamp">${m.prior_year != null ? "Last year: " + esc(String(m.prior_year)) : "&nbsp;"}</span>`}</div>`;
     }).join("");
 
     const moi = M.metrics.months_inventory && M.metrics.months_inventory.value;
@@ -55,12 +55,30 @@
       trend.innerHTML = `<p class="muted" style="font-size:.9rem">The monthly trend line appears after two or more verified monthly snapshots.</p>`;
     }
 
-    const rows = M.by_area || [];
-    document.getElementById("by-area").innerHTML = rows.length
-      ? `<div class="table-wrap"><table><thead><tr><th>Area</th><th class="num">Median price</th><th class="num">Active</th><th class="num">Days on market</th><th class="num">Months inv.</th></tr></thead><tbody>
-          ${rows.map((r) => `<tr><td><a class="link" href="neighborhoods.html#${esc(r.id)}">${esc(r.name)}</a></td><td class="num">${r.median_price != null ? money(r.median_price) : "—"}</td><td class="num">${r.active ?? "—"}</td><td class="num">${r.dom ?? "—"}</td><td class="num">${r.moi ?? "—"}</td></tr>`).join("")}
+    const rows = (M.by_area || []).filter((r) => r.home_value != null);
+    const seen = new Set();
+    const cityRows = rows.filter((r) => (seen.has(r.city) ? false : seen.add(r.city))).sort((x, y) => y.home_value - x.home_value);
+    document.getElementById("by-area").innerHTML = cityRows.length
+      ? `<div class="table-wrap"><table><thead><tr><th>City</th><th class="num">Typical home value</th><th class="num">1-yr change</th></tr></thead><tbody>
+          ${cityRows.map((r) => `<tr><td><a class="link" href="neighborhoods.html#${esc(r.id)}">${esc(r.city)}</a></td><td class="num">${money(r.home_value)}</td><td class="num" style="color:${(r.home_value_yoy || 0) >= 0 ? "var(--good)" : "var(--bad)"}">${r.home_value_yoy == null ? "—" : (r.home_value_yoy >= 0 ? "+" : "") + r.home_value_yoy + "%"}</td></tr>`).join("")}
         </tbody></table></div>`
-      : `<div class="note">Area-level figures will appear here as they're verified each month. In the meantime, every <a class="link" href="neighborhoods.html">neighborhood profile</a> covers home types, commutes, taxes and tradeoffs.</div>`;
+      : `<div class="note">City-level figures will appear here after the next weekly update.</div>`;
+
+    const Z = M.by_zip || [];
+    const zbox = document.getElementById("by-zip");
+    if (zbox && Z.length) {
+      const draw = (q) => {
+        q = q.trim().toLowerCase();
+        const list = Z.filter((z) => !q || z.zip.startsWith(q) || z.city.toLowerCase().includes(q)).sort((a, b) => a.city.localeCompare(b.city) || a.zip.localeCompare(b.zip));
+        document.getElementById("zip-rows").innerHTML = list.map((z) => `<tr><td><strong>${esc(z.zip)}</strong></td><td>${esc(z.city)}</td><td class="num">${money(z.home_value)}</td><td class="num" style="color:${(z.home_value_yoy || 0) >= 0 ? "var(--good)" : "var(--bad)"}">${z.home_value_yoy >= 0 ? "+" : ""}${z.home_value_yoy}%</td></tr>`).join("") || `<tr><td colspan="4" class="muted">No ZIP codes match.</td></tr>`;
+      };
+      zbox.innerHTML = `<label class="sr-only" for="zip-q">Find a ZIP code or city</label><input id="zip-q" placeholder="Type a ZIP or city, e.g. 75034 or McKinney" style="max-width:420px;margin-bottom:.8rem">
+        <div class="table-wrap" style="max-height:520px;overflow:auto"><table><thead><tr><th>ZIP</th><th>City</th><th class="num">Typical value</th><th class="num">1-yr</th></tr></thead><tbody id="zip-rows"></tbody></table></div>`;
+      document.getElementById("zip-q").addEventListener("input", (e) => draw(e.target.value));
+      draw("");
+    }
+    const src = M.sources || [];
+    document.getElementById("m-sources").innerHTML = src.length ? `Sources: ${src.map((x) => `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>${x.period ? ` (${esc(x.period)})` : ""}`).join("; ")}. Public data, refreshed weekly. Estimates only; they don't describe any single home.` : "";
   }).catch(() => {
     document.getElementById("m-summary").textContent = "Couldn't load market data. Refresh to try again.";
   });

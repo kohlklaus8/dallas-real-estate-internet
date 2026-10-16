@@ -22,6 +22,42 @@
     document.getElementById("count").textContent = `${rows.length} of ${DATA.neighborhoods.length} areas · profiles updated ${DATA.meta.last_updated}`;
   }
 
+  const GLANCE = [
+    ["commute_dallas", "Drive to Downtown Dallas", ["Long drive", "Manageable", "Quick"]],
+    ["commute_north", "Drive to Legacy / Frisco jobs", ["Long drive", "Manageable", "Quick"]],
+    ["amenities", "Restaurants & things to do", ["Quieter, drive for fun", "Good local options", "Lots close by"]],
+    ["new_construction", "Age of homes", ["Mostly established", "Mix of old & new", "Lots of new builds"]],
+    ["lot_size", "Yard size", ["Typical lots", "Some bigger lots", "Room to spread out"]],
+    ["value", "Price for the space", ["Premium", "Middle of the road", "More home for the money"]],
+    ["rail", "Train (DART)", ["No train", "Train nearby", "On the line"]],
+    ["lake", "Lake access", ["No lake nearby", "Short drive to a lake", "Lake life"]],
+  ];
+  let MARKET = null;
+  const pctTxt = (v) => (v == null ? "" : `<small class="${v >= 0 ? "up" : "down"}">${v >= 0 ? "▲" : "▼"} ${Math.abs(v)}% vs. last year</small>`);
+  const short = (v) => (v >= 1e6 ? "$" + (v / 1e6).toFixed(1) + "M" : "$" + Math.round(v / 1000) + "K");
+  function marketBlock(n) {
+    if (!MARKET || !MARKET.as_of) return "";
+    const a = (MARKET.by_area || []).find((x) => x.id === n.id) || {};
+    const zips = (MARKET.by_zip || []).filter((z) => (n.zips || []).includes(z.zip));
+    const mt = MARKET.metrics || {};
+    const kp = (k, v, sub = "") => `<div class="mk"><span class="k">${k}</span><strong>${v ?? "—"}</strong>${sub}</div>`;
+    const S = (MARKET.sources || [])[0] || {};
+    const moi = mt.months_inventory && mt.months_inventory.value;
+    return `<section class="stack" id="market" style="gap:.8rem;margin-top:2.5rem">
+      <div class="sec-head" style="margin-bottom:0"><div><span class="eyebrow">Market</span><h2 style="font-size:var(--step-3)">Home values in ${esc(n.name)}</h2>
+      <p class="lede">What a typical home is worth here, how that's changed in a year, and how the wider DFW market is moving.</p></div>
+      <a class="btn btn-ghost" href="market.html">DFW market →</a></div>
+      <div class="mks">
+        ${a.home_value != null ? kp(`Typical home value · ${esc(a.city)}`, money(a.home_value), pctTxt(a.home_value_yoy)) : ""}
+        ${a.zip_range ? kp("Range across its ZIP codes", `${short(a.zip_range[0])} – ${short(a.zip_range[1])}`) : ""}
+        ${moi != null ? kp("DFW months of supply", moi, `<small>${moi < 4 ? "Seller-leaning" : moi <= 6 ? "Balanced" : "Buyer-leaning"} market</small>`) : ""}
+      </div>
+      ${zips.length ? `<div class="table-wrap"><table><thead><tr><th>ZIP code</th><th class="num">Typical home value</th><th class="num">1-yr change</th></tr></thead><tbody>
+        ${zips.map((z) => `<tr><td><strong>${esc(z.zip)}</strong> <span class="muted">${esc(z.city)}</span></td><td class="num">${money(z.home_value)}</td><td class="num" style="color:${(z.home_value_yoy || 0) >= 0 ? "var(--good)" : "var(--bad)"}">${z.home_value_yoy >= 0 ? "+" : ""}${z.home_value_yoy}%</td></tr>`).join("")}
+      </tbody></table></div>` : ""}
+      <p class="stamp">Source: <a href="${esc(S.url || "#")}" target="_blank" rel="noopener">Zillow Home Value Index</a>, ${esc(S.period || "")}. Public data, refreshed weekly. Typical values are estimates, not an appraisal of any one home. For a specific address, ask for a market analysis.</p>
+    </section>`;
+  }
   function fact(k, v) { return `<div class="fact"><span class="k">${esc(k)}</span><span class="v">${v}</span></div>`; }
 
   function renderDetail(n) {
@@ -45,9 +81,6 @@
         <span class="stamp">Source: ${esc(n.source)} · last updated ${esc(n.last_updated)}</span>
       </header>
       <div class="facts">
-        ${fact("Median price", metric(m.median_price, money))}
-        ${fact("Inventory", metric(m.inventory, (v) => v))}
-        ${fact("Days on market", metric(m.days_on_market, (v) => v))}
         ${fact("Home types", esc(n.home_types.join(", ")))}
         ${fact("Home age", esc(n.home_age))}
         ${fact("Lots", esc(n.lot_profile))}
@@ -66,10 +99,11 @@
           <section class="stack" style="gap:.5rem"><h2 style="font-size:var(--step-2)">Development watch</h2><p>${esc(n.development)}</p></section>
         </div>
         <aside class="stack">
-          <div class="card">
-            <span class="eyebrow">Area profile</span>
-            <p class="muted" style="font-size:.82rem">Relative 0–5 within our coverage area. These are not ratings.</p>
-            ${Object.keys(KEY_LABEL).map((k) => `<div class="score-row"><span>${esc(KEY_LABEL[k])}</span><span class="bar"><span style="width:${(n.scores[k] / 5) * 100}%"></span></span><span class="num">${n.scores[k]}</span></div>`).join("")}
+          <div class="card glance">
+            <span class="eyebrow">What it's like</span>
+            <h3 style="margin:.2rem 0 .6rem">${esc(n.name)} at a glance</h3>
+            ${GLANCE.map(([k, label, words]) => { const v = n.scores[k] ?? 0, lvl = v >= 4 ? 2 : v >= 2 ? 1 : 0; return `<div class="gl-row"><span class="gl-k">${label}</span><strong class="gl-v lv${lvl}">${words[lvl]}</strong><span class="gl-dots" aria-hidden="true">${[0, 1, 2].map((i) => `<i class="${i <= lvl ? "on" : ""}"></i>`).join("")}</span></div>`; }).join("")}
+            <p class="muted" style="font-size:.78rem;margin-top:.6rem">Compared with the other DFW areas we cover. It describes the place, not the people.</p>
           </div>
           <div class="card">
             <span class="eyebrow">Often a fit for</span>
@@ -78,6 +112,7 @@
           </div>
         </aside>
       </div>
+      ${marketBlock(n)}
       <section class="stack" id="schools" style="gap:.6rem;margin-top:2.5rem">
         <div class="sec-head" style="margin-bottom:.4rem"><div><span class="eyebrow">Schools</span><h2 style="font-size:var(--step-3)">Schools in and around ${esc(n.name)}</h2>
         <p class="lede">Official state ratings for every public school nearby, plus private options. Tap any school for its full report card and real parent reviews.</p></div>
@@ -107,8 +142,8 @@
     if (n) { renderDetail(n); window.scrollTo(0, 0); } else { document.title = "Neighborhoods · Dallas Real Estate Internet"; renderList(); }
   }
 
-  Promise.all([loadJSON("data/neighborhoods.json"), loadJSON("data/photos.json").catch(() => ({}))]).then(([d, P]) => {
-    DATA = d; PHOTOS = P;
+  Promise.all([loadJSON("data/neighborhoods.json"), loadJSON("data/photos.json").catch(() => ({})), loadJSON("data/market.json").catch(() => null)]).then(([d, P, MK]) => {
+    DATA = d; PHOTOS = P; MARKET = MK;
     ["f-q", "f-tier", "f-sort"].forEach((id) => document.getElementById(id).addEventListener("input", renderList));
     window.addEventListener("hashchange", route);
     route();
