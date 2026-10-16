@@ -60,7 +60,7 @@ Photos live in `data/photos.json`. Each one is a verified, location-tagged Unspl
 
 ## 5. Keep the data honest
 
-- **Market numbers:** update `data/market.json` monthly from NTREIS/MLS. Every figure needs `as_of` and `source`. Leave a value `null` rather than estimate it. The dashboard and AI show only what's filled in.
+- **Market numbers:** `data/market.json` is built weekly from **public Zillow Research data** (typical home value by ZIP and city, plus DFW metro sales, inventory and days to pending) by `tools/build_market.py`. NTREIS/MLS figures stay off the site until your broker and NTREIS approve it in writing (Rules 17.01 and 17.12).
 - **Neighborhood metrics:** each profile has a `metrics` block (`median_price`, `inventory`, `days_on_market`, `as_of`), and it stays `null` until you load verified data.
 - **New areas:** copy a profile in `data/neighborhoods.json`. Scores are 0–5 and relative. Keep them about places, never people.
 - **Articles:** add to `data/articles.json` (blocks: `p`, `h2`, `ul`, `note`).
