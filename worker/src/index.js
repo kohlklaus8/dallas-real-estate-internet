@@ -35,7 +35,7 @@ export default {
     const url = new URL(request.url);
     const json = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
 
-    if (url.pathname === "/health" || url.pathname === "/") return json({ ok: true, model: env.MODEL || "claude-sonnet-5-5", key: !!env.ANTHROPIC_API_KEY });
+    if (url.pathname === "/health" || url.pathname === "/") { const k0 = String(env.ANTHROPIC_API_KEY || "").trim(); return json({ ok: true, model: env.MODEL || "claude-sonnet-5-5", key: !!k0, key_format_ok: /^sk-ant-[A-Za-z0-9_-]{20,}$/.test(k0), key_len: k0.length }); }
     if (request.method !== "POST") return json({ error: "Use POST" }, 405);
     if (allowed.length && !allowed.includes(origin)) return json({ error: "Origin not allowed" }, 403);
 
@@ -130,7 +130,7 @@ async function handleChat(body, env, json) {
 
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
-    headers: { "x-api-key": env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+    headers: { "x-api-key": String(env.ANTHROPIC_API_KEY).trim(), "anthropic-version": "2023-06-01", "content-type": "application/json" },
     body: JSON.stringify({
       model: env.MODEL || "claude-sonnet-5-5", max_tokens: 1600,
       system: [
@@ -145,7 +145,8 @@ async function handleChat(body, env, json) {
   if (!res.ok) {
     const detail = await res.text();
     console.log("Anthropic error", res.status, detail.slice(0, 500));
-    return json({ error: "AI service error", status: res.status }, 502);
+    let type = ""; try { type = JSON.parse(detail).error.type; } catch {}
+    return json({ error: "AI service error", status: res.status, type }, 502);
   }
   const data = await res.json();
   return json(parseReply(data.content || []));
