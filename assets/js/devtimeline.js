@@ -15,6 +15,7 @@
       const ys = (String(d.timing).match(/\b20\d{2}\b/g) || []).map(Number).filter((n) => n >= NOW);
       y = ys.length ? (/begin|start/i.test(d.timing) ? Math.min(...ys) : Math.max(...ys)) : NOW;
     }
+    if (y <= NOW && /Planned|Proposed/i.test(d.status)) return { key: "tbd", label: "Planned · date TBD", tone: "later", order: 90 };
     if (y <= NOW) return { key: "now", label: "Building now", tone: "build", order: 1 };
     return { key: "y" + y, label: "Coming " + y, tone: y === NOW + 1 ? "next" : "later", order: 2 + (y - NOW) };
   }
