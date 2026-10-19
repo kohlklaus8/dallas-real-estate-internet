@@ -207,24 +207,29 @@
     return qs.join("\n");
   }
 
-  /** Send a lead brief to C.LEAD_ENDPOINT (FormSubmit-friendly: flat fields, readable subject, table email). */
-  async function sendLead(brief) {
-    if (!C.LEAD_ENDPOINT) return false;
+  /** Lead delivery: queued in an on-device outbox, sent in the background (keepalive), retried on the next page load. */
+  function leadBody(brief) {
     const flat = {};
     const pretty = (v) => (v == null || v === "" ? "" : typeof v === "object" ? (Array.isArray(v) ? v.join(", ") : Object.entries(v).filter(([, x]) => x !== "" && x != null && !(Array.isArray(x) && !x.length)).map(([k, x]) => `${k}: ${Array.isArray(x) ? x.join(", ") : typeof x === "object" ? JSON.stringify(x) : x}`).join(" | ")) : String(v));
     Object.entries(brief).forEach(([k, v]) => { const t = pretty(v); if (t) flat[k.replace(/_/g, " ")] = t; });
-    const body = {
-      _subject: `New lead · ${C.BRAND_NAME}: ${brief.name || "visitor"}${brief.goal ? " (" + brief.goal + ")" : ""}`,
-      _template: "table", _captcha: "false",
-      name: brief.name || "", email: brief.email || "", ...flat,
-    };
-    try {
-      const r = await fetch(C.LEAD_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body) });
-      if (!r.ok) return false;
-      const j = await r.json().catch(() => ({}));
-      return j.success === undefined ? true : String(j.success) === "true";
-    } catch (e) { return false; }
+    return { _subject: `New lead · ${C.BRAND_NAME}: ${brief.name || "visitor"}${brief.goal ? " (" + brief.goal + ")" : ""}`, _template: "table", _captcha: "false", name: brief.name || "", email: brief.email || "", ...flat };
   }
+  function deliver(item) {
+    return fetch(C.LEAD_ENDPOINT, { method: "POST", keepalive: true, headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(item.body) })
+      .then((r) => r.json().catch(() => ({})).then((j) => r.ok && (j.success === undefined || String(j.success) === "true")))
+      .catch(() => false)
+      .then((ok) => { if (ok) store.set("outbox", store.get("outbox", []).filter((x) => x.id !== item.id)); return ok; });
+  }
+  /** Returns true right away when the lead is queued (it finishes sending in the background). */
+  function sendLead(brief) {
+    if (!C.LEAD_ENDPOINT) return false;
+    const item = { at: Date.now(), id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), body: leadBody(brief) };
+    store.set("outbox", [...store.get("outbox", []), item].slice(-10));
+    deliver(item);
+    return true;
+  }
+  // Retry anything that didn't finish sending last time (e.g. the visitor closed the tab mid-send).
+  setTimeout(() => { if (C.LEAD_ENDPOINT) store.get("outbox", []).filter((x) => Date.now() - (x.at || 0) > 120000).forEach((x) => { x.at = Date.now(); store.set("outbox", store.get("outbox", []).map((y) => (y.id === x.id ? x : y))); deliver(x); }); }, 1500);
 
   function toast(msg) {
     const t = document.createElement("div");
@@ -303,8 +308,7 @@
       let sent = false;
       if (C.LEAD_ENDPOINT) {
         try {
-          const sb = f.querySelector('button[type="submit"]'); if (sb) { sb.disabled = true; sb.textContent = "Sending…"; }
-          sent = await sendLead(brief);
+          sent = sendLead(brief);
         } catch (e2) { sent = false; }
       }
       track("handoff_submit", { goal: data.goal, timeline: data.timeline, sent });

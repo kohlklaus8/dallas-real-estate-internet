@@ -18,7 +18,7 @@
     store.set("profile", { ...store.get("profile", {}), name: data.name, email: data.email });
     store.push("requests", { ...brief, timeline: "—" }, 20);
     let sent = false;
-    sent = await window.DREI.sendLead(brief);
+    sent = window.DREI.sendLead(brief);
     track("handoff_submit", { kind: "guide", sent });
     f.innerHTML = sent
       ? `<p style="font-weight:700;color:var(--teal)">You're in, ${esc(data.name)}! Watch your inbox for the guide.</p><p style="font-size:.9rem">Start now: <a class="link" href="intelligence.html#dfw-moving-checklist">the first-90-days checklist</a> · <a class="link" href="tools.html#fit">Where should I live?</a></p>`
