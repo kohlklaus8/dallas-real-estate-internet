@@ -25,6 +25,8 @@
     const blocks = String(text || "").trim().split(/\n{2,}/);
     return blocks.map((b) => {
       const lines = b.split("\n");
+      if (/^#{1,4}\s+/.test(lines[0])) { const h = `<h4 style="margin:.2rem 0 .3rem">${inline(lines[0].replace(/^#{1,4}\s+/, ""))}</h4>`; const rest = lines.slice(1); if (!rest.length) return h; if (rest.every((l) => /^\s*[-•*]\s+/.test(l))) return h + "<ul>" + rest.map((l) => `<li>${inline(l.replace(/^\s*[-•*]\s+/, ""))}</li>`).join("") + "</ul>"; return h + `<p>${rest.map(inline).join("<br>")}</p>`; }
+      if (lines.every((l) => /^\s*\d+[.)]\s+/.test(l))) return "<ol>" + lines.map((l) => `<li>${inline(l.replace(/^\s*\d+[.)]\s+/, ""))}</li>`).join("") + "</ol>";
       if (lines.every((l) => /^\s*[-•*]\s+/.test(l))) return "<ul>" + lines.map((l) => `<li>${inline(l.replace(/^\s*[-•*]\s+/, ""))}</li>`).join("") + "</ul>";
       return `<p>${lines.map(inline).join("<br>")}</p>`;
     }).join("");
