@@ -303,12 +303,14 @@
       const done = wrap.querySelector("#ho-done");
       done.hidden = false;
       done.innerHTML = sent
-        ? `<div class="note"><strong>Request received.</strong> ${esc(C.AGENT_NAME)} will follow up${data.timeline === "0–3 months" ? " shortly" : ""} with your questions in hand.</div>
+        ? `<div class="note" style="font-size:1.05rem"><strong>✓ Sent! Thanks, ${esc(data.name.split(" ")[0])}.</strong> ${esc(C.AGENT_NAME)} will reach out${data.timeline === "0–3 months" ? " shortly" : " soon"} with your questions in hand.</div>
+           <button class="btn btn-sm" type="button" data-close>Close</button>
            ${C.CALENDAR_URL ? `<a class="btn btn-brass" href="${esc(C.CALENDAR_URL)}" target="_blank" rel="noopener">Book a time now</a>` : ""}`
         : `<div class="note"><strong>Your request is saved on this device, but it wasn't sent.</strong> Reach ${esc(C.AGENT_NAME)} directly and paste the summary below.</div>
            <p><strong>${esc(C.AGENT_PHONE)}</strong> · <strong>${esc(C.AGENT_EMAIL)}</strong></p>
            <textarea id="ho-summary" readonly style="min-height:140px">${esc(`Hi ${C.AGENT_NAME.split(" ")[0]}, I'm ${data.name} (${data.email}${data.phone ? ", " + data.phone : ""}). Goal: ${data.goal}. Timeline: ${data.timeline}.\n${data.message || ""}\n\nRecent questions:\n${brief.recent_questions || "(none)"}`)}</textarea>
            <button class="btn btn-sm" type="button" id="ho-copy">Copy summary</button>`;
+      if (sent) setTimeout(() => wrap.remove(), 6000);
       const copy = done.querySelector("#ho-copy");
       if (copy) copy.addEventListener("click", async () => {
         const ta = done.querySelector("#ho-summary");
