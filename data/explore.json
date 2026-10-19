@@ -1,542 +1,1271 @@
 {
-  "_how_to_update": "Edit this file on GitHub (pencil icon). Each list is independent. Add an item by copying an existing one. Keep 'last_checked' honest — it shows on the site.",
-  "last_checked": "2026-10-19",
-  "developments": [
-    {
-      "name": "Universal Kids Resort",
-      "city": "Frisco",
-      "type": "Entertainment",
-      "status": "Open",
-      "timing": "Opened July 1, 2026",
-      "summary": "Universal's first theme park designed for families with young kids, with a themed hotel, at the Fields area of Frisco.",
-      "source": "Visit Frisco",
-      "url": "https://www.visitfrisco.com/press-room/new-next"
-    },
-    {
-      "name": "Fields West",
-      "city": "Frisco",
-      "type": "Mixed-use",
-      "status": "Under construction",
-      "timing": "Openings begin Q3 2027, continuing into 2028",
-      "summary": "Shops, dining, offices and residences on the west side of the Fields development, near the PGA of America headquarters.",
-      "source": "Visit Frisco",
-      "url": "https://www.visitfrisco.com/press-room/new-next"
-    },
-    {
-      "name": "2027 PGA Championship at Fields Ranch",
-      "city": "Frisco",
-      "type": "Event venue",
-      "status": "Scheduled",
-      "timing": "May 17–23, 2027",
-      "summary": "One of golf's four majors comes to PGA Frisco's Fields Ranch course.",
-      "source": "Visit Frisco",
-      "url": "https://www.visitfrisco.com/press-room/new-next"
-    },
-    {
-      "name": "Grand Park, Phase I",
-      "city": "Frisco",
-      "type": "Park",
-      "status": "Under construction",
-      "timing": "Broke ground April 2026; targeted October 2027",
-      "summary": "The first $43M phase of Frisco's long-planned central park, including the Civic Room.",
-      "source": "Visit Frisco",
-      "url": "https://www.visitfrisco.com/press-room/new-next"
-    },
-    {
-      "name": "Toyota Stadium renovation",
-      "city": "Frisco",
-      "type": "Sports",
-      "status": "Under construction",
-      "timing": "West and north sides closed from fall 2026; target is FC Dallas' first 2028 home match",
-      "summary": "A major rebuild of FC Dallas' home stadium, with an entertainment district and hotel planned nearby.",
-      "source": "Visit Frisco",
-      "url": "https://www.visitfrisco.com/press-room/new-next"
-    },
-    {
-      "name": "Frisco Rail District downtown reinvestment",
-      "city": "Frisco",
-      "type": "Downtown",
-      "status": "Complete",
-      "timing": "Ribbon cutting October 13, 2026",
-      "summary": "An $83M upgrade to Frisco's historic downtown streets and public spaces.",
-      "source": "Visit Frisco",
-      "url": "https://www.visitfrisco.com/press-room/new-next"
-    },
-    {
-      "name": "Collin Creek redevelopment",
-      "city": "Plano",
-      "type": "Mixed-use",
-      "status": "Under construction",
-      "timing": "Construction continues through 2028",
-      "summary": "The former Collin Creek Mall site is becoming homes, apartments, retail and two new parks. About 200 households already live there.",
-      "source": "Community Impact (June 2026)",
-      "url": "https://communityimpact.com/plano/government/mixed-use-development-construction-near-collin-creek-mall-to-continue-through-2028/"
-    },
-    {
-      "name": "Sapphire Bay",
-      "city": "Rowlett",
-      "type": "Mixed-use",
-      "status": "Stalled",
-      "timing": "City issued a notice of default to the developer in January 2026",
-      "summary": "A planned lakefront resort district on Lake Ray Hubbard. Apartments and homes are built, but the promised resort, lagoon and commercial core remain undeveloped.",
-      "source": "ResortX (citing NBC DFW)",
-      "url": "https://www.resortx.com/sapphire-bay/"
-    },
-    {
-      "name": "Kay Bailey Hutchison Convention Center rebuild",
-      "city": "Dallas",
-      "type": "Convention center",
-      "status": "Under construction",
-      "timing": "Demolition of Halls D, E and F began February 2026, expected substantially complete by end of 2026; overall completion targeted for 2029",
-      "summary": "Dallas is replacing most of its downtown convention center with a larger facility; Halls A, B and C stay open during construction. The city expects the work to free up more than 30 acres for housing, hotels, retail and dining.",
-      "source": "City of Dallas (February 2026)",
-      "url": "https://content.govdelivery.com/accounts/TXDALLAS/bulletins/40b8764"
-    },
-    {
-      "name": "Panther Island canal and bridges (Phase 1)",
-      "city": "Fort Worth",
-      "type": "Parks / waterfront",
-      "status": "Planned",
-      "timing": "Canal C scheduled for completion in early 2028; new North Commerce and Calhoun Street bridges in final design, with completion listed for spring 2029",
-      "summary": "Part of the Panther Island waterfront district north of downtown Fort Worth. The city will build two bridges over the new canal once the water district finishes it.",
-      "source": "City of Fort Worth (October 2026)",
-      "url": "https://www.fortworthtexas.gov/projects/cfw-panther-island-canal-bridges-phase-1"
-    },
-    {
-      "name": "Anthem (Lincoln Square redevelopment)",
-      "city": "Arlington",
-      "type": "Retail / mixed-use",
-      "status": "Under construction",
-      "timing": "Broke ground August 3, 2026; completion expected early 2028",
-      "summary": "A 43-acre redo of the former Lincoln Square shopping center in north Arlington, with about 404,000 sq ft of retail, dining and entertainment space plus a public green.",
-      "source": "City of Arlington (August 2026)",
-      "url": "https://www.arlingtontx.gov/News-Articles/2026/August/Anthem-Groundbreaking-Ushers-in-Lincoln-Square-Transformation"
-    },
-    {
-      "name": "Sunset Amphitheater",
-      "city": "McKinney",
-      "type": "Entertainment venue",
-      "status": "Under construction",
-      "timing": "About 70% complete as of October 2026; expected to open in 2027",
-      "summary": "A 20,000-seat outdoor concert venue near US 75 and SH 121, developed by Venu.",
-      "source": "Community Impact (October 2026)",
-      "url": "https://communityimpact.com/mckinney/development/mckinney-s-sunset-amphitheater-project-nears-70-completion-as-investment-rises-to-334m/"
-    },
-    {
-      "name": "Mixed-use project near Grapevine Mills",
-      "city": "Grapevine",
-      "type": "Mixed-use",
-      "status": "Planned",
-      "timing": "Approved by Grapevine City Council June 2, 2026; developer hoped to obtain building permits in summer 2026",
-      "summary": "A 28.7-acre Trammell Crow Company project with up to 248 apartments and a 222-room Sandman Signature Hotel near Grapevine Mills.",
-      "source": "Community Impact (June 2026)",
-      "url": "https://communityimpact.com/grapevine-colleyville-southlake/development/287-acre-development-to-add-hotels-multifamily-housing-near-grapevine-mills/"
-    }
-  ],
-  "eat": [
-    {
-      "name": "Pecan Lodge",
-      "city": "Dallas · Deep Ellum",
-      "kind": "Barbecue",
-      "why": "Destination Texas barbecue. Expect a line on weekends.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Pecan+Lodge+Dallas+TX"
-    },
-    {
-      "name": "Terry Black's Barbecue",
-      "city": "Dallas · Deep Ellum",
-      "kind": "Barbecue",
-      "why": "Big, classic Central Texas-style barbecue hall.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Terry+Black%27s+Barbecue+Dallas+TX"
-    },
-    {
-      "name": "Hutchins BBQ",
-      "city": "McKinney & Frisco",
-      "kind": "Barbecue",
-      "why": "A North Texas favorite with locations in both cities.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Hutchins+BBQ+McKinney+TX"
-    },
-    {
-      "name": "Heim Barbecue",
-      "city": "Fort Worth",
-      "kind": "Barbecue",
-      "why": "Fort Worth barbecue known for its bacon burnt ends.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Heim+Barbecue+Fort+Worth+TX"
-    },
-    {
-      "name": "Joe T. Garcia's",
-      "city": "Fort Worth",
-      "kind": "Tex-Mex",
-      "why": "A family-run Fort Worth institution, famous for its garden patio.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Joe+T.+Garcia%27s+Fort+Worth+TX"
-    },
-    {
-      "name": "Javier's",
-      "city": "Dallas",
-      "kind": "Mexican",
-      "why": "Long-running, white-tablecloth Mexico City-style cuisine.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Javier%27s+Dallas+TX"
-    },
-    {
-      "name": "Babe's Chicken Dinner House",
-      "city": "Carrollton, Garland & more",
-      "kind": "Southern",
-      "why": "Family-style fried chicken and sides in historic buildings.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Babe%27s+Chicken+Dinner+House+Carrollton+TX"
-    },
-    {
-      "name": "Al Biernat's",
-      "city": "Dallas",
-      "kind": "Steakhouse",
-      "why": "A classic Dallas steakhouse for big occasions.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Al+Biernat%27s+Dallas+TX"
-    },
-    {
-      "name": "Uchi Dallas",
-      "city": "Dallas · Uptown",
-      "kind": "Japanese",
-      "why": "Creative sushi and small plates from the Austin-born group.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Uchi+Dallas+Dallas+TX"
-    },
-    {
-      "name": "Velvet Taco",
-      "city": "Many DFW locations",
-      "kind": "Tacos",
-      "why": "Dallas-born, creative tacos. A local go-to.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Velvet+Taco+Many+DFW+locations+TX"
-    }
-  ],
-  "drink": [
-    {
-      "name": "Katy Trail Ice House",
-      "city": "Dallas · Uptown",
-      "kind": "Beer garden",
-      "why": "A big patio right on the Katy Trail.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Katy+Trail+Ice+House+Dallas+TX"
-    },
-    {
-      "name": "Truck Yard",
-      "city": "Dallas & The Colony",
-      "kind": "Outdoor bar",
-      "why": "Food trucks, live music and backyard vibes, including at Grandscape.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Truck+Yard+Dallas+TX"
-    },
-    {
-      "name": "The Rustic",
-      "city": "Dallas · Uptown",
-      "kind": "Patio & live music",
-      "why": "Big patio with live music most nights.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=The+Rustic+Dallas+TX"
-    },
-    {
-      "name": "Billy Bob's Texas",
-      "city": "Fort Worth · Stockyards",
-      "kind": "Honky-tonk",
-      "why": "A world-famous honky-tonk with live country music and bull riding.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Billy+Bob%27s+Texas+Fort+Worth+TX"
-    },
-    {
-      "name": "Deep Ellum Brewing Co.",
-      "city": "Dallas · Deep Ellum",
-      "kind": "Brewery",
-      "why": "A Dallas craft beer pioneer in the heart of Deep Ellum.",
-      "reviews": "https://www.google.com/maps/search/?api=1&query=Deep+Ellum+Brewing+Co.+Dallas+TX"
-    }
-  ],
-  "do": [
-    {
-      "name": "Klyde Warren Park",
-      "city": "Dallas",
-      "kind": "Park",
-      "why": "A deck park over the freeway with food trucks, events and lawn games.",
-      "url": "https://www.klydewarrenpark.org/"
-    },
-    {
-      "name": "Dallas Arboretum",
-      "city": "Dallas · White Rock Lake",
-      "kind": "Garden",
-      "why": "Seasonal festivals on White Rock Lake. Holiday at the Arboretum opens November 11, 2026.",
-      "url": "https://www.dallasarboretum.org/"
-    },
-    {
-      "name": "Perot Museum of Nature and Science",
-      "city": "Dallas",
-      "kind": "Museum",
-      "why": "Hands-on science museum that's great with kids.",
-      "url": "https://www.perotmuseum.org/"
-    },
-    {
-      "name": "Fort Worth Stockyards",
-      "city": "Fort Worth",
-      "kind": "Historic district",
-      "why": "Twice-daily cattle drives, rodeos and Western shopping.",
-      "url": "https://www.fortworthstockyards.org/"
-    },
-    {
-      "name": "Kimbell Art Museum",
-      "city": "Fort Worth",
-      "kind": "Museum",
-      "why": "A world-class collection in a landmark building in the Cultural District.",
-      "url": "https://kimbellart.org/"
-    },
-    {
-      "name": "Six Flags Over Texas",
-      "city": "Arlington",
-      "kind": "Theme park",
-      "why": "The original Six Flags park, next to the stadiums.",
-      "url": "https://www.sixflags.com/overtexas"
-    },
-    {
-      "name": "Universal Kids Resort",
-      "city": "Frisco",
-      "kind": "Theme park",
-      "why": "Opened July 2026, built for families with young kids.",
-      "url": "https://www.universalkidsresort.com/"
-    },
-    {
-      "name": "Historic Main Street Grapevine",
-      "city": "Grapevine",
-      "kind": "Downtown",
-      "why": "Wineries, shops and the Grapevine Vintage Railroad.",
-      "url": "https://www.grapevinetexasusa.com/"
-    },
-    {
-      "name": "The Harbor Rockwall",
-      "city": "Rockwall",
-      "kind": "Waterfront",
-      "why": "Lakefront dining and sunsets on Lake Ray Hubbard.",
-      "url": "https://www.google.com/maps/search/?api=1&query=The+Harbor+Rockwall+Rockwall+TX"
-    },
-    {
-      "name": "Historic Downtown McKinney",
-      "city": "McKinney",
-      "kind": "Downtown",
-      "why": "Shops, restaurants and events around the square.",
-      "url": "https://www.google.com/maps/search/?api=1&query=Historic+Downtown+McKinney+McKinney+TX"
-    },
-    {
-      "name": "Mandalay Canal",
-      "city": "Las Colinas, Irving",
-      "kind": "Walkable district",
-      "why": "Canal-side walks and restaurants in the Urban Center.",
-      "url": "https://www.google.com/maps/search/?api=1&query=Mandalay+Canal+Las+Colinas+TX"
-    },
-    {
-      "name": "The Star",
-      "city": "Frisco",
-      "kind": "Sports & dining",
-      "why": "Dallas Cowboys headquarters with restaurants and events.",
-      "url": "https://www.google.com/maps/search/?api=1&query=The+Star+Frisco+TX"
-    }
-  ],
-  "sports": [
-    {
-      "team": "Dallas Cowboys",
-      "league": "NFL",
-      "venue": "AT&T Stadium, Arlington",
-      "url": "https://www.dallascowboys.com/schedule/"
-    },
-    {
-      "team": "Texas Rangers",
-      "league": "MLB",
-      "venue": "Globe Life Field, Arlington",
-      "url": "https://www.mlb.com/rangers/schedule"
-    },
-    {
-      "team": "Dallas Mavericks",
-      "league": "NBA",
-      "venue": "American Airlines Center, Dallas",
-      "url": "https://www.mavs.com/schedule/"
-    },
-    {
-      "team": "Dallas Stars",
-      "league": "NHL",
-      "venue": "American Airlines Center, Dallas",
-      "url": "https://www.nhl.com/stars/schedule"
-    },
-    {
-      "team": "FC Dallas",
-      "league": "MLS",
-      "venue": "Toyota Stadium, Frisco (under renovation)",
-      "url": "https://www.fcdallas.com/schedule/"
-    },
-    {
-      "team": "Dallas Wings",
-      "league": "WNBA",
-      "venue": "See team site",
-      "url": "https://wings.wnba.com/schedule"
-    },
-    {
-      "team": "Frisco RoughRiders",
-      "league": "Minor League Baseball",
-      "venue": "Riders Field, Frisco",
-      "url": "https://www.milb.com/frisco/schedule"
-    },
-    {
-      "team": "Dallas Renegades",
-      "league": "UFL",
-      "venue": "Toyota Stadium, Frisco",
-      "url": "https://www.theufl.com/"
-    }
-  ],
-  "events": [
-    {
-      "name": "Holiday at the Arboretum (final year of the 12 Days of Christmas gazebos)",
-      "start": "2026-11-11",
-      "end": null,
-      "city": "Dallas Arboretum",
-      "kind": "Holiday",
-      "url": "https://www.dallasarboretum.org/holiday",
-      "source": "FOX 4"
-    },
-    {
-      "name": "Fort Worth Parade of Lights",
-      "start": "2026-11-22",
-      "end": null,
-      "city": "Fort Worth · Downtown",
-      "kind": "Holiday",
-      "url": "https://fortworthparadeoflights.org/",
-      "source": "Fort Worth Parade of Lights"
-    },
-    {
-      "name": "Christmas Capital of Texas season + Carol of Lights",
-      "start": "2026-11-23",
-      "end": null,
-      "city": "Grapevine · Main Street",
-      "kind": "Holiday",
-      "url": "https://www.grapevinetexasusa.com/",
-      "source": "Grapevine CVB"
-    },
-    {
-      "name": "Dallas YMCA Turkey Trot",
-      "start": "2026-11-26",
-      "end": null,
-      "city": "Dallas · Downtown",
-      "kind": "Race",
-      "url": "https://ymcadallas.org/turkeytrot",
-      "source": "YMCA of Metropolitan Dallas"
-    },
-    {
-      "name": "Parade of Lights",
-      "start": "2026-12-03",
-      "end": null,
-      "city": "Grapevine · Main Street",
-      "kind": "Holiday",
-      "url": "https://www.grapevinetexasusa.com/",
-      "source": "Grapevine CVB"
-    },
-    {
-      "name": "Dallas Holiday Parade",
-      "start": "2026-12-05",
-      "end": null,
-      "city": "Dallas · Downtown",
-      "kind": "Holiday",
-      "url": "https://dallasholidayparade.com/",
-      "source": "Dallas Holiday Parade"
-    },
-    {
-      "name": "Klyde Warren Park Tree Lighting Celebration",
-      "start": "2026-12-05",
-      "end": null,
-      "city": "Dallas · Klyde Warren Park",
-      "kind": "Holiday",
-      "url": "https://www.klydewarrenpark.org/signature-events-2026",
-      "source": "Klyde Warren Park"
-    },
-    {
-      "name": "BMW Dallas Marathon race weekend",
-      "start": "2026-12-11",
-      "end": "2026-12-13",
-      "city": "Dallas · Downtown",
-      "kind": "Race",
-      "url": "https://www.dallasmarathon.com/",
-      "source": "dallasmarathon.com"
-    },
-    {
-      "name": "Holiday Lights Parade & tree lighting",
-      "start": "2026-12-12",
-      "end": null,
-      "city": "Arlington · Downtown",
-      "kind": "Holiday",
-      "url": "https://www.arlingtontx.gov/Community-Calendar/Other-Community-Events/Holiday-Lights-Parade",
-      "source": "City of Arlington"
-    },
-    {
-      "name": "Goodyear Cotton Bowl Classic (CFP Quarterfinal)",
-      "start": "2027-01-01",
-      "end": null,
-      "city": "Arlington · AT&T Stadium",
-      "kind": "Sports",
-      "url": "https://www.cottonbowl.com/news/2026/2/3/football-game-dates-set-for-the-91st-92nd-goodyear-cotton-bowl-classics.aspx",
-      "source": "Cotton Bowl Classic"
-    },
-    {
-      "name": "Fort Worth Stock Show & Rodeo",
-      "start": "2027-01-15",
-      "end": "2027-02-06",
-      "city": "Fort Worth · Will Rogers",
-      "kind": "Rodeo",
-      "url": "https://www.fwssr.com/",
-      "source": "Event listing; confirm at fwssr.com"
-    },
-    {
-      "name": "PGA Championship",
-      "start": "2027-05-17",
-      "end": "2027-05-23",
-      "city": "Frisco · Fields Ranch",
-      "kind": "Golf",
-      "url": "https://www.pgachampionship.com/",
-      "source": "Visit Frisco"
-    }
-  ],
-  "social": [
-    {
-      "name": "Dallasites101",
-      "handle": "dallasites101",
-      "url": "https://www.instagram.com/dallasites101/",
-      "about": "Dallas food, events and things to do",
-      "platform": "Instagram"
-    },
-    {
-      "name": "Visit Dallas",
-      "handle": "visit_dallas",
-      "url": "https://www.instagram.com/visit_dallas/",
-      "about": "Things to do in Dallas",
-      "platform": "Instagram"
-    },
-    {
-      "name": "Dallas Food Nerd",
-      "handle": "dallasfoodnerd",
-      "url": "https://www.instagram.com/dallasfoodnerd/",
-      "about": "Where to eat in Dallas",
-      "platform": "Instagram"
-    },
-    {
-      "name": "Dallas Observer",
-      "handle": "dallasobserver",
-      "url": "https://www.instagram.com/dallasobserver/",
-      "about": "Local news, food, music and culture",
-      "platform": "Instagram"
-    },
-    {
-      "name": "Visit Fort Worth",
-      "handle": "visitfortworth",
-      "url": "https://www.instagram.com/visitfortworth/",
-      "about": "Fort Worth events and attractions",
-      "platform": "Instagram"
-    },
-    {
-      "name": "Visit Grapevine",
-      "handle": "visitgrapevine",
-      "url": "https://www.instagram.com/visitgrapevine/",
-      "about": "Grapevine festivals, wineries and Main Street",
-      "platform": "Instagram"
-    },
-    {
-      "name": "CandysDirt",
-      "handle": "candysdirt",
-      "url": "https://www.instagram.com/candysdirt/",
-      "about": "Dallas real estate news",
-      "platform": "Instagram"
-    }
-  ]
+ "_how_to_update": "Edit this file on GitHub (pencil icon). Each list is independent. Add an item by copying an existing one. Keep 'last_checked' honest — it shows on the site. Eat/drink/do entries need: name, area (city), hood, kind, why, known_for, address, website, lat, lon, reviews (Google Maps search link).",
+ "last_checked": "2026-10-19",
+ "developments": [
+  {
+   "name": "Universal Kids Resort",
+   "city": "Frisco",
+   "type": "Entertainment",
+   "status": "Open",
+   "timing": "Opened July 1, 2026",
+   "summary": "Universal's first theme park designed for families with young kids, with a themed hotel, at the Fields area of Frisco.",
+   "source": "Visit Frisco",
+   "url": "https://www.visitfrisco.com/press-room/new-next"
+  },
+  {
+   "name": "Fields West",
+   "city": "Frisco",
+   "type": "Mixed-use",
+   "status": "Under construction",
+   "timing": "Openings begin Q3 2027, continuing into 2028",
+   "summary": "Shops, dining, offices and residences on the west side of the Fields development, near the PGA of America headquarters.",
+   "source": "Visit Frisco",
+   "url": "https://www.visitfrisco.com/press-room/new-next"
+  },
+  {
+   "name": "2027 PGA Championship at Fields Ranch",
+   "city": "Frisco",
+   "type": "Event venue",
+   "status": "Scheduled",
+   "timing": "May 17–23, 2027",
+   "summary": "One of golf's four majors comes to PGA Frisco's Fields Ranch course.",
+   "source": "Visit Frisco",
+   "url": "https://www.visitfrisco.com/press-room/new-next"
+  },
+  {
+   "name": "Grand Park, Phase I",
+   "city": "Frisco",
+   "type": "Park",
+   "status": "Under construction",
+   "timing": "Broke ground April 2026; targeted October 2027",
+   "summary": "The first $43M phase of Frisco's long-planned central park, including the Civic Room.",
+   "source": "Visit Frisco",
+   "url": "https://www.visitfrisco.com/press-room/new-next"
+  },
+  {
+   "name": "Toyota Stadium renovation",
+   "city": "Frisco",
+   "type": "Sports",
+   "status": "Under construction",
+   "timing": "West and north sides closed from fall 2026; target is FC Dallas' first 2028 home match",
+   "summary": "A major rebuild of FC Dallas' home stadium, with an entertainment district and hotel planned nearby.",
+   "source": "Visit Frisco",
+   "url": "https://www.visitfrisco.com/press-room/new-next"
+  },
+  {
+   "name": "Frisco Rail District downtown reinvestment",
+   "city": "Frisco",
+   "type": "Downtown",
+   "status": "Complete",
+   "timing": "Ribbon cutting October 13, 2026",
+   "summary": "An $83M upgrade to Frisco's historic downtown streets and public spaces.",
+   "source": "Visit Frisco",
+   "url": "https://www.visitfrisco.com/press-room/new-next"
+  },
+  {
+   "name": "Collin Creek redevelopment",
+   "city": "Plano",
+   "type": "Mixed-use",
+   "status": "Under construction",
+   "timing": "Construction continues through 2028",
+   "summary": "The former Collin Creek Mall site is becoming homes, apartments, retail and two new parks. About 200 households already live there.",
+   "source": "Community Impact (June 2026)",
+   "url": "https://communityimpact.com/plano/government/mixed-use-development-construction-near-collin-creek-mall-to-continue-through-2028/"
+  },
+  {
+   "name": "Sapphire Bay",
+   "city": "Rowlett",
+   "type": "Mixed-use",
+   "status": "Stalled",
+   "timing": "City issued a notice of default to the developer in January 2026",
+   "summary": "A planned lakefront resort district on Lake Ray Hubbard. Apartments and homes are built, but the promised resort, lagoon and commercial core remain undeveloped.",
+   "source": "ResortX (citing NBC DFW)",
+   "url": "https://www.resortx.com/sapphire-bay/"
+  },
+  {
+   "name": "Kay Bailey Hutchison Convention Center rebuild",
+   "city": "Dallas",
+   "type": "Convention center",
+   "status": "Under construction",
+   "timing": "Demolition of Halls D, E and F began February 2026, expected substantially complete by end of 2026; overall completion targeted for 2029",
+   "summary": "Dallas is replacing most of its downtown convention center with a larger facility; Halls A, B and C stay open during construction. The city expects the work to free up more than 30 acres for housing, hotels, retail and dining.",
+   "source": "City of Dallas (February 2026)",
+   "url": "https://content.govdelivery.com/accounts/TXDALLAS/bulletins/40b8764"
+  },
+  {
+   "name": "Panther Island canal and bridges (Phase 1)",
+   "city": "Fort Worth",
+   "type": "Parks / waterfront",
+   "status": "Planned",
+   "timing": "Canal C scheduled for completion in early 2028; new North Commerce and Calhoun Street bridges in final design, with completion listed for spring 2029",
+   "summary": "Part of the Panther Island waterfront district north of downtown Fort Worth. The city will build two bridges over the new canal once the water district finishes it.",
+   "source": "City of Fort Worth (October 2026)",
+   "url": "https://www.fortworthtexas.gov/projects/cfw-panther-island-canal-bridges-phase-1"
+  },
+  {
+   "name": "Anthem (Lincoln Square redevelopment)",
+   "city": "Arlington",
+   "type": "Retail / mixed-use",
+   "status": "Under construction",
+   "timing": "Broke ground August 3, 2026; completion expected early 2028",
+   "summary": "A 43-acre redo of the former Lincoln Square shopping center in north Arlington, with about 404,000 sq ft of retail, dining and entertainment space plus a public green.",
+   "source": "City of Arlington (August 2026)",
+   "url": "https://www.arlingtontx.gov/News-Articles/2026/August/Anthem-Groundbreaking-Ushers-in-Lincoln-Square-Transformation"
+  },
+  {
+   "name": "Sunset Amphitheater",
+   "city": "McKinney",
+   "type": "Entertainment venue",
+   "status": "Under construction",
+   "timing": "About 70% complete as of October 2026; expected to open in 2027",
+   "summary": "A 20,000-seat outdoor concert venue near US 75 and SH 121, developed by Venu.",
+   "source": "Community Impact (October 2026)",
+   "url": "https://communityimpact.com/mckinney/development/mckinney-s-sunset-amphitheater-project-nears-70-completion-as-investment-rises-to-334m/"
+  },
+  {
+   "name": "Mixed-use project near Grapevine Mills",
+   "city": "Grapevine",
+   "type": "Mixed-use",
+   "status": "Planned",
+   "timing": "Approved by Grapevine City Council June 2, 2026; developer hoped to obtain building permits in summer 2026",
+   "summary": "A 28.7-acre Trammell Crow Company project with up to 248 apartments and a 222-room Sandman Signature Hotel near Grapevine Mills.",
+   "source": "Community Impact (June 2026)",
+   "url": "https://communityimpact.com/grapevine-colleyville-southlake/development/287-acre-development-to-add-hotels-multifamily-housing-near-grapevine-mills/"
+  }
+ ],
+ "eat": [
+  {
+   "name": "Al Biernat's",
+   "area": "Dallas",
+   "hood": "Oak Lawn",
+   "kind": "Steakhouse",
+   "price": "",
+   "why": "Oak Lawn steakhouse with private dining rooms and a large wine program.",
+   "known_for": "Steaks, Wine program",
+   "address": "4217 Oak Lawn Ave, Dallas, TX 75219",
+   "website": "https://www.albiernats.com/locations/oak-lawn/",
+   "lat": 32.81993,
+   "lon": -96.80247,
+   "city": "Oak Lawn, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Al+Biernat%27s+4217+Oak+Lawn+Ave%2C+Dallas%2C+TX+75219"
+  },
+  {
+   "name": "Javier's",
+   "area": "Dallas",
+   "hood": "Knox-Henderson",
+   "kind": "Mexican",
+   "price": "",
+   "why": "Dinner-only Mexico City-style restaurant on Cole Avenue with an attached cigar bar.",
+   "known_for": "Filete Cantinflas, Pollo Ahumado, Red Snapper Mojo de Ajo",
+   "address": "4912 Cole Ave, Dallas, TX 75205",
+   "website": "http://www.javiers.net",
+   "lat": 32.82746,
+   "lon": -96.78639,
+   "city": "Knox-Henderson, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Javier%27s+4912+Cole+Ave%2C+Dallas%2C+TX+75205"
+  },
+  {
+   "name": "Pecan Lodge",
+   "area": "Dallas",
+   "hood": "Deep Ellum",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Deep Ellum barbecue restaurant named Best Barbecue by the Dallas Observer.",
+   "known_for": "",
+   "address": "2702 Main St, Dallas, TX 75226",
+   "website": "https://pecanlodge.com/",
+   "lat": 32.78367,
+   "lon": -96.78384,
+   "city": "Deep Ellum, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Pecan+Lodge+2702+Main+St%2C+Dallas%2C+TX+75226"
+  },
+  {
+   "name": "Terry Black's Barbecue",
+   "area": "Dallas",
+   "hood": "Deep Ellum",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Dallas outpost of the Austin family barbecue business, serving Central Texas-style smoked meats.",
+   "known_for": "Beef ribs, Brisket, Sausage",
+   "address": "3025 Main St, Dallas, TX 75226",
+   "website": "https://terryblacksbbq.com/dallas",
+   "lat": 32.78482,
+   "lon": -96.77996,
+   "city": "Deep Ellum, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Terry+Black%27s+Barbecue+3025+Main+St%2C+Dallas%2C+TX+75226"
+  },
+  {
+   "name": "Uchi Dallas",
+   "area": "Dallas",
+   "hood": "Uptown",
+   "kind": "Japanese",
+   "price": "",
+   "why": "Dallas location of chef Tyson Cole's Austin-born Japanese restaurant, focused on sushi and small plates.",
+   "known_for": "Hama chili, Wagyu hot rock, Nigiri",
+   "address": "2817 Maple Ave, Dallas, TX 75201",
+   "website": "https://uchi.uchirestaurants.com/location/sushi-dallas/",
+   "lat": 32.79686,
+   "lon": -96.80655,
+   "city": "Uptown, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Uchi+Dallas+2817+Maple+Ave%2C+Dallas%2C+TX+75201"
+  },
+  {
+   "name": "Velvet Taco (Uptown)",
+   "area": "Dallas",
+   "hood": "Uptown",
+   "kind": "Tacos",
+   "price": "",
+   "why": "Dallas-born taco chain with globally inspired fillings; the original Henderson Ave shop closed in 2023.",
+   "known_for": "",
+   "address": "3411 McKinney Ave, Dallas, TX 75204",
+   "website": "https://www.velvettaco.com/location/dallas-uptown/",
+   "lat": 32.80552,
+   "lon": -96.79884,
+   "city": "Uptown, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Velvet+Taco+%28Uptown%29+3411+McKinney+Ave%2C+Dallas%2C+TX+75204"
+  },
+  {
+   "name": "Kenny's Wood Fired Grill",
+   "area": "Addison",
+   "hood": "",
+   "kind": "American grill",
+   "price": "",
+   "why": "Chef Kenny Bowers' longtime Addison restaurant serving wood-grilled steaks and seafood.",
+   "known_for": "Wood-grilled steaks, Adult mac and cheese, Crab cake",
+   "address": "5000 Belt Line Rd Ste 775, Dallas, TX 75254",
+   "website": "https://kennyswoodfiredgrill.com/",
+   "lat": 32.95337,
+   "lon": -96.82434,
+   "city": "Addison",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Kenny%27s+Wood+Fired+Grill+5000+Belt+Line+Rd+Ste+775%2C+Dallas%2C+TX+75254"
+  },
+  {
+   "name": "Vaqueros Texas Bar-B-Q",
+   "area": "Allen",
+   "hood": "Watters Creek",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Tex-Mex barbecue restaurant at Watters Creek, opened in 2025 after years as a Grapevine food truck.",
+   "known_for": "Brisket birria tacos, Banana pudding",
+   "address": "965 Garden Park Dr, Allen, TX 75013",
+   "website": "https://vaquerostxbbq.com/",
+   "lat": 33.0889,
+   "lon": -96.68518,
+   "city": "Watters Creek, Allen",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Vaqueros+Texas+Bar-B-Q+965+Garden+Park+Dr%2C+Allen%2C+TX+75013"
+  },
+  {
+   "name": "Crow's Country Cafe",
+   "area": "Anna",
+   "hood": "Downtown",
+   "kind": "Country cafe",
+   "price": "",
+   "why": "Downtown Anna cafe serving country-style plates, burgers, and pies.",
+   "known_for": "",
+   "address": "113 W 4th St, Anna, TX 75409",
+   "website": "",
+   "lat": 33.34905,
+   "lon": -96.54938,
+   "city": "Downtown, Anna",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Crow%27s+Country+Cafe+113+W+4th+St%2C+Anna%2C+TX+75409"
+  },
+  {
+   "name": "Hurtado Barbecue",
+   "area": "Arlington",
+   "hood": "Downtown",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Downtown Arlington Tex-Mex barbecue restaurant and the official barbecue of the Texas Rangers.",
+   "known_for": "Brisket, Birria tacos, Texas Twinky",
+   "address": "205 E Front St, Arlington, TX 76011",
+   "website": "https://hurtadobbq.com/locations/arlington",
+   "lat": 32.73783,
+   "lon": -97.10503,
+   "city": "Downtown, Arlington",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Hurtado+Barbecue+205+E+Front+St%2C+Arlington%2C+TX+76011"
+  },
+  {
+   "name": "Babe's Chicken Dinner House",
+   "area": "Carrollton",
+   "hood": "Downtown",
+   "kind": "Southern",
+   "price": "",
+   "why": "Family-style Southern restaurant serving fried chicken with shared sides and biscuits.",
+   "known_for": "Fried chicken, Chicken fried steak, Buttermilk biscuits",
+   "address": "1006 W Main St, Carrollton, TX 75006",
+   "website": "https://babeschicken.com/location/carrollton",
+   "lat": 32.95285,
+   "lon": -96.90773,
+   "city": "Downtown, Carrollton",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Babe%27s+Chicken+Dinner+House+1006+W+Main+St%2C+Carrollton%2C+TX+75006"
+  },
+  {
+   "name": "Lucy's on the Square",
+   "area": "Celina",
+   "hood": "Downtown",
+   "kind": "Southern",
+   "price": "",
+   "why": "Texas comfort-food restaurant in a 100-plus-year-old building on the Celina square.",
+   "known_for": "Chicken fried steak, Homemade pies",
+   "address": "127 N Ohio St, Celina, TX 75009",
+   "website": "https://lucysonthesquare.com/",
+   "lat": 33.32448,
+   "lon": -96.78613,
+   "city": "Downtown, Celina",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Lucy%27s+on+the+Square+127+N+Ohio+St%2C+Celina%2C+TX+75009"
+  },
+  {
+   "name": "Gloria's Latin Cuisine (Fairview)",
+   "area": "Fairview",
+   "hood": "",
+   "kind": "Latin American",
+   "price": "",
+   "why": "Fairview location of the Salvadoran and Tex-Mex restaurant group founded in Dallas in 1986.",
+   "known_for": "Pupusas, Black bean dip, Margaritas",
+   "address": "152 Fountain Ct, Fairview, TX 75069",
+   "website": "https://www.gloriascuisine.com/",
+   "lat": 33.13329,
+   "lon": -96.65139,
+   "city": "Fairview",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Gloria%27s+Latin+Cuisine+%28Fairview%29+152+Fountain+Ct%2C+Fairview%2C+TX+75069"
+  },
+  {
+   "name": "Verf's Grill & Tavern",
+   "area": "Flower Mound",
+   "hood": "",
+   "kind": "American grill",
+   "price": "",
+   "why": "Flower Mound grill and tavern with over 40 craft beers on tap.",
+   "known_for": "Hand-cut ribeye, Fish and chips, Craft beer taps",
+   "address": "2221 Justin Rd #101, Flower Mound, TX 75028",
+   "website": "https://verfs.com/",
+   "lat": 33.0715,
+   "lon": -97.06289,
+   "city": "Flower Mound",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Verf%27s+Grill+%26+Tavern+2221+Justin+Rd+%23101%2C+Flower+Mound%2C+TX+75028"
+  },
+  {
+   "name": "Goldee's Barbecue",
+   "area": "Fort Worth",
+   "hood": "",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Southeast Fort Worth barbecue joint holding a 2025 MICHELIN Bib Gourmand.",
+   "known_for": "Brisket, Jalapeño-cheddar sausage, Banana pudding",
+   "address": "4645 Dick Price Rd, Fort Worth, TX 76140",
+   "website": "https://goldeesbbq.com/",
+   "lat": 32.64771,
+   "lon": -97.23412,
+   "city": "Fort Worth",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Goldee%27s+Barbecue+4645+Dick+Price+Rd%2C+Fort+Worth%2C+TX+76140"
+  },
+  {
+   "name": "Heim Barbecue (River)",
+   "area": "Fort Worth",
+   "hood": "River District",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Fort Worth barbecue restaurant; the original Magnolia Ave location closed Feb. 1, 2026.",
+   "known_for": "",
+   "address": "5333 White Settlement Rd, Fort Worth, TX 76114",
+   "website": "https://heimbbq.com/",
+   "lat": 32.75988,
+   "lon": -97.40205,
+   "city": "River District, Fort Worth",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Heim+Barbecue+%28River%29+5333+White+Settlement+Rd%2C+Fort+Worth%2C+TX+76114"
+  },
+  {
+   "name": "Joe T. Garcia's",
+   "area": "Fort Worth",
+   "hood": "Northside",
+   "kind": "Tex-Mex",
+   "price": "",
+   "why": "Family-run Fort Worth Mexican restaurant open since 1935, just south of the Stockyards.",
+   "known_for": "Margaritas, Fajitas, Enchiladas",
+   "address": "2201 N Commerce St, Fort Worth, TX 76164",
+   "website": "https://www.joetgarcias.com/",
+   "lat": 32.78492,
+   "lon": -97.34837,
+   "city": "Northside, Fort Worth",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Joe+T.+Garcia%27s+2201+N+Commerce+St%2C+Fort+Worth%2C+TX+76164"
+  },
+  {
+   "name": "The Heritage Table",
+   "area": "Frisco",
+   "hood": "Rail District",
+   "kind": "Southern",
+   "price": "",
+   "why": "Farm-to-table Southern restaurant in a historic Frisco house, open since 2013.",
+   "known_for": "Country-fried chicken, Double-cut pork chop, Chef's tasting menu",
+   "address": "7110 Main St, Frisco, TX 75033",
+   "website": "https://www.theheritagetable.com/",
+   "lat": 33.15035,
+   "lon": -96.82257,
+   "city": "Rail District, Frisco",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=The+Heritage+Table+7110+Main+St%2C+Frisco%2C+TX+75033"
+  },
+  {
+   "name": "Intrinsic Smokehouse & Brewery",
+   "area": "Garland",
+   "hood": "Downtown",
+   "kind": "Barbecue & brewery",
+   "price": "",
+   "why": "Barbecue restaurant and brewpub on Garland's historic downtown square.",
+   "known_for": "Brisket sandwich, Whole hog sandwich, House-brewed beer",
+   "address": "509 W State St, Garland, TX 75040",
+   "website": "https://intrinsicbrewing.com/",
+   "lat": 32.91367,
+   "lon": -96.63705,
+   "city": "Downtown, Garland",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Intrinsic+Smokehouse+%26+Brewery+509+W+State+St%2C+Garland%2C+TX+75040"
+  },
+  {
+   "name": "Tolbert's Restaurant",
+   "area": "Grapevine",
+   "hood": "Downtown",
+   "kind": "Texas chili & burgers",
+   "price": "",
+   "why": "Chili restaurant founded in Dallas in 1976, on Grapevine's Main Street since 2006.",
+   "known_for": "Bowl of Red chili",
+   "address": "423 S Main St, Grapevine, TX 76051",
+   "website": "https://tolbertsrestaurant.com/",
+   "lat": 32.93691,
+   "lon": -97.07823,
+   "city": "Downtown, Grapevine",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Tolbert%27s+Restaurant+423+S+Main+St%2C+Grapevine%2C+TX+76051"
+  },
+  {
+   "name": "Via Reál",
+   "area": "Irving",
+   "hood": "Las Colinas",
+   "kind": "Tex-Mex",
+   "price": "",
+   "why": "Las Colinas Tex-Mex and Southwestern restaurant that has served guests for over forty years.",
+   "known_for": "Enchiladas, Steaks, Seafood",
+   "address": "4020 N MacArthur Blvd Ste 100, Irving, TX 75038",
+   "website": "https://viareal.com/",
+   "lat": 32.86073,
+   "lon": -96.95964,
+   "city": "Las Colinas, Irving",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Via+Re%C3%A1l+4020+N+MacArthur+Blvd+Ste+100%2C+Irving%2C+TX+75038"
+  },
+  {
+   "name": "Tender Smokehouse (Little Elm)",
+   "area": "Little Elm",
+   "hood": "",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Little Elm branch of a family-owned North Texas barbecue restaurant first opened in Celina.",
+   "known_for": "Barbecue, Fried okra",
+   "address": "100 Hardwicke Ln, Little Elm, TX 75068",
+   "website": "https://www.tendersmokehousebbq.com/",
+   "lat": 33.16008,
+   "lon": -96.93823,
+   "city": "Little Elm",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Tender+Smokehouse+%28Little+Elm%29+100+Hardwicke+Ln%2C+Little+Elm%2C+TX+75068"
+  },
+  {
+   "name": "Hutchins BBQ",
+   "area": "McKinney",
+   "hood": "",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Family-run McKinney barbecue restaurant with a second location in Frisco.",
+   "known_for": "Brisket, Ribs, Texas Twinkies",
+   "address": "1301 N Tennessee St, McKinney, TX 75069",
+   "website": "https://hutchinsbbq.com/",
+   "lat": 33.2112,
+   "lon": -96.61554,
+   "city": "McKinney",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Hutchins+BBQ+1301+N+Tennessee+St%2C+McKinney%2C+TX+75069"
+  },
+  {
+   "name": "Rick's Chophouse",
+   "area": "McKinney",
+   "hood": "Downtown",
+   "kind": "Steakhouse",
+   "price": "",
+   "why": "Downtown McKinney steakhouse open since about 2007, serving lunch, dinner, and Sunday brunch.",
+   "known_for": "",
+   "address": "107 N Kentucky St, McKinney, TX 75069",
+   "website": "https://www.rickschophouse.com/",
+   "lat": 33.19761,
+   "lon": -96.61597,
+   "city": "Downtown, McKinney",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Rick%27s+Chophouse+107+N+Kentucky+St%2C+McKinney%2C+TX+75069"
+  },
+  {
+   "name": "Sticky Rice",
+   "area": "Murphy",
+   "hood": "",
+   "kind": "Thai",
+   "price": "",
+   "why": "Family-owned Thai and Lao restaurant in Murphy with a second location in Richardson.",
+   "known_for": "",
+   "address": "223 FM 544, Murphy, TX 75094",
+   "website": "",
+   "lat": 33.01165,
+   "lon": -96.6168,
+   "city": "Murphy",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Sticky+Rice+223+FM+544%2C+Murphy%2C+TX+75094"
+  },
+  {
+   "name": "Lockhart Smokehouse (Plano)",
+   "area": "Plano",
+   "hood": "Downtown",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Downtown Plano branch of the Bishop Arts-born Central Texas-style barbecue restaurant.",
+   "known_for": "",
+   "address": "1026 E 15th St, Plano, TX 75074",
+   "website": "https://lockhartsmokehouse.com/",
+   "lat": 33.01944,
+   "lon": -96.69954,
+   "city": "Downtown, Plano",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Lockhart+Smokehouse+%28Plano%29+1026+E+15th+St%2C+Plano%2C+TX+75074"
+  },
+  {
+   "name": "Fish City Grill (Prosper)",
+   "area": "Prosper",
+   "hood": "",
+   "kind": "Seafood",
+   "price": "",
+   "why": "Prosper location of the Dallas-born seafood grill chain.",
+   "known_for": "Oysters, Fish tacos, Shrimp po' boy",
+   "address": "1150 S Preston Rd #10, Prosper, TX 75078",
+   "website": "https://www.fishcitygrill.com/locations/prosper",
+   "lat": 33.2233,
+   "lon": -96.79946,
+   "city": "Prosper",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Fish+City+Grill+%28Prosper%29+1150+S+Preston+Rd+%2310%2C+Prosper%2C+TX+75078"
+  },
+  {
+   "name": "Jeng Chi Restaurant",
+   "area": "Richardson",
+   "hood": "",
+   "kind": "Chinese",
+   "price": "",
+   "why": "Richardson Chinese restaurant and bakery in business for over three decades.",
+   "known_for": "Juicy steamed dumplings",
+   "address": "400 N Greenville Ave #11, Richardson, TX 75081",
+   "website": "https://jengchirestaurant.com/",
+   "lat": 32.95335,
+   "lon": -96.72753,
+   "city": "Richardson",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Jeng+Chi+Restaurant+400+N+Greenville+Ave+%2311%2C+Richardson%2C+TX+75081"
+  },
+  {
+   "name": "Dodie's Cajun Diner",
+   "area": "Rockwall",
+   "hood": "The Harbor",
+   "kind": "Cajun",
+   "price": "",
+   "why": "Cajun restaurant at The Harbor on Lake Ray Hubbard, with a patio and weekend brunch.",
+   "known_for": "Crawfish étouffée, Seafood gumbo, Blackened redfish",
+   "address": "2067 Summer Lee Dr Ste 145, Rockwall, TX 75087",
+   "website": "https://dodiescajun.com/rockwall-cajun-diner/",
+   "lat": 32.88922,
+   "lon": -96.48,
+   "city": "The Harbor, Rockwall",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Dodie%27s+Cajun+Diner+2067+Summer+Lee+Dr+Ste+145%2C+Rockwall%2C+TX+75087"
+  },
+  {
+   "name": "Ephesus Bistro & Grill",
+   "area": "Rowlett",
+   "hood": "",
+   "kind": "Turkish",
+   "price": "",
+   "why": "Turkish kebab restaurant near Lake Ray Hubbard, reviewed by D Magazine.",
+   "known_for": "Adana kebab, Lamb shank, Mixed grill",
+   "address": "6702 Dalrock Rd Unit 122, Rowlett, TX 75089",
+   "website": "https://ephesusbistrogrill.com/",
+   "lat": 32.92056,
+   "lon": -96.51724,
+   "city": "Rowlett",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Ephesus+Bistro+%26+Grill+6702+Dalrock+Rd+Unit+122%2C+Rowlett%2C+TX+75089"
+  },
+  {
+   "name": "The Rackhouse",
+   "area": "The Colony",
+   "hood": "",
+   "kind": "Burgers & whiskey bar",
+   "price": "",
+   "why": "Restaurant and whiskey bar near Lake Lewisville, featured in D Magazine's guide to The Colony.",
+   "known_for": "Smashburgers, Spicy fried chicken sandwich, Whiskey selection",
+   "address": "4847 Main St, The Colony, TX 75056",
+   "website": "",
+   "lat": 33.10447,
+   "lon": -96.89205,
+   "city": "The Colony",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=The+Rackhouse+4847+Main+St%2C+The+Colony%2C+TX+75056"
+  },
+  {
+   "name": "Linke's BBQ",
+   "area": "Wylie",
+   "hood": "",
+   "kind": "Barbecue",
+   "price": "",
+   "why": "Small family-run Wylie barbecue spot that serves until it sells out.",
+   "known_for": "Brisket, Pork ribs",
+   "address": "210 W Oak St, Wylie, TX 75098",
+   "website": "",
+   "lat": 33.014,
+   "lon": -96.53951,
+   "city": "Wylie",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Linke%27s+BBQ+210+W+Oak+St%2C+Wylie%2C+TX+75098"
+  }
+ ],
+ "drink": [
+  {
+   "name": "Katy Trail Ice House",
+   "area": "Dallas",
+   "hood": "Uptown",
+   "kind": "Patio bar",
+   "price": "",
+   "why": "Beer garden and burger spot right on the Katy Trail.",
+   "known_for": "Patio, Burgers",
+   "address": "3127 Routh St, Dallas, TX 75201",
+   "website": "http://katytrailicehouse.com/",
+   "lat": 32.80081,
+   "lon": -96.80753,
+   "city": "Uptown, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Katy+Trail+Ice+House+3127+Routh+St%2C+Dallas%2C+TX+75201"
+  },
+  {
+   "name": "The Rustic",
+   "area": "Dallas",
+   "hood": "Uptown",
+   "kind": "Live music bar",
+   "price": "",
+   "why": "Large restaurant and bar in West Village with live country music and a patio.",
+   "known_for": "Live music, Patio, Weekend brunch",
+   "address": "3656 Howell St, Dallas, TX 75204",
+   "website": "https://www.therustic.com/dallas/",
+   "lat": 32.80502,
+   "lon": -96.79415,
+   "city": "Uptown, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=The+Rustic+3656+Howell+St%2C+Dallas%2C+TX+75204"
+  },
+  {
+   "name": "Truck Yard",
+   "area": "Dallas",
+   "hood": "Lower Greenville",
+   "kind": "Patio bar",
+   "price": "",
+   "why": "Outdoor bar with rotating food trucks, connected bars, and free live music.",
+   "known_for": "Food trucks, Live music, Patio",
+   "address": "5624 Sears St, Dallas, TX 75206",
+   "website": "https://truckyard.com/dallas/",
+   "lat": 32.81436,
+   "lon": -96.77135,
+   "city": "Lower Greenville, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Truck+Yard+5624+Sears+St%2C+Dallas%2C+TX+75206"
+  },
+  {
+   "name": "Legal Draft Beer Co.",
+   "area": "Arlington",
+   "hood": "Downtown",
+   "kind": "Brewery",
+   "price": "",
+   "why": "Downtown Arlington brewery and taproom with law-themed beers, opened in 2016.",
+   "known_for": "",
+   "address": "500 E Division St, Arlington, TX 76011",
+   "website": "https://www.legaldraftbeer.com/",
+   "lat": 32.73798,
+   "lon": -97.1026,
+   "city": "Downtown, Arlington",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Legal+Draft+Beer+Co.+500+E+Division+St%2C+Arlington%2C+TX+76011"
+  },
+  {
+   "name": "Billy Bob's Texas",
+   "area": "Fort Worth",
+   "hood": "Stockyards",
+   "kind": "Honky-tonk",
+   "price": "",
+   "why": "Stockyards honky-tonk with concerts, dancing, and bull riding events.",
+   "known_for": "Live music, Dancing, Bull riding",
+   "address": "2520 Rodeo Plaza, Fort Worth, TX 76164",
+   "website": "https://www.billybobstexas.com/",
+   "lat": 32.79088,
+   "lon": -97.34777,
+   "city": "Stockyards, Fort Worth",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Billy+Bob%27s+Texas+2520+Rodeo+Plaza%2C+Fort+Worth%2C+TX+76164"
+  },
+  {
+   "name": "White Elephant Saloon",
+   "area": "Fort Worth",
+   "hood": "Stockyards",
+   "kind": "Saloon",
+   "price": "",
+   "why": "Historic Fort Worth saloon dating to the 1890s, located on Exchange Ave since the 1970s.",
+   "known_for": "Historic saloon",
+   "address": "106 E Exchange Ave, Fort Worth, TX 76164",
+   "website": "https://whiteelephantsaloon.com/",
+   "lat": 32.78874,
+   "lon": -97.34876,
+   "city": "Stockyards, Fort Worth",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=White+Elephant+Saloon+106+E+Exchange+Ave%2C+Fort+Worth%2C+TX+76164"
+  },
+  {
+   "name": "TUPPS Brewery",
+   "area": "McKinney",
+   "hood": "Mill District",
+   "kind": "Brewery",
+   "price": "",
+   "why": "McKinney brewery and taproom in a converted grain mill, with a kitchen and outdoor stage.",
+   "known_for": "Taproom, Live music lawn, Brewery tours",
+   "address": "402 E Louisiana St, McKinney, TX 75069",
+   "website": "https://tuppsbrewery.com/",
+   "lat": 33.19718,
+   "lon": -96.61062,
+   "city": "Mill District, McKinney",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=TUPPS+Brewery+402+E+Louisiana+St%2C+McKinney%2C+TX+75069"
+  },
+  {
+   "name": "Legacy Hall",
+   "area": "Plano",
+   "hood": "Legacy West",
+   "kind": "Food hall & beer garden",
+   "price": "",
+   "why": "Three-story food hall with more than 20 eateries and bars plus an outdoor concert garden.",
+   "known_for": "Food stalls, Box Garden live music, Multiple bars",
+   "address": "7800 Windrose Ave, Plano, TX 75024",
+   "website": "https://legacyfoodhall.com/",
+   "lat": 33.08805,
+   "lon": -96.82579,
+   "city": "Legacy West, Plano",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Legacy+Hall+7800+Windrose+Ave%2C+Plano%2C+TX+75024"
+  },
+  {
+   "name": "Bankhead Brewing Co.",
+   "area": "Rowlett",
+   "hood": "Downtown",
+   "kind": "Brewpub",
+   "price": "",
+   "why": "Downtown Rowlett brewpub opened in 2016 next to the DART station, with a large patio.",
+   "known_for": "House craft beer, Pizza, Patio",
+   "address": "3840 Main St, Rowlett, TX 75088",
+   "website": "https://www.bankheadbrewing.com/",
+   "lat": 32.90292,
+   "lon": -96.56617,
+   "city": "Downtown, Rowlett",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Bankhead+Brewing+Co.+3840+Main+St%2C+Rowlett%2C+TX+75088"
+  },
+  {
+   "name": "Truck Yard The Colony",
+   "area": "The Colony",
+   "hood": "Grandscape",
+   "kind": "Patio bar",
+   "price": "",
+   "why": "Grandscape outpost of Truck Yard with food trucks, several bars, and free live music.",
+   "known_for": "Food trucks, Live music, Tiki bar",
+   "address": "5959 Grove Ln, The Colony, TX 75056",
+   "website": "https://truckyard.com/the-colony/",
+   "lat": 33.0694,
+   "lon": -96.85766,
+   "city": "Grandscape, The Colony",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Truck+Yard+The+Colony+5959+Grove+Ln%2C+The+Colony%2C+TX+75056"
+  }
+ ],
+ "do": [
+  {
+   "name": "Dallas Arboretum and Botanical Garden",
+   "area": "Dallas",
+   "hood": "White Rock Lake",
+   "kind": "Garden",
+   "price": "",
+   "why": "Botanical garden on the shore of White Rock Lake with seasonal displays.",
+   "known_for": "",
+   "address": "8525 Garland Rd, Dallas, TX 75218",
+   "website": "https://www.dallasarboretum.org/",
+   "lat": 32.82311,
+   "lon": -96.71734,
+   "city": "White Rock Lake, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Dallas+Arboretum+and+Botanical+Garden+8525+Garland+Rd%2C+Dallas%2C+TX+75218",
+   "url": "https://www.dallasarboretum.org/"
+  },
+  {
+   "name": "Klyde Warren Park",
+   "area": "Dallas",
+   "hood": "Arts District",
+   "kind": "Park",
+   "price": "",
+   "why": "Deck park over Woodall Rodgers Freeway with free events, food trucks, and lawn space.",
+   "known_for": "",
+   "address": "2012 Woodall Rodgers Fwy, Dallas, TX 75201",
+   "website": "https://www.klydewarrenpark.org/",
+   "lat": 32.78941,
+   "lon": -96.80154,
+   "city": "Arts District, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Klyde+Warren+Park+2012+Woodall+Rodgers+Fwy%2C+Dallas%2C+TX+75201",
+   "url": "https://www.klydewarrenpark.org/"
+  },
+  {
+   "name": "Perot Museum of Nature and Science",
+   "area": "Dallas",
+   "hood": "Victory Park",
+   "kind": "Museum",
+   "price": "",
+   "why": "Science and natural history museum with hands-on exhibit halls and a children's museum.",
+   "known_for": "",
+   "address": "2201 N Field St, Dallas, TX 75201",
+   "website": "https://www.perotmuseum.org/",
+   "lat": 32.78693,
+   "lon": -96.80641,
+   "city": "Victory Park, Dallas",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Perot+Museum+of+Nature+and+Science+2201+N+Field+St%2C+Dallas%2C+TX+75201",
+   "url": "https://www.perotmuseum.org/"
+  },
+  {
+   "name": "Addison Circle Park",
+   "area": "Addison",
+   "hood": "Addison Circle",
+   "kind": "Park",
+   "price": "",
+   "why": "10-acre event park that hosts Addison Kaboom Town! and Addison Oktoberfest.",
+   "known_for": "",
+   "address": "4970 Addison Cir, Addison, TX 75001",
+   "website": "https://visitaddison.com/things-to-do/addison-circle-park/",
+   "lat": 32.96128,
+   "lon": -96.82671,
+   "city": "Addison Circle, Addison",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Addison+Circle+Park+4970+Addison+Cir%2C+Addison%2C+TX+75001",
+   "url": "https://visitaddison.com/things-to-do/addison-circle-park/"
+  },
+  {
+   "name": "AT&T Stadium",
+   "area": "Arlington",
+   "hood": "Entertainment District",
+   "kind": "Stadium tours",
+   "price": "",
+   "why": "Home of the Dallas Cowboys, offering guided and self-guided stadium tours.",
+   "known_for": "",
+   "address": "1 AT&T Way, Arlington, TX 76011",
+   "website": "https://attstadium.com/tours/",
+   "lat": 32.74785,
+   "lon": -97.09283,
+   "city": "Entertainment District, Arlington",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=AT%26T+Stadium+1+AT%26T+Way%2C+Arlington%2C+TX+76011",
+   "url": "https://attstadium.com/tours/"
+  },
+  {
+   "name": "Six Flags Over Texas",
+   "area": "Arlington",
+   "hood": "Entertainment District",
+   "kind": "Theme park",
+   "price": "",
+   "why": "Original Six Flags theme park, with roller coasters and seasonal events.",
+   "known_for": "",
+   "address": "2201 Road to Six Flags, Arlington, TX 76011",
+   "website": "https://www.sixflags.com/overtexas",
+   "lat": 32.75587,
+   "lon": -97.07171,
+   "city": "Entertainment District, Arlington",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Six+Flags+Over+Texas+2201+Road+to+Six+Flags%2C+Arlington%2C+TX+76011",
+   "url": "https://www.sixflags.com/overtexas"
+  },
+  {
+   "name": "Fort Worth Stockyards",
+   "area": "Fort Worth",
+   "hood": "Stockyards",
+   "kind": "Historic district",
+   "price": "",
+   "why": "Historic livestock district on Exchange Avenue with western shops, saloons, and events.",
+   "known_for": "",
+   "address": "131 E Exchange Ave, Fort Worth, TX 76164",
+   "website": "https://www.fortworthstockyards.org/",
+   "lat": 32.78953,
+   "lon": -97.34672,
+   "city": "Stockyards, Fort Worth",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Fort+Worth+Stockyards+131+E+Exchange+Ave%2C+Fort+Worth%2C+TX+76164",
+   "url": "https://www.fortworthstockyards.org/"
+  },
+  {
+   "name": "Kimbell Art Museum",
+   "area": "Fort Worth",
+   "hood": "Cultural District",
+   "kind": "Museum",
+   "price": "",
+   "why": "Art museum in Louis Kahn-designed buildings; admission to the permanent collection is free.",
+   "known_for": "",
+   "address": "3333 Camp Bowie Blvd, Fort Worth, TX 76107",
+   "website": "https://kimbellart.org/",
+   "lat": 32.74859,
+   "lon": -97.36508,
+   "city": "Cultural District, Fort Worth",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Kimbell+Art+Museum+3333+Camp+Bowie+Blvd%2C+Fort+Worth%2C+TX+76107",
+   "url": "https://kimbellart.org/"
+  },
+  {
+   "name": "National Videogame Museum",
+   "area": "Frisco",
+   "hood": "",
+   "kind": "Museum",
+   "price": "",
+   "why": "Museum of video game history with interactive exhibits, rare artifacts, and playable games.",
+   "known_for": "",
+   "address": "8004 Dallas Pkwy Ste 300, Frisco, TX 75034",
+   "website": "https://nvmusa.org/",
+   "lat": 33.14366,
+   "lon": -96.83502,
+   "city": "Frisco",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=National+Videogame+Museum+8004+Dallas+Pkwy+Ste+300%2C+Frisco%2C+TX+75034",
+   "url": "https://nvmusa.org/"
+  },
+  {
+   "name": "The Star in Frisco",
+   "area": "Frisco",
+   "hood": "",
+   "kind": "Sports & entertainment district",
+   "price": "",
+   "why": "Dallas Cowboys headquarters campus with the Ford Center, restaurants, and shops.",
+   "known_for": "",
+   "address": "1 Cowboys Way, Frisco, TX 75034",
+   "website": "https://www.thestarinfrisco.com/",
+   "lat": 33.10974,
+   "lon": -96.83013,
+   "city": "Frisco",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=The+Star+in+Frisco+1+Cowboys+Way%2C+Frisco%2C+TX+75034",
+   "url": "https://www.thestarinfrisco.com/"
+  },
+  {
+   "name": "Universal Kids Resort",
+   "area": "Frisco",
+   "hood": "",
+   "kind": "Theme park",
+   "price": "",
+   "why": "Universal theme park and hotel for young families, opened July 1, 2026.",
+   "known_for": "",
+   "address": "13850 Dallas Pkwy, Frisco, TX 75033",
+   "website": "https://www.universalkidsresort.com/",
+   "lat": 33.19089,
+   "lon": -96.83855,
+   "city": "Frisco",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Universal+Kids+Resort+13850+Dallas+Pkwy%2C+Frisco%2C+TX+75033",
+   "url": "https://www.universalkidsresort.com/"
+  },
+  {
+   "name": "Historic Main Street Grapevine",
+   "area": "Grapevine",
+   "hood": "Downtown",
+   "kind": "Historic district",
+   "price": "",
+   "why": "Walkable historic downtown with winery tasting rooms, shops, the Vintage Railroad, and a glockenspiel.",
+   "known_for": "",
+   "address": "636 S Main St, Grapevine, TX 76051",
+   "website": "https://www.grapevinetexasusa.com/things-to-do/historic-downtown-grapevine/",
+   "lat": 32.9348,
+   "lon": -97.0786,
+   "city": "Downtown, Grapevine",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Historic+Main+Street+Grapevine+636+S+Main+St%2C+Grapevine%2C+TX+76051",
+   "url": "https://www.grapevinetexasusa.com/things-to-do/historic-downtown-grapevine/"
+  },
+  {
+   "name": "Mandalay Canal Walk",
+   "area": "Irving",
+   "hood": "Las Colinas",
+   "kind": "Waterfront walk",
+   "price": "",
+   "why": "Venice-inspired canal walk in Las Colinas lined with restaurants, linked to Lake Carolyn.",
+   "known_for": "",
+   "address": "215 Mandalay Canal, Irving, TX 75039",
+   "website": "https://www.irvingtexas.com/things-to-do/mandalay-canals/",
+   "lat": 32.86603,
+   "lon": -96.93923,
+   "city": "Las Colinas, Irving",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Mandalay+Canal+Walk+215+Mandalay+Canal%2C+Irving%2C+TX+75039",
+   "url": "https://www.irvingtexas.com/things-to-do/mandalay-canals/"
+  },
+  {
+   "name": "Little Elm Beach & Lakefront",
+   "area": "Little Elm",
+   "hood": "Lakefront",
+   "kind": "Beach & park",
+   "price": "",
+   "why": "Sandy public beach on Lewisville Lake next to the Lakefront entertainment district.",
+   "known_for": "",
+   "address": "701 W Eldorado Pkwy, Little Elm, TX 75068",
+   "website": "https://www.littleelm.org/201",
+   "lat": 33.16265,
+   "lon": -96.96087,
+   "city": "Lakefront, Little Elm",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Little+Elm+Beach+%26+Lakefront+701+W+Eldorado+Pkwy%2C+Little+Elm%2C+TX+75068",
+   "url": "https://www.littleelm.org/201"
+  },
+  {
+   "name": "Heard Natural Science Museum & Wildlife Sanctuary",
+   "area": "McKinney",
+   "hood": "",
+   "kind": "Museum & nature sanctuary",
+   "price": "",
+   "why": "Nature museum with a wildlife sanctuary, trails, live animal exhibits, and gardens.",
+   "known_for": "",
+   "address": "1 Nature Pl, McKinney, TX 75069",
+   "website": "https://www.heardmuseum.org/",
+   "lat": 33.16136,
+   "lon": -96.61701,
+   "city": "McKinney",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Heard+Natural+Science+Museum+%26+Wildlife+Sanctuary+1+Nature+Pl%2C+McKinney%2C+TX+75069",
+   "url": "https://www.heardmuseum.org/"
+  },
+  {
+   "name": "Historic Downtown McKinney",
+   "area": "McKinney",
+   "hood": "Downtown",
+   "kind": "Historic district",
+   "price": "",
+   "why": "Historic courthouse square district with about 200 locally owned shops and restaurants.",
+   "known_for": "",
+   "address": "111 N Tennessee St, McKinney, TX 75069",
+   "website": "https://downtownmckinney.com/",
+   "lat": 33.1976,
+   "lon": -96.61544,
+   "city": "Downtown, McKinney",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Historic+Downtown+McKinney+111+N+Tennessee+St%2C+McKinney%2C+TX+75069",
+   "url": "https://downtownmckinney.com/"
+  },
+  {
+   "name": "Arbor Hills Nature Preserve",
+   "area": "Plano",
+   "hood": "",
+   "kind": "Nature preserve",
+   "price": "",
+   "why": "200-acre preserve with paved and unpaved trails, a mountain-bike loop, and overlooks.",
+   "known_for": "",
+   "address": "6701 W Parker Rd, Plano, TX 75093",
+   "website": "https://www.plano.gov/arbor-hills-nature-preserve",
+   "lat": 33.04205,
+   "lon": -96.79093,
+   "city": "Plano",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=Arbor+Hills+Nature+Preserve+6701+W+Parker+Rd%2C+Plano%2C+TX+75093",
+   "url": "https://www.plano.gov/arbor-hills-nature-preserve"
+  },
+  {
+   "name": "The Harbor Rockwall",
+   "area": "Rockwall",
+   "hood": "Lake Ray Hubbard",
+   "kind": "Waterfront district",
+   "price": "",
+   "why": "Lakefront mixed-use district on Lake Ray Hubbard with restaurants, a movie theater, and concerts.",
+   "known_for": "",
+   "address": "2059 Summer Lee Dr, Rockwall, TX 75032",
+   "website": "",
+   "lat": 32.88906,
+   "lon": -96.48,
+   "city": "Lake Ray Hubbard, Rockwall",
+   "reviews": "https://www.google.com/maps/search/?api=1&query=The+Harbor+Rockwall+2059+Summer+Lee+Dr%2C+Rockwall%2C+TX+75032",
+   "url": ""
+  }
+ ],
+ "sports": [
+  {
+   "team": "Dallas Cowboys",
+   "league": "NFL",
+   "venue": "AT&T Stadium, Arlington",
+   "url": "https://www.dallascowboys.com/schedule/"
+  },
+  {
+   "team": "Texas Rangers",
+   "league": "MLB",
+   "venue": "Globe Life Field, Arlington",
+   "url": "https://www.mlb.com/rangers/schedule"
+  },
+  {
+   "team": "Dallas Mavericks",
+   "league": "NBA",
+   "venue": "American Airlines Center, Dallas",
+   "url": "https://www.mavs.com/schedule/"
+  },
+  {
+   "team": "Dallas Stars",
+   "league": "NHL",
+   "venue": "American Airlines Center, Dallas",
+   "url": "https://www.nhl.com/stars/schedule"
+  },
+  {
+   "team": "FC Dallas",
+   "league": "MLS",
+   "venue": "Toyota Stadium, Frisco (under renovation)",
+   "url": "https://www.fcdallas.com/schedule/"
+  },
+  {
+   "team": "Dallas Wings",
+   "league": "WNBA",
+   "venue": "See team site",
+   "url": "https://wings.wnba.com/schedule"
+  },
+  {
+   "team": "Frisco RoughRiders",
+   "league": "Minor League Baseball",
+   "venue": "Riders Field, Frisco",
+   "url": "https://www.milb.com/frisco/schedule"
+  },
+  {
+   "team": "Dallas Renegades",
+   "league": "UFL",
+   "venue": "Toyota Stadium, Frisco",
+   "url": "https://www.theufl.com/"
+  }
+ ],
+ "events": [
+  {
+   "name": "Holiday at the Arboretum (final year of the 12 Days of Christmas gazebos)",
+   "start": "2026-11-11",
+   "end": null,
+   "city": "Dallas Arboretum",
+   "kind": "Holiday",
+   "url": "https://www.dallasarboretum.org/holiday",
+   "source": "FOX 4"
+  },
+  {
+   "name": "Fort Worth Parade of Lights",
+   "start": "2026-11-22",
+   "end": null,
+   "city": "Fort Worth · Downtown",
+   "kind": "Holiday",
+   "url": "https://fortworthparadeoflights.org/",
+   "source": "Fort Worth Parade of Lights"
+  },
+  {
+   "name": "Christmas Capital of Texas season + Carol of Lights",
+   "start": "2026-11-23",
+   "end": null,
+   "city": "Grapevine · Main Street",
+   "kind": "Holiday",
+   "url": "https://www.grapevinetexasusa.com/",
+   "source": "Grapevine CVB"
+  },
+  {
+   "name": "Dallas YMCA Turkey Trot",
+   "start": "2026-11-26",
+   "end": null,
+   "city": "Dallas · Downtown",
+   "kind": "Race",
+   "url": "https://ymcadallas.org/turkeytrot",
+   "source": "YMCA of Metropolitan Dallas"
+  },
+  {
+   "name": "Parade of Lights",
+   "start": "2026-12-03",
+   "end": null,
+   "city": "Grapevine · Main Street",
+   "kind": "Holiday",
+   "url": "https://www.grapevinetexasusa.com/",
+   "source": "Grapevine CVB"
+  },
+  {
+   "name": "Dallas Holiday Parade",
+   "start": "2026-12-05",
+   "end": null,
+   "city": "Dallas · Downtown",
+   "kind": "Holiday",
+   "url": "https://dallasholidayparade.com/",
+   "source": "Dallas Holiday Parade"
+  },
+  {
+   "name": "Klyde Warren Park Tree Lighting Celebration",
+   "start": "2026-12-05",
+   "end": null,
+   "city": "Dallas · Klyde Warren Park",
+   "kind": "Holiday",
+   "url": "https://www.klydewarrenpark.org/signature-events-2026",
+   "source": "Klyde Warren Park"
+  },
+  {
+   "name": "BMW Dallas Marathon race weekend",
+   "start": "2026-12-11",
+   "end": "2026-12-13",
+   "city": "Dallas · Downtown",
+   "kind": "Race",
+   "url": "https://www.dallasmarathon.com/",
+   "source": "dallasmarathon.com"
+  },
+  {
+   "name": "Holiday Lights Parade & tree lighting",
+   "start": "2026-12-12",
+   "end": null,
+   "city": "Arlington · Downtown",
+   "kind": "Holiday",
+   "url": "https://www.arlingtontx.gov/Community-Calendar/Other-Community-Events/Holiday-Lights-Parade",
+   "source": "City of Arlington"
+  },
+  {
+   "name": "Goodyear Cotton Bowl Classic (CFP Quarterfinal)",
+   "start": "2027-01-01",
+   "end": null,
+   "city": "Arlington · AT&T Stadium",
+   "kind": "Sports",
+   "url": "https://www.cottonbowl.com/news/2026/2/3/football-game-dates-set-for-the-91st-92nd-goodyear-cotton-bowl-classics.aspx",
+   "source": "Cotton Bowl Classic"
+  },
+  {
+   "name": "Fort Worth Stock Show & Rodeo",
+   "start": "2027-01-15",
+   "end": "2027-02-06",
+   "city": "Fort Worth · Will Rogers",
+   "kind": "Rodeo",
+   "url": "https://www.fwssr.com/",
+   "source": "Event listing; confirm at fwssr.com"
+  },
+  {
+   "name": "PGA Championship",
+   "start": "2027-05-17",
+   "end": "2027-05-23",
+   "city": "Frisco · Fields Ranch",
+   "kind": "Golf",
+   "url": "https://www.pgachampionship.com/",
+   "source": "Visit Frisco"
+  }
+ ],
+ "social": [
+  {
+   "name": "Dallasites101",
+   "handle": "dallasites101",
+   "url": "https://www.instagram.com/dallasites101/",
+   "about": "Dallas food, events and things to do",
+   "platform": "Instagram"
+  },
+  {
+   "name": "Visit Dallas",
+   "handle": "visit_dallas",
+   "url": "https://www.instagram.com/visit_dallas/",
+   "about": "Things to do in Dallas",
+   "platform": "Instagram"
+  },
+  {
+   "name": "Dallas Food Nerd",
+   "handle": "dallasfoodnerd",
+   "url": "https://www.instagram.com/dallasfoodnerd/",
+   "about": "Where to eat in Dallas",
+   "platform": "Instagram"
+  },
+  {
+   "name": "Dallas Observer",
+   "handle": "dallasobserver",
+   "url": "https://www.instagram.com/dallasobserver/",
+   "about": "Local news, food, music and culture",
+   "platform": "Instagram"
+  },
+  {
+   "name": "Visit Fort Worth",
+   "handle": "visitfortworth",
+   "url": "https://www.instagram.com/visitfortworth/",
+   "about": "Fort Worth events and attractions",
+   "platform": "Instagram"
+  },
+  {
+   "name": "Visit Grapevine",
+   "handle": "visitgrapevine",
+   "url": "https://www.instagram.com/visitgrapevine/",
+   "about": "Grapevine festivals, wineries and Main Street",
+   "platform": "Instagram"
+  },
+  {
+   "name": "CandysDirt",
+   "handle": "candysdirt",
+   "url": "https://www.instagram.com/candysdirt/",
+   "about": "Dallas real estate news",
+   "platform": "Instagram"
+  }
+ ]
 }
