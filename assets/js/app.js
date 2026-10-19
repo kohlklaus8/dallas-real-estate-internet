@@ -226,6 +226,14 @@
     } catch (e) { return false; }
   }
 
+  function toast(msg) {
+    const t = document.createElement("div");
+    t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg;
+    document.body.appendChild(t);
+    requestAnimationFrame(() => t.classList.add("in"));
+    setTimeout(() => { t.classList.remove("in"); setTimeout(() => t.remove(), 400); }, 6000);
+  }
+
   function openHandoff(context = {}) {
     track("handoff_open", { source: context.source || "unknown" });
     const prof = store.get("profile", {});
@@ -295,6 +303,7 @@
       let sent = false;
       if (C.LEAD_ENDPOINT) {
         try {
+          const sb = f.querySelector('button[type="submit"]'); if (sb) { sb.disabled = true; sb.textContent = "Sending…"; }
           sent = await sendLead(brief);
         } catch (e2) { sent = false; }
       }
@@ -310,7 +319,7 @@
            <p><strong>${esc(C.AGENT_PHONE)}</strong> · <strong>${esc(C.AGENT_EMAIL)}</strong></p>
            <textarea id="ho-summary" readonly style="min-height:140px">${esc(`Hi ${C.AGENT_NAME.split(" ")[0]}, I'm ${data.name} (${data.email}${data.phone ? ", " + data.phone : ""}). Goal: ${data.goal}. Timeline: ${data.timeline}.\n${data.message || ""}\n\nRecent questions:\n${brief.recent_questions || "(none)"}`)}</textarea>
            <button class="btn btn-sm" type="button" id="ho-copy">Copy summary</button>`;
-      if (sent) setTimeout(() => wrap.remove(), 6000);
+      if (sent) { wrap.remove(); toast(`✓ Thanks, ${data.name.split(" ")[0]}! ${C.AGENT_NAME.split(" ")[0]} will reach out shortly.`); return; }
       const copy = done.querySelector("#ho-copy");
       if (copy) copy.addEventListener("click", async () => {
         const ta = done.querySelector("#ho-summary");
