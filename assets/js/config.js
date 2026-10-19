@@ -25,7 +25,7 @@ window.DREI_CONFIG = {
 
   // Live AI — URL of the deployed Cloudflare Worker (see /worker/README.md).
   // Leave blank to run the built-in demo engine that answers from the site's own data.
-  AI_WORKER_URL: "",
+  AI_WORKER_URL: "https://dallas-re-ai.klauspropertymgmt.workers.dev",
 
   // Lead handoff — a form endpoint that accepts JSON POSTs (Formspree, Basin, a Zapier/Make webhook, or your Worker's /lead route).
   // Leave blank and requests fall back to showing your email/phone so the visitor can reach you directly.
