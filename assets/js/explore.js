@@ -8,7 +8,7 @@
   function developments() {
     const cities = [...new Set(E.developments.map((d) => d.city))];
     return `<div class="sec-head"><div><h2>What's being built</h2><p class="lede">Major projects shaping where people live, work and play. Follow the line from what just opened to what's coming next. Swipe or scroll sideways to see more.</p></div></div>
-      <div class="chips" id="dev-filter"><button class="chip on" type="button" data-c="">All</button>${cities.map((c) => `<button class="chip" type="button" data-c="${esc(c)}">${esc(c)}</button>`).join("")}</div>
+      <div class="pg-filters"><label>Where<select id="dev-filter"><option value="">All of DFW</option>${cities.sort().map((c) => `<option>${esc(c)}</option>`).join("")}</select></label></div>
       <div id="devs">${window.DREI_DEVS.render(E.developments)}</div>`;
   }
   function places(list, title, lede) {
@@ -71,15 +71,12 @@
   function render(tab) {
     const p = document.querySelector(`[data-p="${tab}"]`);
     if (tab === "developments") p.innerHTML = developments();
-    if (tab === "eat") p.innerHTML = places(E.eat, "Where locals eat", "Long-running favorites across DFW. Tap through for current hours and real reviews.") + `<div style="margin-top:2.5rem">${places(E.drink, "Where to grab a drink", "Patios, honky-tonks and breweries.")}</div>`;
-    if (tab === "do") p.innerHTML = places(E.do, "Things to do", "Parks, museums, downtowns and weekend outings from Fort Worth to Rockwall.");
+    if (tab === "eat") window.DREI_PLACES.mount(p, { idp: "eat", title: "Eat & drink", lede: "Local favorites in every corner of DFW. Pick a city, then tap Directions or Hours & reviews.", groups: [{ label: "Restaurants", items: E.eat }, { label: "Bars & breweries", items: E.drink }] });
+    if (tab === "do") window.DREI_PLACES.mount(p, { idp: "do", title: "Things to do", lede: "Parks, museums, downtowns and weekend outings from Fort Worth to Rockwall.", groups: [{ label: "Things to do", items: E.do }] });
     if (tab === "sports") p.innerHTML = sports();
     if (tab === "calendar") p.innerHTML = calendar();
     if (tab === "follow") p.innerHTML = follow();
-    if (tab === "developments") p.querySelectorAll("#dev-filter .chip").forEach((b) => b.addEventListener("click", () => {
-      p.querySelectorAll("#dev-filter .chip").forEach((x) => x.classList.toggle("on", x === b));
-      window.DREI_DEVS.filter(p.querySelector("#devs"), b.dataset.c);
-    }));
+    if (tab === "developments") p.querySelector("#dev-filter").addEventListener("change", (e) => window.DREI_DEVS.filter(p.querySelector("#devs"), e.target.value));
     if (tab === "calendar") p.querySelectorAll("[data-mv]").forEach((b) => b.addEventListener("click", () => {
       const [y, m] = month.split("-").map(Number); const d = new Date(y, m - 1 + Number(b.dataset.mv), 1);
       month = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`; render("calendar");
