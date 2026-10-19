@@ -29,12 +29,12 @@ window.DREI_CONFIG = {
 
   // Lead handoff — a form endpoint that accepts JSON POSTs (Formspree, Basin, a Zapier/Make webhook, or your Worker's /lead route).
   // Leave blank and requests fall back to showing your email/phone so the visitor can reach you directly.
-  LEAD_ENDPOINT: "",
+  LEAD_ENDPOINT: "https://formsubmit.co/ajax/f9c197508c0e4ee2ca973c2076cc34b1", // FormSubmit → klauspropertymgmt@gmail.com (same inbox as the KPG site)
 
   // Analytics (optional)
   GA4_ID: "",          // e.g. "G-XXXXXXX"
   POSTHOG_KEY: "",     // e.g. "phc_..."
   POSTHOG_HOST: "https://us.i.posthog.com",
 
-  LAUNCH_AREA: "North Dallas & Collin County",
+  LAUNCH_AREA: "Dallas–Fort Worth",
 };

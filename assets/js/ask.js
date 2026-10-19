@@ -7,7 +7,7 @@
   const LIVE = !!C.AI_WORKER_URL;
   pill.textContent = LIVE ? "Live AI" : "Demo mode";
   pill.classList.toggle("live", LIVE);
-  pill.title = LIVE ? "Answers from Claude, grounded in this site's data" : "Answers built from this site's own data. Connect the AI Worker for full conversational answers.";
+  pill.title = LIVE ? "Answers from Claude using this site's data, local know-how and live web search" : "Answers built from this site's own data. Connect the AI Worker for full conversational answers.";
 
   const ctx = { calc: window.DREI_CALC };
   const ready = Promise.all([
@@ -41,7 +41,7 @@
     el.className = "msg ai";
     const srcs = (r.sources || []).filter(Boolean);
     el.innerHTML = `<div class="bubble">${r.html}</div>` +
-      (srcs.length ? `<div class="src">Source: ${srcs.map(esc).join(" · ")}</div>` : "") +
+      (srcs.length ? `<div class="src">Sources: ${srcs.map((x) => (x && x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title || x.url)}</a>` : esc(String(x)))).join(" · ")}</div>` : "") +
       (r.handoff ? `<div class="handoff"><strong>Want a local expert on this?</strong><span style="font-size:.9rem">They'll see this conversation, so you won't start over.</span><div><button class="btn btn-brass btn-sm" type="button" data-ho-reason="${esc(r.reason || "")}">Talk to a local expert</button></div></div>` : "") +
       ((r.followups || []).length ? `<div class="followups">${r.followups.map((f) => `<button class="chip" type="button">${esc(f)}</button>`).join("")}</div>` : "");
     el.querySelectorAll(".followups .chip").forEach((b) => b.addEventListener("click", () => ask(b.textContent)));

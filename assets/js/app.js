@@ -207,6 +207,25 @@
     return qs.join("\n");
   }
 
+  /** Send a lead brief to C.LEAD_ENDPOINT (FormSubmit-friendly: flat fields, readable subject, table email). */
+  async function sendLead(brief) {
+    if (!C.LEAD_ENDPOINT) return false;
+    const flat = {};
+    const pretty = (v) => (v == null || v === "" ? "" : typeof v === "object" ? (Array.isArray(v) ? v.join(", ") : Object.entries(v).filter(([, x]) => x !== "" && x != null && !(Array.isArray(x) && !x.length)).map(([k, x]) => `${k}: ${Array.isArray(x) ? x.join(", ") : typeof x === "object" ? JSON.stringify(x) : x}`).join(" | ")) : String(v));
+    Object.entries(brief).forEach(([k, v]) => { const t = pretty(v); if (t) flat[k.replace(/_/g, " ")] = t; });
+    const body = {
+      _subject: `New lead · ${C.BRAND_NAME}: ${brief.name || "visitor"}${brief.goal ? " (" + brief.goal + ")" : ""}`,
+      _template: "table", _captcha: "false",
+      name: brief.name || "", email: brief.email || "", ...flat,
+    };
+    try {
+      const r = await fetch(C.LEAD_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body) });
+      if (!r.ok) return false;
+      const j = await r.json().catch(() => ({}));
+      return j.success === undefined ? true : String(j.success) === "true";
+    } catch (e) { return false; }
+  }
+
   function openHandoff(context = {}) {
     track("handoff_open", { source: context.source || "unknown" });
     const prof = store.get("profile", {});
@@ -276,8 +295,7 @@
       let sent = false;
       if (C.LEAD_ENDPOINT) {
         try {
-          const r = await fetch(C.LEAD_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(brief) });
-          sent = r.ok;
+          sent = await sendLead(brief);
         } catch (e2) { sent = false; }
       }
       track("handoff_submit", { goal: data.goal, timeline: data.timeline, sent });
@@ -310,5 +328,5 @@
   loadAnalytics();
   track("page_view", { page: here });
 
-  window.DREI = { C, esc, money, pct, store, track, loadJSON, tier, shield, shields, openHandoff, TIER_LABEL, photoUrl, photoCredit, areaCard, GRADS };
+  window.DREI = { sendLead, C, esc, money, pct, store, track, loadJSON, tier, shield, shields, openHandoff, TIER_LABEL, photoUrl, photoCredit, areaCard, GRADS };
 })();
