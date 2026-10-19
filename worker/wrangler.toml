@@ -4,11 +4,12 @@ compatibility_date = "2025-09-01"
 
 [vars]
 # Claude model ID. Check https://docs.claude.com/en/docs/about-claude/models for current IDs.
-MODEL = "claude-sonnet-4-5"
+MODEL = "claude-sonnet-5-5"
 # Where the website lives (GitHub Pages URL or your custom domain). The Worker reads /data/*.json from here.
-SITE_URL = "https://YOUR-GITHUB-USERNAME.github.io/dallas-real-estate-internet"
+SITE_URL = "https://kohlklaus8.github.io/dallas-real-estate-internet"
 # Comma-separated list of sites allowed to call this Worker.
-ALLOWED_ORIGINS = "https://YOUR-GITHUB-USERNAME.github.io"
+ALLOWED_ORIGINS = "https://kohlklaus8.github.io"
+WEB_SEARCH = "on"
 
 # Secrets (set with `npx wrangler secret put NAME`, never commit them):
 #   ANTHROPIC_API_KEY
