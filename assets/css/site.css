@@ -652,3 +652,6 @@ details.lvl td { vertical-align: middle; }
 .xtabs a[aria-selected="true"] { background: none; color: var(--sky); border-bottom-color: var(--sky); }
 .xtabs a:hover { border-color: transparent; color: var(--ink); border-bottom-color: var(--line); }
 .pg-actions .btn:first-child { background: var(--sky); border-color: var(--sky); color: #fff; }
+
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; background: var(--teal); color: #fff; font: 700 1.02rem var(--font-body); padding: 1rem 1.4rem; border-radius: 14px; box-shadow: 0 12px 30px rgba(0,0,0,.25); z-index: 3000; transition: opacity .3s, transform .3s; max-width: calc(100% - 32px); text-align: center; }
+.toast.in { opacity: 1; transform: translate(-50%, 0); }
