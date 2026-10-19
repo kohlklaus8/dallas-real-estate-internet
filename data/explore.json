@@ -1,6 +1,6 @@
 {
   "_how_to_update": "Edit this file on GitHub (pencil icon). Each list is independent. Add an item by copying an existing one. Keep 'last_checked' honest — it shows on the site.",
-  "last_checked": "2026-10-15",
+  "last_checked": "2026-10-19",
   "developments": [
     {
       "name": "Universal Kids Resort",
@@ -73,16 +73,6 @@
       "url": "https://communityimpact.com/plano/government/mixed-use-development-construction-near-collin-creek-mall-to-continue-through-2028/"
     },
     {
-      "name": "DART Silver Line",
-      "city": "Plano to DFW Airport",
-      "type": "Transit",
-      "status": "Open",
-      "timing": "Opened October 2025",
-      "summary": "Commuter rail linking Plano, Richardson, Addison, Carrollton, Coppell, Grapevine and DFW Airport, a new east-west option across the north metro.",
-      "source": "WSP / DART",
-      "url": "https://www.wsp.com/en-us/news/2025/dart-silver-line-regional-rail-grand-opening"
-    },
-    {
       "name": "Sapphire Bay",
       "city": "Rowlett",
       "type": "Mixed-use",
@@ -91,6 +81,56 @@
       "summary": "A planned lakefront resort district on Lake Ray Hubbard. Apartments and homes are built, but the promised resort, lagoon and commercial core remain undeveloped.",
       "source": "ResortX (citing NBC DFW)",
       "url": "https://www.resortx.com/sapphire-bay/"
+    },
+    {
+      "name": "Kay Bailey Hutchison Convention Center rebuild",
+      "city": "Dallas",
+      "type": "Convention center",
+      "status": "Under construction",
+      "timing": "Demolition of Halls D, E and F began February 2026, expected substantially complete by end of 2026; overall completion targeted for 2029",
+      "summary": "Dallas is replacing most of its downtown convention center with a larger facility; Halls A, B and C stay open during construction. The city expects the work to free up more than 30 acres for housing, hotels, retail and dining.",
+      "source": "City of Dallas (February 2026)",
+      "url": "https://content.govdelivery.com/accounts/TXDALLAS/bulletins/40b8764"
+    },
+    {
+      "name": "Panther Island canal and bridges (Phase 1)",
+      "city": "Fort Worth",
+      "type": "Parks / waterfront",
+      "status": "Planned",
+      "timing": "Canal C scheduled for completion in early 2028; new North Commerce and Calhoun Street bridges in final design, with completion listed for spring 2029",
+      "summary": "Part of the Panther Island waterfront district north of downtown Fort Worth. The city will build two bridges over the new canal once the water district finishes it.",
+      "source": "City of Fort Worth (October 2026)",
+      "url": "https://www.fortworthtexas.gov/projects/cfw-panther-island-canal-bridges-phase-1"
+    },
+    {
+      "name": "Anthem (Lincoln Square redevelopment)",
+      "city": "Arlington",
+      "type": "Retail / mixed-use",
+      "status": "Under construction",
+      "timing": "Broke ground August 3, 2026; completion expected early 2028",
+      "summary": "A 43-acre redo of the former Lincoln Square shopping center in north Arlington, with about 404,000 sq ft of retail, dining and entertainment space plus a public green.",
+      "source": "City of Arlington (August 2026)",
+      "url": "https://www.arlingtontx.gov/News-Articles/2026/August/Anthem-Groundbreaking-Ushers-in-Lincoln-Square-Transformation"
+    },
+    {
+      "name": "Sunset Amphitheater",
+      "city": "McKinney",
+      "type": "Entertainment venue",
+      "status": "Under construction",
+      "timing": "About 70% complete as of October 2026; expected to open in 2027",
+      "summary": "A 20,000-seat outdoor concert venue near US 75 and SH 121, developed by Venu.",
+      "source": "Community Impact (October 2026)",
+      "url": "https://communityimpact.com/mckinney/development/mckinney-s-sunset-amphitheater-project-nears-70-completion-as-investment-rises-to-334m/"
+    },
+    {
+      "name": "Mixed-use project near Grapevine Mills",
+      "city": "Grapevine",
+      "type": "Mixed-use",
+      "status": "Planned",
+      "timing": "Approved by Grapevine City Council June 2, 2026; developer hoped to obtain building permits in summer 2026",
+      "summary": "A 28.7-acre Trammell Crow Company project with up to 248 apartments and a 222-room Sandman Signature Hotel near Grapevine Mills.",
+      "source": "Community Impact (June 2026)",
+      "url": "https://communityimpact.com/grapevine-colleyville-southlake/development/287-acre-development-to-add-hotels-multifamily-housing-near-grapevine-mills/"
     }
   ],
   "eat": [
@@ -340,15 +380,6 @@
   ],
   "events": [
     {
-      "name": "State Fair of Texas",
-      "start": "2026-09-25",
-      "end": "2026-10-18",
-      "city": "Dallas · Fair Park",
-      "kind": "Festival",
-      "url": "https://bigtex.com/",
-      "source": "Fair Park"
-    },
-    {
       "name": "Holiday at the Arboretum (final year of the 12 Days of Christmas gazebos)",
       "start": "2026-11-11",
       "end": null,
@@ -356,6 +387,15 @@
       "kind": "Holiday",
       "url": "https://www.dallasarboretum.org/holiday",
       "source": "FOX 4"
+    },
+    {
+      "name": "Fort Worth Parade of Lights",
+      "start": "2026-11-22",
+      "end": null,
+      "city": "Fort Worth · Downtown",
+      "kind": "Holiday",
+      "url": "https://fortworthparadeoflights.org/",
+      "source": "Fort Worth Parade of Lights"
     },
     {
       "name": "Christmas Capital of Texas season + Carol of Lights",
@@ -367,6 +407,15 @@
       "source": "Grapevine CVB"
     },
     {
+      "name": "Dallas YMCA Turkey Trot",
+      "start": "2026-11-26",
+      "end": null,
+      "city": "Dallas · Downtown",
+      "kind": "Race",
+      "url": "https://ymcadallas.org/turkeytrot",
+      "source": "YMCA of Metropolitan Dallas"
+    },
+    {
       "name": "Parade of Lights",
       "start": "2026-12-03",
       "end": null,
@@ -376,6 +425,24 @@
       "source": "Grapevine CVB"
     },
     {
+      "name": "Dallas Holiday Parade",
+      "start": "2026-12-05",
+      "end": null,
+      "city": "Dallas · Downtown",
+      "kind": "Holiday",
+      "url": "https://dallasholidayparade.com/",
+      "source": "Dallas Holiday Parade"
+    },
+    {
+      "name": "Klyde Warren Park Tree Lighting Celebration",
+      "start": "2026-12-05",
+      "end": null,
+      "city": "Dallas · Klyde Warren Park",
+      "kind": "Holiday",
+      "url": "https://www.klydewarrenpark.org/signature-events-2026",
+      "source": "Klyde Warren Park"
+    },
+    {
       "name": "BMW Dallas Marathon race weekend",
       "start": "2026-12-11",
       "end": "2026-12-13",
@@ -383,6 +450,24 @@
       "kind": "Race",
       "url": "https://www.dallasmarathon.com/",
       "source": "dallasmarathon.com"
+    },
+    {
+      "name": "Holiday Lights Parade & tree lighting",
+      "start": "2026-12-12",
+      "end": null,
+      "city": "Arlington · Downtown",
+      "kind": "Holiday",
+      "url": "https://www.arlingtontx.gov/Community-Calendar/Other-Community-Events/Holiday-Lights-Parade",
+      "source": "City of Arlington"
+    },
+    {
+      "name": "Goodyear Cotton Bowl Classic (CFP Quarterfinal)",
+      "start": "2027-01-01",
+      "end": null,
+      "city": "Arlington · AT&T Stadium",
+      "kind": "Sports",
+      "url": "https://www.cottonbowl.com/news/2026/2/3/football-game-dates-set-for-the-91st-92nd-goodyear-cotton-bowl-classics.aspx",
+      "source": "Cotton Bowl Classic"
     },
     {
       "name": "Fort Worth Stock Show & Rodeo",
