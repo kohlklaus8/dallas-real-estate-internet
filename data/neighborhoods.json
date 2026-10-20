@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "0.1.0",
-    "last_updated": "2026-10-15",
-    "coverage": "Dallas–Fort Worth: North Dallas, Collin County, the East lakes and the West Mid-Cities",
-    "method": "Editorial profiles written from local knowledge. Scores are 0–5 relative comparisons inside this coverage area, not ratings. Price tiers are relative. Market metrics (median price, inventory, days on market) stay null until loaded from a licensed MLS/market data source.",
+    "last_updated": "2026-10-19",
+    "coverage": "Dallas–Fort Worth: in-city Dallas and Fort Worth neighborhoods, North Dallas, Collin County, the East lakes and the West Mid-Cities",
+    "method": "Editorial profiles written from local knowledge and public sources. Scores are 0–5 relative comparisons inside this coverage area, not ratings. Price tiers are relative. Home values come from public Zillow data on the Market page; NTREIS/MLS data is not used.",
     "score_keys": {
       "new_construction": "Share of newer (2010+) and new-build homes",
       "lot_size": "Typical lot size; higher means larger lots and acreage",
@@ -2134,6 +2134,1096 @@
         "76110",
         "76116"
       ]
+    },
+    {
+      "id": "uptown",
+      "name": "Uptown & Victory Park",
+      "city": "Dallas",
+      "submarket": "Dallas · Central",
+      "price_tier": 3,
+      "home_types": [
+        "High-rise condo",
+        "Mid-rise condo",
+        "Townhome",
+        "Luxury apartment"
+      ],
+      "home_age": "Mostly 1990s to present, with new towers still delivering and a few older homes in the State Thomas area.",
+      "lot_profile": "Very small or no private lots; most homes are condos or townhomes on tight urban sites.",
+      "hoa": "Condo and townhome HOAs are nearly universal, and high-rise dues often cover concierge, amenities and building reserves.",
+      "tax_profile": "City of Dallas, Dallas County, Parkland Hospital District and Dallas College levy property taxes alongside the ISD. Properties inside the Uptown PID pay an added PID assessment. Check the exact address.",
+      "isd": [
+        "Dallas ISD"
+      ],
+      "routes": [
+        "Dallas North Tollway",
+        "Woodall Rodgers Fwy (Spur 366)",
+        "I-35E",
+        "US 75",
+        "DART Red/Blue/Orange (Cityplace/Uptown)",
+        "DART Green/Orange (Victory)",
+        "TRE (Victory Station)",
+        "M-Line streetcar"
+      ],
+      "commute_profile": "Downtown Dallas is minutes away by car, the free M-Line streetcar or DART. The Tollway leads north toward Legacy and Frisco, which is a longer drive at peak hours.",
+      "amenities": [
+        "Katy Trail",
+        "Klyde Warren Park",
+        "American Airlines Center",
+        "Perot Museum of Nature and Science",
+        "West Village",
+        "McKinney Avenue"
+      ],
+      "development": "Goldman Sachs is building an 800,000-square-foot Victory Park campus with a 1.5-acre park, expected to finish in 2028. Verify current timelines.",
+      "lifestyle_summary": "Uptown is Dallas's densest walkable district, with condo towers, restaurant-lined McKinney Avenue and the Katy Trail. Victory Park adds the arena, the Perot Museum and newer high-rises on the downtown edge.",
+      "pros": [
+        "Walkable dining and nightlife",
+        "Fast access to Downtown",
+        "Streetcar, rail and trail options"
+      ],
+      "cons": [
+        "HOA dues can be high",
+        "Little private outdoor space",
+        "Event and weekend traffic and parking"
+      ],
+      "best_for": [
+        "Walkable-urban buyers",
+        "Condo buyers",
+        "Downtown commuters"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 0,
+        "amenities": 5,
+        "commute_dallas": 5,
+        "commute_north": 3,
+        "rail": 4,
+        "lake": 0,
+        "value": 1
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.799,
+        "lon": -96.801,
+        "radius_mi": 1.5
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75201",
+        "75204",
+        "75219"
+      ],
+      "photo": "commons-uptown"
+    },
+    {
+      "id": "oak-cliff",
+      "name": "Oak Cliff & Bishop Arts",
+      "city": "Dallas",
+      "submarket": "Dallas · Southwest",
+      "price_tier": 2,
+      "home_types": [
+        "Single-family",
+        "Bungalow / Craftsman",
+        "Mid-century ranch",
+        "Townhome / infill"
+      ],
+      "home_age": "Wide range: early 1900s homes in the historic districts, mid-century ranches, and newer infill near Bishop Arts.",
+      "lot_profile": "Mix of standard city lots and larger hillside lots in areas like Kessler Park, with some tree-heavy, sloped sites.",
+      "hoa": "Most single-family streets have no mandatory HOA; city historic and conservation districts (such as Winnetka Heights) add exterior design rules.",
+      "tax_profile": "City of Dallas, Dallas County, Parkland Hospital District and Dallas College levy property taxes alongside the ISD. Historic-district homes may qualify for city preservation incentives. Check the exact address.",
+      "isd": [
+        "Dallas ISD"
+      ],
+      "routes": [
+        "I-35E",
+        "I-30",
+        "US 67",
+        "Jefferson Blvd",
+        "DART Red Line",
+        "DART Blue Line",
+        "Dallas Streetcar (Bishop Arts to Union Station)"
+      ],
+      "commute_profile": "Downtown is a short drive across the Trinity via I-35E or the Houston Street viaduct, and the Dallas Streetcar links Bishop Arts to Union Station. North job centers mean crossing downtown.",
+      "amenities": [
+        "Bishop Arts District",
+        "Texas Theatre",
+        "Dallas Zoo",
+        "Halperin Park",
+        "Lake Cliff Park",
+        "Stevens Park Golf Course"
+      ],
+      "development": "Halperin Park, a deck park over I-35E next to the Dallas Zoo, opened its first phase in May 2026, with a second phase planned. Infill housing continues around Bishop Arts.",
+      "lifestyle_summary": "Oak Cliff was a separate town until Dallas annexed it in 1903 and keeps its own feel, with historic districts, hills and parks. Bishop Arts is its walkable core of independent shops, restaurants and galleries.",
+      "pros": [
+        "Historic homes with character",
+        "Independent dining and shopping",
+        "Close to Downtown"
+      ],
+      "cons": [
+        "Older homes may need updating",
+        "Busy streets and parking around Bishop Arts",
+        "Housing stock varies block to block"
+      ],
+      "best_for": [
+        "Historic-home buyers",
+        "Downtown commuters",
+        "Buyers seeking value near the core"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 3,
+        "amenities": 4,
+        "commute_dallas": 4,
+        "commute_north": 2,
+        "rail": 3,
+        "lake": 1,
+        "value": 4
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.749,
+        "lon": -96.828,
+        "radius_mi": 2.5
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75208",
+        "75203",
+        "75211"
+      ],
+      "photo": "commons-oak-cliff"
+    },
+    {
+      "id": "east-dallas",
+      "name": "East Dallas & Lakewood/White Rock",
+      "city": "Dallas",
+      "submarket": "Dallas · East",
+      "price_tier": 3,
+      "home_types": [
+        "Single-family",
+        "Craftsman / Tudor",
+        "Mid-century ranch",
+        "Condo / duplex"
+      ],
+      "home_age": "Mostly 1910s to 1950s in Lakewood and Old East Dallas, with ranch-era homes near the lake and scattered newer rebuilds.",
+      "lot_profile": "Standard to large city lots with mature trees; some larger lots near White Rock Lake and the Lakewood Country Club area.",
+      "hoa": "Most single-family streets have no mandatory HOA; city conservation and historic districts (including Swiss Avenue) set exterior rules in parts of the area.",
+      "tax_profile": "City of Dallas, Dallas County, Parkland Hospital District and Dallas College levy property taxes alongside the ISD. Check whether a home sits in a historic or conservation district, which can affect remodel plans.",
+      "isd": [
+        "Dallas ISD"
+      ],
+      "routes": [
+        "I-30",
+        "US 75",
+        "Garland Rd",
+        "Gaston Ave",
+        "Abrams Rd",
+        "DART Blue Line",
+        "DART Green Line"
+      ],
+      "commute_profile": "Downtown is about a 10-15 minute drive via Gaston, Swiss or I-30, and DART Blue Line stations sit on the west and north sides. Reaching Plano and Frisco means US 75 traffic.",
+      "amenities": [
+        "White Rock Lake Park",
+        "Dallas Arboretum and Botanical Garden",
+        "Lakewood Theater",
+        "Swiss Avenue Historic District",
+        "Santa Fe Trail",
+        "Lakewood Country Club"
+      ],
+      "development": "Mostly infill, including townhome projects along Gaston Avenue and teardown-rebuilds on older lots. Verify current projects.",
+      "lifestyle_summary": "East Dallas wraps around White Rock Lake, with tree-lined streets of Craftsman, Tudor and Spanish-style homes in Lakewood and grand houses on Swiss Avenue. The lake's trail loop and the Arboretum are the big draws.",
+      "pros": [
+        "White Rock Lake and trails",
+        "Architecturally varied older homes",
+        "Close-in location"
+      ],
+      "cons": [
+        "Older homes may need updates",
+        "Prices are high for lot and home age",
+        "Lake-area traffic on weekends"
+      ],
+      "best_for": [
+        "Lake and trail users",
+        "Historic-home buyers",
+        "Buyers wanting yard space near the core"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 3,
+        "amenities": 4,
+        "commute_dallas": 4,
+        "commute_north": 3,
+        "rail": 3,
+        "lake": 5,
+        "value": 2
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.818,
+        "lon": -96.746,
+        "radius_mi": 2.5
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75214",
+        "75218",
+        "75246"
+      ],
+      "photo": "commons-east-dallas"
+    },
+    {
+      "id": "lower-greenville",
+      "name": "Lower Greenville & M Streets",
+      "city": "Dallas",
+      "submarket": "Dallas · East",
+      "price_tier": 3,
+      "home_types": [
+        "Tudor cottage",
+        "Craftsman bungalow",
+        "Duplex / fourplex",
+        "Apartment / mid-rise"
+      ],
+      "home_age": "The M Streets (Greenland Hills) were mostly built in the 1920s and 1930s; newer mid-rise apartments line Greenville Avenue.",
+      "lot_profile": "Narrow, standard city lots with alleys and mature trees; little room for large yards.",
+      "hoa": "No mandatory HOA on most streets; the M Streets conservation district sets rules for exterior changes and new builds.",
+      "tax_profile": "City of Dallas, Dallas County, Parkland Hospital District and Dallas College levy property taxes alongside the ISD. Conservation-district rules can affect rebuild and addition plans. Check the exact address.",
+      "isd": [
+        "Dallas ISD"
+      ],
+      "routes": [
+        "US 75",
+        "Greenville Ave",
+        "Mockingbird Ln",
+        "Belmont Ave",
+        "DART Red/Blue/Orange (Mockingbird)"
+      ],
+      "commute_profile": "Downtown and Uptown are a short drive down US 75 or Ross Avenue, and Mockingbird Station is close by for DART. US 75 is the route north to Richardson and Plano.",
+      "amenities": [
+        "Granada Theater",
+        "Greenville Avenue bars and restaurants",
+        "Truck Yard",
+        "Glencoe Park",
+        "Mockingbird Station"
+      ],
+      "development": "Mid-rise apartment infill continues near Greenville Avenue, such as RangeWater's 236-unit project at 5714 Richmond Ave. Verify current projects.",
+      "lifestyle_summary": "Lower Greenville is a long-running entertainment strip, anchored by the 1946 Granada Theater. Next to it, the M Streets are known for blocks of 1920s-30s Tudor cottages.",
+      "pros": [
+        "Walk to restaurants and live music",
+        "Distinctive 1920s-30s homes",
+        "Central location off US 75"
+      ],
+      "cons": [
+        "Weekend noise and parking near Greenville Ave",
+        "Small lots",
+        "Older homes need upkeep"
+      ],
+      "best_for": [
+        "Walkable-urban buyers",
+        "Historic-home buyers",
+        "Central Dallas commuters"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 1,
+        "amenities": 4,
+        "commute_dallas": 5,
+        "commute_north": 3,
+        "rail": 3,
+        "lake": 1,
+        "value": 2
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.815,
+        "lon": -96.77,
+        "radius_mi": 1.5
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75206",
+        "75214"
+      ],
+      "photo": "commons-lower-greenville"
+    },
+    {
+      "id": "deep-ellum",
+      "name": "Deep Ellum & Downtown Dallas",
+      "city": "Dallas",
+      "submarket": "Dallas · Downtown",
+      "price_tier": 2,
+      "home_types": [
+        "Loft condo",
+        "High-rise condo",
+        "Converted historic building",
+        "Luxury apartment"
+      ],
+      "home_age": "Historic early-1900s commercial buildings converted to lofts, plus residential towers and apartments from the 2000s to present.",
+      "lot_profile": "No private lots to speak of; homes are condos and lofts in urban buildings.",
+      "hoa": "Condo HOAs are standard, and dues vary widely by building age and amenities.",
+      "tax_profile": "City of Dallas, Dallas County, Parkland Hospital District and Dallas College levy property taxes alongside the ISD. Downtown sits in the Downtown Dallas Improvement District and Deep Ellum has its own PID, both adding assessments. Check the exact address.",
+      "isd": [
+        "Dallas ISD"
+      ],
+      "routes": [
+        "I-30",
+        "I-35E",
+        "I-45",
+        "I-345 / US 75",
+        "Woodall Rodgers Fwy",
+        "DART Red/Blue/Green/Orange",
+        "TRE (Union Station)",
+        "Dallas Streetcar"
+      ],
+      "commute_profile": "This is the regional hub: all DART light-rail lines meet downtown, and Deep Ellum has its own Green Line station. North job centers are reachable by US 75 or DART, with peak traffic.",
+      "amenities": [
+        "Trees (Elm Street)",
+        "Pecan Lodge",
+        "Main Street Garden Park",
+        "Dallas Farmers Market",
+        "AT&T Performing Arts Center",
+        "Fair Park"
+      ],
+      "development": "The $3.7 billion Kay Bailey Hutchison Convention Center rebuild broke ground in 2024, with construction expected through 2028. TxDOT's plan to lower I-345 into a trench could reshape the Downtown-Deep Ellum edge. Verify current timelines.",
+      "lifestyle_summary": "Downtown offers high-rise and loft living around parks, the Arts District and the rail hub. Deep Ellum, just east, is a historic warehouse district known for live music, murals and barbecue.",
+      "pros": [
+        "Best rail access in the region",
+        "Arts, music and dining",
+        "Range of loft and condo price points"
+      ],
+      "cons": [
+        "Nightlife noise in Deep Ellum",
+        "Parking and garage costs",
+        "Ongoing highway and convention-center construction"
+      ],
+      "best_for": [
+        "Condo buyers",
+        "Transit commuters",
+        "Walkable-urban buyers"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 0,
+        "amenities": 5,
+        "commute_dallas": 5,
+        "commute_north": 2,
+        "rail": 5,
+        "lake": 0,
+        "value": 3
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.781,
+        "lon": -96.792,
+        "radius_mi": 1.8
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75226",
+        "75201",
+        "75202"
+      ],
+      "photo": "commons-deep-ellum"
+    },
+    {
+      "id": "lake-highlands",
+      "name": "Lake Highlands",
+      "city": "Dallas",
+      "submarket": "Dallas · Northeast",
+      "price_tier": 2,
+      "home_types": [
+        "Single-family ranch",
+        "Updated / rebuilt home",
+        "Townhome",
+        "Condo / apartment"
+      ],
+      "home_age": "Mostly 1950s to 1970s ranch-style homes, with remodels and some newer builds.",
+      "lot_profile": "Generous suburban-style lots by Dallas standards, many with mature trees and alleys.",
+      "hoa": "Most single-family areas have no mandatory HOA; voluntary neighborhood associations are common, and condos and townhomes carry HOA dues.",
+      "tax_profile": "City of Dallas, Dallas County, Parkland Hospital District and Dallas College levy property taxes; most of the area is in Richardson ISD. The Lake Highlands PID along the Skillman corridor assesses commercial and condo property.",
+      "isd": [
+        "Richardson ISD",
+        "Dallas ISD (parts)"
+      ],
+      "routes": [
+        "I-635 (LBJ)",
+        "US 75",
+        "Skillman St",
+        "Northwest Hwy",
+        "Garland Rd",
+        "DART Blue Line"
+      ],
+      "commute_profile": "DART Blue Line stations (White Rock, Lake Highlands, LBJ/Skillman) run to Downtown, and LBJ and US 75 connect to Richardson and Plano job centers.",
+      "amenities": [
+        "White Rock Lake Park",
+        "Flag Pole Hill Park",
+        "Lake Highlands Park",
+        "Harry S. Moss Park",
+        "White Rock Creek Trail",
+        "Dallas College Richland Campus"
+      ],
+      "development": "In September 2026 the Dallas City Council approved TIF support for a small retail and office redevelopment at Walnut Hill Lane and Audelia Road. Verify current projects.",
+      "lifestyle_summary": "Lake Highlands is a postwar neighborhood of ranch homes on tree-lined streets, just north and east of White Rock Lake. It sits within Dallas city limits but is served mostly by Richardson ISD.",
+      "pros": [
+        "Larger lots inside Dallas",
+        "Close to White Rock Lake trails",
+        "DART Blue Line access"
+      ],
+      "cons": [
+        "Many 1960s-70s homes need updating",
+        "Car-oriented layout",
+        "Mix of school districts by address"
+      ],
+      "best_for": [
+        "Buyers wanting yard space",
+        "Lake and trail users",
+        "Commuters to Richardson and Downtown"
+      ],
+      "scores": {
+        "new_construction": 1,
+        "lot_size": 3,
+        "amenities": 3,
+        "commute_dallas": 3,
+        "commute_north": 4,
+        "rail": 3,
+        "lake": 4,
+        "value": 3
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.88,
+        "lon": -96.718,
+        "radius_mi": 3.0
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75238",
+        "75231",
+        "75243"
+      ],
+      "photo": "commons-lake-highlands"
+    },
+    {
+      "id": "knox-henderson",
+      "name": "Knox-Henderson & Oak Lawn",
+      "city": "Dallas",
+      "submarket": "Dallas · Central",
+      "price_tier": 3,
+      "home_types": [
+        "Townhome",
+        "Mid-rise / high-rise condo",
+        "Luxury apartment",
+        "Older single-family (limited)"
+      ],
+      "home_age": "Mix of 1920s-50s homes and duplexes, 1960s-80s condos, and many townhomes and towers from the 2000s to present.",
+      "lot_profile": "Small urban lots; most new construction is townhomes or multifamily replacing older homes.",
+      "hoa": "Condos and newer townhome rows usually have HOAs; older single-family streets typically do not.",
+      "tax_profile": "City of Dallas, Dallas County, Parkland Hospital District and Dallas College levy property taxes alongside the ISD. The Knox Street PID adds an assessment inside its boundary, and Oak Lawn is governed by its own special-purpose zoning district. Check the exact address.",
+      "isd": [
+        "Dallas ISD"
+      ],
+      "routes": [
+        "US 75",
+        "Dallas North Tollway",
+        "Lemmon Ave",
+        "Oak Lawn Ave",
+        "Cedar Springs Rd",
+        "DART Red/Blue/Orange (Cityplace/Uptown)"
+      ],
+      "commute_profile": "Downtown and Uptown are a few minutes away by car, Katy Trail or DART. The Tollway and US 75 run north to Plano and Frisco, with peak congestion.",
+      "amenities": [
+        "Katy Trail",
+        "Knox Street shops",
+        "Henderson Avenue",
+        "Turtle Creek Park",
+        "Reverchon Park",
+        "Katy Trail Ice House"
+      ],
+      "development": "The Knox, a roughly 1-million-square-foot project next to the Katy Trail, includes a 27-story apartment tower, a 140-room hotel with condos and an office building. The hotel and office are set for late 2026.",
+      "lifestyle_summary": "Knox-Henderson pairs a shopping and dining strip with the Katy Trail on either side of US 75. Oak Lawn, to the west, is a dense, central mix of condos, townhomes and the Cedar Springs dining corridor.",
+      "pros": [
+        "Katy Trail access",
+        "Dense dining and shopping",
+        "Very central location"
+      ],
+      "cons": [
+        "Premium pricing for small lots",
+        "Construction and traffic on Knox and Henderson",
+        "Weekend parking"
+      ],
+      "best_for": [
+        "Walkable-urban buyers",
+        "Townhome and condo buyers",
+        "Uptown and Downtown commuters"
+      ],
+      "scores": {
+        "new_construction": 3,
+        "lot_size": 1,
+        "amenities": 5,
+        "commute_dallas": 5,
+        "commute_north": 3,
+        "rail": 3,
+        "lake": 0,
+        "value": 1
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.815,
+        "lon": -96.795,
+        "radius_mi": 1.8
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75205",
+        "75206",
+        "75219"
+      ],
+      "photo": "commons-knox-henderson"
+    },
+    {
+      "id": "park-cities",
+      "name": "Highland Park & University Park",
+      "city": "Highland Park / University Park",
+      "submarket": "Park Cities · Central",
+      "price_tier": 4,
+      "home_types": [
+        "Luxury single-family",
+        "Estate home",
+        "New construction rebuild",
+        "Condo (limited)"
+      ],
+      "home_age": "Original homes date from the 1910s-1940s, but many lots have been rebuilt with newer luxury homes.",
+      "lot_profile": "Standard to large lots, with bigger estate lots along Turtle Creek and in parts of Highland Park.",
+      "hoa": "No HOAs on most streets; each town has its own building and zoning rules, which are strict on new construction.",
+      "tax_profile": "Separate towns inside Dallas: the Town of Highland Park or City of University Park, plus Dallas County, Parkland Hospital District and Dallas College, with Highland Park ISD. A small part of Highland Park is in Dallas ISD. Check the exact address.",
+      "isd": [
+        "Highland Park ISD",
+        "Dallas ISD (small part of Highland Park)"
+      ],
+      "routes": [
+        "Dallas North Tollway",
+        "US 75",
+        "Mockingbird Ln",
+        "Lovers Ln",
+        "Preston Rd",
+        "DART Red Line",
+        "DART Blue Line"
+      ],
+      "commute_profile": "Downtown and Uptown are a short drive down the Tollway or US 75, with DART at Mockingbird and Lovers Lane stations nearby. Legacy and Frisco are a Tollway drive north.",
+      "amenities": [
+        "Highland Park Village",
+        "Snider Plaza",
+        "Meadows Museum (SMU)",
+        "Gerald J. Ford Stadium",
+        "Lakeside Park",
+        "Katy Trail"
+      ],
+      "development": "SMU opened the $100 million Garry Weber End Zone Complex at Ford Stadium in 2024, and The Knox project on the Highland Park edge is set for late 2026.",
+      "lifestyle_summary": "The Park Cities are two separate towns surrounded by Dallas, with tree-lined streets, Turtle Creek parks and SMU. Highland Park Village, a 1931 Spanish-style center, is a National Historic Landmark.",
+      "pros": [
+        "Own town services and school district",
+        "Central location",
+        "Mature, park-lined streets"
+      ],
+      "cons": [
+        "Among the region's highest prices",
+        "Strict local building rules",
+        "Teardown and construction activity"
+      ],
+      "best_for": [
+        "Luxury buyers",
+        "Central Dallas commuters",
+        "Buyers building new on an established lot"
+      ],
+      "scores": {
+        "new_construction": 3,
+        "lot_size": 3,
+        "amenities": 4,
+        "commute_dallas": 5,
+        "commute_north": 3,
+        "rail": 2,
+        "lake": 0,
+        "value": 0
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.84,
+        "lon": -96.794,
+        "radius_mi": 2.0
+      },
+      "market_city": "University Park",
+      "zips": [
+        "75205",
+        "75225"
+      ],
+      "photo": "commons-park-cities"
+    },
+    {
+      "id": "design-district",
+      "name": "Design District & Medical District / Love Field",
+      "city": "Dallas",
+      "submarket": "Dallas · Northwest",
+      "price_tier": 2,
+      "home_types": [
+        "Luxury apartment",
+        "Condo / loft",
+        "Townhome",
+        "Single-family (Love Field area)"
+      ],
+      "home_age": "Design District housing is mostly 2010s to present; neighborhoods near Love Field are largely 1930s to 1960s single-family homes.",
+      "lot_profile": "Urban infill sites in the Design District; standard city lots in the residential pockets near Love Field.",
+      "hoa": "Condos and townhomes carry HOAs; older single-family areas near Love Field generally do not.",
+      "tax_profile": "City of Dallas, Dallas County, Parkland Hospital District and Dallas College levy property taxes alongside the ISD. The Oak Lawn-Hi Line PID covers part of the Design District area. Check the exact address.",
+      "isd": [
+        "Dallas ISD"
+      ],
+      "routes": [
+        "I-35E (Stemmons)",
+        "Harry Hines Blvd",
+        "Inwood Rd",
+        "Mockingbird Ln",
+        "DART Green/Orange Lines",
+        "TRE (Medical/Market Center)"
+      ],
+      "commute_profile": "Downtown is minutes away on I-35E or DART Green/Orange, which also serve the Medical District and Love Field. North job centers are reached via the Tollway or I-35E.",
+      "amenities": [
+        "Dallas Market Center",
+        "Trinity Strand Trail",
+        "Dallas Love Field",
+        "Frontiers of Flight Museum",
+        "UT Southwestern Medical Center",
+        "Parkland Memorial Hospital"
+      ],
+      "development": "Children's Health and UT Southwestern broke ground in 2024 on a $5 billion pediatric campus at Harry Hines and Mockingbird. Love Field expects to start a terminal and concourse expansion in 2027, and Hi Line Square is planned in the Design District. Verify current timelines.",
+      "lifestyle_summary": "The Design District grew from warehouses into showrooms, galleries, restaurants and apartments along the Trinity levee. Beyond it, the Southwestern Medical District and Love Field form a major job and travel hub.",
+      "pros": [
+        "Close to Downtown and the hospitals",
+        "DART and TRE access",
+        "Near Love Field"
+      ],
+      "cons": [
+        "Airport and freeway noise in places",
+        "Mostly rental and condo housing in the core",
+        "Limited grocery and daily retail in pockets"
+      ],
+      "best_for": [
+        "Medical District commuters",
+        "Frequent flyers",
+        "Condo and apartment buyers"
+      ],
+      "scores": {
+        "new_construction": 3,
+        "lot_size": 1,
+        "amenities": 3,
+        "commute_dallas": 5,
+        "commute_north": 3,
+        "rail": 4,
+        "lake": 0,
+        "value": 3
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.815,
+        "lon": -96.838,
+        "radius_mi": 3.0
+      },
+      "market_city": "Dallas",
+      "zips": [
+        "75207",
+        "75235",
+        "75209"
+      ],
+      "photo": "commons-design-district"
+    },
+    {
+      "id": "near-southside",
+      "name": "Near Southside & Magnolia",
+      "city": "Fort Worth",
+      "submarket": "Fort Worth · Central",
+      "price_tier": 2,
+      "home_types": [
+        "Historic single-family",
+        "Bungalow / Victorian",
+        "Townhome",
+        "Mid-rise apartment"
+      ],
+      "home_age": "Late-1800s to 1920s homes in Fairmount, plus apartment and townhome infill from the 2010s to present.",
+      "lot_profile": "Standard older city lots with alleys; infill sites are small and dense.",
+      "hoa": "Most single-family homes have no HOA; the Fairmount historic district sets exterior design rules.",
+      "tax_profile": "City of Fort Worth, Tarrant County, Tarrant County Hospital District (JPS), Tarrant County College and Tarrant Regional Water District levy property taxes alongside Fort Worth ISD. Fairmount homes may qualify for city historic-preservation incentives. Check the exact address.",
+      "isd": [
+        "Fort Worth ISD"
+      ],
+      "routes": [
+        "I-30",
+        "I-35W",
+        "8th Ave",
+        "Magnolia Ave",
+        "Hemphill St",
+        "Trinity Metro"
+      ],
+      "commute_profile": "Downtown Fort Worth is just north, and T&P Station (TRE and TEXRail) is nearby. Dallas is a 45-minute-plus drive or a TRE ride; Legacy and Frisco are far.",
+      "amenities": [
+        "Magnolia Avenue",
+        "Fairmount–Southside Historic District",
+        "Cook Children's Medical Center",
+        "JPS Health Network",
+        "Fort Worth Medical District"
+      ],
+      "development": "Trinity Metro plans to extend TEXRail 2.1 miles from T&P Station to a Medical District station, with groundbreaking targeted for late 2026 and opening around 2029. UT Southwestern broke ground on a cancer center in the Near Southside in 2025.",
+      "lifestyle_summary": "The Near Southside mixes Fort Worth's hospital district with Magnolia Avenue's restaurants and bars. Fairmount, one of the Southwest's largest historic districts, holds most of the older homes.",
+      "pros": [
+        "Walkable Magnolia dining",
+        "Historic Fairmount homes",
+        "Close to Downtown and the hospitals"
+      ],
+      "cons": [
+        "Older homes need upkeep",
+        "Parking on Magnolia",
+        "Long commute to Dallas"
+      ],
+      "best_for": [
+        "Historic-home buyers",
+        "Medical District commuters",
+        "Walkable-urban buyers"
+      ],
+      "scores": {
+        "new_construction": 3,
+        "lot_size": 1,
+        "amenities": 4,
+        "commute_dallas": 1,
+        "commute_north": 0,
+        "rail": 2,
+        "lake": 0,
+        "value": 3
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.73,
+        "lon": -97.33,
+        "radius_mi": 1.8
+      },
+      "market_city": "Fort Worth",
+      "zips": [
+        "76104",
+        "76110"
+      ],
+      "photo": "commons-near-southside"
+    },
+    {
+      "id": "tcu-berkeley",
+      "name": "TCU & Berkeley",
+      "city": "Fort Worth",
+      "submarket": "Fort Worth · Southwest",
+      "price_tier": 3,
+      "home_types": [
+        "Single-family",
+        "Tudor / Craftsman",
+        "Townhome",
+        "Condo / rental near campus"
+      ],
+      "home_age": "Mostly 1920s to 1950s homes in Berkeley Place and around TCU, with townhome and multifamily infill near campus.",
+      "lot_profile": "Standard to large city lots with mature trees; smaller infill lots near University Drive and Berry Street.",
+      "hoa": "Most single-family streets have no HOA; newer townhomes and condos usually do.",
+      "tax_profile": "City of Fort Worth, Tarrant County, Tarrant County Hospital District (JPS), Tarrant County College and Tarrant Regional Water District levy property taxes alongside Fort Worth ISD. Check the exact address.",
+      "isd": [
+        "Fort Worth ISD"
+      ],
+      "routes": [
+        "I-30",
+        "I-20",
+        "University Dr",
+        "Berry St",
+        "Hulen St",
+        "Trinity Metro"
+      ],
+      "commute_profile": "Downtown Fort Worth is about 10 minutes north via University Drive or I-30. Dallas means an I-30 drive of 45 minutes or more, and north Dallas job centers are far.",
+      "amenities": [
+        "TCU campus",
+        "Amon G. Carter Stadium",
+        "Fort Worth Zoo",
+        "Forest Park",
+        "Colonial Country Club",
+        "Trinity Trails"
+      ],
+      "development": "TCU and Endeavor are building Morado on Berry, a 780-bed student housing project with 25,000 square feet of retail on West Berry Street, expected before the 2027-28 school year.",
+      "lifestyle_summary": "The TCU area mixes the campus and its game-day energy with Berkeley Place's 1920s-50s homes on tree-lined streets. Forest Park, the zoo and Trinity Trails are close by.",
+      "pros": [
+        "Established tree-lined streets",
+        "Parks, zoo and trails nearby",
+        "Close to Downtown Fort Worth"
+      ],
+      "cons": [
+        "Game-day traffic and parking",
+        "More rental housing close to campus",
+        "Long commute to Dallas"
+      ],
+      "best_for": [
+        "Buyers wanting yard space",
+        "Downtown Fort Worth commuters",
+        "Investors near campus"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 2,
+        "amenities": 3,
+        "commute_dallas": 1,
+        "commute_north": 0,
+        "rail": 0,
+        "lake": 0,
+        "value": 2
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.711,
+        "lon": -97.36,
+        "radius_mi": 2.0
+      },
+      "market_city": "Fort Worth",
+      "zips": [
+        "76109",
+        "76110",
+        "76129"
+      ],
+      "photo": "commons-tcu-berkeley"
+    },
+    {
+      "id": "west-7th",
+      "name": "West 7th & Cultural District / Arlington Heights",
+      "city": "Fort Worth",
+      "submarket": "Fort Worth · West",
+      "price_tier": 3,
+      "home_types": [
+        "Single-family",
+        "Townhome",
+        "Luxury apartment",
+        "Condo"
+      ],
+      "home_age": "Arlington Heights homes are mostly 1920s to 1940s; West 7th townhomes and apartments are mostly 2010s to present.",
+      "lot_profile": "Standard older lots in Arlington Heights; small, dense sites around West 7th.",
+      "hoa": "Arlington Heights single-family streets generally have no HOA; West 7th townhomes and condos usually do.",
+      "tax_profile": "City of Fort Worth, Tarrant County, Tarrant County Hospital District (JPS), Tarrant County College and Tarrant Regional Water District levy property taxes alongside Fort Worth ISD. Properties along Camp Bowie Boulevard may fall in the Historic Camp Bowie PID. Check the exact address.",
+      "isd": [
+        "Fort Worth ISD"
+      ],
+      "routes": [
+        "I-30",
+        "University Dr",
+        "Camp Bowie Blvd",
+        "W 7th St",
+        "Trinity Metro"
+      ],
+      "commute_profile": "Downtown Fort Worth is a few minutes east on West 7th Street or I-30. Dallas is a 45-minute-plus I-30 drive.",
+      "amenities": [
+        "Kimbell Art Museum",
+        "Modern Art Museum of Fort Worth",
+        "Amon Carter Museum of American Art",
+        "Dickies Arena",
+        "Will Rogers Memorial Center",
+        "Fort Worth Botanic Garden"
+      ],
+      "development": "The $1.7 billion Westside Village broke ground in March 2026 on the former Fort Worth ISD headquarters site at University Drive. Its first phase includes an office building and 308 homes. The eight-story Van Zandt project is underway at West 7th and Foch.",
+      "lifestyle_summary": "The Cultural District holds Fort Worth's major museums, Dickies Arena and the Will Rogers complex. West 7th adds dense dining and apartments, and Arlington Heights offers older homes on brick-paved Camp Bowie.",
+      "pros": [
+        "World-class museums and arena",
+        "Dining near West 7th",
+        "Close to Downtown Fort Worth"
+      ],
+      "cons": [
+        "Event traffic around Dickies Arena",
+        "Older Arlington Heights homes need updates",
+        "Long commute to Dallas"
+      ],
+      "best_for": [
+        "Arts and culture enthusiasts",
+        "Downtown Fort Worth commuters",
+        "Townhome buyers"
+      ],
+      "scores": {
+        "new_construction": 3,
+        "lot_size": 2,
+        "amenities": 5,
+        "commute_dallas": 1,
+        "commute_north": 0,
+        "rail": 0,
+        "lake": 0,
+        "value": 2
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.75,
+        "lon": -97.364,
+        "radius_mi": 1.8
+      },
+      "market_city": "Fort Worth",
+      "zips": [
+        "76107"
+      ],
+      "photo": "commons-west-7th"
+    },
+    {
+      "id": "downtown-fw",
+      "name": "Downtown Fort Worth & Sundance Square",
+      "city": "Fort Worth",
+      "submarket": "Fort Worth · Downtown",
+      "price_tier": 2,
+      "home_types": [
+        "Loft condo",
+        "High-rise condo",
+        "Luxury apartment",
+        "Townhome (limited)"
+      ],
+      "home_age": "Historic early-1900s buildings converted to lofts, plus condos and apartments from the 1990s to present.",
+      "lot_profile": "No private lots to speak of; housing is condos, lofts and apartments.",
+      "hoa": "Condo HOAs are standard, with dues tied to building amenities and age.",
+      "tax_profile": "City of Fort Worth, Tarrant County, Tarrant County Hospital District (JPS), Tarrant County College and Tarrant Regional Water District levy property taxes alongside Fort Worth ISD. Downtown PID 1 adds an assessment, and Panther Island has its own PID. Check the exact address.",
+      "isd": [
+        "Fort Worth ISD"
+      ],
+      "routes": [
+        "I-30",
+        "I-35W",
+        "SH 121",
+        "TRE (Fort Worth Central / T&P)",
+        "TEXRail",
+        "Trinity Metro"
+      ],
+      "commute_profile": "TRE runs to Downtown Dallas and TEXRail runs to DFW Airport, and Trinity Metro's free downtown Blue Line circulates locally. Driving to Dallas is 45 minutes or more on I-30.",
+      "amenities": [
+        "Sundance Square Plaza",
+        "Bass Performance Hall",
+        "Fort Worth Water Gardens",
+        "Fort Worth Convention Center",
+        "Sid Richardson Museum",
+        "Trinity Trails"
+      ],
+      "development": "Texas A&M-Fort Worth opened its Law and Education Building in August 2026 and broke ground on an 11-story research building due in 2029. The convention center is in a phased expansion.",
+      "lifestyle_summary": "Downtown Fort Worth centers on Sundance Square's 35 blocks of plaza, dining and entertainment, plus Bass Hall. The Texas A&M campus and convention center work are adding activity.",
+      "pros": [
+        "Walkable plaza and performing arts",
+        "TRE and TEXRail access",
+        "Lower pricing than central Dallas towers"
+      ],
+      "cons": [
+        "Limited condo inventory",
+        "Garage parking costs",
+        "Long drive to Dallas job centers"
+      ],
+      "best_for": [
+        "Condo buyers",
+        "Transit commuters",
+        "Walkable-urban buyers"
+      ],
+      "scores": {
+        "new_construction": 2,
+        "lot_size": 0,
+        "amenities": 5,
+        "commute_dallas": 1,
+        "commute_north": 0,
+        "rail": 3,
+        "lake": 0,
+        "value": 3
+      },
+      "metrics": {
+        "median_price": null,
+        "inventory": null,
+        "days_on_market": null,
+        "as_of": null
+      },
+      "source": "Editorial (DREI)",
+      "last_updated": "2026-10-19",
+      "geo": {
+        "lat": 32.754,
+        "lon": -97.331,
+        "radius_mi": 1.5
+      },
+      "market_city": "Fort Worth",
+      "zips": [
+        "76102"
+      ],
+      "photo": "commons-downtown-fw"
     }
   ]
 }
