@@ -381,7 +381,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .dd[open] > summary, .dd > summary:hover { background: var(--surface-2); color: var(--sky); }
 .dd.is-current > summary { color: var(--sky); }
 .panel { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 24px 60px -24px rgba(15, 27, 51, .35); padding: 1rem; min-width: 300px; display: grid; gap: .2rem; z-index: 60; }
-.panel.wide { min-width: 820px; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .4rem .8rem; }
+.panel.wide { min-width: 900px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .4rem .8rem; }
 .panel h5 { margin: .3rem .55rem .2rem; font: 800 .7rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--mute); }
 .panel a { display: grid; gap: .05rem; padding: .5rem .6rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: .92rem; }
 .panel a span { font-weight: 500; color: var(--mute); font-size: .8rem; }
