@@ -9,11 +9,13 @@
       ["market.html", "The housing market now", "Plain-English market dashboard"],
     ] },
     { label: "Neighborhoods", key: "areas", wide: true, groups: [
+      ["Dallas · Urban core", [["uptown", "Uptown & Victory Park"], ["deep-ellum", "Deep Ellum & Downtown"], ["knox-henderson", "Knox-Henderson & Oak Lawn"], ["design-district", "Design District & Love Field"], ["lower-greenville", "Lower Greenville & M Streets"]]],
+      ["Dallas · Neighborhoods", [["oak-cliff", "Oak Cliff & Bishop Arts"], ["east-dallas", "East Dallas & Lakewood"], ["lake-highlands", "Lake Highlands"], ["park-cities", "Park Cities"], ["preston-hollow", "Preston Hollow"], ["far-north-dallas", "Far North Dallas"]]],
+      ["Fort Worth", [["fort-worth", "Fort Worth overview"], ["downtown-fw", "Downtown & Sundance Square"], ["near-southside", "Near Southside & Magnolia"], ["west-7th", "West 7th & Cultural District"], ["tcu-berkeley", "TCU & Berkeley"]]],
       ["Collin County North", [["frisco", "Frisco"], ["mckinney", "McKinney"], ["prosper", "Prosper"], ["celina", "Celina"], ["anna-melissa", "Anna & Melissa"], ["princeton", "Princeton"], ["little-elm", "Little Elm"]]],
       ["Plano & US 75", [["west-plano", "West Plano"], ["downtown-east-plano", "Downtown & East Plano"], ["allen", "Allen"], ["richardson", "Richardson"], ["murphy", "Murphy"], ["lucas-fairview", "Lucas & Fairview"]]],
-      ["Dallas & close-in", [["preston-hollow", "Preston Hollow"], ["far-north-dallas", "Far North Dallas"], ["addison", "Addison"], ["carrollton", "Carrollton"], ["the-colony", "The Colony"]]],
-      ["East & the lakes", [["rockwall", "Rockwall"], ["rowlett", "Rowlett"], ["garland", "Garland"], ["wylie", "Wylie"]]],
-      ["West & Mid-Cities", [["las-colinas", "Las Colinas (Irving)"], ["grapevine", "Grapevine"], ["flower-mound", "Flower Mound"], ["arlington", "Arlington"], ["fort-worth", "Fort Worth"]]],
+      ["Close-in & the lakes", [["addison", "Addison"], ["carrollton", "Carrollton"], ["the-colony", "The Colony"], ["garland", "Garland"], ["rowlett", "Rowlett"], ["rockwall", "Rockwall"], ["wylie", "Wylie"]]],
+      ["Mid-Cities", [["las-colinas", "Las Colinas (Irving)"], ["grapevine", "Grapevine"], ["flower-mound", "Flower Mound"], ["arlington", "Arlington"]]],
     ], foot: [["neighborhoods.html", "All neighborhoods"], ["schools.html", "Schools by area"], ["tools.html#fit", "Where should I live?"], ["tools.html#compare", "Compare areas"]] },
     { label: "Explore", key: "explore", items: [
       ["explore.html#developments", "What's being built", "New developments, updated regularly"],
