@@ -293,7 +293,7 @@
     }
 
     // Fallback
-    out.html = `<p>I can help with neighborhoods, commutes, taxes, selling and planning a move across North Dallas &amp; Collin County. Try one of these:</p>` +
+    out.html = `<p>I can help with neighborhoods, commutes, taxes, selling and planning a move anywhere in Dallas–Fort Worth. Try one of these:</p>` +
       list(["\"Compare Frisco vs. Plano\"", "\"Where should I live with rail access on a moderate budget?\"", "\"Tell me about Richardson\"", "\"What's a MUD tax?\"", "\"Should I sell?\""]) +
       `<p class="muted">If your question is about somewhere outside this launch area, a local expert can still help.</p>`;
     out.followups = ["Where should I live?", "Compare Allen vs. McKinney", "What can I afford?"];
