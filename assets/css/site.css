@@ -757,3 +757,27 @@ i.pi { background: var(--navy); color: #fff; } i.tx { background: var(--brass); 
 .mv-rent p { margin: 0; color: #dbe6ff; max-width: 70ch; }
 .mv-rent p b { color: #fff; }
 .mv-cover { width: 120px; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 24px rgba(15, 27, 51, .25); }
+
+/* Meet Kohl + reviews */
+.ag-photo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,.7); flex-shrink: 0; }
+.ag-photo.lg { width: 88px; height: 88px; border-color: var(--line, #e3e9f4); }
+.meet { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: clamp(1.2rem, 4vw, 2.6rem); align-items: center; }
+.meet-photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 24px; display: block; }
+.meet-copy { display: flex; flex-direction: column; gap: .7rem; }
+.meet-copy p { max-width: 58ch; }
+.meet-rating { color: var(--muted, #44506a); }
+.meet-rating strong { color: #e8a317; }
+.meet-btns { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .3rem; }
+.reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.6rem; }
+.reviews.two { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: .8rem; }
+.review { margin: 0; background: #fff8ef; border-radius: 18px; padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .5rem; }
+.review .stars { color: #e8a317; letter-spacing: .1em; font-size: .95rem; }
+.review blockquote { margin: 0; font-size: .95rem; line-height: 1.5; }
+.review figcaption { font-weight: 700; font-size: .88rem; color: #8a3a06; margin-top: auto; }
+.reviews-more { margin-top: .9rem; }
+@media (max-width: 760px) {
+  .meet { grid-template-columns: 1fr; }
+  .meet-photo { max-width: 220px; }
+  .reviews, .reviews.two { grid-template-columns: 1fr; }
+}
+[hidden] { display: none !important; }
