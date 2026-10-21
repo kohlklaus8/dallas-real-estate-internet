@@ -18,6 +18,7 @@ window.DREI_CONFIG = {
   TEAM_NAME: "Templeton Real Estate Group",
   HEADSHOT: "assets/img/kohl-klaus-headshot.jpg",
   REVIEWS_URL: "https://www.google.com/maps/search/?api=1&query=Templeton+Real+Estate+Group+3800+Maple+Ave+Dallas+TX",
+  KW_SEARCH_URL: "https://kohlklaus.kw.com/search", // live MLS listings on Kohl's KW site (brokerage IDX)
   CALENDAR_URL: "https://calendly.com/kohlklaus-kw/30min", // e.g. "https://calendly.com/your-link" — shows a "Book a time" button when set
 
   // Texas license-holder disclosures (TREC). Required on the website of a license holder.

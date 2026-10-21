@@ -58,6 +58,24 @@
       <p class="stamp">Source: <a href="${esc(S.url || "#")}" target="_blank" rel="noopener">Zillow Home Value Index</a>, ${esc(S.period || "")}. Public data, refreshed weekly. Typical values are estimates, not an appraisal of any one home. For a specific address, ask for a market analysis.</p>
     </section>`;
   }
+  const CPTS = [["downtown_dallas", "Downtown Dallas"], ["legacy_plano", "Legacy West (Plano)"], ["dfw_airport", "DFW Airport"], ["downtown_fw", "Downtown Fort Worth"]];
+  function commuteTaxBlock(n) {
+    const c = n.commute, t = n.tax, M = DATA.meta || {};
+    if (!c && !t) return "";
+    const fmt = (r) => r.toFixed(4).replace(/0+$/, "").replace(/\.$/, "");
+    return `<section class="grid grid-2" id="commute-tax" style="margin-top:2.5rem;align-items:start">
+      ${c ? `<div class="card ct-card"><span class="eyebrow">Commute</span><h2 style="font-size:var(--step-2)">Drive times from ${esc(n.name)}</h2>
+        <div class="ct-list">${CPTS.map(([k, label]) => c[k] ? `<div class="ct-row"><span>${label}</span><strong>${c[k].min <= 2 ? "You're there" : `~${c[k].min} min`}</strong><small>${c[k].mi ? c[k].mi + " mi" : ""}</small></div>` : "").join("")}</div>
+        <p class="stamp">${esc(M.commute_source || "")}</p></div>` : ""}
+      ${t ? `<div class="card ct-card"><span class="eyebrow">Property taxes</span><h2 style="font-size:var(--step-2)">${t.year} tax rates</h2>
+        <div class="table-wrap"><table class="ct-tax"><thead><tr><th>Location</th><th class="num">City</th><th class="num">School district</th><th class="num">County*</th><th class="num">Total</th></tr></thead><tbody>
+        ${t.rows.map((r) => `<tr><td>${esc(r.label)}</td><td class="num">${fmt(r.city)}</td><td class="num">${fmt(r.isd)}</td><td class="num">${fmt(r.county)}</td><td class="num"><strong>${fmt(r.total)}%</strong></td></tr>`).join("")}
+        </tbody></table></div>
+        <p class="ct-ex">At ${fmt(t.rows[0].total)}%, every $100,000 of taxable value costs about <strong>${money(t.rows[0].total * 1000)}</strong> a year. A homestead exemption lowers the school district portion once you live in the home.</p>
+        ${t.note ? `<p class="muted" style="font-size:.85rem">${esc(t.note)}</p>` : ""}
+        <p class="stamp">Rates per $100 of value. *County includes community college and hospital districts where they apply. Not included: MUD/PID or other special districts, which some newer communities add. Source: <a href="${esc(M.tax_source_url || "#")}" target="_blank" rel="noopener">Republic Title 2025 DFW Area Tax Rates</a>. Verify the exact address with the county appraisal district.</p></div>` : ""}
+    </section>`;
+  }
   function fact(k, v) { return `<div class="fact"><span class="k">${esc(k)}</span><span class="v">${v}</span></div>`; }
 
   function renderDetail(n) {
@@ -66,7 +84,7 @@
     const m = n.metrics || {};
     const metric = (v, f) => (v == null ? `<span class="pending">Awaiting MLS snapshot</span>` : f(v));
     detailView.innerHTML = `
-      <p><a class="link" href="#">← All neighborhoods</a></p>
+      <p><a class="link" href="neighborhoods.html">← All neighborhoods</a></p>
       <header class="detail-head">
         ${n.photo && PHOTOS[n.photo] ? `<figure style="margin:0"><div class="detail-photo" role="img" aria-label="${esc(PHOTOS[n.photo].place)}" style="background-image:url('${photoUrl(PHOTOS[n.photo], 1600)}')"></div><figcaption class="stamp">${esc(PHOTOS[n.photo].place)} · ${photoCredit(PHOTOS[n.photo])}</figcaption></figure>` : ""}
         <span class="eyebrow">${esc(n.submarket)}</span>
@@ -112,6 +130,7 @@
           </div>
         </aside>
       </div>
+      ${commuteTaxBlock(n)}
       ${marketBlock(n)}
       <section class="stack" id="schools" style="gap:.6rem;margin-top:2.5rem">
         <div class="sec-head" style="margin-bottom:.4rem"><div><span class="eyebrow">Schools</span><h2 style="font-size:var(--step-3)">Schools in and around ${esc(n.name)}</h2>
@@ -130,22 +149,25 @@
     });
     document.getElementById("ask-btn").addEventListener("click", () => store.set("pendingQ", `Tell me about ${n.name}`));
     document.getElementById("cmp-link").addEventListener("click", () => store.set("compareIds", [n.id]));
-    document.title = `${n.name} · Dallas Real Estate Internet`;
+    if (!window.DREI_AREA) document.title = `${n.name} · Dallas Real Estate Internet`;
     track("view_area", { id: n.id });
   }
 
   function route() {
-    const id = location.hash.replace("#", "");
+    const hashId = location.hash.replace("#", "");
+    // Old #id links forward to the area's own page.
+    if (!window.DREI_AREA && hashId && DATA.neighborhoods.some((x) => x.id === hashId)) { location.replace("areas/" + hashId + ".html"); return; }
+    const id = window.DREI_AREA || hashId;
     const n = DATA && DATA.neighborhoods.find((x) => x.id === id);
-    listView.hidden = !!n;
+    if (listView) listView.hidden = !!n;
     detailView.hidden = !n;
     if (n) { renderDetail(n); window.scrollTo(0, 0); } else { document.title = "Neighborhoods · Dallas Real Estate Internet"; renderList(); }
   }
 
   Promise.all([loadJSON("data/neighborhoods.json"), loadJSON("data/photos.json").catch(() => ({})), loadJSON("data/market.json").catch(() => null)]).then(([d, P, MK]) => {
     DATA = d; PHOTOS = P; MARKET = MK;
-    ["f-q", "f-tier", "f-sort"].forEach((id) => document.getElementById(id).addEventListener("input", renderList));
+    ["f-q", "f-tier", "f-sort"].forEach((id) => { const el = document.getElementById(id); if (el) el.addEventListener("input", renderList); });
     window.addEventListener("hashchange", route);
     route();
-  }).catch(() => { document.getElementById("areas").innerHTML = `<p class="muted">Couldn't load neighborhood data. Refresh to try again.</p>`; });
+  }).catch(() => { const a = document.getElementById("areas"); if (a) a.innerHTML = `<p class="muted">Couldn't load neighborhood data. Refresh to try again.</p>`; });
 })();

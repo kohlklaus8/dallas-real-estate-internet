@@ -37,6 +37,8 @@
       ["intelligence.html#moving", "All moving guides", ""],
     ] },
     { label: "Real Estate", key: "re", items: [
+      [C.KW_SEARCH_URL || "market.html", "Search homes for sale", "Live listings on Kohl's KW site"],
+      ["home-value.html", "What's my home worth?", "Free market analysis from Kohl"],
       ["market.html", "Market dashboard", "Prices, inventory, timing"],
       ["tools.html#affordability", "Buying: what can I afford?", "Texas taxes included"],
       ["tools.html#proceeds", "Selling: what would I net?", "Itemized proceeds"],
@@ -112,12 +114,12 @@
     const el = document.getElementById("site-header");
     if (!el) return;
     const cur = here + (location.hash || "");
-    const link = ([href, title, sub]) => `<a href="${href}"${href === cur ? ' aria-current="page"' : ""}>${esc(title)}${sub ? `<span>${esc(sub)}</span>` : ""}</a>`;
+    const link = ([href, title, sub]) => `<a href="${href}"${/^https?:/.test(href) ? ' target="_blank" rel="noopener"' : ""}${href === cur ? ' aria-current="page"' : ""}>${esc(title)}${sub ? `<span>${esc(sub)}</span>` : ""}</a>`;
     const isCur = (m) => (m.items || []).some(([h]) => h.split("#")[0] === here && here !== "index.html" && (!h.includes("#") || h === cur)) || (m.key === "areas" && here === "neighborhoods.html");
     const panels = MENU.map((m) => `
       <li><details class="dd${isCur(m) ? " is-current" : ""}"><summary>${esc(m.label)}</summary>
         <div class="panel${m.wide ? " wide" : ""}">
-          ${m.groups ? m.groups.map(([g, list]) => `<div><h5>${esc(g)}</h5>${list.map(([id, n]) => link([`neighborhoods.html#${id}`, n])).join("")}</div>`).join("") : m.items.map(link).join("")}
+          ${m.groups ? m.groups.map(([g, list]) => `<div><h5>${esc(g)}</h5>${list.map(([id, n]) => link([`areas/${id}.html`, n])).join("")}</div>`).join("") : m.items.map(link).join("")}
           ${m.foot ? `<div class="foot">${m.foot.map(([h, t]) => `<a href="${h}">${esc(t)} →</a>`).join("")}</div>` : ""}
         </div></details></li>`).join("");
     el.className = "site-header";
@@ -158,7 +160,7 @@
   function areaCard(n, photos, i = 0) {
     const p = n.photo && photos ? photos[n.photo] : null;
     const style = p ? `background-image:url('${photoUrl(p, 800)}')` : `background:linear-gradient(140deg,${GRADS[i % GRADS.length]})`;
-    return `<a class="area" href="neighborhoods.html#${esc(n.id)}" data-id="${esc(n.id)}">
+    return `<a class="area" href="areas/${esc(n.id)}.html" data-id="${esc(n.id)}">
       <div class="ph${p ? " photo" : ""}" style="${style}"${p ? ` role="img" aria-label="${esc(p.place)}"` : ""}><b>${esc(n.name)}</b><span class="price" title="Relative price tier">${"$".repeat(n.price_tier)}</span></div>
       <div class="body"><p>${esc(n.lifestyle_summary)}</p><div class="tags">${n.best_for.slice(0, 2).map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>
       ${p ? `<span class="stamp">Photo: ${esc(p.by)} / ${esc(p.site || "Unsplash")}${p.license ? ` (${esc(p.license)})` : ""}</span>` : ""}</div></a>`;
@@ -177,7 +179,7 @@
         <div class="footer-grid">
           <div class="stack">
             <a class="logo" href="index.html"><i aria-hidden="true">D</i><span><b>${esc(C.BRAND_NAME)}</b></span></a>
-            <p class="muted">${esc(C.TAGLINE)}. Your guide to living, moving and investing in Dallas–Fort Worth.</p>
+            <p class="muted">Neighborhoods, schools, market numbers and moving help for Dallas–Fort Worth, plus an AI that answers your questions.</p>
           </div>
           <div><h4>Explore</h4><ul>
             <li><a href="why.html">Why DFW</a></li><li><a href="neighborhoods.html">Neighborhoods</a></li><li><a href="schools.html">Schools</a></li><li><a href="intelligence.html#moving">Moving Here</a></li>
@@ -378,6 +380,19 @@
     });
     if (/[?&]guide=sent/.test(location.search)) guideDone(form, store.get("profile", {}).name || "");
   }
+
+  // Sticky Call / Text / Book bar on phones.
+  function mobileBar() {
+    if (document.getElementById("m-bar") || !C.AGENT_PHONE) return;
+    const tel = C.AGENT_PHONE.replace(/[^0-9+]/g, "");
+    const b = document.createElement("nav");
+    b.id = "m-bar"; b.className = "m-bar"; b.setAttribute("aria-label", "Contact Kohl");
+    b.innerHTML = `<a href="tel:${tel}" data-mb="call">Call</a><a href="sms:${tel}" data-mb="text">Text</a>${C.CALENDAR_URL ? `<a class="hot" href="${esc(C.CALENDAR_URL)}" target="_blank" rel="noopener" data-mb="book">Book a call</a>` : ""}`;
+    b.addEventListener("click", (e) => { const a = e.target.closest("a"); if (a) track("mobile_bar", { action: a.dataset.mb }); });
+    document.body.appendChild(b);
+    document.body.classList.add("has-m-bar");
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mobileBar); else mobileBar();
 
   // Book-a-call links: any element with data-cal points at CALENDAR_URL (hidden when it's blank).
   function wireCal() {
