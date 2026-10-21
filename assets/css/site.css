@@ -816,3 +816,14 @@ i.pi { background: var(--navy); color: #fff; } i.tx { background: var(--brass); 
 .hv-ball { background: var(--surface-2); border-radius: 14px; padding: .9rem 1rem; }
 .hv-ball strong { font-size: 1.6rem; display: block; }
 @media (max-width: 760px) { .hv { grid-template-columns: 1fr; } .hv-form .row2 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .hv-form .row-2 { grid-template-columns: 1fr; } }
+
+/* Address autocomplete */
+.ac-wrap { position: relative; display: grid; gap: .3rem; font-weight: 600; font-size: .9rem; }
+.ac-list { position: absolute; left: 0; right: 0; top: 100%; margin: .25rem 0 0; padding: .3rem; list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 12px 30px rgba(15,27,51,.14); z-index: 30; }
+.ac-list li { display: grid; gap: .1rem; padding: .6rem .7rem; border-radius: 8px; cursor: pointer; font-weight: 400; }
+.ac-list li strong { font-weight: 700; }
+.ac-list li span { font-size: .82rem; color: var(--mute); }
+.ac-list li[aria-selected="true"], .ac-list li:hover { background: var(--surface-2); }
+.hv-facts { margin: -.2rem 0 0; background: #eefaf3; border-radius: 10px; padding: .6rem .8rem; font-size: .88rem; }
+.hv-range { background: var(--surface-2); border-radius: 16px; padding: 1.1rem 1.2rem; display: grid; gap: .25rem; }
+.hv-range strong { font-size: clamp(1.8rem, 5vw, 2.4rem); letter-spacing: -.02em; }
