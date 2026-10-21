@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://dallasrealestateinternet.com/assets/img/og-share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=20261021f">
+<link rel="stylesheet" href="assets/css/site.css?v=20261021g">
 </head>
 <body>
 <header id="site-header"></header>
@@ -48,9 +48,9 @@
   </section>
 </main>
 <footer id="site-footer"></footer>
-<script src="assets/js/config.js?v=20261021f"></script>
-<script src="assets/js/app.js?v=20261021f"></script>
-<script src="assets/js/schools.js?v=20261021f"></script>
+<script src="assets/js/config.js?v=20261021g"></script>
+<script src="assets/js/app.js?v=20261021g"></script>
+<script src="assets/js/schools.js?v=20261021g"></script>
 <script>
 (function () {
   const { esc, loadJSON } = window.DREI;
@@ -61,7 +61,7 @@
     pick.innerHTML = N.map((n) => `<option value="${esc(n.id)}">${esc(n.name)}</option>`).join("");
     const show = () => {
       const n = N.find((x) => x.id === pick.value) || N[0];
-      document.getElementById("area-schools").innerHTML = `<h2 style="margin-bottom:.8rem">${esc(n.name)}</h2><div id="sbox"></div><p style="margin-top:1rem"><a class="link" href="neighborhoods.html#${esc(n.id)}">Full ${esc(n.name)} profile →</a></p>`;
+      document.getElementById("area-schools").innerHTML = `<h2 style="margin-bottom:.8rem">${esc(n.name)}</h2><div id="sbox"></div><p style="margin-top:1rem"><a class="link" href="areas/${esc(n.id)}.html">Full ${esc(n.name)} profile →</a></p>`;
       S.render(document.getElementById("sbox"), n);
       history.replaceState(null, "", "#" + n.id);
     };

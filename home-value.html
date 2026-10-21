@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What's My Home Worth? Free Market Analysis · The Dallas Real Estate Internet</title>
+<meta name="description" content="Find out what your Dallas–Fort Worth home is worth. Get a free market analysis from local REALTOR® Kohl Klaus, based on recent nearby sales.">
+<link rel="canonical" href="https://dallasrealestateinternet.com/home-value.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Dallas Real Estate Internet">
+<meta property="og:title" content="What's my home worth? Free market analysis">
+<meta property="og:description" content="Find out what your Dallas–Fort Worth home is worth. Get a free market analysis from local REALTOR® Kohl Klaus, based on recent nearby sales.">
+<meta property="og:url" content="https://dallasrealestateinternet.com/home-value.html">
+<meta property="og:image" content="https://dallasrealestateinternet.com/assets/img/og-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dallasrealestateinternet.com/assets/img/og-share.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/site.css?v=20261021g">
+</head>
+<body>
+<header id="site-header"></header>
+<main class="wrap section" style="padding-top:2rem">
+  <div class="hv">
+    <div class="stack" style="gap:1rem">
+      <span class="eyebrow">Selling · Free, no obligation</span>
+      <h1 style="font-size:var(--step-4)">What's your home worth?</h1>
+      <p class="lede">Online estimates can miss by tens of thousands. Kohl looks at recent sales near you, your home's updates and today's market, then sends you a real price range.</p>
+      <form class="card hv-form" id="hv-form" novalidate>
+        <label>Property address<input name="address" autocomplete="street-address" required placeholder="1234 Main St, Frisco, TX 75034"></label>
+        <div class="row2">
+          <label>Beds<input name="beds" inputmode="numeric" placeholder="3"></label>
+          <label>Baths<input name="baths" inputmode="decimal" placeholder="2.5"></label>
+          <label>Sq ft<input name="sqft" inputmode="numeric" placeholder="2,100"></label>
+        </div>
+        <div class="row-2">
+          <label>Condition<select name="condition"><option value="">Choose one</option><option>Move-in ready, updated</option><option>Good, some updates</option><option>Original, needs updating</option><option>Needs major work</option></select></label>
+          <label>Thinking of selling<select name="timeline"><option value="">Choose one</option><option>Just curious</option><option>0–3 months</option><option>3–6 months</option><option>6–12 months</option><option>12+ months</option></select></label>
+        </div>
+        <label>Recent updates or anything special <span class="muted" style="font-weight:400">(optional)</span><textarea name="notes" placeholder="New roof 2023, remodeled kitchen, pool, corner lot…"></textarea></label>
+        <div class="row-2">
+          <label>Name<input name="name" autocomplete="name" required></label>
+          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <label>Phone <span class="muted" style="font-weight:400">(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
+        <button class="btn btn-brass" type="submit" style="justify-self:start">Get my home value</button>
+        <p class="muted" id="hv-msg" style="font-size:.88rem;margin:0">No spam. Kohl will reach out personally with your market analysis.</p>
+      </form>
+    </div>
+    <aside class="stack" style="gap:1rem">
+      <div class="card">
+        <h3>What you'll get</h3>
+        <ul class="clean pros">
+          <li>Recent sales of similar homes near you</li>
+          <li>A realistic price range for today's market</li>
+          <li>Which updates add value, and which don't</li>
+          <li>What you'd walk away with after costs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Ballpark by ZIP code</h3>
+        <p class="muted" style="font-size:.9rem;margin:0">While you wait, see the typical home value in your ZIP.</p>
+        <div class="hv-zip"><input id="hv-zip" inputmode="numeric" maxlength="5" placeholder="ZIP, e.g. 75034" aria-label="ZIP code"><button class="btn btn-sm" type="button" id="hv-zip-go">Look up</button></div>
+        <div id="hv-ball" aria-live="polite"></div>
+      </div>
+      <div class="card">
+        <h3>Already have a number in mind?</h3>
+        <p class="muted" style="font-size:.9rem;margin:0">See what you'd net after commissions, title fees and payoff.</p>
+        <a class="link" href="tools.html#proceeds">Seller net proceeds calculator →</a>
+      </div>
+      <p class="stamp">A market analysis is a REALTOR®'s opinion of price, not an appraisal. ZIP values are Zillow Home Value Index estimates for the typical home, not your home.</p>
+    </aside>
+  </div>
+</main>
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js?v=20261021g"></script>
+<script src="assets/js/app.js?v=20261021g"></script>
+<script>
+(function () {
+  const { sendLead, track, toast, esc, money, loadJSON, C } = window.DREI;
+  const f = document.getElementById("hv-form"), msg = document.getElementById("hv-msg");
+  const hp = document.createElement("input"); hp.type = "text"; hp.name = "hp_confirm_field"; hp.tabIndex = -1; hp.autocomplete = "new-password"; hp.setAttribute("data-lpignore", "true"); hp.setAttribute("data-1p-ignore", ""); hp.setAttribute("aria-hidden", "true"); hp.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;opacity:0"; f.appendChild(hp);
+  f.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const v = (k) => (f[k].value || "").trim();
+    if (!v("address") || !v("name") || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("email"))) { msg.textContent = "Please add the address, your name and a valid email."; msg.style.color = "var(--bad)"; return; }
+    const ok = sendLead({ name: v("name"), email: v("email"), phone: v("phone"), ...(hp.value ? { website: hp.value } : {}), kind: "home-value", goal: "Home value request", timeline: v("timeline"),
+      request: "Free market analysis (CMA)", address: v("address"), beds: v("beds"), baths: v("baths"), sqft: v("sqft"), condition: v("condition"), notes: v("notes"), source: "home-value", page: "home-value.html", submitted_at: new Date().toISOString() });
+    track("seller_tool", { kind: "home_value_request" });
+    f.innerHTML = ok ? `<div class="note" style="font-size:1.05rem"><strong>✓ Got it, ${esc(v("name").split(" ")[0])}!</strong> Kohl will follow up with your market analysis for ${esc(v("address"))}.</div><p>Want to talk it through? <a class="link" href="${esc(C.CALENDAR_URL || "tel:" + C.AGENT_PHONE)}" target="_blank" rel="noopener">Book a 30-min call</a> or call/text ${esc(C.AGENT_PHONE)}.</p>`
+      : `<div class="note"><strong>That didn't send.</strong> Please call or text Kohl at ${esc(C.AGENT_PHONE)} or email ${esc(C.AGENT_EMAIL)}.</div>`;
+  });
+  let ZIPS = null;
+  const go = () => {
+    const z = document.getElementById("hv-zip").value.trim(), out = document.getElementById("hv-ball");
+    const show = () => { const r = (ZIPS || []).find((x) => x.zip === z);
+      out.innerHTML = r ? `<div class="hv-ball"><span class="muted" style="font-size:.85rem">Typical home value · ${esc(r.zip)} ${esc(r.city)}</span><strong>${money(r.home_value)}</strong><span class="muted" style="font-size:.85rem">${r.home_value_yoy >= 0 ? "+" : ""}${r.home_value_yoy}% vs. last year</span></div>`
+        : `<p class="muted" style="font-size:.9rem">${/^\d{5}$/.test(z) ? "We don't have that ZIP yet. Kohl can still pull sales for you." : "Enter a 5-digit ZIP."}</p>`; };
+    if (ZIPS) return show();
+    loadJSON("data/market.json").then((m) => { ZIPS = m.by_zip || []; show(); }).catch(() => { out.textContent = "Couldn't load values right now."; });
+  };
+  document.getElementById("hv-zip-go").addEventListener("click", go);
+  document.getElementById("hv-zip").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); go(); } });
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2281685b4c78498faca01eefbcb5d450"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
