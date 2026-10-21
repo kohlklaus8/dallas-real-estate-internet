@@ -3,7 +3,7 @@
  *
  * Routes
  *   POST /chat  { messages:[{role,content}], profile:{}, page }  ->  { reply, followups[], handoff, reason, intent, sources[{title,url}] }
- *   POST /lead  { ...handoff brief }                              ->  forwards to LEAD_WEBHOOK (optional; the site posts to FormSubmit directly)
+ *   POST /lead  { name, email, kind?:"guide", ...brief }            ->  emails Kohl a lead alert (and the visitor the guide) via Resend
  *   GET  /health
  *
  * Secrets / vars (Cloudflare dashboard → Worker → Settings → Variables and Secrets, or wrangler.toml):
@@ -12,7 +12,8 @@
  *   SITE_URL           (var)      the live site; the Worker reads /data/*.json from it (single source of truth)
  *   ALLOWED_ORIGINS    (var)      comma-separated origins allowed to call this Worker
  *   WEB_SEARCH         (var)      "on" (default) lets the assistant search the web for current info, with citations
- *   LEAD_WEBHOOK       (secret, optional)
+ *   RESEND_API_KEY     (secret)   Resend key for lead alerts and the guide email
+ *   LEAD_TO / REPLY_TO / MAIL_FROM / PUBLIC_URL (vars, optional) — defaults: KPG inbox, kohl@dallasrealestateinternet.com, https://dallasrealestateinternet.com
  */
 
 const DATA_TTL_MS = 10 * 60 * 1000;
@@ -35,7 +36,7 @@ export default {
     const url = new URL(request.url);
     const json = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
 
-    if (url.pathname === "/health" || url.pathname === "/") { const k0 = String(env.ANTHROPIC_API_KEY || "").trim(); return json({ ok: true, model: env.MODEL || "claude-sonnet-5-5", key: !!k0, key_format_ok: /^sk-ant-[A-Za-z0-9_-]{20,}$/.test(k0), key_len: k0.length }); }
+    if (url.pathname === "/health" || url.pathname === "/") { const k0 = String(env.ANTHROPIC_API_KEY || "").trim(); return json({ ok: true, model: env.MODEL || "claude-sonnet-5-5", key: !!k0, key_format_ok: /^sk-ant-[A-Za-z0-9_-]{20,}$/.test(k0), key_len: k0.length, email: !!env.RESEND_API_KEY }); }
     if (request.method !== "POST") return json({ error: "Use POST" }, 405);
     if (allowed.length && !allowed.includes(origin)) return json({ error: "Origin not allowed" }, 403);
 
@@ -178,10 +179,59 @@ function parseReply(content) {
   };
 }
 
+// ---------- leads + branded email (Resend) ----------
+const escH = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const flat = (v) => (v == null ? "" : typeof v === "object" ? (Array.isArray(v) ? v.join(", ") : Object.entries(v).filter(([, x]) => x !== "" && x != null).map(([k, x]) => `${k}: ${typeof x === "object" ? JSON.stringify(x) : x}`).join(" | ")) : String(v));
+
+function shell(inner, site) {
+  return `<!doctype html><html><body style="margin:0;background:#f3f7ff;font-family:Arial,Helvetica,sans-serif;color:#0f1b33">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f7ff;padding:24px 12px"><tr><td align="center">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:16px;overflow:hidden">
+<tr><td style="background:#0f1b33;padding:20px 28px"><span style="display:inline-block;background:#1463f3;color:#fff;font-weight:bold;border-radius:6px;padding:2px 8px;margin-right:8px">D</span><span style="color:#ffffff;font-weight:bold;font-size:16px">The Dallas Real Estate Internet</span></td></tr>
+<tr><td style="height:6px;background:#ff7a1a;font-size:0;line-height:0">&nbsp;</td></tr>
+<tr><td style="padding:28px">${inner}</td></tr>
+<tr><td style="padding:18px 28px;background:#f3f7ff;font-size:12px;line-height:1.5;color:#44506a">Kohl Klaus, REALTOR® · Templeton Real Estate Group · Keller Williams Realty Urban Dallas<br>337-794-9971 · <a href="${site}" style="color:#1463f3">dallasrealestateinternet.com</a></td></tr>
+</table></td></tr></table></body></html>`;
+}
+
+async function sendMail(env, msg) {
+  const r = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${String(env.RESEND_API_KEY || "").trim()}`, "Content-Type": "application/json" }, body: JSON.stringify(msg) });
+  return r.ok;
+}
+
 async function handleLead(body, env, json) {
-  if (!body || !body.email || !body.name) return json({ error: "Name and email required" }, 400);
-  if (!env.LEAD_WEBHOOK) return json({ error: "LEAD_WEBHOOK not configured" }, 500);
-  const brief = { ...body, received_at: new Date().toISOString() };
-  const r = await fetch(env.LEAD_WEBHOOK, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(brief) });
-  return r.ok ? json({ ok: true }) : json({ error: "Lead webhook failed", status: r.status }, 502);
+  const name = String(body?.name || "").trim().slice(0, 80), email = String(body?.email || "").trim().slice(0, 120);
+  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ error: "Name and a valid email are required" }, 400);
+  if (body.website) return json({ ok: true }); // honeypot: bots fill hidden fields
+  if (!env.RESEND_API_KEY) return json({ error: "Email not configured" }, 503);
+  const site = (env.PUBLIC_URL || "https://dallasrealestateinternet.com").replace(/\/$/, "");
+  const from = env.MAIL_FROM || "Kohl Klaus <kohl@dallasrealestateinternet.com>";
+  const to = env.LEAD_TO || "klauspropertymgmt@gmail.com";
+  const replyTo = env.REPLY_TO || to;
+  const isGuide = body.kind === "guide";
+  const first = name.split(/\s+/)[0];
+
+  // 1) Lead alert for Kohl
+  const skip = new Set(["kind", "website", "_subject", "_template", "_captcha"]);
+  const rows = Object.entries({ name, email, ...body }).filter(([k, v]) => !skip.has(k) && flat(v)).map(([k, v]) => `<tr><td style="padding:8px 12px;border-bottom:1px solid #e3e9f4;color:#44506a;font-size:13px;white-space:nowrap;vertical-align:top">${escH(k.replace(/_/g, " "))}</td><td style="padding:8px 12px;border-bottom:1px solid #e3e9f4;font-size:14px">${escH(flat(v)).slice(0, 1500)}</td></tr>`);
+  const seen = new Set(); const uniq = rows.filter((r) => (seen.has(r) ? false : seen.add(r)));
+  const alertHtml = shell(`<p style="margin:0 0 4px;font-size:13px;color:#b54708;font-weight:bold;letter-spacing:.08em">NEW ${isGuide ? "GUIDE REQUEST" : "LEAD"}</p>
+<h1 style="margin:0 0 16px;font-size:22px">${escH(name)}${body.goal ? ` · ${escH(body.goal)}` : ""}</h1>
+<p style="margin:0 0 16px;font-size:14px;color:#44506a">Hit reply to answer ${escH(first)} directly.</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e3e9f4;border-radius:10px">${uniq.join("")}</table>`, site);
+  const okAlert = await sendMail(env, { from, to: [to], reply_to: email, subject: `${isGuide ? "Guide request" : "New lead"}: ${name}${body.goal ? " (" + body.goal + ")" : ""}`, html: alertHtml });
+
+  // 2) The guide, for guide requests
+  let okGuide = null;
+  if (isGuide) {
+    const pdf = `${site}/assets/guide/Moving-to-DFW-Guide.pdf`;
+    const guideHtml = shell(`<h1 style="margin:0 0 12px;font-size:24px">Hi ${escH(first)}, here's your guide!</h1>
+<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#2a3550">Thanks for requesting <b>Moving to Dallas–Fort Worth</b>, a 12-page playbook covering the real monthly cost, which area fits you, how Texas homes and home buying differ, and a full move checklist.</p>
+<p style="margin:0 0 24px"><a href="${pdf}" style="display:inline-block;background:#ff7a1a;color:#0f1b33;font-weight:bold;text-decoration:none;padding:14px 24px;border-radius:999px">Download the guide (PDF)</a></p>
+<p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#2a3550">When you're ready, a quick 20-minute call is the fastest way to narrow DFW down to two or three areas that fit your life and budget. Just reply to this email or call or text me at <b>337-794-9971</b>.</p>
+<p style="margin:16px 0 0;font-size:15px">Kohl</p>
+<p style="margin:20px 0 0;font-size:13px;color:#44506a">More on the website: <a href="${site}/moving.html" style="color:#1463f3">Moving to DFW</a> · <a href="${site}/neighborhoods.html" style="color:#1463f3">40 area profiles</a> · <a href="${site}/ask.html" style="color:#1463f3">Ask the AI anything</a></p>`, site);
+    okGuide = await sendMail(env, { from, to: [email], reply_to: replyTo, subject: "Your Moving to DFW guide", html: guideHtml });
+  }
+  return okAlert && okGuide !== false ? json({ ok: true }) : json({ error: "Email send failed", alert: okAlert, guide: okGuide }, 502);
 }
