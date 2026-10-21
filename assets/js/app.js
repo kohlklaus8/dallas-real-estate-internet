@@ -329,7 +329,7 @@
       done.innerHTML = sent
         ? `<div class="note" style="font-size:1.05rem"><strong>✓ Sent! Thanks, ${esc(data.name.split(" ")[0])}.</strong> ${esc(C.AGENT_NAME)} will reach out${data.timeline === "0–3 months" ? " shortly" : " soon"} with your questions in hand.</div>
            <button class="btn btn-sm" type="button" data-close>Close</button>
-           ${C.CALENDAR_URL ? `<a class="btn btn-brass" href="${esc(C.CALENDAR_URL)}" target="_blank" rel="noopener">Book a time now</a>` : ""}`
+           ${C.CALENDAR_URL ? `<a class="btn btn-brass" href="${esc(C.CALENDAR_URL)}" target="_blank" rel="noopener">Book a 30-min call now</a>` : ""}`
         : `<div class="note"><strong>Your request is saved on this device, but it wasn't sent.</strong> Reach ${esc(C.AGENT_NAME)} directly and paste the summary below.</div>
            <p><strong>${esc(C.AGENT_PHONE)}</strong> · <strong>${esc(C.AGENT_EMAIL)}</strong></p>
            <textarea id="ho-summary" readonly style="min-height:140px">${esc(`Hi ${C.AGENT_NAME.split(" ")[0]}, I'm ${data.name} (${data.email}${data.phone ? ", " + data.phone : ""}). Goal: ${data.goal}. Timeline: ${data.timeline}.\n${data.message || ""}\n\nRecent questions:\n${brief.recent_questions || "(none)"}`)}</textarea>
@@ -378,6 +378,16 @@
     });
     if (/[?&]guide=sent/.test(location.search)) guideDone(form, store.get("profile", {}).name || "");
   }
+
+  // Book-a-call links: any element with data-cal points at CALENDAR_URL (hidden when it's blank).
+  function wireCal() {
+    document.querySelectorAll("[data-cal]").forEach((a) => {
+      if (!C.CALENDAR_URL) { a.hidden = true; return; }
+      a.href = C.CALENDAR_URL; a.target = "_blank"; a.rel = "noopener"; a.hidden = false;
+      if (!a.dataset.calWired) { a.dataset.calWired = "1"; a.addEventListener("click", () => track("book_call", { from: a.dataset.cal })); }
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wireCal); else wireCal();
 
   window.DREI = { guideForm, sendLead, C, esc, money, pct, store, track, loadJSON, tier, shield, shields, openHandoff, TIER_LABEL, photoUrl, photoCredit, areaCard, GRADS, toast };
 })();
