@@ -5,7 +5,7 @@
   document.getElementById("hero-form").addEventListener("submit", (e) => { e.preventDefault(); go(q.value); });
   document.querySelectorAll("#hero-chips button").forEach((b) => b.addEventListener("click", () => go(b.textContent)));
 
-  document.getElementById("ag-line").textContent = `${C.AGENT_NAME}, ${C.AGENT_TITLE} · your local guide to buying, selling and moving in DFW`;
+  document.getElementById("ag-line").textContent = `${C.AGENT_NAME}, ${C.AGENT_TITLE} · ${C.BROKER_NAME} · your local guide to buying, selling and moving in DFW`;
 
   // Relocation guide signup (lead magnet): emails the PDF link automatically.
   window.DREI.guideForm(document.getElementById("guide-form"), document.getElementById("g-msg"), "home-guide");

@@ -198,6 +198,7 @@
           <div class="trec">
             <a href="${esc(C.IABS_URL)}" target="_blank" rel="noopener">Texas Real Estate Commission Information About Brokerage Services</a>
             <a href="${esc(C.CPN_URL)}" target="_blank" rel="noopener">Texas Real Estate Commission Consumer Protection Notice</a>
+            <a href="privacy.html">Privacy policy</a>
           </div>
           ${C.BROKER_NAME ? `<p><strong>${esc(C.AGENT_NAME)}</strong>, ${esc(C.AGENT_TITLE)}, Texas license #${esc(C.AGENT_LICENSE || "")}${C.TEAM_NAME ? `, ${esc(C.TEAM_NAME)}` : ""}. Licensed real estate sales agent sponsored by <strong>${esc(C.BROKER_NAME)}</strong>.</p>` : ""}
           <p>Equal Housing Opportunity. Neighborhood information is editorial and general in nature. It does not describe or rank areas by the characteristics of the people who live there. AI answers and calculator results are estimates, not appraisals, lending decisions, or legal or tax advice. Verify all figures before you rely on them.</p>
@@ -286,7 +287,7 @@
               ${["0–3 months", "3–6 months", "6–12 months", "12+ months", "Not sure"].map((t) => `<option${(prof.timeline || "") === t ? " selected" : ""}>${t}</option>`).join("")}
             </select></label>
           <label for="ho-msg">What would be most helpful?<textarea id="ho-msg" name="message" placeholder="e.g. I'd like a tour in Frisco this weekend, or a rough idea of what my home in Plano would net.">${esc(reason)}</textarea></label>
-          <label style="display:flex;gap:.5rem;align-items:flex-start;font-weight:400"><input id="ho-consent" type="checkbox" style="width:auto;margin-top:.25rem" required> I agree to be contacted about my request by phone, text or email.</label>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;font-weight:400"><input id="ho-consent" type="checkbox" style="width:auto;margin-top:.25rem" required> I agree to be contacted about my request by phone, text or email. <a class="link" href="privacy.html" target="_blank">Privacy</a></label>
           <p class="muted" id="ho-error" role="alert" style="color:var(--bad)"></p>
           <button class="btn btn-brass" type="submit">Send to ${esc(C.AGENT_NAME.split(" ")[0])}</button>
         </form>
