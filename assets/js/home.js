@@ -14,7 +14,7 @@
     const f = e.target, msg = document.getElementById("g-msg");
     const data = { name: f.name.value.trim(), email: f.email.value.trim() };
     if (!data.name || !/.+@.+\..+/.test(data.email)) { msg.textContent = "Add your first name and a valid email."; msg.style.color = "var(--bad)"; return; }
-    const brief = { ...data, goal: "Relocate to North Texas", request: "DFW Relocation Guide", source: "home-guide", submitted_at: new Date().toISOString(), profile: store.get("profile", {}) };
+    const brief = { ...data, goal: "Relocate to North Texas", request: "Moving to DFW guide (12-page PDF)", source: "home-guide", submitted_at: new Date().toISOString(), profile: store.get("profile", {}) };
     store.set("profile", { ...store.get("profile", {}), name: data.name, email: data.email });
     store.push("requests", { ...brief, timeline: "—" }, 20);
     let sent = false;

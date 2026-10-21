@@ -4,6 +4,7 @@
   const MENU = [
     { label: "Why DFW", key: "why", items: [
       ["why.html", "Why people move here", "Jobs, no state income tax, lifestyle"],
+      ["moving.html", "Moving to DFW: start here", "The relocation playbook"],
       ["why.html#costs", "Cost of living & taxes", "What a DFW budget looks like"],
       ["why.html#getting-around", "Getting around", "Highways, toll roads, DART, airports"],
       ["market.html", "The housing market now", "Plain-English market dashboard"],
@@ -27,11 +28,12 @@
       ["intelligence.html#living", "Living here guides", "Toll roads, squares, lakes"],
     ] },
     { label: "Moving Here", key: "moving", items: [
+      ["moving.html", "Moving to DFW: start here", "Money, areas, Texas homes, checklist"],
       ["intelligence.html#dfw-moving-checklist", "First 90 days checklist", "Licenses, registration, homestead"],
       ["schools.html", "Schools", "Official ratings for every public school"],
       ["intelligence.html#choosing-electricity-in-dfw", "Electricity & utilities", "How to pick a plan"],
       ["intelligence.html#moving-to-dfw-from-california", "Relocating from out of state", "What surprises people"],
-      ["index.html#guide", "Free DFW Relocation Guide", "Get it by email"],
+      ["moving.html#guide", "Free Moving to DFW Guide", "12-page PDF by email"],
       ["intelligence.html#moving", "All moving guides", ""],
     ] },
     { label: "Real Estate", key: "re", items: [
@@ -345,5 +347,5 @@
   loadAnalytics();
   track("page_view", { page: here });
 
-  window.DREI = { sendLead, C, esc, money, pct, store, track, loadJSON, tier, shield, shields, openHandoff, TIER_LABEL, photoUrl, photoCredit, areaCard, GRADS };
+  window.DREI = { sendLead, C, esc, money, pct, store, track, loadJSON, tier, shield, shields, openHandoff, TIER_LABEL, photoUrl, photoCredit, areaCard, GRADS, toast };
 })();
