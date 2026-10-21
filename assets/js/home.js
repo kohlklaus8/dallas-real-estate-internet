@@ -5,7 +5,6 @@
   document.getElementById("hero-form").addEventListener("submit", (e) => { e.preventDefault(); go(q.value); });
   document.querySelectorAll("#hero-chips button").forEach((b) => b.addEventListener("click", () => go(b.textContent)));
 
-  document.getElementById("ag-init").textContent = C.AGENT_NAME.split(" ").map((w) => w[0]).join("").slice(0, 2);
   document.getElementById("ag-line").textContent = `${C.AGENT_NAME}, ${C.AGENT_TITLE} · your local guide to buying, selling and moving in DFW`;
 
   // Relocation guide signup (lead magnet): emails the PDF link automatically.

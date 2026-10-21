@@ -197,7 +197,7 @@
             <a href="${esc(C.IABS_URL)}" target="_blank" rel="noopener">Texas Real Estate Commission Information About Brokerage Services</a>
             <a href="${esc(C.CPN_URL)}" target="_blank" rel="noopener">Texas Real Estate Commission Consumer Protection Notice</a>
           </div>
-          ${C.BROKER_NAME ? `<p>${esc(C.AGENT_NAME)} is a licensed real estate sales agent sponsored by ${esc(C.BROKER_NAME)}.</p>` : ""}
+          ${C.BROKER_NAME ? `<p><strong>${esc(C.AGENT_NAME)}</strong>, ${esc(C.AGENT_TITLE)}, Texas license #${esc(C.AGENT_LICENSE || "")}${C.TEAM_NAME ? `, ${esc(C.TEAM_NAME)}` : ""}. Licensed real estate sales agent sponsored by <strong>${esc(C.BROKER_NAME)}</strong>.</p>` : ""}
           <p>Equal Housing Opportunity. Neighborhood information is editorial and general in nature. It does not describe or rank areas by the characteristics of the people who live there. AI answers and calculator results are estimates, not appraisals, lending decisions, or legal or tax advice. Verify all figures before you rely on them.</p>
           <p>Photos from Unsplash, Pexels and Wikimedia Commons photographers, credited on each image with license. © ${year} ${esc(C.BRAND_NAME)}</p>
         </div>
