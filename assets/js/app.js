@@ -218,22 +218,29 @@
     Object.entries(brief).forEach(([k, v]) => { const t = pretty(v); if (t) flat[k.replace(/_/g, " ")] = t; });
     return { _subject: `New lead · ${C.BRAND_NAME}: ${brief.name || "visitor"}${brief.goal ? " (" + brief.goal + ")" : ""}`, _template: "table", _captcha: "false", name: brief.name || "", email: brief.email || "", ...flat };
   }
+  // Leads go to the site's own mail service first (branded emails via the Worker), then FormSubmit as a backup.
+  function viaWorker(brief) {
+    if (!C.AI_WORKER_URL || !brief) return Promise.resolve(false);
+    return fetch(C.AI_WORKER_URL.replace(/\/$/, "") + "/lead", { method: "POST", keepalive: true, headers: { "Content-Type": "application/json" }, body: JSON.stringify(brief) })
+      .then((r) => r.ok).catch(() => false);
+  }
   function deliver(item) {
-    return fetch(C.LEAD_ENDPOINT, { method: "POST", keepalive: true, headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(item.body) })
+    const viaForm = () => (C.LEAD_ENDPOINT ? fetch(C.LEAD_ENDPOINT, { method: "POST", keepalive: true, headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(item.body) })
       .then((r) => r.json().catch(() => ({})).then((j) => r.ok && (j.success === undefined || String(j.success) === "true")))
-      .catch(() => false)
+      .catch(() => false) : Promise.resolve(false));
+    return viaWorker(item.brief).then((ok) => ok || viaForm())
       .then((ok) => { if (ok) store.set("outbox", store.get("outbox", []).filter((x) => x.id !== item.id)); return ok; });
   }
   /** Returns true right away when the lead is queued (it finishes sending in the background). */
   function sendLead(brief) {
-    if (!C.LEAD_ENDPOINT) return false;
-    const item = { at: Date.now(), id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), body: leadBody(brief) };
+    if (!C.LEAD_ENDPOINT && !C.AI_WORKER_URL) return false;
+    const item = { at: Date.now(), id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), body: leadBody(brief), brief };
     store.set("outbox", [...store.get("outbox", []), item].slice(-10));
     deliver(item);
     return true;
   }
   // Retry anything that didn't finish sending last time (e.g. the visitor closed the tab mid-send).
-  setTimeout(() => { if (C.LEAD_ENDPOINT) store.get("outbox", []).filter((x) => Date.now() - (x.at || 0) > 120000).forEach((x) => { x.at = Date.now(); store.set("outbox", store.get("outbox", []).map((y) => (y.id === x.id ? x : y))); deliver(x); }); }, 1500);
+  setTimeout(() => { if (C.LEAD_ENDPOINT || C.AI_WORKER_URL) store.get("outbox", []).filter((x) => Date.now() - (x.at || 0) > 120000).forEach((x) => { x.at = Date.now(); store.set("outbox", store.get("outbox", []).map((y) => (y.id === x.id ? x : y))); deliver(x); }); }, 1500);
 
   function toast(msg) {
     const t = document.createElement("div");
@@ -349,38 +356,27 @@
 
 
   // ---------- free guide (lead magnet) ----------
-  // A regular (non-background) form post, because the form service only sends its automatic
-  // reply email that way. The visitor gets an email with the download link and comes back to
-  // this page with ?guide=sent, where the download button appears right away.
+  // Sends a branded email with the PDF (and a lead alert to Kohl) and shows the download button right away.
   const GUIDE_PDF = "assets/guide/Moving-to-DFW-Guide.pdf";
+  function guideDone(form, name) {
+    form.innerHTML = `<div style="display:grid;gap:.6rem"><p style="margin:0;font-weight:800;color:var(--teal)">You're in${name ? ", " + esc(name) : ""}! A copy is on its way to your inbox.</p><a class="btn btn-brass" href="${GUIDE_PDF}" target="_blank" rel="noopener" style="justify-content:center">Download the guide (PDF)</a><span style="font-size:.85rem;color:var(--mute)">Questions? Call or text Kohl at ${esc(C.AGENT_PHONE || "337-794-9971")}.</span></div>`;
+  }
   function guideForm(form, msg, source) {
-    if (!form || !C.LEAD_ENDPOINT) return;
-    const base = new URL(".", location.href).href;
-    const pdf = base + GUIDE_PDF;
-    form.action = C.LEAD_ENDPOINT.replace("/ajax/", "/");
-    form.method = "POST";
-    const hidden = {
-      _subject: `New guide request · ${C.BRAND_NAME}`,
-      _template: "table",
-      _next: base + location.pathname.split("/").pop() + "?guide=sent#guide",
-      _autoresponse: `Thanks for requesting the Moving to DFW guide! Download your free 12-page guide here: ${pdf}\n\nWhen you're ready to talk through areas or start looking, call or text Kohl at ${C.AGENT_PHONE || "337-794-9971"}.\n\nKohl Klaus, REALTOR®\nTempleton Real Estate Group · Keller Williams Realty Urban Dallas\n${base}`,
-      request: "Moving to DFW guide (12-page PDF, sent automatically)",
-      goal: "Relocate to DFW",
-      source,
-    };
-    Object.entries(hidden).forEach(([k, v]) => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = v; form.appendChild(i); });
+    if (!form) return;
+    const hp = document.createElement("input"); hp.type = "text"; hp.name = "website"; hp.tabIndex = -1; hp.autocomplete = "off"; hp.setAttribute("aria-hidden", "true"); hp.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;opacity:0";
+    form.appendChild(hp);
     form.addEventListener("submit", (e) => {
+      e.preventDefault();
       const name = form.name.value.trim(), email = form.email.value.trim();
-      if (!name || !/^\S+@\S+\.\S+$/.test(email)) { e.preventDefault(); if (msg) { msg.textContent = "Please add your first name and a valid email."; msg.style.color = "var(--bad)"; } return; }
+      if (!name || !/^\S+@\S+\.\S+$/.test(email)) { if (msg) { msg.textContent = "Please add your first name and a valid email."; msg.style.color = "var(--bad)"; } return; }
+      if (hp.value) { guideDone(form, name); return; }
       store.set("profile", { ...store.get("profile", {}), name, email });
       track("handoff_submit", { kind: "guide", source });
-      const btn = form.querySelector("button[type=submit]"); if (btn) btn.textContent = "Sending…";
+      sendLead({ name, email, kind: "guide", goal: "Relocate to DFW", request: "Moving to DFW guide (12-page PDF, emailed automatically)", source, page: location.pathname, submitted_at: new Date().toISOString(), profile: store.get("profile", {}) });
+      guideDone(form, name);
+      setTimeout(() => toast("\u2713 Your guide is ready, and a copy is on its way to your inbox."), 200);
     });
-    if (/[?&]guide=sent/.test(location.search)) {
-      const n = store.get("profile", {}).name || "";
-      form.innerHTML = `<div style="display:grid;gap:.6rem"><p style="margin:0;font-weight:800;color:var(--teal)">You're in${n ? ", " + esc(n) : ""}! A copy is on its way to your inbox.</p><a class="btn btn-brass" href="${GUIDE_PDF}" target="_blank" rel="noopener" style="justify-content:center">Download the guide (PDF)</a><span style="font-size:.85rem;color:var(--mute)">Questions? Call or text Kohl at ${esc(C.AGENT_PHONE || "337-794-9971")}.</span></div>`;
-      setTimeout(() => toast("✓ Your guide is ready to download."), 400);
-    }
+    if (/[?&]guide=sent/.test(location.search)) guideDone(form, store.get("profile", {}).name || "");
   }
 
   window.DREI = { guideForm, sendLead, C, esc, money, pct, store, track, loadJSON, tier, shield, shields, openHandoff, TIER_LABEL, photoUrl, photoCredit, areaCard, GRADS, toast };
