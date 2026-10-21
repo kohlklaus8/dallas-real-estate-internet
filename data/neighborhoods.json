@@ -13,7 +13,16 @@
    "rail": "DART rail access",
    "lake": "Lake and open-water access",
    "value": "More home for the money; higher means lower relative price"
-  }
+  },
+  "commute_source": "Off-peak drive estimates from OpenStreetMap routing (OSRM), measured from each area's center on 2026-10-21. Rush hour is often much longer.",
+  "commute_points": {
+   "downtown_dallas": "Downtown Dallas (Main St District)",
+   "legacy_plano": "Legacy West, Plano",
+   "dfw_airport": "DFW Airport",
+   "downtown_fw": "Downtown Fort Worth (Sundance Square)"
+  },
+  "tax_source": "2025 tax rates per $100 of value, from Republic Title's 2025 DFW Area Tax Rates (compiled from county appraisal districts). County column includes county, community college and hospital districts where they apply. Excludes MUD/PID and special districts, and is before homestead exemptions.",
+  "tax_source_url": "https://www.republictitle.com/wp-content/uploads/2025/12/2025-DFW-Tax-Rates.pdf"
  },
  "neighborhoods": [
   {
@@ -100,7 +109,44 @@
     "75034",
     "75035",
     "75036"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 35,
+     "mi": 27
+    },
+    "legacy_plano": {
+     "min": 10,
+     "mi": 6
+    },
+    "dfw_airport": {
+     "min": 37,
+     "mi": 26
+    },
+    "downtown_fw": {
+     "min": 57,
+     "mi": 47
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Frisco (Collin County, Frisco ISD)",
+      "city": 0.425517,
+      "isd": 1.0194,
+      "county": 0.230563,
+      "total": 1.67548
+     },
+     {
+      "label": "Frisco (Denton County)",
+      "city": 0.425517,
+      "isd": 1.0194,
+      "county": 0.185938,
+      "total": 1.630855
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "west-plano",
@@ -179,7 +225,37 @@
     "75093",
     "75024",
     "75025"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 32,
+     "mi": 23
+    },
+    "legacy_plano": {
+     "min": 8,
+     "mi": 3
+    },
+    "dfw_airport": {
+     "min": 37,
+     "mi": 25
+    },
+    "downtown_fw": {
+     "min": 56,
+     "mi": 46
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Plano (Collin County, Plano ISD)",
+      "city": 0.4376,
+      "isd": 1.03955,
+      "county": 0.230563,
+      "total": 1.707713
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "downtown-east-plano",
@@ -257,7 +333,37 @@
     "75074",
     "75075",
     "75023"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 25,
+     "mi": 19
+    },
+    "legacy_plano": {
+     "min": 21,
+     "mi": 14
+    },
+    "dfw_airport": {
+     "min": 40,
+     "mi": 29
+    },
+    "downtown_fw": {
+     "min": 57,
+     "mi": 49
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Plano (Collin County, Plano ISD)",
+      "city": 0.4376,
+      "isd": 1.03955,
+      "county": 0.230563,
+      "total": 1.707713
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "mckinney",
@@ -340,7 +446,37 @@
     "75070",
     "75071",
     "75072"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 37,
+     "mi": 31
+    },
+    "legacy_plano": {
+     "min": 20,
+     "mi": 15
+    },
+    "dfw_airport": {
+     "min": 46,
+     "mi": 36
+    },
+    "downtown_fw": {
+     "min": 65,
+     "mi": 57
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "McKinney (Collin County, McKinney ISD)",
+      "city": 0.412284,
+      "isd": 1.1043,
+      "county": 0.230563,
+      "total": 1.747147
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "allen",
@@ -417,7 +553,37 @@
    "zips": [
     "75002",
     "75013"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 30,
+     "mi": 25
+    },
+    "legacy_plano": {
+     "min": 20,
+     "mi": 12
+    },
+    "dfw_airport": {
+     "min": 46,
+     "mi": 34
+    },
+    "downtown_fw": {
+     "min": 62,
+     "mi": 54
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Allen (Collin County, Allen ISD)",
+      "city": 0.4154,
+      "isd": 1.1258,
+      "county": 0.230563,
+      "total": 1.771763
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "prosper",
@@ -493,7 +659,37 @@
    "market_city": "Prosper",
    "zips": [
     "75078"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 43,
+     "mi": 34
+    },
+    "legacy_plano": {
+     "min": 18,
+     "mi": 13
+    },
+    "dfw_airport": {
+     "min": 46,
+     "mi": 34
+    },
+    "downtown_fw": {
+     "min": 65,
+     "mi": 55
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Prosper (Collin County, Prosper ISD)",
+      "city": 0.505,
+      "isd": 1.2141,
+      "county": 0.230563,
+      "total": 1.949663
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "celina",
@@ -569,7 +765,44 @@
    "market_city": "Celina",
    "zips": [
     "75009"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 53,
+     "mi": 41
+    },
+    "legacy_plano": {
+     "min": 28,
+     "mi": 20
+    },
+    "dfw_airport": {
+     "min": 56,
+     "mi": 41
+    },
+    "downtown_fw": {
+     "min": 76,
+     "mi": 62
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Celina (Collin County, Celina ISD)",
+      "city": 0.576401,
+      "isd": 1.2089,
+      "county": 0.230563,
+      "total": 2.015864
+     },
+     {
+      "label": "Celina (Denton County)",
+      "city": 0.576401,
+      "isd": 1.2089,
+      "county": 0.185938,
+      "total": 1.971239
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "richardson",
@@ -650,7 +883,44 @@
     "75080",
     "75081",
     "75082"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 19,
+     "mi": 14
+    },
+    "legacy_plano": {
+     "min": 22,
+     "mi": 16
+    },
+    "dfw_airport": {
+     "min": 34,
+     "mi": 23
+    },
+    "downtown_fw": {
+     "min": 51,
+     "mi": 44
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Richardson (Dallas County, Richardson ISD)",
+      "city": 0.54218,
+      "isd": 1.1052,
+      "county": 0.534075,
+      "total": 2.181455
+     },
+     {
+      "label": "Richardson (Collin County, Richardson ISD)",
+      "city": 0.54218,
+      "isd": 1.1052,
+      "county": 0.230563,
+      "total": 1.877943
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "far-north-dallas",
@@ -729,7 +999,38 @@
     "75252",
     "75287",
     "75248"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 21,
+     "mi": 15
+    },
+    "legacy_plano": {
+     "min": 13,
+     "mi": 9
+    },
+    "dfw_airport": {
+     "min": 31,
+     "mi": 20
+    },
+    "downtown_fw": {
+     "min": 47,
+     "mi": 41
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas (Dallas County, Dallas ISD)",
+      "city": 0.6988,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.22671
+     }
+    ],
+    "year": 2025,
+    "note": "Parts of Far North Dallas are in Plano ISD or Richardson ISD, which changes the school portion."
+   }
   },
   {
    "id": "preston-hollow",
@@ -807,7 +1108,37 @@
     "75225",
     "75229",
     "75230"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 11,
+     "mi": 7
+    },
+    "legacy_plano": {
+     "min": 21,
+     "mi": 17
+    },
+    "dfw_airport": {
+     "min": 32,
+     "mi": 24
+    },
+    "downtown_fw": {
+     "min": 46,
+     "mi": 39
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas (Dallas County, Dallas ISD)",
+      "city": 0.6988,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.22671
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "addison",
@@ -885,7 +1216,44 @@
    "market_city": "Addison",
    "zips": [
     "75001"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 20,
+     "mi": 14
+    },
+    "legacy_plano": {
+     "min": 14,
+     "mi": 9
+    },
+    "dfw_airport": {
+     "min": 30,
+     "mi": 19
+    },
+    "downtown_fw": {
+     "min": 47,
+     "mi": 40
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Addison (Dallas ISD)",
+      "city": 0.6081,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.13601
+     },
+     {
+      "label": "Addison (Carrollton-Farmers Branch ISD)",
+      "city": 0.6081,
+      "isd": 0.9481,
+      "county": 0.534075,
+      "total": 2.090275
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "carrollton",
@@ -967,7 +1335,44 @@
     "75006",
     "75007",
     "75010"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 28,
+     "mi": 19
+    },
+    "legacy_plano": {
+     "min": 14,
+     "mi": 10
+    },
+    "dfw_airport": {
+     "min": 25,
+     "mi": 16
+    },
+    "downtown_fw": {
+     "min": 43,
+     "mi": 36
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Carrollton (Dallas County)",
+      "city": 0.5375,
+      "isd": 0.9481,
+      "county": 0.534075,
+      "total": 2.019675
+     },
+     {
+      "label": "Carrollton (Denton County)",
+      "city": 0.5375,
+      "isd": 0.9481,
+      "county": 0.185938,
+      "total": 1.671538
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "the-colony",
@@ -1042,7 +1447,37 @@
    "market_city": "The Colony",
    "zips": [
     "75056"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 37,
+     "mi": 25
+    },
+    "legacy_plano": {
+     "min": 11,
+     "mi": 5
+    },
+    "dfw_airport": {
+     "min": 30,
+     "mi": 20
+    },
+    "downtown_fw": {
+     "min": 49,
+     "mi": 41
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "The Colony (Denton County, Lewisville ISD)",
+      "city": 0.63,
+      "isd": 1.1178,
+      "county": 0.185938,
+      "total": 1.933738
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "little-elm",
@@ -1119,7 +1554,37 @@
    "market_city": "Little Elm",
    "zips": [
     "75068"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 46,
+     "mi": 34
+    },
+    "legacy_plano": {
+     "min": 21,
+     "mi": 13
+    },
+    "dfw_airport": {
+     "min": 42,
+     "mi": 27
+    },
+    "downtown_fw": {
+     "min": 62,
+     "mi": 51
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Little Elm (Denton County, Little Elm ISD)",
+      "city": 0.549901,
+      "isd": 1.2252,
+      "county": 0.185938,
+      "total": 1.961039
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "wylie",
@@ -1193,7 +1658,37 @@
    "market_city": "Wylie",
    "zips": [
     "75098"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 40,
+     "mi": 28
+    },
+    "legacy_plano": {
+     "min": 35,
+     "mi": 23
+    },
+    "dfw_airport": {
+     "min": 55,
+     "mi": 38
+    },
+    "downtown_fw": {
+     "min": 72,
+     "mi": 57
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Wylie (Collin County, Wylie ISD)",
+      "city": 0.543438,
+      "isd": 1.1752,
+      "county": 0.230563,
+      "total": 1.949201
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "murphy",
@@ -1266,7 +1761,37 @@
    "market_city": "Murphy",
    "zips": [
     "75094"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 32,
+     "mi": 23
+    },
+    "legacy_plano": {
+     "min": 26,
+     "mi": 18
+    },
+    "dfw_airport": {
+     "min": 47,
+     "mi": 34
+    },
+    "downtown_fw": {
+     "min": 64,
+     "mi": 53
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Murphy (Collin County, Plano ISD)",
+      "city": 0.357514,
+      "isd": 1.03955,
+      "county": 0.230563,
+      "total": 1.627627
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "lucas-fairview",
@@ -1342,7 +1867,51 @@
     "radius_mi": 3.5
    },
    "market_city": "Lucas",
-   "zips": []
+   "zips": [],
+   "commute": {
+    "downtown_dallas": {
+     "min": 42,
+     "mi": 31
+    },
+    "legacy_plano": {
+     "min": 29,
+     "mi": 18
+    },
+    "dfw_airport": {
+     "min": 55,
+     "mi": 39
+    },
+    "downtown_fw": {
+     "min": 73,
+     "mi": 60
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Lucas (Collin County)",
+      "city": 0.255463,
+      "isd": 1.1258,
+      "county": 0.230563,
+      "total": 1.611826
+     },
+     {
+      "label": "Fairview (Lovejoy ISD)",
+      "city": 0.316658,
+      "isd": 1.2552,
+      "county": 0.230563,
+      "total": 1.802421
+     },
+     {
+      "label": "Fairview (McKinney ISD)",
+      "city": 0.316658,
+      "isd": 1.1043,
+      "county": 0.230563,
+      "total": 1.651521
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "anna-melissa",
@@ -1417,7 +1986,44 @@
    "zips": [
     "75409",
     "75454"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 47,
+     "mi": 40
+    },
+    "legacy_plano": {
+     "min": 30,
+     "mi": 24
+    },
+    "dfw_airport": {
+     "min": 56,
+     "mi": 44
+    },
+    "downtown_fw": {
+     "min": 75,
+     "mi": 65
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Anna (Collin County, Anna ISD)",
+      "city": 0.525073,
+      "isd": 1.2399,
+      "county": 0.230563,
+      "total": 1.995536
+     },
+     {
+      "label": "Melissa (Collin County, Melissa ISD)",
+      "city": 0.454116,
+      "isd": 1.2245,
+      "county": 0.230563,
+      "total": 1.909179
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "princeton",
@@ -1488,7 +2094,37 @@
    "market_city": "Princeton",
    "zips": [
     "75407"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 51,
+     "mi": 40
+    },
+    "legacy_plano": {
+     "min": 32,
+     "mi": 24
+    },
+    "dfw_airport": {
+     "min": 58,
+     "mi": 45
+    },
+    "downtown_fw": {
+     "min": 78,
+     "mi": 66
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Princeton (Collin County, Princeton ISD)",
+      "city": 0.440226,
+      "isd": 1.2072,
+      "county": 0.230563,
+      "total": 1.877989
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "rockwall",
@@ -1564,7 +2200,37 @@
    "zips": [
     "75032",
     "75087"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 32,
+     "mi": 24
+    },
+    "legacy_plano": {
+     "min": 40,
+     "mi": 31
+    },
+    "dfw_airport": {
+     "min": 59,
+     "mi": 44
+    },
+    "downtown_fw": {
+     "min": 70,
+     "mi": 56
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Rockwall (Rockwall County, Rockwall ISD)",
+      "city": 0.2575,
+      "isd": 1.0669,
+      "county": 0.251,
+      "total": 1.5754
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "rowlett",
@@ -1641,7 +2307,44 @@
    "zips": [
     "75088",
     "75089"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 27,
+     "mi": 20
+    },
+    "legacy_plano": {
+     "min": 32,
+     "mi": 26
+    },
+    "dfw_airport": {
+     "min": 51,
+     "mi": 34
+    },
+    "downtown_fw": {
+     "min": 64,
+     "mi": 51
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Rowlett (Dallas County, Garland ISD)",
+      "city": 0.807891,
+      "isd": 1.1709,
+      "county": 0.534075,
+      "total": 2.512866
+     },
+     {
+      "label": "Rowlett (Rockwall County)",
+      "city": 0.807891,
+      "isd": 1.1709,
+      "county": 0.251,
+      "total": 2.229791
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "garland",
@@ -1720,7 +2423,37 @@
     "75042",
     "75043",
     "75044"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 27,
+     "mi": 16
+    },
+    "legacy_plano": {
+     "min": 30,
+     "mi": 23
+    },
+    "dfw_airport": {
+     "min": 43,
+     "mi": 28
+    },
+    "downtown_fw": {
+     "min": 59,
+     "mi": 48
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Garland (Dallas County, Garland ISD)",
+      "city": 0.689746,
+      "isd": 1.1709,
+      "county": 0.534075,
+      "total": 2.394721
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "grapevine",
@@ -1798,7 +2531,44 @@
    "market_city": "Grapevine",
    "zips": [
     "76051"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 29,
+     "mi": 23
+    },
+    "legacy_plano": {
+     "min": 28,
+     "mi": 20
+    },
+    "dfw_airport": {
+     "min": 15,
+     "mi": 7
+    },
+    "downtown_fw": {
+     "min": 30,
+     "mi": 23
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Grapevine (Tarrant County, Grapevine-Colleyville ISD)",
+      "city": 0.237228,
+      "isd": 0.8686,
+      "county": 0.46348,
+      "total": 1.569308
+     },
+     {
+      "label": "Grapevine (Dallas County)",
+      "city": 0.237228,
+      "isd": 0.8686,
+      "county": 0.534075,
+      "total": 1.639903
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "flower-mound",
@@ -1875,7 +2645,37 @@
    "zips": [
     "75022",
     "75028"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 40,
+     "mi": 29
+    },
+    "legacy_plano": {
+     "min": 30,
+     "mi": 17
+    },
+    "dfw_airport": {
+     "min": 26,
+     "mi": 13
+    },
+    "downtown_fw": {
+     "min": 42,
+     "mi": 34
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Flower Mound (Denton County, Lewisville ISD)",
+      "city": 0.387277,
+      "isd": 1.1178,
+      "county": 0.185938,
+      "total": 1.691015
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "las-colinas",
@@ -1957,7 +2757,37 @@
     "75038",
     "75039",
     "75063"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 19,
+     "mi": 13
+    },
+    "legacy_plano": {
+     "min": 28,
+     "mi": 22
+    },
+    "dfw_airport": {
+     "min": 19,
+     "mi": 11
+    },
+    "downtown_fw": {
+     "min": 36,
+     "mi": 29
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Irving (Dallas County, Irving ISD)",
+      "city": 0.5891,
+      "isd": 1.0159,
+      "county": 0.534075,
+      "total": 2.139075
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "arlington",
@@ -2045,7 +2875,37 @@
     "76016",
     "76017",
     "76018"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 29,
+     "mi": 20
+    },
+    "legacy_plano": {
+     "min": 46,
+     "mi": 36
+    },
+    "dfw_airport": {
+     "min": 27,
+     "mi": 16
+    },
+    "downtown_fw": {
+     "min": 23,
+     "mi": 15
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Arlington (Tarrant County, Arlington ISD)",
+      "city": 0.6298,
+      "isd": 1.0929,
+      "county": 0.46348,
+      "total": 2.18618
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "fort-worth",
@@ -2133,7 +2993,37 @@
     "76109",
     "76110",
     "76116"
-   ]
+   ],
+   "commute": {
+    "downtown_dallas": {
+     "min": 42,
+     "mi": 33
+    },
+    "legacy_plano": {
+     "min": 52,
+     "mi": 43
+    },
+    "dfw_airport": {
+     "min": 35,
+     "mi": 24
+    },
+    "downtown_fw": {
+     "min": 1,
+     "mi": 0
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Fort Worth (Tarrant County, Fort Worth ISD)",
+      "city": 0.67,
+      "isd": 1.0291,
+      "county": 0.46348,
+      "total": 2.16258
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "uptown",
@@ -2219,7 +3109,37 @@
     "75204",
     "75219"
    ],
-   "photo": "commons-uptown"
+   "photo": "commons-uptown",
+   "commute": {
+    "downtown_dallas": {
+     "min": 5,
+     "mi": 2
+    },
+    "legacy_plano": {
+     "min": 28,
+     "mi": 21
+    },
+    "dfw_airport": {
+     "min": 29,
+     "mi": 20
+    },
+    "downtown_fw": {
+     "min": 42,
+     "mi": 35
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas (Dallas County, Dallas ISD)",
+      "city": 0.6988,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.22671
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "oak-cliff",
@@ -2304,7 +3224,37 @@
     "75203",
     "75211"
    ],
-   "photo": "commons-oak-cliff"
+   "photo": "commons-oak-cliff",
+   "commute": {
+    "downtown_dallas": {
+     "min": 8,
+     "mi": 3
+    },
+    "legacy_plano": {
+     "min": 33,
+     "mi": 25
+    },
+    "dfw_airport": {
+     "min": 33,
+     "mi": 23
+    },
+    "downtown_fw": {
+     "min": 41,
+     "mi": 31
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas (Dallas County, Dallas ISD)",
+      "city": 0.6988,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.22671
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "east-dallas",
@@ -2389,7 +3339,37 @@
     "75218",
     "75246"
    ],
-   "photo": "commons-east-dallas"
+   "photo": "commons-east-dallas",
+   "commute": {
+    "downtown_dallas": {
+     "min": 11,
+     "mi": 5
+    },
+    "legacy_plano": {
+     "min": 33,
+     "mi": 23
+    },
+    "dfw_airport": {
+     "min": 39,
+     "mi": 24
+    },
+    "downtown_fw": {
+     "min": 49,
+     "mi": 37
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas (Dallas County, Dallas ISD)",
+      "city": 0.6988,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.22671
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "lower-greenville",
@@ -2470,7 +3450,37 @@
     "75206",
     "75214"
    ],
-   "photo": "commons-lower-greenville"
+   "photo": "commons-lower-greenville",
+   "commute": {
+    "downtown_dallas": {
+     "min": 9,
+     "mi": 3
+    },
+    "legacy_plano": {
+     "min": 31,
+     "mi": 23
+    },
+    "dfw_airport": {
+     "min": 35,
+     "mi": 23
+    },
+    "downtown_fw": {
+     "min": 48,
+     "mi": 35
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas (Dallas County, Dallas ISD)",
+      "city": 0.6988,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.22671
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "deep-ellum",
@@ -2556,7 +3566,37 @@
     "75201",
     "75202"
    ],
-   "photo": "commons-deep-ellum"
+   "photo": "commons-deep-ellum",
+   "commute": {
+    "downtown_dallas": {
+     "min": 2,
+     "mi": 0
+    },
+    "legacy_plano": {
+     "min": 29,
+     "mi": 22
+    },
+    "dfw_airport": {
+     "min": 30,
+     "mi": 21
+    },
+    "downtown_fw": {
+     "min": 41,
+     "mi": 33
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas (Dallas County, Dallas ISD)",
+      "city": 0.6988,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.22671
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "lake-highlands",
@@ -2641,7 +3681,38 @@
     "75231",
     "75243"
    ],
-   "photo": "commons-lake-highlands"
+   "photo": "commons-lake-highlands",
+   "commute": {
+    "downtown_dallas": {
+     "min": 18,
+     "mi": 10
+    },
+    "legacy_plano": {
+     "min": 25,
+     "mi": 19
+    },
+    "dfw_airport": {
+     "min": 36,
+     "mi": 25
+    },
+    "downtown_fw": {
+     "min": 53,
+     "mi": 45
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas with Richardson ISD (Dallas County)",
+      "city": 0.6988,
+      "isd": 1.1052,
+      "county": 0.534075,
+      "total": 2.338075
+     }
+    ],
+    "year": 2025,
+    "note": "Lake Highlands is in the City of Dallas but mostly served by Richardson ISD; the combined rate is the sum of the city, ISD and county rates shown."
+   }
   },
   {
    "id": "knox-henderson",
@@ -2725,7 +3796,37 @@
     "75206",
     "75219"
    ],
-   "photo": "commons-knox-henderson"
+   "photo": "commons-knox-henderson",
+   "commute": {
+    "downtown_dallas": {
+     "min": 7,
+     "mi": 3
+    },
+    "legacy_plano": {
+     "min": 28,
+     "mi": 20
+    },
+    "dfw_airport": {
+     "min": 31,
+     "mi": 20
+    },
+    "downtown_fw": {
+     "min": 44,
+     "mi": 36
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas (Dallas County, Dallas ISD)",
+      "city": 0.6988,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.22671
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "park-cities",
@@ -2810,7 +3911,44 @@
     "75205",
     "75225"
    ],
-   "photo": "commons-park-cities"
+   "photo": "commons-park-cities",
+   "commute": {
+    "downtown_dallas": {
+     "min": 11,
+     "mi": 5
+    },
+    "legacy_plano": {
+     "min": 26,
+     "mi": 19
+    },
+    "dfw_airport": {
+     "min": 33,
+     "mi": 22
+    },
+    "downtown_fw": {
+     "min": 47,
+     "mi": 38
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "Highland Park (Highland Park ISD)",
+      "city": 0.199296,
+      "isd": 0.8347,
+      "county": 0.534075,
+      "total": 1.568071
+     },
+     {
+      "label": "University Park (Highland Park ISD)",
+      "city": 0.218565,
+      "isd": 0.8347,
+      "county": 0.534075,
+      "total": 1.58734
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "design-district",
@@ -2894,7 +4032,37 @@
     "75235",
     "75209"
    ],
-   "photo": "commons-design-district"
+   "photo": "commons-design-district",
+   "commute": {
+    "downtown_dallas": {
+     "min": 9,
+     "mi": 4
+    },
+    "legacy_plano": {
+     "min": 28,
+     "mi": 20
+    },
+    "dfw_airport": {
+     "min": 25,
+     "mi": 17
+    },
+    "downtown_fw": {
+     "min": 38,
+     "mi": 33
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Dallas (Dallas County, Dallas ISD)",
+      "city": 0.6988,
+      "isd": 0.993835,
+      "county": 0.534075,
+      "total": 2.22671
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "near-southside",
@@ -2976,7 +4144,37 @@
     "76104",
     "76110"
    ],
-   "photo": "commons-near-southside"
+   "photo": "commons-near-southside",
+   "commute": {
+    "downtown_dallas": {
+     "min": 43,
+     "mi": 33
+    },
+    "legacy_plano": {
+     "min": 54,
+     "mi": 45
+    },
+    "dfw_airport": {
+     "min": 38,
+     "mi": 26
+    },
+    "downtown_fw": {
+     "min": 6,
+     "mi": 2
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Fort Worth (Tarrant County, Fort Worth ISD)",
+      "city": 0.67,
+      "isd": 1.0291,
+      "county": 0.46348,
+      "total": 2.16258
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "tcu-berkeley",
@@ -3060,7 +4258,37 @@
     "76110",
     "76129"
    ],
-   "photo": "commons-tcu-berkeley"
+   "photo": "commons-tcu-berkeley",
+   "commute": {
+    "downtown_dallas": {
+     "min": 46,
+     "mi": 35
+    },
+    "legacy_plano": {
+     "min": 58,
+     "mi": 47
+    },
+    "dfw_airport": {
+     "min": 41,
+     "mi": 29
+    },
+    "downtown_fw": {
+     "min": 9,
+     "mi": 4
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Fort Worth (Tarrant County, Fort Worth ISD)",
+      "city": 0.67,
+      "isd": 1.0291,
+      "county": 0.46348,
+      "total": 2.16258
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "west-7th",
@@ -3141,7 +4369,37 @@
    "zips": [
     "76107"
    ],
-   "photo": "commons-west-7th"
+   "photo": "commons-west-7th",
+   "commute": {
+    "downtown_dallas": {
+     "min": 45,
+     "mi": 35
+    },
+    "legacy_plano": {
+     "min": 55,
+     "mi": 45
+    },
+    "dfw_airport": {
+     "min": 38,
+     "mi": 26
+    },
+    "downtown_fw": {
+     "min": 5,
+     "mi": 2
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Fort Worth (Tarrant County, Fort Worth ISD)",
+      "city": 0.67,
+      "isd": 1.0291,
+      "county": 0.46348,
+      "total": 2.16258
+     }
+    ],
+    "year": 2025
+   }
   },
   {
    "id": "downtown-fw",
@@ -3223,7 +4481,37 @@
    "zips": [
     "76102"
    ],
-   "photo": "commons-downtown-fw"
+   "photo": "commons-downtown-fw",
+   "commute": {
+    "downtown_dallas": {
+     "min": 41,
+     "mi": 32
+    },
+    "legacy_plano": {
+     "min": 52,
+     "mi": 43
+    },
+    "dfw_airport": {
+     "min": 35,
+     "mi": 24
+    },
+    "downtown_fw": {
+     "min": 1,
+     "mi": 0
+    }
+   },
+   "tax": {
+    "rows": [
+     {
+      "label": "City of Fort Worth (Tarrant County, Fort Worth ISD)",
+      "city": 0.67,
+      "isd": 1.0291,
+      "county": 0.46348,
+      "total": 2.16258
+     }
+    ],
+    "year": 2025
+   }
   }
  ]
 }
