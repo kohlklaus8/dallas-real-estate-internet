@@ -781,3 +781,6 @@ i.pi { background: var(--navy); color: #fff; } i.tx { background: var(--brass); 
   .reviews, .reviews.two { grid-template-columns: 1fr; }
 }
 [hidden] { display: none !important; }
+.btn-white { background: #fff; color: #0f1b33; border-color: #fff; }
+.btn-white:hover { background: #f3f7ff; }
+@media (max-width: 760px) { .expert2 .who { align-items: flex-start; } }
