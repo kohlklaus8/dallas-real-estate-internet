@@ -784,3 +784,35 @@ i.pi { background: var(--navy); color: #fff; } i.tx { background: var(--brass); 
 .btn-white { background: #fff; color: #0f1b33; border-color: #fff; }
 .btn-white:hover { background: #f3f7ff; }
 @media (max-width: 760px) { .expert2 .who { align-items: flex-start; } }
+/* Commute + tax */
+.ct-card h2 { margin-bottom: .2rem; }
+.ct-list { display: grid; gap: 0; }
+.ct-row { display: grid; grid-template-columns: 1fr auto 3.6rem; gap: .8rem; align-items: baseline; padding: .65rem 0; border-bottom: 1px solid var(--line); }
+.ct-row:last-child { border-bottom: 0; }
+.ct-row strong { font-size: 1.1rem; }
+.ct-row small { color: var(--mute); text-align: right; }
+.ct-tax td, .ct-tax th { font-size: .88rem; }
+.ct-ex { background: var(--surface-2); border-radius: 12px; padding: .7rem .9rem; font-size: .93rem; }
+.area-static h1 { font-size: var(--step-4); }
+.area-static .facts { margin-top: 1.4rem; }
+
+/* Sticky contact bar (phones) */
+.m-bar { display: none; }
+@media (max-width: 760px) {
+  .m-bar { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: .5rem; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; padding: .55rem max(12px, env(safe-area-inset-left, 0px)) calc(.55rem + env(safe-area-inset-bottom, 0px)); background: rgba(255,255,255,.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+  .m-bar a { text-align: center; text-decoration: none; font-weight: 700; font-size: .95rem; padding: .7rem .4rem; border-radius: 999px; border: 2px solid var(--ink); color: var(--ink); }
+  .m-bar a.hot { background: var(--brass); border-color: var(--brass); color: #fff; }
+  body.has-m-bar { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+  body.has-m-bar .toast { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+}
+/* Home value page */
+.hv { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(1.4rem, 4vw, 3rem); align-items: start; }
+.hv-form { display: grid; gap: .9rem; }
+.hv-form .row2 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; }
+.hv-form .row-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+.hv-form label { display: grid; gap: .3rem; font-weight: 600; font-size: .9rem; }
+.hv-zip { display: flex; gap: .5rem; }
+.hv-zip input { flex: 1; }
+.hv-ball { background: var(--surface-2); border-radius: 14px; padding: .9rem 1rem; }
+.hv-ball strong { font-size: 1.6rem; display: block; }
+@media (max-width: 760px) { .hv { grid-template-columns: 1fr; } .hv-form .row2 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .hv-form .row-2 { grid-template-columns: 1fr; } }
