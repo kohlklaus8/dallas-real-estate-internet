@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://dallasrealestateinternet.com/assets/img/og-share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=20261021h">
+<link rel="stylesheet" href="assets/css/site.css?v=20261021i">
 </head>
 <body>
 <header id="site-header"></header>
@@ -47,7 +47,7 @@
         </div>
         <label>Phone <span class="muted" style="font-weight:400">(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
         <button class="btn btn-brass" type="submit" style="justify-self:start">See my value range</button>
-        <p class="muted" id="hv-msg" style="font-size:.88rem;margin:0">No spam. Your range shows right away, and Kohl will follow up personally with an exact number.</p>
+        <p class="muted" id="hv-msg" style="font-size:.88rem;margin:0">No spam. Your range shows right away, and Kohl will follow up personally with an exact number. <a class="link" href="privacy.html">Privacy</a></p>
       </form>
     </div>
     <aside class="stack" style="gap:1rem">
@@ -77,8 +77,8 @@
   </div>
 </main>
 <footer id="site-footer"></footer>
-<script src="assets/js/config.js?v=20261021h"></script>
-<script src="assets/js/app.js?v=20261021h"></script>
+<script src="assets/js/config.js?v=20261021i"></script>
+<script src="assets/js/app.js?v=20261021i"></script>
 <script>
 (function () {
   const { sendLead, track, toast, esc, money, loadJSON, C } = window.DREI;
@@ -109,7 +109,7 @@
   const post = (path, body) => fetch(W + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then((r) => r.json());
   const close = () => { list.hidden = true; addr.setAttribute("aria-expanded", "false"); idx = -1; };
   const draw = () => {
-    list.innerHTML = items.map((it, i) => `<li role="option" id="ac-${i}" aria-selected="${i === idx}" data-i="${i}"><strong>${esc(it.main || it.text)}</strong><span>${esc(it.sub)}</span></li>`).join("");
+    list.innerHTML = items.map((it, i) => `<li role="option" id="ac-${i}" aria-selected="${i === idx}" data-i="${i}"><strong>${esc(it.main || it.text)}</strong><span>${esc(it.sub)}</span></li>`).join("") + (items.length ? `<li class="ac-attr" role="presentation" aria-hidden="true">Address suggestions from <span>Google Maps</span></li>` : "");
     list.hidden = !items.length; addr.setAttribute("aria-expanded", String(!!items.length));
     if (idx >= 0) addr.setAttribute("aria-activedescendant", "ac-" + idx); else addr.removeAttribute("aria-activedescendant");
   };
@@ -126,7 +126,7 @@
     else if (e.key === "Enter" && idx >= 0) { e.preventDefault(); pick(items[idx]); }
     else if (e.key === "Escape") close();
   });
-  list.addEventListener("mousedown", (e) => { const li = e.target.closest("li"); if (li) { e.preventDefault(); pick(items[+li.dataset.i]); } });
+  list.addEventListener("mousedown", (e) => { const li = e.target.closest("li[data-i]"); if (li) { e.preventDefault(); pick(items[+li.dataset.i]); } });
   addr.addEventListener("blur", () => setTimeout(close, 150));
   function pick(it) {
     if (!it) return;

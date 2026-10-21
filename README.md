@@ -1,6 +1,6 @@
 # Dallas Real Estate Internet
 
-An AI-first real-estate intelligence site for North Dallas & Collin County. It's a static site that runs on GitHub Pages, and the AI chat runs through a small Cloudflare Worker that keeps your Claude API key private.
+An AI-first real-estate site for all of Dallas–Fort Worth, live at https://dallasrealestateinternet.com. It's a static site that runs on GitHub Pages, and the AI chat runs through a small Cloudflare Worker that keeps your Claude API key private.
 
 ```
 /                     ← the website (GitHub Pages serves this folder)
@@ -60,7 +60,7 @@ Photos live in `data/photos.json`. Each one is a verified, location-tagged Unspl
 
 ## 5. Keep the data honest
 
-- **Market numbers:** `data/market.json` is built weekly from **public Zillow Research data** (typical home value by ZIP and city, plus DFW metro sales, inventory and days to pending) by `tools/build_market.py`. NTREIS/MLS figures stay off the site until your broker and NTREIS approve it in writing (Rules 17.01 and 17.12).
+- **Market numbers:** `data/market.json` is rebuilt automatically every Monday by the GitHub Action in `.github/workflows/market.yml` (tools/fetch_zillow.py + tools/build_market.py) from **public Zillow Research data** (typical home value by ZIP and city, plus DFW metro sales, inventory and days to pending) by `tools/build_market.py`. NTREIS/MLS figures stay off the site until your broker and NTREIS approve it in writing (Rules 17.01 and 17.12).
 - **Neighborhood metrics:** each profile has a `metrics` block (`median_price`, `inventory`, `days_on_market`, `as_of`), and it stays `null` until you load verified data.
 - **New areas:** copy a profile in `data/neighborhoods.json`. Scores are 0–5 and relative. Keep them about places, never people.
 - **Articles:** add to `data/articles.json` (blocks: `p`, `h2`, `ul`, `note`).
