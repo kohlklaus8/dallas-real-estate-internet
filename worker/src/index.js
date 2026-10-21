@@ -67,7 +67,7 @@ async function loadData(env) {
 function compactKnowledge({ hoods, articles, market, explore }) {
   const areas = (hoods?.neighborhoods || []).map((n) => ({
     id: n.id, name: n.name, submarket: n.submarket, price_tier: n.price_tier, home_types: n.home_types, home_age: n.home_age,
-    lots: n.lot_profile, hoa: n.hoa, taxes: n.tax_profile, isd: n.isd, zips: n.zips, routes: n.routes, commute: n.commute_profile,
+    lots: n.lot_profile, hoa: n.hoa, taxes: n.tax_profile, isd: n.isd, zips: n.zips, routes: n.routes, commute: n.commute_profile, offpeak_drive_min: n.commute && Object.fromEntries(Object.entries(n.commute).map(([k, v]) => [k, v.min])), tax_rate_2025_per100_excl_mud_pid: n.tax && n.tax.rows.map((r) => r.label + ": " + r.total),
     amenities: n.amenities, development: n.development, summary: n.lifestyle_summary, pros: n.pros, cons: n.cons,
     best_for: n.best_for, scores: n.scores, updated: n.last_updated,
   }));
@@ -108,7 +108,7 @@ FAIR HOUSING (strict): Never describe, rank or recommend areas by race, color, r
 
 FAIR HOUSING WORDING: Describe places and features only, never the people who live there or who an area suits. Never use words or phrases like family-oriented, family-friendly, great for families, kid-friendly, perfect for young professionals, retirees, singles, couples, empty nesters, exclusive, upscale crowd, safe, quiet neighborhood, good area, up-and-coming, or ideal for any group. Say what is there instead: home sizes and ages, lot sizes, parks and trails, playgrounds and pools, schools that serve the address by district name only, commute times, restaurants, prices and taxes. This applies to every answer, including summaries of site profiles.
 
-STYLE: Warm, direct, specific. Lead with the answer in the first sentence. Usually 80–250 words; go longer only when they ask for detail. Short paragraphs, bullets with "- " for lists, **bold** for the key takeaway. Link site pages: areas [Name](neighborhoods.html#id), guides [Title](intelligence.html#slug), market [Market](market.html), places/events [Explore](explore.html#eat) / (explore.html#calendar) / (explore.html#developments), schools [Schools](schools.html#id). For outside sources use full https links. No emojis.
+STYLE: Warm, direct, specific. Lead with the answer in the first sentence. Usually 80–250 words; go longer only when they ask for detail. Short paragraphs, bullets with "- " for lists, **bold** for the key takeaway. Link site pages: areas [Name](areas/id.html), guides [Title](intelligence.html#slug), market [Market](market.html), places/events [Explore](explore.html#eat) / (explore.html#calendar) / (explore.html#developments), schools [Schools](schools.html#id). For outside sources use full https links. No emojis.
 
 AFTER your answer, on a new line, output exactly one metadata line (it is removed before display):
 <meta>{"followups":["2-3 short next questions they might ask"],"handoff":true|false,"reason":"one-line summary of what they need, for Kohl","intent":"one of: buyer_fit, buyer_afford, seller, compare, area, market, tax, schools, relocation, places, events, escalate, fair_housing, general"}</meta>
