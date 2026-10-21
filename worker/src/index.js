@@ -39,6 +39,7 @@ export default {
     if (url.pathname === "/health" || url.pathname === "/") { const k0 = String(env.ANTHROPIC_API_KEY || "").trim(); return json({ ok: true, model: env.MODEL || "claude-sonnet-5-5", key: !!k0, key_format_ok: /^sk-ant-[A-Za-z0-9_-]{20,}$/.test(k0), key_len: k0.length, email: !!env.RESEND_API_KEY }); }
     if (request.method !== "POST") return json({ error: "Use POST" }, 405);
     if (allowed.length && !allowed.includes(origin)) return json({ error: "Origin not allowed" }, 403);
+    if (url.pathname === "/addr" || url.pathname === "/facts") return handleAddress(url.pathname, request, env, json);
 
     const ip = request.headers.get("CF-Connecting-IP") || "anon";
     const now = Date.now();
@@ -237,3 +238,63 @@ async function handleLead(body, env, json) {
   }
   return okAlert && okGuide !== false ? json({ ok: true }) : json({ error: "Email send failed", alert: okAlert, guide: okGuide }, 502);
 }
+
+// ---------- Home value page: address suggestions (Google Places) + public-record home facts (RentCast) ----------
+// Secrets: GOOGLE_PLACES_KEY (Places API (New)), RENTCAST_API_KEY. Either can be missing; the page then works as a plain form.
+const addrHits = new Map();
+async function handleAddress(path, request, env, json) {
+  const ip = request.headers.get("CF-Connecting-IP") || "anon", now = Date.now();
+  const lim = path === "/addr" ? 90 : 6; // per minute: suggestions are cheap, record lookups are rationed
+  const key = path + ip, rec = (addrHits.get(key) || []).filter((t) => now - t < 60_000);
+  if (rec.length >= lim) return json({ error: "Too many requests" }, 429);
+  rec.push(now); addrHits.set(key, rec);
+  let b; try { b = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
+  const gk = String(env.GOOGLE_PLACES_KEY || "").trim();
+  const session = String(b.session || "").slice(0, 64);
+  if (path === "/addr") {
+    const q = String(b.q || "").trim().slice(0, 120);
+    if (!gk) return json({ off: true, suggestions: [] });
+    if (q.length < 3) return json({ suggestions: [] });
+    const r = await fetch("https://places.googleapis.com/v1/places:autocomplete", { method: "POST",
+      headers: { "Content-Type": "application/json", "X-Goog-Api-Key": gk },
+      body: JSON.stringify({ input: q, sessionToken: session || undefined, includedRegionCodes: ["us"], includedPrimaryTypes: ["street_address", "premise", "subpremise"],
+        locationBias: { circle: { center: { latitude: 32.92, longitude: -96.9 }, radius: 50000 } } }) });
+    if (!r.ok) return json({ error: "Suggestions unavailable", status: r.status, suggestions: [] }, 502);
+    const d = await r.json();
+    return json({ suggestions: (d.suggestions || []).map((x) => x.placePrediction).filter(Boolean).slice(0, 5).map((p) => ({
+      id: p.placeId, text: p.text?.text || "", main: p.structuredFormat?.mainText?.text || "", sub: p.structuredFormat?.secondaryText?.text || "" })) });
+  }
+  // /facts: resolve the chosen place to a full address, then look up public-record facts
+  const id = String(b.id || "").replace(/[^A-Za-z0-9_-]/g, "").slice(0, 300);
+  if (!gk || !id) return json({ error: "Missing place" }, 400);
+  const pr = await fetch(`https://places.googleapis.com/v1/places/${id}${session ? "?sessionToken=" + encodeURIComponent(session) : ""}`, { headers: { "X-Goog-Api-Key": gk, "X-Goog-FieldMask": "formattedAddress,addressComponents" } });
+  if (!pr.ok) return json({ error: "Address lookup failed", status: pr.status }, 502);
+  const pd = await pr.json();
+  const comp = (t, short) => { const c = (pd.addressComponents || []).find((x) => (x.types || []).includes(t)); return c ? (short ? c.shortText : c.longText) : ""; };
+  const street = [comp("street_number"), comp("route", true)].filter(Boolean).join(" ") + (comp("subpremise") ? " #" + comp("subpremise") : "");
+  const city = comp("locality") || comp("sublocality") || comp("neighborhood"), state = comp("administrative_area_level_1", true), zip = comp("postal_code");
+  const address = street && city ? `${street}, ${city}, ${state} ${zip}`.trim() : String(pd.formattedAddress || "").replace(/, USA$/, "");
+  const out = { address, facts: null };
+  const rk = String(env.RENTCAST_API_KEY || "").trim();
+  if (!rk || !street || state !== "TX") return json(out);
+  const q = `${street}, ${city}, ${state}, ${zip}`;
+  const cache = caches.default, ck = new Request("https://cache.drei/facts?a=" + encodeURIComponent(q.toLowerCase()));
+  let hit = await cache.match(ck);
+  if (!hit) {
+    // One RentCast call returns both the public-record facts (subjectProperty) and an automated value range.
+    const rr = await fetch("https://api.rentcast.io/v1/avm/value?lookupSubjectAttributes=true&address=" + encodeURIComponent(q), { headers: { "X-Api-Key": rk, Accept: "application/json" } });
+    if (!rr.ok) return json({ ...out, factsError: rr.status });
+    const raw = await rr.json();
+    const p = raw.subjectProperty || {};
+    const r5 = (v) => (Number(v) > 0 ? Math.round(Number(v) / 5000) * 5000 : null);
+    let lo = r5(raw.priceRangeLow), hi = r5(raw.priceRangeHigh);
+    if (lo && hi && hi <= lo) hi = lo + 10000;
+    const facts = { beds: p.bedrooms ?? null, baths: p.bathrooms ?? null, sqft: p.squareFootage ?? null, year: p.yearBuilt ?? null, lot: p.lotSize ?? null, type: p.propertyType || null,
+      range: lo && hi ? [lo, hi] : null };
+    hit = new Response(JSON.stringify(facts), { headers: { "Content-Type": "application/json", "Cache-Control": "max-age=2592000" } });
+    await cache.put(ck, hit.clone());
+  }
+  out.facts = await hit.json();
+  return json(out);
+}
+
