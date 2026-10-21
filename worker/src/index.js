@@ -231,7 +231,7 @@ async function handleLead(body, env, json) {
     const guideHtml = shell(`<h1 style="margin:0 0 12px;font-size:24px">Hi ${escH(first)}, here's your guide!</h1>
 <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#2a3550">Thanks for requesting <b>Moving to Dallas–Fort Worth</b>, a 12-page playbook covering the real monthly cost, which area fits you, how Texas homes and home buying differ, and a full move checklist.</p>
 <p style="margin:0 0 24px"><a href="${pdf}" style="display:inline-block;background:#ff7a1a;color:#0f1b33;font-weight:bold;text-decoration:none;padding:14px 24px;border-radius:999px">Download the guide (PDF)</a></p>
-<p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#2a3550">When you're ready, a quick 20-minute call is the fastest way to narrow DFW down to two or three areas that fit your life and budget. Just reply to this email or call or text me at <b>337-794-9971</b>.</p>
+<p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#2a3550">When you're ready, a free 30-minute call is the fastest way to narrow DFW down to two or three areas that fit your life and budget. Just reply to this email or call or text me at <b>337-794-9971</b>.</p>
 <p style="margin:16px 0 0;font-size:15px">Kohl</p>
 <p style="margin:20px 0 0;font-size:13px;color:#44506a">More on the website: <a href="${site}/moving.html" style="color:#1463f3">Moving to DFW</a> · <a href="${site}/neighborhoods.html" style="color:#1463f3">40 area profiles</a> · <a href="${site}/ask.html" style="color:#1463f3">Ask the AI anything</a></p>`, site);
     okGuide = await sendMail(env, { from, to: [email], reply_to: replyTo, subject: "Your Moving to DFW guide", html: guideHtml });
