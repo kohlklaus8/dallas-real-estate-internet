@@ -359,22 +359,22 @@
   // Sends a branded email with the PDF (and a lead alert to Kohl) and shows the download button right away.
   const GUIDE_PDF = "assets/guide/Moving-to-DFW-Guide.pdf";
   function guideDone(form, name) {
-    form.innerHTML = `<div style="display:grid;gap:.6rem"><p style="margin:0;font-weight:800;color:var(--teal)">You're in${name ? ", " + esc(name) : ""}! A copy is on its way to your inbox.</p><a class="btn btn-brass" href="${GUIDE_PDF}" target="_blank" rel="noopener" style="justify-content:center">Download the guide (PDF)</a><span style="font-size:.85rem;color:var(--mute)">Questions? Call or text Kohl at ${esc(C.AGENT_PHONE || "337-794-9971")}.</span></div>`;
+    form.innerHTML = `<div style="display:grid;gap:.6rem"><p style="margin:0;font-weight:800;color:var(--teal)">Thanks${name ? ", " + esc(name) : ""}! Your guide is ready right now:</p><a class="btn btn-brass" href="${GUIDE_PDF}" target="_blank" rel="noopener" style="justify-content:center">Download the guide (PDF)</a><span style="font-size:.85rem;color:var(--ink-2)">We also emailed you a copy for later. Check spam or Promotions if you don't see it in a few minutes.</span><span style="font-size:.85rem;color:var(--mute)">Questions? Call or text Kohl at ${esc(C.AGENT_PHONE || "337-794-9971")}.</span></div>`;
   }
   function guideForm(form, msg, source) {
     if (!form) return;
-    const hp = document.createElement("input"); hp.type = "text"; hp.name = "website"; hp.tabIndex = -1; hp.autocomplete = "off"; hp.setAttribute("aria-hidden", "true"); hp.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;opacity:0";
+    const hp = document.createElement("input"); hp.type = "text"; hp.name = "hp_confirm_field"; hp.tabIndex = -1; hp.autocomplete = "new-password"; hp.setAttribute("data-lpignore", "true"); hp.setAttribute("data-1p-ignore", ""); hp.setAttribute("aria-hidden", "true"); hp.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;opacity:0";
     form.appendChild(hp);
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const name = form.name.value.trim(), email = form.email.value.trim();
       if (!name || !/^\S+@\S+\.\S+$/.test(email)) { if (msg) { msg.textContent = "Please add your first name and a valid email."; msg.style.color = "var(--bad)"; } return; }
-      if (hp.value) { guideDone(form, name); return; }
+      const bot = !!hp.value;
       store.set("profile", { ...store.get("profile", {}), name, email });
       track("handoff_submit", { kind: "guide", source });
-      sendLead({ name, email, kind: "guide", goal: "Relocate to DFW", request: "Moving to DFW guide (12-page PDF, emailed automatically)", source, page: location.pathname, submitted_at: new Date().toISOString(), profile: store.get("profile", {}) });
+      sendLead({ name, email, ...(bot ? { website: hp.value } : {}), kind: "guide", goal: "Relocate to DFW", request: "Moving to DFW guide (12-page PDF, emailed automatically)", source, page: location.pathname, submitted_at: new Date().toISOString(), profile: store.get("profile", {}) });
       guideDone(form, name);
-      setTimeout(() => toast("\u2713 Your guide is ready, and a copy is on its way to your inbox."), 200);
+      setTimeout(() => toast("\u2713 Your guide is ready to download. A copy is on its way by email."), 200);
     });
     if (/[?&]guide=sent/.test(location.search)) guideDone(form, store.get("profile", {}).name || "");
   }
