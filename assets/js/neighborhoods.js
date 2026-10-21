@@ -138,7 +138,7 @@
         <a class="btn btn-ghost" href="schools.html#${esc(n.id)}">Schools page →</a></div>
         <div id="schools-box"></div>
       </section>`;
-    if (window.DREI_SCHOOLS) window.DREI_SCHOOLS.render(document.getElementById("schools-box"), n);
+    if (window.DREI_SCHOOLS) window.DREI_SCHOOLS.render(document.getElementById("schools-box"), n, { collapsed: true });
     document.getElementById("save-btn").addEventListener("click", (e) => {
       const s = store.get("saved", []);
       const i = s.indexOf(n.id);

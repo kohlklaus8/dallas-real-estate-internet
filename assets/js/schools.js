@@ -60,11 +60,11 @@
   }
 
   const LEVELS = [["Elementary", "Elementary"], ["Middle / Jr. High", "Middle & junior high"], ["High School", "High school"], ["K-12", "K–12 & other"]];
-  function campusTable(list) {
+  function campusTable(list, openFirst = true) {
     return LEVELS.map(([k, label]) => {
       const rows = list.filter((r) => (k === "K-12" ? !["Elementary", "Middle / Jr. High", "High School"].includes(r.campus_type) : r.campus_type === k));
       if (!rows.length) return "";
-      return `<details class="lvl"${k === "Elementary" ? " open" : ""}><summary>${label} <span class="muted">(${rows.length})</span></summary>
+      return `<details class="lvl"${openFirst && k === "Elementary" ? " open" : ""}><summary>${label} <span class="muted">(${rows.length})</span></summary>
         <div class="table-wrap"><table><thead><tr><th>School</th><th>Rating</th><th>Grades</th><th>District</th><th></th></tr></thead><tbody>
         ${rows.map((r) => `<tr><td><strong>${esc(expand(r.name))}</strong><br><span class="muted" style="font-size:.8rem">${esc(String(r.address || "").replace(/\. TX/, ", TX").replace(/\. /g, ", "))}</span></td>
           <td>${badge(r.rating)}</td><td style="white-space:nowrap">${esc((r.low_grade || "").replace("Grade ", "").replace("Early Education", "EE").replace("Pre-Kindergarten", "PK").replace("Kindergarten", "K"))}–${esc((r.high_grade || "").replace("Grade ", ""))}</td>
@@ -75,7 +75,7 @@
   }
 
   /** Render the full schools block for one neighborhood into `el`. */
-  async function render(el, n) {
+  async function render(el, n, opts = {}) {
     el.innerHTML = `<p class="muted">Loading official school ratings…</p>`;
     let priv = {};
     try { priv = (await loadJSON("data/private_schools.json")).schools || {}; } catch (e) {}
@@ -89,7 +89,7 @@
             ${badge(d.rating)}<span><strong>${esc(d.name)}</strong><small>District rating · TXschools.gov ↗</small></span></a>`).join("")}</div>
         <h3 style="margin:1.4rem 0 .4rem">Public schools within about ${n.geo ? n.geo.radius_mi : ""} miles</h3>
         <p class="muted" style="font-size:.88rem;margin-bottom:.6rem">Attendance zones don't follow city lines. Confirm your exact school with the district's zone lookup for any address.</p>
-        ${campusTable(camps) || `<p class="muted">No campuses found nearby.</p>`}
+        ${campusTable(camps, !opts.collapsed) || `<p class="muted">No campuses found nearby.</p>`}
         ${pv.length ? `<h3 style="margin:1.6rem 0 .5rem">Private schools nearby</h3>
           <div class="places">${pv.map((p) => `<article class="place"><span class="tag">${esc(p.affiliation)}</span><h3>${esc(p.name)}</h3><span class="dev-city">${esc(p.city)} · Grades ${esc(p.grades)}</span><a class="link" href="${esc(p.reviews)}" target="_blank" rel="noopener">Website, hours &amp; reviews ↗</a></article>`).join("")}</div>
           <p class="muted" style="font-size:.82rem;margin-top:.5rem">The state doesn't rate private schools. Ask about accreditation, and confirm grades and admissions with each school.</p>` : ""}
