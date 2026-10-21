@@ -1,0 +1,48 @@
+name: Weekly market data
+
+on:
+  schedule:
+    - cron: "17 12 * * 1"   # Mondays ~7:17am Central
+  workflow_dispatch: {}       # "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download public Zillow Research data
+        run: |
+          mkdir -p data_raw
+          python tools/fetch_zillow.py data_raw/zillow_latest.txt
+      - name: Build data/market.json
+        run: python tools/build_market.py data_raw/zillow_latest.txt
+      - name: Sanity check (never publish a partial update)
+        run: |
+          python - <<'PY'
+          import json, sys
+          m = json.load(open("data/market.json"))
+          zips = len(m.get("by_zip", []))
+          areas = sum(1 for a in m.get("by_area", []) if "home_value" in a)
+          hv = (m.get("metrics", {}).get("home_value") or {}).get("value")
+          print("zips", zips, "areas", areas, "home value", hv)
+          if zips < 150 or areas < 20 or not hv:
+              sys.exit("Market data looks incomplete; not publishing.")
+          PY
+      - name: Commit if changed
+        run: |
+          git config user.name "market-bot"
+          git config user.email "market-bot@users.noreply.github.com"
+          git add data/market.json
+          if git diff --cached --quiet; then echo "No change"; echo "CHANGED=0" >> $GITHUB_ENV; else git commit -m "Weekly market data update" && git push && echo "CHANGED=1" >> $GITHUB_ENV; fi
+      - name: Rebuild the live site
+        if: env.CHANGED == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages will rebuild on its own"
