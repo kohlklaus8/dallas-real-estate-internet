@@ -137,6 +137,8 @@
       if (d.address) addr.value = d.address;
       const fx = d.facts;
       range = fx && fx.range ? fx.range : null;
+      // Skip ranges too wide to be useful (more than ±25% around the middle); Kohl follows up instead.
+      if (range && (range[1] - range[0]) / ((range[0] + range[1]) / 2) > 0.5) range = null;
       if (!fx || (fx.beds == null && fx.baths == null && fx.sqft == null)) { factsEl.hidden = true; return; }
       const set = (k, v) => { if (v != null && !f[k].value) f[k].value = k === "sqft" ? Number(v).toLocaleString("en-US") : v; };
       set("beds", fx.beds); set("baths", fx.baths); set("sqft", fx.sqft);
