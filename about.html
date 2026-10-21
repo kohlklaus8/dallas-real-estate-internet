@@ -19,7 +19,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "RealEstateAgent", "name": "Kohl Klaus, REALTOR®", "url": "https://dallasrealestateinternet.com/", "image": "https://dallasrealestateinternet.com/assets/img/kohl-klaus-headshot.jpg", "telephone": "+1-337-794-9971", "email": "kohlklaus@kw.com", "areaServed": "Dallas–Fort Worth, Texas", "parentOrganization": {"@type": "RealEstateAgent", "name": "Templeton Real Estate Group, Keller Williams Realty Urban Dallas", "address": {"@type": "PostalAddress", "streetAddress": "3800 Maple Ave #800", "addressLocality": "Dallas", "addressRegion": "TX", "postalCode": "75219", "addressCountry": "US"}}, "identifier": "TREC license 0735490"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=20261021e">
+<link rel="stylesheet" href="assets/css/site.css?v=20261021f">
 </head>
 <body>
 <header id="site-header"></header>
@@ -67,15 +67,15 @@
           <dt class="muted">Area</dt><dd style="margin:0" id="agent-area"></dd>
         </dl>
         <button class="btn btn-brass" type="button" data-handoff="about">Send a request</button>
-        <a class="btn btn-ghost" id="agent-cal" target="_blank" rel="noopener" hidden>Book a time</a>
+        <a class="btn btn-ghost" id="agent-cal" data-cal="about" target="_blank" rel="noopener" hidden>Book a 30-min call</a>
       </div>
       <div class="note" style="font-size:.88rem">Requests include a short summary of your questions and tool results from this device, so the first conversation starts where the AI left off. You can review it in <a class="link" href="profile.html">My Profile</a>.</div>
     </aside>
   </div>
 </main>
 <footer id="site-footer"></footer>
-<script src="assets/js/config.js?v=20261021e"></script>
-<script src="assets/js/app.js?v=20261021e"></script>
+<script src="assets/js/config.js?v=20261021f"></script>
+<script src="assets/js/app.js?v=20261021f"></script>
 <script>
 (function () {
   const C = window.DREI_CONFIG;
@@ -84,7 +84,6 @@
   const ph = document.getElementById("agent-phone"); ph.textContent = C.AGENT_PHONE; ph.href = "tel:" + C.AGENT_PHONE.replace(/[^0-9+]/g, "");
   const em = document.getElementById("agent-email"); em.textContent = C.AGENT_EMAIL; em.href = "mailto:" + C.AGENT_EMAIL;
   document.getElementById("agent-area").textContent = C.LAUNCH_AREA;
-  if (C.CALENDAR_URL) { const c = document.getElementById("agent-cal"); c.href = C.CALENDAR_URL; c.hidden = false; }
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2281685b4c78498faca01eefbcb5d450"}'></script><!-- End Cloudflare Web Analytics -->
