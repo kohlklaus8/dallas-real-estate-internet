@@ -8,22 +8,8 @@
   document.getElementById("ag-init").textContent = C.AGENT_NAME.split(" ").map((w) => w[0]).join("").slice(0, 2);
   document.getElementById("ag-line").textContent = `${C.AGENT_NAME}, ${C.AGENT_TITLE} · your local guide to buying, selling and moving in DFW`;
 
-  // Relocation guide signup (lead magnet)
-  document.getElementById("guide-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const f = e.target, msg = document.getElementById("g-msg");
-    const data = { name: f.name.value.trim(), email: f.email.value.trim() };
-    if (!data.name || !/.+@.+\..+/.test(data.email)) { msg.textContent = "Add your first name and a valid email."; msg.style.color = "var(--bad)"; return; }
-    const brief = { ...data, goal: "Relocate to North Texas", request: "Moving to DFW guide (12-page PDF)", source: "home-guide", submitted_at: new Date().toISOString(), profile: store.get("profile", {}) };
-    store.set("profile", { ...store.get("profile", {}), name: data.name, email: data.email });
-    store.push("requests", { ...brief, timeline: "—" }, 20);
-    let sent = false;
-    sent = window.DREI.sendLead(brief);
-    track("handoff_submit", { kind: "guide", sent });
-    f.innerHTML = sent
-      ? `<p style="font-weight:700;color:var(--teal)">You're in, ${esc(data.name)}! Watch your inbox for the guide.</p><p style="font-size:.9rem">Start now: <a class="link" href="intelligence.html#dfw-moving-checklist">the first-90-days checklist</a> · <a class="link" href="tools.html#fit">Where should I live?</a></p>`
-      : `<p style="font-weight:700">Thanks, ${esc(data.name)}! Email ${esc(C.AGENT_EMAIL)} and Kohl will send the guide personally.</p><p style="font-size:.9rem">Start now: <a class="link" href="intelligence.html#dfw-moving-checklist">the first-90-days checklist</a> · <a class="link" href="tools.html#fit">Where should I live?</a></p>`;
-  });
+  // Relocation guide signup (lead magnet): emails the PDF link automatically.
+  window.DREI.guideForm(document.getElementById("guide-form"), document.getElementById("g-msg"), "home-guide");
 
   loadJSON("data/explore.json").then((E) => {
     const today = new Date().toISOString().slice(0, 10);
