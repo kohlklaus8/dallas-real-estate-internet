@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://dallasrealestateinternet.com/assets/img/og-share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=20261021g">
+<link rel="stylesheet" href="assets/css/site.css?v=20261021h">
 </head>
 <body>
 <header id="site-header"></header>
@@ -27,9 +27,10 @@
     <div class="stack" style="gap:1rem">
       <span class="eyebrow">Selling · Free, no obligation</span>
       <h1 style="font-size:var(--step-4)">What's your home worth?</h1>
-      <p class="lede">Online estimates can miss by tens of thousands. Kohl looks at recent sales near you, your home's updates and today's market, then sends you a real price range.</p>
+      <p class="lede">See an estimated value range for your home in seconds. Then get Kohl's real number, based on recent sales near you and your home's updates.</p>
       <form class="card hv-form" id="hv-form" novalidate>
-        <label>Property address<input name="address" autocomplete="street-address" required placeholder="1234 Main St, Frisco, TX 75034"></label>
+        <div class="ac-wrap"><label for="hv-addr">Property address</label><input id="hv-addr" name="address" autocomplete="off" required placeholder="Start typing your address" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="hv-ac"><ul class="ac-list" id="hv-ac" role="listbox" hidden></ul></div>
+        <p class="hv-facts" id="hv-facts" hidden></p>
         <div class="row2">
           <label>Beds<input name="beds" inputmode="numeric" placeholder="3"></label>
           <label>Baths<input name="baths" inputmode="decimal" placeholder="2.5"></label>
@@ -45,16 +46,17 @@
           <label>Email<input name="email" type="email" autocomplete="email" required></label>
         </div>
         <label>Phone <span class="muted" style="font-weight:400">(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
-        <button class="btn btn-brass" type="submit" style="justify-self:start">Get my home value</button>
-        <p class="muted" id="hv-msg" style="font-size:.88rem;margin:0">No spam. Kohl will reach out personally with your market analysis.</p>
+        <button class="btn btn-brass" type="submit" style="justify-self:start">See my value range</button>
+        <p class="muted" id="hv-msg" style="font-size:.88rem;margin:0">No spam. Your range shows right away, and Kohl will follow up personally with an exact number.</p>
       </form>
     </div>
     <aside class="stack" style="gap:1rem">
       <div class="card">
         <h3>What you'll get</h3>
         <ul class="clean pros">
+          <li>An instant estimated range, right when you submit</li>
           <li>Recent sales of similar homes near you</li>
-          <li>A realistic price range for today's market</li>
+          <li>Kohl's exact price for today's market</li>
           <li>Which updates add value, and which don't</li>
           <li>What you'd walk away with after costs</li>
         </ul>
@@ -75,8 +77,8 @@
   </div>
 </main>
 <footer id="site-footer"></footer>
-<script src="assets/js/config.js?v=20261021g"></script>
-<script src="assets/js/app.js?v=20261021g"></script>
+<script src="assets/js/config.js?v=20261021h"></script>
+<script src="assets/js/app.js?v=20261021h"></script>
 <script>
 (function () {
   const { sendLead, track, toast, esc, money, loadJSON, C } = window.DREI;
@@ -87,11 +89,63 @@
     const v = (k) => (f[k].value || "").trim();
     if (!v("address") || !v("name") || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("email"))) { msg.textContent = "Please add the address, your name and a valid email."; msg.style.color = "var(--bad)"; return; }
     const ok = sendLead({ name: v("name"), email: v("email"), phone: v("phone"), ...(hp.value ? { website: hp.value } : {}), kind: "home-value", goal: "Home value request", timeline: v("timeline"),
-      request: "Free market analysis (CMA)", address: v("address"), beds: v("beds"), baths: v("baths"), sqft: v("sqft"), condition: v("condition"), notes: v("notes"), source: "home-value", page: "home-value.html", submitted_at: new Date().toISOString() });
+      request: "Free market analysis (CMA)", address: v("address"), public_record: factsNote, auto_estimate_range: range ? money(range[0]) + " – " + money(range[1]) : "", beds: v("beds"), baths: v("baths"), sqft: v("sqft"), condition: v("condition"), notes: v("notes"), source: "home-value", page: "home-value.html", submitted_at: new Date().toISOString() });
     track("seller_tool", { kind: "home_value_request" });
-    f.innerHTML = ok ? `<div class="note" style="font-size:1.05rem"><strong>✓ Got it, ${esc(v("name").split(" ")[0])}!</strong> Kohl will follow up with your market analysis for ${esc(v("address"))}.</div><p>Want to talk it through? <a class="link" href="${esc(C.CALENDAR_URL || "tel:" + C.AGENT_PHONE)}" target="_blank" rel="noopener">Book a 30-min call</a> or call/text ${esc(C.AGENT_PHONE)}.</p>`
-      : `<div class="note"><strong>That didn't send.</strong> Please call or text Kohl at ${esc(C.AGENT_PHONE)} or email ${esc(C.AGENT_EMAIL)}.</div>`;
+    const short = (n) => (n >= 1e6 ? "$" + (n / 1e6).toFixed(2).replace(/0$/, "") + "M" : "$" + Math.round(n / 1000) + "K");
+    const book = `<a class="btn btn-brass" href="${esc(C.CALENDAR_URL || "tel:" + C.AGENT_PHONE)}" target="_blank" rel="noopener">Book a 30-min call</a> <a class="btn btn-ghost" href="tel:${esc(C.AGENT_PHONE.replace(/[^0-9+]/g, ""))}">Call or text ${esc(C.AGENT_PHONE)}</a>`;
+    f.innerHTML = !ok ? `<div class="note"><strong>That didn't send.</strong> Please call or text Kohl at ${esc(C.AGENT_PHONE)} or email ${esc(C.AGENT_EMAIL)}.</div>`
+      : range ? `<div class="hv-range"><span class="eyebrow">Estimated value range</span><strong>${short(range[0])} – ${short(range[1])}</strong><span class="muted">${esc(v("address"))}</span></div>
+          <p><strong>Want a more exact number?</strong> This range is an automated estimate from public records. It can't see your updates, condition or what nearby homes just sold for. Kohl will pull recent sales near you and send you a real price, free.</p>
+          <div class="meet-btns">${book}</div>
+          <p class="stamp">Automated estimate from public records (RentCast), rounded. Not an appraisal or a market analysis.</p>`
+      : `<div class="note" style="font-size:1.05rem"><strong>✓ Got it, ${esc(v("name").split(" ")[0])}!</strong> Kohl will follow up with your value for ${esc(v("address"))}.</div>
+          <p>Want it sooner? Book a quick call:</p><div class="meet-btns">${book}</div>`;
+    track("tool_complete", { tool: "home_value_submit", range: !!range });
   });
+  // Address suggestions + public-record facts (via the site's Cloudflare Worker; keys never reach the browser)
+  const W = (C.AI_WORKER_URL || "").replace(/\/$/, "");
+  const addr = document.getElementById("hv-addr"), list = document.getElementById("hv-ac"), factsEl = document.getElementById("hv-facts");
+  let range = null; let session = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()), timer = 0, items = [], idx = -1, acOff = !W, factsNote = "";
+  const post = (path, body) => fetch(W + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then((r) => r.json());
+  const close = () => { list.hidden = true; addr.setAttribute("aria-expanded", "false"); idx = -1; };
+  const draw = () => {
+    list.innerHTML = items.map((it, i) => `<li role="option" id="ac-${i}" aria-selected="${i === idx}" data-i="${i}"><strong>${esc(it.main || it.text)}</strong><span>${esc(it.sub)}</span></li>`).join("");
+    list.hidden = !items.length; addr.setAttribute("aria-expanded", String(!!items.length));
+    if (idx >= 0) addr.setAttribute("aria-activedescendant", "ac-" + idx); else addr.removeAttribute("aria-activedescendant");
+  };
+  addr.addEventListener("input", () => {
+    clearTimeout(timer); factsNote = ""; range = null; factsEl.hidden = true;
+    const q = addr.value.trim();
+    if (acOff || q.length < 4) { items = []; close(); return; }
+    timer = setTimeout(() => post("/addr", { q, session }).then((d) => { if (d.off) { acOff = true; return; } if (addr.value.trim() !== q) return; items = d.suggestions || []; idx = -1; draw(); }).catch(() => {}), 220);
+  });
+  addr.addEventListener("keydown", (e) => {
+    if (list.hidden) return;
+    if (e.key === "ArrowDown") { e.preventDefault(); idx = Math.min(idx + 1, items.length - 1); draw(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); idx = Math.max(idx - 1, 0); draw(); }
+    else if (e.key === "Enter" && idx >= 0) { e.preventDefault(); pick(items[idx]); }
+    else if (e.key === "Escape") close();
+  });
+  list.addEventListener("mousedown", (e) => { const li = e.target.closest("li"); if (li) { e.preventDefault(); pick(items[+li.dataset.i]); } });
+  addr.addEventListener("blur", () => setTimeout(close, 150));
+  function pick(it) {
+    if (!it) return;
+    addr.value = it.text.replace(/, USA$/, ""); close(); items = [];
+    factsEl.hidden = false; factsEl.textContent = "Looking up public records…";
+    post("/facts", { id: it.id, session }).then((d) => {
+      session = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
+      if (d.address) addr.value = d.address;
+      const fx = d.facts;
+      range = fx && fx.range ? fx.range : null;
+      if (!fx || (fx.beds == null && fx.baths == null && fx.sqft == null)) { factsEl.hidden = true; return; }
+      const set = (k, v) => { if (v != null && !f[k].value) f[k].value = k === "sqft" ? Number(v).toLocaleString("en-US") : v; };
+      set("beds", fx.beds); set("baths", fx.baths); set("sqft", fx.sqft);
+      const bits = [fx.beds != null && fx.beds + " bed", fx.baths != null && fx.baths + " bath", fx.sqft && Number(fx.sqft).toLocaleString("en-US") + " sq ft", fx.year && "built " + fx.year, fx.lot && Number(fx.lot).toLocaleString("en-US") + " sq ft lot"].filter(Boolean);
+      factsNote = bits.join(", ");
+      factsEl.innerHTML = `<strong>✓ Filled in from public records:</strong> ${esc(factsNote)}. Please fix anything that's changed, like an addition or remodel.`;
+      track("tool_complete", { tool: "home_value_autofill" });
+    }).catch(() => { factsEl.hidden = true; });
+  }
   let ZIPS = null;
   const go = () => {
     const z = document.getElementById("hv-zip").value.trim(), out = document.getElementById("hv-ball");
