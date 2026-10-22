@@ -837,3 +837,16 @@ i.pi { background: var(--navy); color: #fff; } i.tx { background: var(--brass); 
 .broker-line strong { color: var(--ink); }
 .broker-line.on-dark { color: #fff; font-weight: 600; margin-top: .35rem; }
 .hv-ts:empty { display: none; }
+
+/* festivals */
+.fest-next { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.fest-month { margin-top: 1.6rem; }
+.fest-month h3 { font-size: 1.25rem; margin-bottom: .6rem; }
+.fest-grid { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.fest h4 { font-size: 1.05rem; margin: .45rem 0 .2rem; }
+/* area page: around town */
+.around { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: .6rem; }
+.around .card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+.around ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+.around li { line-height: 1.35; }
+.around li small { display: block; color: var(--mute); font-size: .82rem; }
