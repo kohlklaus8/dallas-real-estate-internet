@@ -1,504 +1,668 @@
 {
-  "articles": [
-    {
-      "slug": "texas-tax-proration-when-you-sell",
-      "format": "Tax/Cost Explainer",
-      "title": "Selling in Texas? Here's why you'll credit the buyer for this year's property taxes",
-      "dek": "Texas property taxes are paid in arrears. That one fact shows up on every seller's closing statement.",
-      "date": "2026-10-15",
-      "read_min": 4,
-      "areas": [],
-      "tool": "proceeds",
-      "body": [
-        [
-          "p",
-          "In Texas, property taxes for a calendar year aren't due until the end of January of the following year. So when you sell in, say, September, nobody has paid this year's taxes yet. The buyer will pay the full bill next January."
-        ],
-        [
-          "p",
-          "To make that fair, the title company prorates. You, the seller, credit the buyer for the days you owned the home this year, from January 1 through the closing date. The credit appears as a deduction on your settlement statement."
-        ],
-        [
-          "h2",
-          "A quick way to estimate it"
-        ],
-        [
-          "ul",
-          [
-            "Take last year's total tax bill (or the current estimate if values or rates changed).",
-            "Divide by 365 to get a daily amount.",
-            "Multiply by the number of days from January 1 to closing."
-          ]
-        ],
-        [
-          "p",
-          "If last year's bill was $9,000 and you close on July 1, you've owned about 181 days of this year. That makes the credit roughly $9,000 ÷ 365 × 181 ≈ $4,460."
-        ],
-        [
-          "h2",
-          "What changes the number"
-        ],
-        [
-          "ul",
-          [
-            "Exemptions that drop off at sale, like homestead or over-65.",
-            "A new appraisal or tax rate. Title companies often prorate on the prior year and settle up later if the contract allows.",
-            "MUD or PID assessments, which are prorated or handled separately depending on how they're billed."
-          ]
-        ],
-        [
-          "p",
-          "Our Seller Proceeds tool includes this proration automatically. Enter your annual tax bill and target closing date."
-        ],
-        [
-          "note",
-          "This is general information, not tax advice. Your title company's settlement statement is the final word."
-        ]
-      ],
-      "source": "Editorial (DREI). Verify specifics with your title company and county tax office.",
-      "section": "real-estate"
-    },
-    {
-      "slug": "frisco-vs-plano",
-      "format": "Neighborhood Deep Dive",
-      "title": "Frisco vs. Plano: how to actually choose",
-      "dek": "Both are excellent. The right answer depends on commute, home age and what you want within ten minutes of your front door.",
-      "date": "2026-10-15",
-      "read_min": 5,
-      "areas": [
-        "frisco",
-        "west-plano",
-        "downtown-east-plano"
-      ],
-      "tool": "compare",
-      "body": [
-        [
-          "p",
-          "\"Frisco or Plano?\" is the most common question we hear from people moving to North Texas. Here's the framework we use, with no rankings and no hype."
-        ],
-        [
-          "h2",
-          "1. Where do you drive every day?"
-        ],
-        [
-          "p",
-          "If your work is at Legacy, both are close, and West Plano is usually closer. If you head into Uptown or Downtown Dallas regularly, Plano saves you real time. East Plano adds DART rail as an option. If your work is in Frisco or along SH 121, Frisco wins."
-        ],
-        [
-          "h2",
-          "2. How new do you want the house to be?"
-        ],
-        [
-          "p",
-          "Plano is largely built out, with homes mostly from the 1980s–2000s, mature trees and established streets. Frisco has far more 2010s and new-construction inventory. Newer usually means fewer immediate repairs, but often smaller lots and sometimes MUD or PID taxes."
-        ],
-        [
-          "h2",
-          "3. What's your carrying cost, not just your price?"
-        ],
-        [
-          "p",
-          "Compare the full tax rate for each specific address, HOA dues and insurance. Two homes at the same price can differ by hundreds of dollars a month."
-        ],
-        [
-          "h2",
-          "4. What do you want nearby?"
-        ],
-        [
-          "p",
-          "Frisco centers on sports and entertainment: The Star, Toyota Stadium and Riders Field. Plano has Legacy West's walkable dining, Willow Bend and, on the east side, a historic downtown with rail."
-        ],
-        [
-          "note",
-          "Run the side-by-side in our Compare tool, or ask Dallas AI: \"Compare Frisco vs. Plano for a 25-minute commute to Uptown.\""
-        ]
-      ],
-      "source": "Editorial (DREI).",
-      "section": "neighborhoods",
-      "photo": "frisco-water-tower"
-    },
-    {
-      "slug": "moving-to-dfw-from-california",
-      "format": "Relocation Guide",
-      "title": "Moving to DFW from California: the five things that surprise people",
-      "dek": "No state income tax is real. So are higher property taxes. Here's how the math and the lifestyle actually change.",
-      "date": "2026-10-15",
-      "read_min": 6,
-      "areas": [],
-      "tool": "affordability",
-      "body": [
-        [
-          "p",
-          "Every month, families relocate to North Texas from California, Illinois, New York and elsewhere. These are the adjustments that come up again and again."
-        ],
-        [
-          "h2",
-          "1. No state income tax, but property tax does the work"
-        ],
-        [
-          "p",
-          "Texas has no personal state income tax. Local services are funded heavily by property taxes, so combined rates are higher than most Californians are used to. Budget the tax bill as a real monthly cost, not an afterthought."
-        ],
-        [
-          "h2",
-          "2. Homestead exemptions matter"
-        ],
-        [
-          "p",
-          "Once you own and live in your home, file a homestead exemption with the county appraisal district. It reduces the taxable value and caps how fast your homestead's appraised value can rise each year. Check your appraisal district for current amounts and deadlines."
-        ],
-        [
-          "h2",
-          "3. MUDs and PIDs in new construction"
-        ],
-        [
-          "p",
-          "Many new communities are financed by Municipal Utility Districts or Public Improvement Districts. These add to your tax rate or appear as a separate assessment. Always compare the total rate by address."
-        ],
-        [
-          "h2",
-          "4. The car is the commute"
-        ],
-        [
-          "p",
-          "Toll roads such as the Dallas North Tollway, SH 121 and the Bush Turnpike are part of daily life, and DART rail serves only some suburbs. Pick your area by drive time to the places you actually go."
-        ],
-        [
-          "h2",
-          "5. You get more house. Decide what you'll do with it."
-        ],
-        [
-          "p",
-          "Many buyers find their budget stretches further here. The best decisions come from deciding in advance what matters more: space, newness, commute or walkability."
-        ],
-        [
-          "note",
-          "Start with the Where Should I Live? tool. It ranks areas by commute, budget and priorities, never by who lives there."
-        ]
-      ],
-      "source": "Editorial (DREI). Verify tax specifics with your county appraisal district.",
-      "section": "moving",
-      "photo": "deep-ellum"
-    },
-    {
-      "slug": "muds-and-pids-explained",
-      "format": "Tax/Cost Explainer",
-      "title": "MUDs and PIDs: the line item new-construction buyers miss",
-      "dek": "Two homes, same price, different monthly cost. Here's why, and how to check before you sign.",
-      "date": "2026-10-15",
-      "read_min": 4,
-      "areas": [
-        "celina",
-        "prosper",
-        "anna-melissa",
-        "princeton",
-        "frisco",
-        "mckinney",
-        "little-elm"
-      ],
-      "tool": "affordability",
-      "body": [
-        [
-          "p",
-          "Across fast-growing North Texas, developers often fund roads, water and sewer through special districts. The two you'll see most:"
-        ],
-        [
-          "ul",
-          [
-            "MUD (Municipal Utility District): a taxing district that levies its own property tax rate on top of city, county and school district rates.",
-            "PID (Public Improvement District): an assessment, often a fixed annual installment, that pays for improvements in that specific community."
-          ]
-        ],
-        [
-          "h2",
-          "Why it matters"
-        ],
-        [
-          "p",
-          "Special districts can add meaningfully to your annual bill. They affect your monthly payment, your affordability and, eventually, your resale comparison."
-        ],
-        [
-          "h2",
-          "How to check"
-        ],
-        [
-          "ul",
-          [
-            "Ask for the full combined tax rate for the specific address.",
-            "Read the MUD/PID notices that come with the contract. Texas law requires certain disclosures.",
-            "Look up the property on the county appraisal district site."
-          ]
-        ],
-        [
-          "note",
-          "In our Affordability tool, enter the combined rate, not the base city rate."
-        ]
-      ],
-      "source": "Editorial (DREI). Confirm district details for any specific property.",
-      "section": "real-estate"
-    },
-    {
-      "slug": "dfw-moving-checklist",
-      "section": "moving",
-      "format": "Relocation Guide",
-      "title": "The DFW moving checklist: your first 90 days in Texas",
-      "dek": "Licenses, car registration, electricity, homestead. The to-dos new Texans ask about most, in order.",
-      "date": "2026-10-15",
-      "read_min": 4,
-      "areas": [],
-      "tool": "fit",
-      "body": [
-        [
-          "p",
-          "Moving to North Texas comes with a handful of Texas-specific to-dos. Here's the order most people tackle them in. Requirements change, so confirm each one on the official site linked below."
-        ],
-        [
-          "h2",
-          "Before you arrive"
-        ],
-        [
-          "ul",
-          [
-            "Pick your area by commute first. The Where Should I Live? tool ranks areas by drive, budget and priorities.",
-            "Choose an electricity plan. Most of DFW is in a deregulated market, so you pick a retail provider (see our electricity guide).",
-            "Set up water and trash with your city, and internet with a provider that serves your address."
-          ]
-        ],
-        [
-          "h2",
-          "First 30 days"
-        ],
-        [
-          "ul",
-          [
-            "Register your vehicle with your county tax assessor-collector. New residents have 30 days (txdmv.gov).",
-            "Get your vehicle inspected if required before registering. Check current rules for your county.",
-            "Get a TollTag or other toll account. North Texas toll roads are mostly cashless (see our toll roads guide)."
-          ]
-        ],
-        [
-          "h2",
-          "First 90 days"
-        ],
-        [
-          "ul",
-          [
-            "Get your Texas driver license. New residents have 90 days (dps.texas.gov).",
-            "Register to vote at your new address.",
-            "If you bought a home, file your homestead exemption with the county appraisal district."
-          ]
-        ],
-        [
-          "note",
-          "General information only. Always confirm current requirements on the official state and county websites."
-        ]
-      ],
-      "source": "Editorial (DREI). Verify with TxDMV, Texas DPS and your county.",
-      "photo": "dallas-skyline"
-    },
-    {
-      "slug": "choosing-electricity-in-dfw",
-      "section": "moving",
-      "format": "Living Here",
-      "title": "Choosing an electricity plan in DFW (without getting burned)",
-      "dek": "Most of DFW lets you pick your electricity provider. Here's how to read a plan before you sign.",
-      "date": "2026-10-15",
-      "read_min": 4,
-      "areas": [],
-      "tool": null,
-      "body": [
-        [
-          "p",
-          "Most of North Texas is in a deregulated electricity market. Your poles and wires belong to the utility (Oncor in most of DFW), but you choose the retail provider that bills you. Some cities and co-op areas are exceptions, so check your address first."
-        ],
-        [
-          "h2",
-          "How to compare plans"
-        ],
-        [
-          "ul",
-          [
-            "Use PowerToChoose.org, the state's official comparison site.",
-            "Look at the price at your real usage, not just the advertised 1,000 kWh rate. Many plans use bill credits that only apply in a narrow usage band.",
-            "Read the Electricity Facts Label (EFL). It shows the true pricing, fees and contract length.",
-            "Check the early termination fee and what happens when the contract ends."
-          ]
-        ],
-        [
-          "h2",
-          "Tips for new homeowners"
-        ],
-        [
-          "ul",
-          [
-            "Ask the seller or your agent for a year of past usage so you can estimate your bills.",
-            "Fixed-rate plans are the most predictable through Texas summers.",
-            "Set a calendar reminder a month before your contract ends."
-          ]
-        ],
-        [
-          "note",
-          "We don't recommend specific providers, and we aren't paid by any."
-        ]
-      ],
-      "source": "Editorial (DREI). See PowerToChoose.org (Public Utility Commission of Texas)."
-    },
-    {
-      "slug": "toll-roads-101",
-      "section": "living",
-      "format": "Living Here",
-      "title": "North Texas toll roads 101",
-      "dek": "DNT, SH 121, the Bush Turnpike: what they are, how billing works and why a TollTag pays for itself.",
-      "date": "2026-10-15",
-      "read_min": 3,
-      "areas": [
-        "frisco",
-        "west-plano",
-        "prosper",
-        "celina",
-        "far-north-dallas",
-        "addison"
-      ],
-      "tool": null,
-      "body": [
-        [
-          "p",
-          "If you live north of Dallas, toll roads will likely be part of your week. The main ones are the Dallas North Tollway (DNT), the Sam Rayburn Tollway (SH 121) and the President George Bush Turnpike (PGBT)."
-        ],
-        [
-          "h2",
-          "How paying works"
-        ],
-        [
-          "ul",
-          [
-            "Most North Texas toll roads are cashless. Cameras and tags do the work.",
-            "A TollTag from NTTA (or a compatible TxTag or EZ TAG) gets the lowest rate.",
-            "Without a tag, you're billed by mail at a higher rate."
-          ]
-        ],
-        [
-          "h2",
-          "Why it matters when choosing where to live"
-        ],
-        [
-          "p",
-          "Two homes with similar prices can mean very different commuting costs. Before you buy, map your daily drive. Note whether it's toll road or free highway (US 75, I-35E, I-635), and estimate the monthly toll cost alongside the mortgage."
-        ],
-        [
-          "note",
-          "Check current rates and tag options at ntta.org."
-        ]
-      ],
-      "source": "Editorial (DREI). See NTTA for current rates.",
-      "photo": "dallas-aerial"
-    },
-    {
-      "slug": "downtown-squares-north-of-dallas",
-      "section": "living",
-      "format": "Living Here",
-      "title": "Five small-town squares north of Dallas worth a Saturday",
-      "dek": "Historic downtowns with local restaurants, events and real character, minutes from the suburbs.",
-      "date": "2026-10-15",
-      "read_min": 4,
-      "areas": [
-        "mckinney",
-        "downtown-east-plano",
-        "carrollton",
-        "celina",
-        "wylie"
-      ],
-      "tool": "fit",
-      "body": [
-        [
-          "p",
-          "One of the best-kept secrets of North Texas suburbs is how many have a real historic downtown. If walkability and local character matter to you, these are worth a visit, and worth living near."
-        ],
-        [
-          "ul",
-          [
-            "Historic Downtown McKinney: the region's best-known square, with locally owned shops and restaurants and a busy event calendar.",
-            "Downtown Plano: a historic main street with DART rail access and Haggard Park.",
-            "Downtown Carrollton: a classic square served by the DART Green Line.",
-            "Celina's square: a small-town center in one of the fastest-growing areas in the region.",
-            "Historic Downtown Wylie: a compact, walkable main street near Lake Lavon."
-          ]
-        ],
-        [
-          "h2",
-          "Living near a square"
-        ],
-        [
-          "p",
-          "Homes within walking distance of a historic downtown are limited and often older. That adds character, but sometimes means updates. Ask Dallas AI or a local expert which streets fit your budget."
-        ],
-        [
-          "note",
-          "Event calendars change. Check each city's official site before you go."
-        ]
-      ],
-      "source": "Editorial (DREI).",
-      "photo": "mckinney-downtown"
-    }
-  ],
-  "formats": [
-    {
-      "name": "Market Brief",
-      "cadence": "Weekly",
-      "example": "What changed in Dallas housing this week?"
-    },
-    {
-      "name": "Neighborhood Deep Dive",
-      "cadence": "1–2 / week",
-      "example": "What $750K buys in McKinney"
-    },
-    {
-      "name": "Development Watch",
-      "cadence": "Weekly / biweekly",
-      "example": "New development announced along US 380"
-    },
-    {
-      "name": "Builder Incentive Report",
-      "cadence": "Monthly",
-      "example": "Current incentives worth knowing"
-    },
-    {
-      "name": "Tax/Cost Explainer",
-      "cadence": "Monthly",
-      "example": "What property taxes actually mean in Prosper"
-    },
-    {
-      "name": "Data Story",
-      "cadence": "Weekly",
-      "example": "Inventory moved — what does that mean?"
-    },
-    {
-      "name": "Relocation Guide",
-      "cadence": "Ongoing",
-      "example": "Moving from Chicago to DFW"
-    },
-    {
-      "name": "AI FAQ",
-      "cadence": "Ongoing",
-      "example": "One hyperlocal question, answered per page"
-    }
-  ],
-  "sections": {
-    "real-estate": {
-      "name": "Real Estate",
-      "blurb": "Buying, selling, taxes and the market, explained plainly."
-    },
-    "neighborhoods": {
-      "name": "Neighborhoods",
-      "blurb": "Area-by-area guides to living across Dallas–Fort Worth."
-    },
-    "moving": {
-      "name": "Moving Here",
-      "blurb": "Everything new to DFW, from licenses to light bills."
-    },
-    "living": {
-      "name": "Living Here",
-      "blurb": "Getting around, getting out and making DFW home."
-    }
+ "articles": [
+  {
+   "slug": "texas-homestead-exemption",
+   "format": "Tax/Cost Explainer",
+   "title": "The Texas homestead exemption: what it saves and how to file",
+   "dek": "The biggest property tax break in Texas is free and takes about 10 minutes. Here's what changed in 2025 and how to claim it.",
+   "date": "2026-10-21",
+   "read_min": 4,
+   "areas": [],
+   "tool": "affordability",
+   "section": "real-estate",
+   "body": [
+    [
+     "p",
+     "If you own the home you live in, the residence homestead exemption is the single biggest property tax break in Texas. Filing is free, and you can do it online the week you close."
+    ],
+    [
+     "h2",
+     "What it does"
+    ],
+    [
+     "ul",
+     [
+      "School district taxes: $140,000 comes off your home's taxable value. That's up from $100,000 after Texas voters approved Proposition 13 in November 2025.",
+      "Age 65 or older, or disabled: an additional $60,000 off for school taxes (up from $10,000 under Proposition 11), plus a ceiling that caps your school tax amount.",
+      "A 10% cap: once the exemption is in place, your home's taxable value can't rise more than 10% a year. For a new owner, the cap starts January 1 of the year after you buy.",
+      "Cities, counties and other local taxing units may add their own homestead exemptions, often a percentage of value. Your appraisal district lists what applies to your address."
+     ]
+    ],
+    [
+     "h2",
+     "A quick example"
+    ],
+    [
+     "p",
+     "On a home appraised at $450,000, your school district taxes $310,000 of value instead of $450,000. At a school tax rate near $1.00 per $100 of value, that's roughly $1,400 a year saved on school taxes alone, before any city or county exemptions."
+    ],
+    [
+     "h2",
+     "Who qualifies"
+    ],
+    [
+     "ul",
+     [
+      "You own the home and live in it as your principal residence.",
+      "You claim only one homestead at a time.",
+      "The address on your Texas driver's license or state ID matches the home's address."
+     ]
+    ],
+    [
+     "h2",
+     "How to file"
+    ],
+    [
+     "ul",
+     [
+      "Use Form 50-114, the Residence Homestead Exemption Application, with your county appraisal district. Most districts let you file online.",
+      "Include a copy of your Texas driver's license or state ID showing the property address.",
+      "File as soon as you close. If the previous owner didn't already have a homestead exemption that year, you can get it for the rest of the year you buy.",
+      "The usual deadline is April 30 of the tax year. Late applications can be accepted up to two years after the taxes become delinquent.",
+      "It's free. Ignore mailers that offer to file it for a fee."
+     ]
+    ],
+    [
+     "h2",
+     "Where to file in DFW"
+    ],
+    [
+     "p",
+     "Dallas CAD (dallascad.org), Collin CAD (collincad.org), Denton CAD (dentoncad.com), Tarrant Appraisal District (tad.org), Rockwall CAD (rockwallcad.com)."
+    ],
+    [
+     "note",
+     "Moving from out of state? Get your Texas driver's license first (you have 90 days after moving), then file your homestead so the addresses match."
+    ]
+   ],
+   "source": "Texas Comptroller of Public Accounts; Texas Tax Code §§11.13, 11.42, 11.43 and 23.23; Propositions 11 and 13 (approved November 2025). Confirm details with your appraisal district."
+  },
+  {
+   "slug": "protest-property-taxes-dfw",
+   "format": "Tax/Cost Explainer",
+   "title": "How to protest your property tax value in DFW",
+   "dek": "Your appraisal notice isn't the final word. Here's the deadline, the evidence that works, and what happens at each step.",
+   "date": "2026-10-21",
+   "read_min": 5,
+   "areas": [],
+   "tool": null,
+   "section": "real-estate",
+   "body": [
+    [
+     "p",
+     "Each spring, DFW appraisal districts mail a notice of appraised value for your home. If the value looks too high, you can protest it. It's free, and you don't need a lawyer or a paid service to do it."
+    ],
+    [
+     "h2",
+     "The deadline"
+    ],
+    [
+     "p",
+     "May 15, or 30 days after the appraisal district delivered your notice, whichever is later. Put the date on your calendar the day your notice arrives."
+    ],
+    [
+     "h2",
+     "How to file"
+    ],
+    [
+     "ul",
+     [
+      "Easiest: your appraisal district's online portal. Many districts review online protests and may send a settlement offer you can accept without a hearing.",
+      "Or mail Form 50-132, the Property Owner's Notice of Protest. A written note that names you, the property and what you disagree with also counts.",
+      "Typical reasons to check: the value is over market value, or it's unequal compared with similar homes."
+     ]
+    ],
+    [
+     "h2",
+     "Evidence that works"
+    ],
+    [
+     "ul",
+     [
+      "Sales of similar homes nearby that closed close to January 1 of the tax year.",
+      "Photos and repair estimates for real problems, like foundation, roof or an original kitchen.",
+      "Your closing statement, if you bought the home recently.",
+      "Corrections to the record: wrong square footage, a pool you don't have, a bathroom count that's off.",
+      "Skip arguments about affordability or how much taxes went up. The board can only consider value."
+     ]
+    ],
+    [
+     "h2",
+     "What happens next"
+    ],
+    [
+     "ul",
+     [
+      "Informal review: you can talk with a district appraiser first, and many protests are settled here.",
+      "Formal hearing: if you don't settle, the Appraisal Review Board (ARB) hears your case in person, by phone or video, or by written affidavit. You'll get at least 15 days' notice.",
+      "After the ARB: if you still disagree, a homestead can go to binding arbitration (request within 60 days of the ARB order), or you can file in district court within 60 days."
+     ]
+    ],
+    [
+     "h2",
+     "Before you protest, check two things"
+    ],
+    [
+     "ul",
+     [
+      "Your homestead exemption is on the account. If not, file it (see our homestead guide).",
+      "The details on your property record are right. Errors are the easiest win."
+     ]
+    ],
+    [
+     "h2",
+     "Where to file in DFW"
+    ],
+    [
+     "p",
+     "Dallas CAD (dallascad.org), Collin CAD (collincad.org), Denton CAD (dentoncad.com), Tarrant Appraisal District (tad.org), Rockwall CAD (rockwallcad.com)."
+    ],
+    [
+     "note",
+     "Want comparable sales for your protest? Kohl can pull recent nearby sales for your home at no cost."
+    ]
+   ],
+   "source": "Texas Comptroller of Public Accounts, Property Tax Protests and Appeals (comptroller.texas.gov). Deadlines and procedures can vary slightly by district; check your notice."
+  },
+  {
+   "slug": "texas-tax-proration-when-you-sell",
+   "format": "Tax/Cost Explainer",
+   "title": "Selling in Texas? Here's why you'll credit the buyer for this year's property taxes",
+   "dek": "Texas property taxes are paid in arrears. That one fact shows up on every seller's closing statement.",
+   "date": "2026-10-15",
+   "read_min": 4,
+   "areas": [],
+   "tool": "proceeds",
+   "body": [
+    [
+     "p",
+     "In Texas, property taxes for a calendar year aren't due until the end of January of the following year. So when you sell in, say, September, nobody has paid this year's taxes yet. The buyer will pay the full bill next January."
+    ],
+    [
+     "p",
+     "To make that fair, the title company prorates. You, the seller, credit the buyer for the days you owned the home this year, from January 1 through the closing date. The credit appears as a deduction on your settlement statement."
+    ],
+    [
+     "h2",
+     "A quick way to estimate it"
+    ],
+    [
+     "ul",
+     [
+      "Take last year's total tax bill (or the current estimate if values or rates changed).",
+      "Divide by 365 to get a daily amount.",
+      "Multiply by the number of days from January 1 to closing."
+     ]
+    ],
+    [
+     "p",
+     "If last year's bill was $9,000 and you close on July 1, you've owned about 181 days of this year. That makes the credit roughly $9,000 ÷ 365 × 181 ≈ $4,460."
+    ],
+    [
+     "h2",
+     "What changes the number"
+    ],
+    [
+     "ul",
+     [
+      "Exemptions that drop off at sale, like homestead or over-65.",
+      "A new appraisal or tax rate. Title companies often prorate on the prior year and settle up later if the contract allows.",
+      "MUD or PID assessments, which are prorated or handled separately depending on how they're billed."
+     ]
+    ],
+    [
+     "p",
+     "Our Seller Proceeds tool includes this proration automatically. Enter your annual tax bill and target closing date."
+    ],
+    [
+     "note",
+     "This is general information, not tax advice. Your title company's settlement statement is the final word."
+    ]
+   ],
+   "source": "Editorial (DREI). Verify specifics with your title company and county tax office.",
+   "section": "real-estate"
+  },
+  {
+   "slug": "frisco-vs-plano",
+   "format": "Neighborhood Deep Dive",
+   "title": "Frisco vs. Plano: how to actually choose",
+   "dek": "Both are excellent. The right answer depends on commute, home age and what you want within ten minutes of your front door.",
+   "date": "2026-10-15",
+   "read_min": 5,
+   "areas": [
+    "frisco",
+    "west-plano",
+    "downtown-east-plano"
+   ],
+   "tool": "compare",
+   "body": [
+    [
+     "p",
+     "\"Frisco or Plano?\" is the most common question we hear from people moving to North Texas. Here's the framework we use, with no rankings and no hype."
+    ],
+    [
+     "h2",
+     "1. Where do you drive every day?"
+    ],
+    [
+     "p",
+     "If your work is at Legacy, both are close, and West Plano is usually closer. If you head into Uptown or Downtown Dallas regularly, Plano saves you real time. East Plano adds DART rail as an option. If your work is in Frisco or along SH 121, Frisco wins."
+    ],
+    [
+     "h2",
+     "2. How new do you want the house to be?"
+    ],
+    [
+     "p",
+     "Plano is largely built out, with homes mostly from the 1980s–2000s, mature trees and established streets. Frisco has far more 2010s and new-construction inventory. Newer usually means fewer immediate repairs, but often smaller lots and sometimes MUD or PID taxes."
+    ],
+    [
+     "h2",
+     "3. What's your carrying cost, not just your price?"
+    ],
+    [
+     "p",
+     "Compare the full tax rate for each specific address, HOA dues and insurance. Two homes at the same price can differ by hundreds of dollars a month."
+    ],
+    [
+     "h2",
+     "4. What do you want nearby?"
+    ],
+    [
+     "p",
+     "Frisco centers on sports and entertainment: The Star, Toyota Stadium and Riders Field. Plano has Legacy West's walkable dining, Willow Bend and, on the east side, a historic downtown with rail."
+    ],
+    [
+     "note",
+     "Run the side-by-side in our Compare tool, or ask Dallas AI: \"Compare Frisco vs. Plano for a 25-minute commute to Uptown.\""
+    ]
+   ],
+   "source": "Editorial (DREI).",
+   "section": "neighborhoods",
+   "photo": "frisco-water-tower"
+  },
+  {
+   "slug": "moving-to-dfw-from-california",
+   "format": "Relocation Guide",
+   "title": "Moving to DFW from California: the five things that surprise people",
+   "dek": "No state income tax is real. So are higher property taxes. Here's how the math and the lifestyle actually change.",
+   "date": "2026-10-15",
+   "read_min": 6,
+   "areas": [],
+   "tool": "affordability",
+   "body": [
+    [
+     "p",
+     "Every month, families relocate to North Texas from California, Illinois, New York and elsewhere. These are the adjustments that come up again and again."
+    ],
+    [
+     "h2",
+     "1. No state income tax, but property tax does the work"
+    ],
+    [
+     "p",
+     "Texas has no personal state income tax. Local services are funded heavily by property taxes, so combined rates are higher than most Californians are used to. Budget the tax bill as a real monthly cost, not an afterthought."
+    ],
+    [
+     "h2",
+     "2. Homestead exemptions matter"
+    ],
+    [
+     "p",
+     "Once you own and live in your home, file a homestead exemption with the county appraisal district. It reduces the taxable value and caps how fast your homestead's appraised value can rise each year. Check your appraisal district for current amounts and deadlines."
+    ],
+    [
+     "h2",
+     "3. MUDs and PIDs in new construction"
+    ],
+    [
+     "p",
+     "Many new communities are financed by Municipal Utility Districts or Public Improvement Districts. These add to your tax rate or appear as a separate assessment. Always compare the total rate by address."
+    ],
+    [
+     "h2",
+     "4. The car is the commute"
+    ],
+    [
+     "p",
+     "Toll roads such as the Dallas North Tollway, SH 121 and the Bush Turnpike are part of daily life, and DART rail serves only some suburbs. Pick your area by drive time to the places you actually go."
+    ],
+    [
+     "h2",
+     "5. You get more house. Decide what you'll do with it."
+    ],
+    [
+     "p",
+     "Many buyers find their budget stretches further here. The best decisions come from deciding in advance what matters more: space, newness, commute or walkability."
+    ],
+    [
+     "note",
+     "Start with the Where Should I Live? tool. It ranks areas by commute, budget and priorities, never by who lives there."
+    ]
+   ],
+   "source": "Editorial (DREI). Verify tax specifics with your county appraisal district.",
+   "section": "moving",
+   "photo": "deep-ellum"
+  },
+  {
+   "slug": "muds-and-pids-explained",
+   "format": "Tax/Cost Explainer",
+   "title": "MUDs and PIDs: the line item new-construction buyers miss",
+   "dek": "Two homes, same price, different monthly cost. Here's why, and how to check before you sign.",
+   "date": "2026-10-15",
+   "read_min": 4,
+   "areas": [
+    "celina",
+    "prosper",
+    "anna-melissa",
+    "princeton",
+    "frisco",
+    "mckinney",
+    "little-elm"
+   ],
+   "tool": "affordability",
+   "body": [
+    [
+     "p",
+     "Across fast-growing North Texas, developers often fund roads, water and sewer through special districts. The two you'll see most:"
+    ],
+    [
+     "ul",
+     [
+      "MUD (Municipal Utility District): a taxing district that levies its own property tax rate on top of city, county and school district rates.",
+      "PID (Public Improvement District): an assessment, often a fixed annual installment, that pays for improvements in that specific community."
+     ]
+    ],
+    [
+     "h2",
+     "Why it matters"
+    ],
+    [
+     "p",
+     "Special districts can add meaningfully to your annual bill. They affect your monthly payment, your affordability and, eventually, your resale comparison."
+    ],
+    [
+     "h2",
+     "How to check"
+    ],
+    [
+     "ul",
+     [
+      "Ask for the full combined tax rate for the specific address.",
+      "Read the MUD/PID notices that come with the contract. Texas law requires certain disclosures.",
+      "Look up the property on the county appraisal district site."
+     ]
+    ],
+    [
+     "note",
+     "In our Affordability tool, enter the combined rate, not the base city rate."
+    ]
+   ],
+   "source": "Editorial (DREI). Confirm district details for any specific property.",
+   "section": "real-estate"
+  },
+  {
+   "slug": "dfw-moving-checklist",
+   "section": "moving",
+   "format": "Relocation Guide",
+   "title": "The DFW moving checklist: your first 90 days in Texas",
+   "dek": "Licenses, car registration, electricity, homestead. The to-dos new Texans ask about most, in order.",
+   "date": "2026-10-15",
+   "read_min": 4,
+   "areas": [],
+   "tool": "fit",
+   "body": [
+    [
+     "p",
+     "Moving to North Texas comes with a handful of Texas-specific to-dos. Here's the order most people tackle them in. Requirements change, so confirm each one on the official site linked below."
+    ],
+    [
+     "h2",
+     "Before you arrive"
+    ],
+    [
+     "ul",
+     [
+      "Pick your area by commute first. The Where Should I Live? tool ranks areas by drive, budget and priorities.",
+      "Choose an electricity plan. Most of DFW is in a deregulated market, so you pick a retail provider (see our electricity guide).",
+      "Set up water and trash with your city, and internet with a provider that serves your address."
+     ]
+    ],
+    [
+     "h2",
+     "First 30 days"
+    ],
+    [
+     "ul",
+     [
+      "Register your vehicle with your county tax assessor-collector. New residents have 30 days (txdmv.gov).",
+      "Get your vehicle inspected if required before registering. Check current rules for your county.",
+      "Get a TollTag or other toll account. North Texas toll roads are mostly cashless (see our toll roads guide)."
+     ]
+    ],
+    [
+     "h2",
+     "First 90 days"
+    ],
+    [
+     "ul",
+     [
+      "Get your Texas driver license. New residents have 90 days (dps.texas.gov).",
+      "Register to vote at your new address.",
+      "If you bought a home, file your homestead exemption with the county appraisal district."
+     ]
+    ],
+    [
+     "note",
+     "General information only. Always confirm current requirements on the official state and county websites."
+    ]
+   ],
+   "source": "Editorial (DREI). Verify with TxDMV, Texas DPS and your county.",
+   "photo": "dallas-skyline"
+  },
+  {
+   "slug": "choosing-electricity-in-dfw",
+   "section": "moving",
+   "format": "Living Here",
+   "title": "Choosing an electricity plan in DFW (without getting burned)",
+   "dek": "Most of DFW lets you pick your electricity provider. Here's how to read a plan before you sign.",
+   "date": "2026-10-15",
+   "read_min": 4,
+   "areas": [],
+   "tool": null,
+   "body": [
+    [
+     "p",
+     "Most of North Texas is in a deregulated electricity market. Your poles and wires belong to the utility (Oncor in most of DFW), but you choose the retail provider that bills you. Some cities and co-op areas are exceptions, so check your address first."
+    ],
+    [
+     "h2",
+     "How to compare plans"
+    ],
+    [
+     "ul",
+     [
+      "Use PowerToChoose.org, the state's official comparison site.",
+      "Look at the price at your real usage, not just the advertised 1,000 kWh rate. Many plans use bill credits that only apply in a narrow usage band.",
+      "Read the Electricity Facts Label (EFL). It shows the true pricing, fees and contract length.",
+      "Check the early termination fee and what happens when the contract ends."
+     ]
+    ],
+    [
+     "h2",
+     "Tips for new homeowners"
+    ],
+    [
+     "ul",
+     [
+      "Ask the seller or your agent for a year of past usage so you can estimate your bills.",
+      "Fixed-rate plans are the most predictable through Texas summers.",
+      "Set a calendar reminder a month before your contract ends."
+     ]
+    ],
+    [
+     "note",
+     "We don't recommend specific providers, and we aren't paid by any."
+    ]
+   ],
+   "source": "Editorial (DREI). See PowerToChoose.org (Public Utility Commission of Texas)."
+  },
+  {
+   "slug": "toll-roads-101",
+   "section": "living",
+   "format": "Living Here",
+   "title": "North Texas toll roads 101",
+   "dek": "DNT, SH 121, the Bush Turnpike: what they are, how billing works and why a TollTag pays for itself.",
+   "date": "2026-10-15",
+   "read_min": 3,
+   "areas": [
+    "frisco",
+    "west-plano",
+    "prosper",
+    "celina",
+    "far-north-dallas",
+    "addison"
+   ],
+   "tool": null,
+   "body": [
+    [
+     "p",
+     "If you live north of Dallas, toll roads will likely be part of your week. The main ones are the Dallas North Tollway (DNT), the Sam Rayburn Tollway (SH 121) and the President George Bush Turnpike (PGBT)."
+    ],
+    [
+     "h2",
+     "How paying works"
+    ],
+    [
+     "ul",
+     [
+      "Most North Texas toll roads are cashless. Cameras and tags do the work.",
+      "A TollTag from NTTA (or a compatible TxTag or EZ TAG) gets the lowest rate.",
+      "Without a tag, you're billed by mail at a higher rate."
+     ]
+    ],
+    [
+     "h2",
+     "Why it matters when choosing where to live"
+    ],
+    [
+     "p",
+     "Two homes with similar prices can mean very different commuting costs. Before you buy, map your daily drive. Note whether it's toll road or free highway (US 75, I-35E, I-635), and estimate the monthly toll cost alongside the mortgage."
+    ],
+    [
+     "note",
+     "Check current rates and tag options at ntta.org."
+    ]
+   ],
+   "source": "Editorial (DREI). See NTTA for current rates.",
+   "photo": "dallas-aerial"
+  },
+  {
+   "slug": "downtown-squares-north-of-dallas",
+   "section": "living",
+   "format": "Living Here",
+   "title": "Five small-town squares north of Dallas worth a Saturday",
+   "dek": "Historic downtowns with local restaurants, events and real character, minutes from the suburbs.",
+   "date": "2026-10-15",
+   "read_min": 4,
+   "areas": [
+    "mckinney",
+    "downtown-east-plano",
+    "carrollton",
+    "celina",
+    "wylie"
+   ],
+   "tool": "fit",
+   "body": [
+    [
+     "p",
+     "One of the best-kept secrets of North Texas suburbs is how many have a real historic downtown. If walkability and local character matter to you, these are worth a visit, and worth living near."
+    ],
+    [
+     "ul",
+     [
+      "Historic Downtown McKinney: the region's best-known square, with locally owned shops and restaurants and a busy event calendar.",
+      "Downtown Plano: a historic main street with DART rail access and Haggard Park.",
+      "Downtown Carrollton: a classic square served by the DART Green Line.",
+      "Celina's square: a small-town center in one of the fastest-growing areas in the region.",
+      "Historic Downtown Wylie: a compact, walkable main street near Lake Lavon."
+     ]
+    ],
+    [
+     "h2",
+     "Living near a square"
+    ],
+    [
+     "p",
+     "Homes within walking distance of a historic downtown are limited and often older. That adds character, but sometimes means updates. Ask Dallas AI or a local expert which streets fit your budget."
+    ],
+    [
+     "note",
+     "Event calendars change. Check each city's official site before you go."
+    ]
+   ],
+   "source": "Editorial (DREI).",
+   "photo": "mckinney-downtown"
   }
+ ],
+ "formats": [
+  {
+   "name": "Market Brief",
+   "cadence": "Weekly",
+   "example": "What changed in Dallas housing this week?"
+  },
+  {
+   "name": "Neighborhood Deep Dive",
+   "cadence": "1–2 / week",
+   "example": "What $750K buys in McKinney"
+  },
+  {
+   "name": "Development Watch",
+   "cadence": "Weekly / biweekly",
+   "example": "New development announced along US 380"
+  },
+  {
+   "name": "Builder Incentive Report",
+   "cadence": "Monthly",
+   "example": "Current incentives worth knowing"
+  },
+  {
+   "name": "Tax/Cost Explainer",
+   "cadence": "Monthly",
+   "example": "What property taxes actually mean in Prosper"
+  },
+  {
+   "name": "Data Story",
+   "cadence": "Weekly",
+   "example": "Inventory moved — what does that mean?"
+  },
+  {
+   "name": "Relocation Guide",
+   "cadence": "Ongoing",
+   "example": "Moving from Chicago to DFW"
+  },
+  {
+   "name": "AI FAQ",
+   "cadence": "Ongoing",
+   "example": "One hyperlocal question, answered per page"
+  }
+ ],
+ "sections": {
+  "real-estate": {
+   "name": "Real Estate",
+   "blurb": "Buying, selling, taxes and the market, explained plainly."
+  },
+  "neighborhoods": {
+   "name": "Neighborhoods",
+   "blurb": "Area-by-area guides to living across Dallas–Fort Worth."
+  },
+  "moving": {
+   "name": "Moving Here",
+   "blurb": "Everything new to DFW, from licenses to light bills."
+  },
+  "living": {
+   "name": "Living Here",
+   "blurb": "Getting around, getting out and making DFW home."
+  }
+ }
 }
