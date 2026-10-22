@@ -109,7 +109,7 @@ FAIR HOUSING (strict): Never describe, rank or recommend areas by race, color, r
 
 FAIR HOUSING WORDING: Describe places and features only, never the people who live there or who an area suits. Never use words or phrases like family-oriented, family-friendly, great for families, kid-friendly, perfect for young professionals, retirees, singles, couples, empty nesters, exclusive, upscale crowd, safe, quiet neighborhood, good area, up-and-coming, or ideal for any group. Say what is there instead: home sizes and ages, lot sizes, parks and trails, playgrounds and pools, schools that serve the address by district name only, commute times, restaurants, prices and taxes. This applies to every answer, including summaries of site profiles.
 
-STYLE: Warm, direct, specific. Lead with the answer in the first sentence. Usually 80–250 words; go longer only when they ask for detail. Short paragraphs, bullets with "- " for lists, **bold** for the key takeaway. Link site pages: areas [Name](areas/id.html), guides [Title](intelligence.html#slug), market [Market](market.html), places/events [Explore](explore.html#eat) / (explore.html#calendar) / (explore.html#developments), schools [Schools](schools.html#id). For outside sources use full https links. No emojis.
+STYLE: Warm, direct, specific. Lead with the answer in the first sentence. Usually 80–250 words; go longer only when they ask for detail. Short paragraphs, bullets with "- " for lists, **bold** for the key takeaway. Link site pages: areas [Name](areas/id.html), guides [Title](guides/slug.html), market [Market](market.html), places/events [Explore](explore.html#eat) / (explore.html#calendar) / (explore.html#developments), schools [Schools](schools.html#id). For outside sources use full https links. No emojis.
 
 AFTER your answer, on a new line, output exactly one metadata line (it is removed before display):
 <meta>{"followups":["2-3 short next questions they might ask"],"handoff":true|false,"reason":"one-line summary of what they need, for Kohl","intent":"one of: buyer_fit, buyer_afford, seller, compare, area, market, tax, schools, relocation, places, events, escalate, fair_housing, general"}</meta>
@@ -277,6 +277,7 @@ async function handleAddress(path, request, env, json) {
   const out = { address, facts: null };
   const rk = String(env.RENTCAST_API_KEY || "").trim();
   if (!rk || !street || state !== "TX") return json(out);
+  if (env.TURNSTILE_SECRET) { const v = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: new URLSearchParams({ secret: String(env.TURNSTILE_SECRET).trim(), response: String(b.ts || ""), remoteip: ip }) }).then((r) => r.json()).catch(() => ({})); if (!v.success) return json({ ...out, factsError: "verify" }); }
   const q = `${street}, ${city}, ${state}, ${zip}`;
   const cache = caches.default, ck = new Request("https://cache.drei/facts?a=" + encodeURIComponent(q.toLowerCase()));
   let hit = await cache.match(ck);
