@@ -16,7 +16,7 @@ window.DREI_CONFIG = {
   AGENT_PHONE: "337-794-9971",
   AGENT_LICENSE: "0735490", // TREC sales agent license
   TEAM_NAME: "Templeton Real Estate Group",
-  HEADSHOT: "assets/img/kohl-klaus-headshot.jpg",
+  HEADSHOT: "assets/img/kohl-klaus-headshot.jpg?v=2",
   REVIEWS_URL: "https://www.google.com/maps/search/?api=1&query=Templeton+Real+Estate+Group+3800+Maple+Ave+Dallas+TX",
   KW_SEARCH_URL: "https://kohlklaus.kw.com/search", // live MLS listings on Kohl's KW site (brokerage IDX)
   TURNSTILE_SITEKEY: "0x4AAAAAAFf5iNNK_GlLAsl_", // Cloudflare Turnstile (bot check) for the home value lookup
