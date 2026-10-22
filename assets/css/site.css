@@ -836,3 +836,4 @@ i.pi { background: var(--navy); color: #fff; } i.tx { background: var(--brass); 
 .broker-line { font-size: 1.05rem; color: var(--ink-2); margin: -.2rem 0 0; }
 .broker-line strong { color: var(--ink); }
 .broker-line.on-dark { color: #fff; font-weight: 600; margin-top: .35rem; }
+.hv-ts:empty { display: none; }
