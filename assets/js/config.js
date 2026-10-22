@@ -19,6 +19,7 @@ window.DREI_CONFIG = {
   HEADSHOT: "assets/img/kohl-klaus-headshot.jpg",
   REVIEWS_URL: "https://www.google.com/maps/search/?api=1&query=Templeton+Real+Estate+Group+3800+Maple+Ave+Dallas+TX",
   KW_SEARCH_URL: "https://kohlklaus.kw.com/search", // live MLS listings on Kohl's KW site (brokerage IDX)
+  TURNSTILE_SITEKEY: "0x4AAAAAAFf5iNNK_GlLAsl_", // Cloudflare Turnstile (bot check) for the home value lookup
   CALENDAR_URL: "https://calendly.com/kohlklaus-kw/30min", // e.g. "https://calendly.com/your-link" — shows a "Book a time" button when set
 
   // Texas license-holder disclosures (TREC). Required on the website of a license holder.
@@ -37,7 +38,7 @@ window.DREI_CONFIG = {
   LEAD_ENDPOINT: "https://formsubmit.co/ajax/f9c197508c0e4ee2ca973c2076cc34b1", // FormSubmit → klauspropertymgmt@gmail.com (same inbox as the KPG site)
 
   // Analytics (optional)
-  GA4_ID: "",          // e.g. "G-XXXXXXX"
+  GA4_ID: "G-B703VN6CV8",        // e.g. "G-XXXXXXX"
   POSTHOG_KEY: "",     // e.g. "phc_..."
   POSTHOG_HOST: "https://us.i.posthog.com",
 

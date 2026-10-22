@@ -29,10 +29,10 @@
     ] },
     { label: "Moving Here", key: "moving", items: [
       ["moving.html", "Moving to DFW: start here", "Money, areas, Texas homes, checklist"],
-      ["intelligence.html#dfw-moving-checklist", "First 90 days checklist", "Licenses, registration, homestead"],
+      ["guides/dfw-moving-checklist.html", "First 90 days checklist", "Licenses, registration, homestead"],
       ["schools.html", "Schools", "Official ratings for every public school"],
-      ["intelligence.html#choosing-electricity-in-dfw", "Electricity & utilities", "How to pick a plan"],
-      ["intelligence.html#moving-to-dfw-from-california", "Relocating from out of state", "What surprises people"],
+      ["guides/choosing-electricity-in-dfw.html", "Electricity & utilities", "How to pick a plan"],
+      ["guides/moving-to-dfw-from-california.html", "Relocating from out of state", "What surprises people"],
       ["moving.html#guide", "Free Moving to DFW Guide", "12-page PDF by email"],
       ["intelligence.html#moving", "All moving guides", ""],
     ] },
@@ -43,7 +43,9 @@
       ["tools.html#affordability", "Buying: what can I afford?", "Texas taxes included"],
       ["tools.html#proceeds", "Selling: what would I net?", "Itemized proceeds"],
       ["tools.html#move", "Moving up or down", "Sell and buy, next payment"],
-      ["intelligence.html#muds-and-pids-explained", "New construction & MUD taxes", ""],
+      ["guides/texas-homestead-exemption.html", "Homestead exemption", "Save on taxes; file free"],
+      ["guides/protest-property-taxes-dfw.html", "Protest your property taxes", "Deadline, evidence, steps"],
+      ["guides/muds-and-pids-explained.html", "New construction & MUD taxes", ""],
       ["intelligence.html#real-estate", "All real estate guides", ""],
     ] },
   ];
@@ -67,7 +69,12 @@
     store.push("events", rec);
     const score = store.get("intentScore", 0) + (INTENT_WEIGHTS[event] || 0);
     store.set("intentScore", score);
-    try { if (window.gtag) window.gtag("event", event, props); } catch (e) {}
+    try {
+      if (window.gtag && event !== "page_view") window.gtag("event", event, props); // GA4 counts page views itself
+      // One standard "generate_lead" event per real lead, so GA4 can count conversions.
+      const leadType = event === "handoff_submit" ? (props.kind === "guide" ? "guide" : "request") : (event === "seller_tool" && props.kind === "home_value_request") ? "home_value" : "";
+      if (window.gtag && leadType) window.gtag("event", "generate_lead", { lead_type: leadType });
+    } catch (e) {}
     try { if (window.posthog) window.posthog.capture(event, props); } catch (e) {}
   }
 

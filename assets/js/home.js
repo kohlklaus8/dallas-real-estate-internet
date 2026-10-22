@@ -43,7 +43,7 @@
     const latest = [...A.articles].sort((a, b) => (b.photo ? 1 : 0) - (a.photo ? 1 : 0) || b.date.localeCompare(a.date)).slice(0, 3);
     document.getElementById("posts").innerHTML = latest.map((a, i) => {
       const p = a.photo ? P[a.photo] : null;
-      return `<a class="post" href="intelligence.html#${esc(a.slug)}">
+      return `<a class="post" href="guides/${esc(a.slug)}.html">
         <div class="ph" style="${p ? `background-image:url('${photoUrl(p, 700)}')` : `background:linear-gradient(140deg,${GRADS[i]})`}"${p ? ` role="img" aria-label="${esc(p.place)}"` : ""}></div>
         <span class="cat">${esc((S[a.section] || {}).name || a.format)}</span><h3>${esc(a.title)}</h3><p>${esc(a.dek)}</p></a>`;
     }).join("");

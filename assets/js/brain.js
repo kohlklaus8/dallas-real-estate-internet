@@ -39,7 +39,7 @@
 
   const has = (q, re) => re.test(q);
   const src = (n) => `${n.source} · updated ${n.last_updated}`;
-  const areaLink = (n) => `<a class="link" href="neighborhoods.html#${esc(n.id)}">${esc(n.name)}</a>`;
+  const areaLink = (n) => `<a class="link" href="areas/${esc(n.id)}.html">${esc(n.name)}</a>`;
   const list = (items) => `<ul>${items.map((i) => `<li>${i}</li>`).join("")}</ul>`;
   const TIER = { 1: "entry", 2: "moderate", 3: "upper-middle", 4: "luxury" };
 
@@ -140,7 +140,7 @@
       out.html = compareAreas(areas.slice(0, 4));
       out.html += `<p><a class="btn btn-sm" href="tools.html#compare" data-compare="${areas.slice(0, 4).map((n) => n.id).join(",")}">Open in Compare tool</a></p>`;
       out.sources = areas.slice(0, 4).map(src);
-      if (areas.some((n) => n.id === "frisco") && areas.some((n) => /plano/.test(n.id))) out.html += `<p>Related guide: <a class="link" href="intelligence.html#frisco-vs-plano">Frisco vs. Plano: how to actually choose</a></p>`;
+      if (areas.some((n) => n.id === "frisco") && areas.some((n) => /plano/.test(n.id))) out.html += `<p>Related guide: <a class="link" href="guides/frisco-vs-plano.html">Frisco vs. Plano: how to actually choose</a></p>`;
       out.followups = [`Tell me more about ${areas[0].name}`, `Tell me more about ${areas[1].name}`, "Where should I live?"];
       out.handoff = wantsHuman;
       return out;
@@ -240,7 +240,7 @@
           "<strong>Selling?</strong> Taxes are paid in arrears, so you'll credit the buyer for Jan 1 through closing.",
         ]);
       if (areas.length) out.html += `<p>For ${areas.map(areaLink).join(", ")}: ${areas.map((n) => esc(n.tax_profile)).join(" ")}</p>`;
-      if (a) out.html += `<p>Read more: <a class="link" href="intelligence.html#${esc(a.slug)}">${esc(a.title)}</a></p>`;
+      if (a) out.html += `<p>Read more: <a class="link" href="guides/${esc(a.slug)}.html">${esc(a.title)}</a></p>`;
       out.html += `<p class="muted">General information, not tax advice.</p>`;
       out.sources = [a ? `Guide: ${a.title}` : "Editorial (DREI)"].concat(areas.map(src));
       out.followups = ["Which areas have the most new construction?", "What can I afford?", "Estimate my net proceeds"];
@@ -265,7 +265,7 @@
       out.intent = "relocation";
       const a = art("moving-to-dfw-from-california");
       out.html = `<p>Welcome, in advance. The big adjustments people mention are no state income tax but higher property taxes, MUD/PID districts in new construction, and choosing an area by drive time.</p>` +
-        `<p>Start here: <a class="link" href="intelligence.html#${a ? esc(a.slug) : ""}">${a ? esc(a.title) : "Relocation guide"}</a>. Then tell me where you'll be working and I'll suggest areas.</p>`;
+        `<p>Start here: <a class="link" href="${a ? "guides/" + esc(a.slug) + ".html" : "moving.html"}">${a ? esc(a.title) : "Relocation guide"}</a>. Then tell me where you'll be working and I'll suggest areas.</p>`;
       out.sources = a ? [`Guide: ${a.title}`] : [];
       out.followups = ["Where should I live with a commute to Legacy?", "What's a MUD tax?", "What can I afford?"];
       out.handoff = wantsHuman;
@@ -276,7 +276,7 @@
     if (areas.length) {
       out.intent = "area";
       const n = areas[0];
-      out.html = profileOf(n) + `<p><a class="btn btn-sm" href="neighborhoods.html#${esc(n.id)}">Full ${esc(n.name)} profile</a></p>`;
+      out.html = profileOf(n) + `<p><a class="btn btn-sm" href="areas/${esc(n.id)}.html">Full ${esc(n.name)} profile</a></p>`;
       out.sources = [src(n)];
       const sib = N.filter((x) => x.id !== n.id && x.price_tier === n.price_tier).slice(0, 1)[0];
       out.followups = [sib ? `Compare ${n.name} vs. ${sib.name}` : "Where should I live?", `Schools in ${n.name}`, `Taxes in ${n.name}`];

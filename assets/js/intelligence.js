@@ -23,11 +23,11 @@
       .map(([k, n]) => `<a class="chip" href="#${k}" style="${(sec || "") === k ? "border-color:var(--ink);color:var(--ink);font-weight:600" : ""}">${esc(n)}</a>`).join("");
     const extra = { "real-estate": `<div class="starts" style="margin-bottom:1.5rem"><a class="start" href="market.html"><strong>The market now</strong><span>Inventory, prices and timing, in plain English.</span><em>Open →</em></a><a class="start" href="tools.html#affordability"><strong>What can I afford?</strong><span>A comfortable price range with Texas taxes included.</span><em>Start →</em></a><a class="start" href="tools.html#proceeds"><strong>What would I net?</strong><span>Your take-home from a sale, itemized.</span><em>Start →</em></a></div>`,
       neighborhoods: `<div class="starts" style="margin-bottom:1.5rem"><a class="start" href="neighborhoods.html"><strong>All 40 areas</strong><span>Profiles from Fort Worth to Rockwall, including in-city Dallas.</span><em>Browse →</em></a><a class="start" href="tools.html#fit"><strong>Where should I live?</strong><span>A shortlist based on your commute and budget.</span><em>Start →</em></a><a class="start" href="tools.html#compare"><strong>Compare areas</strong><span>Two to four areas side by side.</span><em>Start →</em></a></div>`,
-      moving: `<div class="starts" style="margin-bottom:1.5rem"><a class="start" href="intelligence.html#dfw-moving-checklist"><strong>First 90 days checklist</strong><span>Licenses, registration, homestead.</span><em>Read →</em></a><a class="start" href="tools.html#fit"><strong>Pick your area</strong><span>Start with your commute.</span><em>Start →</em></a><a class="start" href="tools.html#affordability"><strong>Set your budget</strong><span>Know your range before you tour.</span><em>Start →</em></a></div>` }[sec] || "";
+      moving: `<div class="starts" style="margin-bottom:1.5rem"><a class="start" href="guides/dfw-moving-checklist.html"><strong>First 90 days checklist</strong><span>Licenses, registration, homestead.</span><em>Read →</em></a><a class="start" href="tools.html#fit"><strong>Pick your area</strong><span>Start with your commute.</span><em>Start →</em></a><a class="start" href="tools.html#affordability"><strong>Set your budget</strong><span>Know your range before you tour.</span><em>Start →</em></a></div>` }[sec] || "";
     document.getElementById("sec-extra").innerHTML = extra;
     const rows = D.articles.filter((a) => !sec || a.section === sec);
     document.getElementById("articles").innerHTML = rows.map((a) => `
-      <a class="card" href="#${esc(a.slug)}">
+      <a class="card" href="guides/${esc(a.slug)}.html">
         <span class="eyebrow">${esc((S[a.section] || {}).name || a.format)} · ${esc(a.format)}</span>
         <h3>${esc(a.title)}</h3>
         <p class="muted" style="font-size:.93rem">${esc(a.dek)}</p>
@@ -40,7 +40,7 @@
   function show(a) {
     const t = TOOL[a.tool];
     document.getElementById("article-view").innerHTML = `
-      <p><a class="link" href="#${esc(a.section || "")}">← ${esc(((D.sections || {})[a.section] || {}).name || "All guides")}</a></p>
+      <p><a class="link" href="intelligence.html#${esc(a.section || "")}">← ${esc(((D.sections || {})[a.section] || {}).name || "All guides")}</a></p>
       <span class="eyebrow">${esc(a.format)}</span>
       <h1 style="font-size:var(--step-4);margin:.5rem 0 1rem">${esc(a.title)}</h1>
       <p class="lede" style="margin-bottom:.6rem">${esc(a.dek)}</p>
@@ -51,15 +51,18 @@
         ${t ? `<a class="btn btn-brass" href="${t[0]}">${esc(t[1])}</a>` : ""}
         <a class="btn" href="ask.html">Ask Dallas AI a follow-up</a>
       </div>`;
-    document.title = `${a.title} · Dallas Real Estate Internet`;
+    if (!window.DREI_ARTICLE) document.title = `${a.title} · Dallas Real Estate Internet`;
     track("read_article", { slug: a.slug });
   }
 
   function route() {
-    const slug = location.hash.replace("#", "");
+    const hashSlug = location.hash.replace("#", "");
+    // Old #slug links forward to the guide's own page.
+    if (!window.DREI_ARTICLE && hashSlug && D.articles.some((x) => x.slug === hashSlug)) { location.replace("guides/" + hashSlug + ".html"); return; }
+    const slug = window.DREI_ARTICLE || hashSlug;
     const a = D && D.articles.find((x) => x.slug === slug);
     const sec = D && D.sections && D.sections[slug] ? slug : "";
-    document.getElementById("list-view").hidden = !!a;
+    const lv = document.getElementById("list-view"); if (lv) lv.hidden = !!a;
     document.getElementById("article-view").hidden = !a;
     if (a) { show(a); window.scrollTo(0, 0); } else { list(sec); }
   }

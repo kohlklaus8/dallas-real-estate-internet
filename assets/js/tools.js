@@ -67,7 +67,7 @@
         ${r.target ? `<div class="card"><h3>At ${money(r.target.price)}</h3>
           <p>Monthly cost <strong>${money(r.target.cost.total)}</strong>: ${pct(r.target.frontDTI)} of gross income for housing, ${pct(r.target.backDTI)} with all debts.
           ${r.target.backDTI > 43 ? '<span style="color:var(--bad)">Above typical lender limits.</span>' : r.target.backDTI > 36 ? '<span style="color:var(--warn)">In the stretch zone.</span>' : '<span style="color:var(--good)">Within the comfortable zone.</span>'}</p></div>` : ""}
-        <div class="card"><p style="font-size:.9rem">Property tax is the swing factor in North Texas. A one-point difference in the combined rate on ${money(c.price)} changes the payment by about <strong>${money(c.price * 0.01 / 12)}</strong>/month. New communities with MUD or PID districts often run higher. <a class="link" href="intelligence.html#muds-and-pids-explained">Why →</a></p></div>
+        <div class="card"><p style="font-size:.9rem">Property tax is the swing factor in North Texas. A one-point difference in the combined rate on ${money(c.price)} changes the payment by about <strong>${money(c.price * 0.01 / 12)}</strong>/month. New communities with MUD or PID districts often run higher. <a class="link" href="guides/muds-and-pids-explained.html">Why →</a></p></div>
         <div><a class="btn btn-sm" href="tools.html#fit">Find areas in this range →</a> <button class="btn btn-sm btn-ghost" type="button" data-handoff="tool-affordability">Get a lender intro</button></div>`;
       complete("affordability", { comfortable: Math.round(c.price), stretch: Math.round(s.price) });
     });
@@ -104,7 +104,7 @@
           </dl>
           <p class="muted" style="font-size:.85rem">Selling costs come to ${pct(r.costPct)} of price, before your payoff.</p>
         </div>
-        <div class="card"><p style="font-size:.9rem"><strong>Texas tax proration:</strong> property taxes are paid in arrears, so at closing you credit the buyer about ${r.days} days of this year's taxes. <a class="link" href="intelligence.html#texas-tax-proration-when-you-sell">How it works →</a></p></div>
+        <div class="card"><p style="font-size:.9rem"><strong>Texas tax proration:</strong> property taxes are paid in arrears, so at closing you credit the buyer about ${r.days} days of this year's taxes. <a class="link" href="guides/texas-tax-proration-when-you-sell.html">How it works →</a></p></div>
         <div class="handoff"><strong>Questions for an agent review</strong>
           <ul class="clean" style="font-size:.9rem"><li>What do recent comparable sales support for the list price?</li><li>Which pre-listing repairs pay for themselves?</li><li>How should buyer-side compensation be structured for your price band?</li></ul>
           <div><button class="btn btn-brass btn-sm" type="button" data-handoff="tool-proceeds" data-reason="I ran the Seller Proceeds tool at ${esc(money(r.price))} (est. net ${esc(money(r.net))}) and would like a pricing review.">Get a pricing review</button></div></div>`;
@@ -195,7 +195,7 @@
           <div class="big">${esc(ranked[0].n.name)}</div>
           <p class="muted">Weighted on ${priorities.map((k) => esc(KEY_LABEL[k])).join(", ")}. ${ranked.map((r) => `${esc(r.n.name)} ${r.score}`).join(" · ")} (fit score out of 100).</p></div>` : ""}
         <div class="table-wrap"><table>
-          <thead><tr><th></th>${areas.map((n) => `<th><a class="link" href="neighborhoods.html#${n.id}" style="font-size:.85rem;letter-spacing:0;text-transform:none">${esc(n.name)}</a></th>`).join("")}</tr></thead>
+          <thead><tr><th></th>${areas.map((n) => `<th><a class="link" href="areas/${n.id}.html" style="font-size:.85rem;letter-spacing:0;text-transform:none">${esc(n.name)}</a></th>`).join("")}</tr></thead>
           <tbody>
             ${priorities.length ? row("Fit score", (n) => `<strong class="num" style="text-align:left">${fit[n.id]}</strong>`) : ""}
             ${row("Price tier", (n) => tier(n.price_tier))}
@@ -253,7 +253,7 @@
       document.getElementById("r-fit").innerHTML = `
         <div class="result"><span class="eyebrow">Your shortlist</span><div class="big">${esc(ranked[0].n.name)}</div>
           <p class="muted">Top match out of ${N.length} areas. Fit score ${ranked[0].score}/100.</p></div>
-        ${ranked.map((r, i) => `<a class="card" href="neighborhoods.html#${r.n.id}">
+        ${ranked.map((r, i) => `<a class="card" href="areas/${r.n.id}.html">
           <div style="display:flex;justify-content:space-between;gap:.5rem;align-items:baseline"><h3>${i + 1}. ${esc(r.n.name)}</h3><span class="num">${r.score}/100</span></div>
           <span class="bar"><span style="width:${r.score}%"></span></span>
           ${r.reasons.length ? `<p style="font-size:.9rem"><strong>Why:</strong> ${r.reasons.map((k) => esc(KEY_LABEL[k])).join(", ")}.</p>` : ""}
