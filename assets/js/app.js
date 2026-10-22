@@ -17,7 +17,7 @@
       ["Plano & US 75", [["west-plano", "West Plano"], ["downtown-east-plano", "Downtown & East Plano"], ["allen", "Allen"], ["richardson", "Richardson"], ["murphy", "Murphy"], ["lucas-fairview", "Lucas & Fairview"]]],
       ["Close-in & the lakes", [["addison", "Addison"], ["carrollton", "Carrollton"], ["the-colony", "The Colony"], ["garland", "Garland"], ["rowlett", "Rowlett"], ["rockwall", "Rockwall"], ["wylie", "Wylie"]]],
       ["Mid-Cities", [["las-colinas", "Las Colinas (Irving)"], ["grapevine", "Grapevine"], ["flower-mound", "Flower Mound"], ["arlington", "Arlington"]]],
-    ], foot: [["neighborhoods.html", "All neighborhoods"], ["schools.html", "Schools by area"], ["tools.html#fit", "Where should I live?"], ["tools.html#compare", "Compare areas"]] },
+    ], foot: [["neighborhoods.html", "All neighborhoods"], ["schools.html", "Schools by area"], ["tools.html#fit", "Where should I live?"], ["tools.html#compare", "Compare areas"], ["compare/", "Side-by-side matchups"]] },
     { label: "Explore", key: "explore", items: [
       ["explore.html#developments", "What's being built", "New developments, updated regularly"],
       ["explore.html#eat", "Eat & drink", "Restaurants and bars locals love"],

@@ -82,7 +82,7 @@
   function aroundTown(n) {
     const box = document.getElementById("around");
     if (!box || !n.geo) return;
-    (EXPLORE ? Promise.resolve(EXPLORE) : loadJSON("data/explore.json").then((x) => (EXPLORE = x))).then((X) => {
+    (EXPLORE ? Promise.resolve(EXPLORE) : Promise.all([loadJSON("data/explore.json"), loadJSON("data/compare.json").catch(() => ({ pairs: [] }))]).then(([x, c]) => { x._pairs = c.pairs; return (EXPLORE = x); })).then((X) => {
       if (!document.body.contains(box)) return;
       const { lat, lon } = n.geo, rad = (n.geo.radius_mi || 4) + 1.5;
       const dist = (p) => (p.lat == null ? 99 : miles(lat, lon, p.lat, p.lon));
@@ -101,6 +101,7 @@
       const areaQ = [...cities][0] || "";
       const mi = (d) => (d < 0.5 ? "under a mile" : `${d.toFixed(1)} mi`);
       if (!pick.length && !markets.length && !fests.length) return;
+      const vs = ((X._pairs || [])).filter((pr) => pr.includes(n.id)).map((pr) => ({ slug: pr.join("-vs-"), other: DATA.neighborhoods.find((x) => x.id === (pr[0] === n.id ? pr[1] : pr[0])) })).filter((v) => v.other);
       box.hidden = false;
       box.innerHTML = `<div class="sec-head" style="margin-bottom:.2rem"><div><span class="eyebrow">Around town</span><h2 style="font-size:var(--step-3)">Eat, shop local and celebrate near ${esc(n.name)}</h2>
         <p class="lede">A sample of local restaurants, the closest farmers markets and the yearly festivals people plan around. Distances are from the middle of the area.</p></div></div>
@@ -113,7 +114,8 @@
           ${fests.length ? `<div class="card"><h3>Festivals &amp; yearly events</h3><ul>${fests.slice(0, 7).map((f) => `<li><strong>${MON[f.month - 1]}</strong> · <a class="link" href="${esc(f.url || "https://www.google.com/search?q=" + encodeURIComponent(f.name + " " + f.area + " TX"))}" target="_blank" rel="noopener">${esc(f.name)}</a><small>${esc(f.usually)} · ${esc(f.place)}</small></li>`).join("")}</ul>
             <p style="margin:.7rem 0 0"><a class="link" href="explore.html${areaQ ? "?area=" + encodeURIComponent(areaQ) : ""}#festivals">All festivals →</a></p></div>` : ""}
         </div>
-        <p class="stamp">Hours, dates and menus change. Confirm before you go.</p>`;
+        <p class="stamp">Hours, dates and menus change. Confirm before you go.</p>
+        ${vs.length ? `<p style="margin-top:1rem"><strong>Compare side by side:</strong> ${vs.map((v) => `<a class="link" href="compare/${esc(v.slug)}.html">${esc(n.name.split(" & ")[0])} vs ${esc(v.other.name.split(" & ")[0])}</a>`).join(" · ")}</p>` : ""}`;
     }).catch(() => {});
   }
 
