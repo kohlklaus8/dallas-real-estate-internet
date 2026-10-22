@@ -850,3 +850,10 @@ i.pi { background: var(--navy); color: #fff; } i.tx { background: var(--brass); 
 .around ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
 .around li { line-height: 1.35; }
 .around li small { display: block; color: var(--mute); font-size: .82rem; }
+
+/* comparison pages */
+.compare-table th[scope='row'] { text-align: left; font-weight: 600; white-space: nowrap; color: var(--mute); }
+.compare-table td { vertical-align: top; }
+.compare-table td small { color: var(--mute); }
+.compare-card { display: grid; gap: .35rem; text-decoration: none; }
+.compare-card strong { font-size: 1.05rem; }
