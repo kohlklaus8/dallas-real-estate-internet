@@ -21,6 +21,8 @@
     { label: "Explore", key: "explore", items: [
       ["explore.html#developments", "What's being built", "New developments, updated regularly"],
       ["explore.html#eat", "Eat & drink", "Restaurants and bars locals love"],
+      ["explore.html#markets", "Farmers markets", "Days, hours and seasons by city"],
+      ["explore.html#festivals", "Festivals", "Annual events, month by month"],
       ["explore.html#do", "Things to do", "Parks, museums, downtowns"],
       ["explore.html#sports", "Sports", "Teams, venues, schedules"],
       ["explore.html#calendar", "Events calendar", "What's happening and when"],

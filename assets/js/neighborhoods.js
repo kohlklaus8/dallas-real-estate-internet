@@ -76,6 +76,47 @@
         <p class="stamp">Rates per $100 of value. *County includes community college and hospital districts where they apply. Not included: MUD/PID or other special districts, which some newer communities add. Source: <a href="${esc(M.tax_source_url || "#")}" target="_blank" rel="noopener">Republic Title 2025 DFW Area Tax Rates</a>. Verify the exact address with the county appraisal district.</p></div>` : ""}
     </section>`;
   }
+  // ---- Around town: places to eat, farmers markets and festivals near this area (from data/explore.json) ----
+  const miles = (a, b, c, d) => { const r = Math.PI / 180, x = Math.sin(((c - a) * r) / 2) ** 2 + Math.cos(a * r) * Math.cos(c * r) * Math.sin(((d - b) * r) / 2) ** 2; return 7917.5 * Math.asin(Math.sqrt(x)); };
+  let EXPLORE = null;
+  function aroundTown(n) {
+    const box = document.getElementById("around");
+    if (!box || !n.geo) return;
+    (EXPLORE ? Promise.resolve(EXPLORE) : loadJSON("data/explore.json").then((x) => (EXPLORE = x))).then((X) => {
+      if (!document.body.contains(box)) return;
+      const { lat, lon } = n.geo, rad = (n.geo.radius_mi || 4) + 1.5;
+      const dist = (p) => (p.lat == null ? 99 : miles(lat, lon, p.lat, p.lon));
+      const near = (list, r) => list.map((p) => ({ ...p, d: dist(p) })).filter((p) => p.d <= r).sort((a, b) => a.d - b.d);
+      let eats = near(X.eat || [], rad);
+      if (eats.length < 4) eats = near(X.eat || [], Math.max(rad, 9));
+      // Spread the picks across cuisines first, then fill with the closest.
+      const pick = [], seen = new Set();
+      eats.forEach((p) => { const c = p.cuisine || p.kind; if (!seen.has(c) && pick.length < 8) { seen.add(c); pick.push(p); } });
+      eats.forEach((p) => { if (pick.length < 8 && !pick.includes(p)) pick.push(p); });
+      const drinks = near(X.drink || [], rad).slice(0, 3);
+      const markets = near(X.markets || [], 20).slice(0, 3);
+      const cities = new Set([...String(n.city || "").split(" / "), n.market_city].filter(Boolean));
+      const fests = (X.festivals || []).filter((f) => cities.has(f.area)).sort((a, b) => a.month - b.month);
+      const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const areaQ = [...cities][0] || "";
+      const mi = (d) => (d < 0.5 ? "under a mile" : `${d.toFixed(1)} mi`);
+      if (!pick.length && !markets.length && !fests.length) return;
+      box.hidden = false;
+      box.innerHTML = `<div class="sec-head" style="margin-bottom:.2rem"><div><span class="eyebrow">Around town</span><h2 style="font-size:var(--step-3)">Eat, shop local and celebrate near ${esc(n.name)}</h2>
+        <p class="lede">A sample of local restaurants, the closest farmers markets and the yearly festivals people plan around. Distances are from the middle of the area.</p></div></div>
+        <div class="around">
+          ${pick.length ? `<div class="card"><h3>Places to eat</h3><ul>${pick.map((p) => `<li><a class="link" href="${esc(p.reviews || p.website || "#")}" target="_blank" rel="noopener">${esc(p.name)}</a><small>${esc(p.kind)} · ${esc([p.hood, p.area].filter(Boolean).join(", "))} · ${mi(p.d)}</small></li>`).join("")}
+            ${drinks.map((p) => `<li><a class="link" href="${esc(p.reviews || p.website || "#")}" target="_blank" rel="noopener">${esc(p.name)}</a><small>${esc(p.kind)} · ${esc([p.hood, p.area].filter(Boolean).join(", "))} · ${mi(p.d)}</small></li>`).join("")}</ul>
+            <p style="margin:.7rem 0 0"><a class="link" href="explore.html${areaQ ? "?area=" + encodeURIComponent(areaQ) : ""}#eat">More places to eat and drink →</a></p></div>` : ""}
+          ${markets.length ? `<div class="card"><h3>Farmers markets</h3><ul>${markets.map((m) => `<li><a class="link" href="${esc(m.website || m.reviews)}" target="_blank" rel="noopener">${esc(m.name)}</a><small>${esc(m.when)} · ${esc(m.season)}</small><small>${esc(m.area)} · ${mi(m.d)}</small></li>`).join("")}</ul>
+            <p style="margin:.7rem 0 0"><a class="link" href="explore.html#markets">All farmers markets →</a></p></div>` : ""}
+          ${fests.length ? `<div class="card"><h3>Festivals &amp; yearly events</h3><ul>${fests.slice(0, 7).map((f) => `<li><strong>${MON[f.month - 1]}</strong> · <a class="link" href="${esc(f.url || "https://www.google.com/search?q=" + encodeURIComponent(f.name + " " + f.area + " TX"))}" target="_blank" rel="noopener">${esc(f.name)}</a><small>${esc(f.usually)} · ${esc(f.place)}</small></li>`).join("")}</ul>
+            <p style="margin:.7rem 0 0"><a class="link" href="explore.html${areaQ ? "?area=" + encodeURIComponent(areaQ) : ""}#festivals">All festivals →</a></p></div>` : ""}
+        </div>
+        <p class="stamp">Hours, dates and menus change. Confirm before you go.</p>`;
+    }).catch(() => {});
+  }
+
   function fact(k, v) { return `<div class="fact"><span class="k">${esc(k)}</span><span class="v">${v}</span></div>`; }
 
   function renderDetail(n) {
@@ -132,6 +173,7 @@
       </div>
       ${commuteTaxBlock(n)}
       ${marketBlock(n)}
+      <section class="stack" id="around" style="gap:.4rem;margin-top:2.5rem" hidden></section>
       <section class="stack" id="schools" style="gap:.6rem;margin-top:2.5rem">
         <div class="sec-head" style="margin-bottom:.4rem"><div><span class="eyebrow">Schools</span><h2 style="font-size:var(--step-3)">Schools in and around ${esc(n.name)}</h2>
         <p class="lede">Official state ratings for every public school nearby, plus private options. Tap any school for its full report card and real parent reviews.</p></div>
@@ -139,6 +181,7 @@
         <div id="schools-box"></div>
       </section>`;
     if (window.DREI_SCHOOLS) window.DREI_SCHOOLS.render(document.getElementById("schools-box"), n, { collapsed: true });
+    aroundTown(n);
     document.getElementById("save-btn").addEventListener("click", (e) => {
       const s = store.get("saved", []);
       const i = s.indexOf(n.id);

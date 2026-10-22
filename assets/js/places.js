@@ -27,15 +27,18 @@
   /**
    * groups: [{ label, items }]  e.g. [{label:"Restaurants", items:E.eat}, {label:"Bars & breweries", items:E.drink}]
    */
-  function mount(el, { title, lede, groups, idp }) {
+  function mount(el, { title, lede, groups, idp, note }) {
     const all = groups.flatMap((g) => g.items.map((p) => ({ ...p, group: g.label })));
     const areas = [...new Set(all.map((p) => p.area).filter(Boolean))].sort();
-    const kinds = [...new Set(all.map((p) => p.kind))].sort();
+    // Restaurants carry a broad "cuisine" group (Korean, Latin American...) so the menu stays short; other lists filter by kind.
+    const useCuisine = all.some((p) => p.cuisine);
+    const kindOf = (p) => (useCuisine ? p.cuisine || p.kind : p.kind);
+    const kinds = [...new Set(all.filter((p) => !useCuisine || p.group === groups[0].label).map(kindOf))].sort();
     el.innerHTML = `
       <div class="sec-head"><div><h2>${esc(title)}</h2><p class="lede">${esc(lede)}</p></div></div>
       <div class="pg-filters">
         <label>Where<select id="${idp}-area"><option value="">All of DFW</option>${areas.map((a) => `<option>${esc(a)}</option>`).join("")}</select></label>
-        <label>What<select id="${idp}-kind"><option value="">Everything</option>
+        <label>${useCuisine ? "Cuisine" : "What"}<select id="${idp}-kind"><option value="">Everything</option>
           ${groups.length > 1 ? groups.map((g) => `<option value="group:${esc(g.label)}">All ${esc(g.label.toLowerCase())}</option>`).join("") : ""}
           <option disabled>──────────</option>${kinds.map((k) => `<option value="${esc(k)}">${esc(k)}</option>`).join("")}</select></label>
         <span class="pg-count" id="${idp}-count"></span>
@@ -44,7 +47,7 @@
         <ol class="pg-list" id="${idp}-list"></ol>
         <div class="pg-mapwrap"><div class="pg-map" id="${idp}-map" role="region" aria-label="Map of places"></div></div>
       </div>
-      <p class="stamp" style="margin-top:1rem">Hours, prices and menus change. Tap "Hours &amp; reviews" for current details on Google. Map © OpenStreetMap contributors.</p>`;
+      <p class="stamp" style="margin-top:1rem">${note || `Hours, prices and menus change. Tap "Hours &amp; reviews" for current details on Google.`} Map © OpenStreetMap contributors.</p>`;
 
     const listEl = el.querySelector(`#${idp}-list`);
     const selA = el.querySelector(`#${idp}-area`), selK = el.querySelector(`#${idp}-kind`);
@@ -52,7 +55,7 @@
 
     function filtered() {
       const a = selA.value, k = selK.value;
-      return all.filter((p) => (!a || p.area === a) && (!k || (k.startsWith("group:") ? p.group === k.slice(6) : p.kind === k)));
+      return all.filter((p) => (!a || p.area === a) && (!k || (k.startsWith("group:") ? p.group === k.slice(6) : kindOf(p) === k)));
     }
 
     function draw() {
@@ -66,7 +69,9 @@
           <div class="pg-body">
             <h3>${esc(p.name)}</h3>
             <p class="pg-meta">${esc(p.kind)} · ${esc(where)}${p.price ? ` · ${esc(p.price)}` : ""}</p>
-            <p>${esc(p.why)}</p>
+            ${p.why ? `<p>${esc(p.why)}</p>` : ""}
+            ${p.when ? `<p class="pg-known"><strong>When:</strong> ${esc(p.when)}</p>` : ""}
+            ${p.season ? `<p class="pg-known"><strong>Season:</strong> ${esc(p.season)}</p>` : ""}
             ${p.known_for ? `<p class="pg-known"><strong>Known for:</strong> ${esc(p.known_for)}</p>` : ""}
             ${p.address ? `<p class="pg-addr">${esc(p.address)}</p>` : ""}
             <div class="pg-actions">
@@ -101,6 +106,8 @@
       if (pan && markers[i]) map.panTo(markers[i].getLatLng());
     }
 
+    const pre = new URLSearchParams(location.search).get("area");
+    if (pre && areas.includes(pre)) selA.value = pre;
     selA.addEventListener("change", draw);
     selK.addEventListener("change", draw);
     draw();

@@ -1,6 +1,6 @@
 (function () {
   const { esc, loadJSON, photoUrl, photoCredit, track } = window.DREI;
-  const TABS = ["developments", "eat", "do", "sports", "calendar", "follow"];
+  const TABS = ["developments", "eat", "markets", "festivals", "do", "sports", "calendar", "follow"];
   let E = null;
   const fmtDate = (iso, opts = { month: "short", day: "numeric", year: "numeric" }) => new Date(iso + "T12:00:00").toLocaleDateString("en-US", opts);
   const STATUS = { "Open": "ok", "Complete": "ok", "Under construction": "build", "Scheduled": "plan", "Planned": "plan", "Stalled": "stall" };
@@ -35,6 +35,42 @@
           <span class="ig" aria-hidden="true"></span>
           <span><b>${esc(s.name)}</b><small>@${esc(s.handle)} · ${esc(s.platform)}</small><span>${esc(s.about)}</span></span>
         </a>`).join("")}</div>`;
+  }
+
+  // ---- festivals ----
+  const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const gsearch = (q) => "https://www.google.com/search?q=" + encodeURIComponent(q);
+  function festivals() {
+    const F = E.festivals || [];
+    const today = new Date().toISOString().slice(0, 10);
+    const areas = [...new Set(F.map((f) => f.area))].sort();
+    const kinds = [...new Set(F.map((f) => f.kind))].sort();
+    const next = F.filter((f) => f.start && (f.end || f.start) >= today).sort((a, b) => a.start.localeCompare(b.start)).slice(0, 6);
+    return `<div class="sec-head"><div><h2>Festivals &amp; annual events</h2><p class="lede">The big yearly traditions in each city, month by month. Dates shift a little each year, so check the organizer's site before you go.</p></div></div>
+      ${next.length ? `<h3 style="font-size:1.1rem;margin:.2rem 0 .6rem">Coming up next</h3><div class="fest-next">${next.map((f) => `<a class="evrow" href="${esc(f.url || gsearch(f.name + " " + f.area + " TX"))}" target="_blank" rel="noopener"><span class="evdate"><b>${fmtDate(f.start, { month: "short" })}</b>${fmtDate(f.start, { day: "numeric" })}</span><span><strong>${esc(f.name)}</strong><small>${esc(f.area)} · ${esc(f.place)}</small></span></a>`).join("")}</div>` : ""}
+      <div class="pg-filters" style="margin-top:1.4rem">
+        <label>Where<select id="fe-area"><option value="">All of DFW</option>${areas.map((a) => `<option>${esc(a)}</option>`).join("")}</select></label>
+        <label>What<select id="fe-kind"><option value="">Everything</option>${kinds.map((k) => `<option>${esc(k)}</option>`).join("")}</select></label>
+        <span class="pg-count" id="fe-count"></span>
+      </div>
+      <div id="fe-list"></div>`;
+  }
+  function drawFestivals(p) {
+    const a = p.querySelector("#fe-area").value, k = p.querySelector("#fe-kind").value;
+    const rows = (E.festivals || []).filter((f) => (!a || f.area === a) && (!k || f.kind === k));
+    p.querySelector("#fe-count").textContent = `${rows.length} event${rows.length === 1 ? "" : "s"}`;
+    const by = {};
+    rows.forEach((f) => (by[f.month] = by[f.month] || []).push(f));
+    p.querySelector("#fe-list").innerHTML = Object.keys(by).map(Number).sort((x, y) => x - y).map((m) => `
+      <section class="fest-month"><h3>${MONTHS[m - 1]}</h3><div class="fest-grid">${by[m].map((f) => `
+        <article class="card fest">
+          <span class="tag">${esc(f.kind)}</span>
+          <h4>${esc(f.name)}</h4>
+          <p class="muted" style="margin:0">${esc(f.area)} · ${esc(f.place)}</p>
+          <p style="margin:.35rem 0 0"><strong>Usually:</strong> ${esc(f.usually)}</p>
+          <p class="muted" style="margin:.1rem 0 .5rem;font-size:.88rem">${esc(f.latest)}</p>
+          <a class="link" href="${esc(f.url || gsearch(f.name + " " + f.area + " TX"))}" target="_blank" rel="noopener">${f.url ? "Official info" : "Search for details"} ↗</a>
+        </article>`).join("")}</div></section>`).join("") || `<p class="muted">Nothing here yet. Try "All of DFW".</p>`;
   }
 
   // ---- calendar ----
@@ -72,6 +108,8 @@
     const p = document.querySelector(`[data-p="${tab}"]`);
     if (tab === "developments") p.innerHTML = developments();
     if (tab === "eat") window.DREI_PLACES.mount(p, { idp: "eat", title: "Eat & drink", lede: "Local favorites in every corner of DFW. Pick a city, then tap Directions or Hours & reviews.", groups: [{ label: "Restaurants", items: E.eat }, { label: "Bars & breweries", items: E.drink }] });
+    if (tab === "markets") window.DREI_PLACES.mount(p, { idp: "mk", title: "Farmers markets", lede: "Weekend farmers markets, evening markets and daily produce stands across DFW, with days, hours and seasons. Pick a city to see what's closest.", groups: [{ label: "Markets", items: E.markets || [] }], note: "Market days and hours change with the seasons and the weather. Check the market's site or social page before you go." });
+    if (tab === "festivals") { p.innerHTML = festivals(); const d = () => drawFestivals(p); p.querySelector("#fe-area").addEventListener("change", d); p.querySelector("#fe-kind").addEventListener("change", d); const pre = new URLSearchParams(location.search).get("area"); if (pre) { const sel = p.querySelector("#fe-area"); if ([...sel.options].some((o) => o.value === pre)) sel.value = pre; } d(); }
     if (tab === "do") window.DREI_PLACES.mount(p, { idp: "do", title: "Things to do", lede: "Parks, museums, downtowns and weekend outings from Fort Worth to Rockwall.", groups: [{ label: "Things to do", items: E.do }] });
     if (tab === "sports") p.innerHTML = sports();
     if (tab === "calendar") p.innerHTML = calendar();
