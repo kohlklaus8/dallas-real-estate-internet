@@ -1,0 +1,2 @@
+{"_how_to_update": "Add a pair of area ids from neighborhoods.json, then run python3 tools/build_compare_pages.py <version>.",
+ "pairs": [["frisco","mckinney"],["frisco","prosper"],["prosper","celina"],["mckinney","allen"],["allen","west-plano"],["richardson","west-plano"],["wylie","murphy"],["anna-melissa","princeton"],["rockwall","rowlett"],["the-colony","little-elm"],["grapevine","flower-mound"],["uptown","knox-henderson"],["oak-cliff","east-dallas"],["lake-highlands","east-dallas"],["near-southside","west-7th"],["fort-worth","arlington"],["las-colinas","carrollton"]]}
