@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://dallasrealestateinternet.com/assets/img/og-share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=20261021i">
+<link rel="stylesheet" href="assets/css/site.css?v=20261021j">
 </head>
 <body>
 <header id="site-header"></header>
@@ -31,6 +31,7 @@
       <form class="card hv-form" id="hv-form" novalidate>
         <div class="ac-wrap"><label for="hv-addr">Property address</label><input id="hv-addr" name="address" autocomplete="off" required placeholder="Start typing your address" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="hv-ac"><ul class="ac-list" id="hv-ac" role="listbox" hidden></ul></div>
         <p class="hv-facts" id="hv-facts" hidden></p>
+        <div id="hv-ts" class="hv-ts"></div>
         <div class="row2">
           <label>Beds<input name="beds" inputmode="numeric" placeholder="3"></label>
           <label>Baths<input name="baths" inputmode="decimal" placeholder="2.5"></label>
@@ -77,8 +78,8 @@
   </div>
 </main>
 <footer id="site-footer"></footer>
-<script src="assets/js/config.js?v=20261021i"></script>
-<script src="assets/js/app.js?v=20261021i"></script>
+<script src="assets/js/config.js?v=20261021j"></script>
+<script src="assets/js/app.js?v=20261021j"></script>
 <script>
 (function () {
   const { sendLead, track, toast, esc, money, loadJSON, C } = window.DREI;
@@ -106,6 +107,13 @@
   const W = (C.AI_WORKER_URL || "").replace(/\/$/, "");
   const addr = document.getElementById("hv-addr"), list = document.getElementById("hv-ac"), factsEl = document.getElementById("hv-facts");
   let range = null; let session = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()), timer = 0, items = [], idx = -1, acOff = !W, factsNote = "";
+  // Invisible Cloudflare Turnstile check so bots can't burn the public-record lookups.
+  let tsToken = "", tsId = null;
+  if (C.TURNSTILE_SITEKEY) {
+    window.onTsLoad = () => { try { tsId = turnstile.render("#hv-ts", { sitekey: C.TURNSTILE_SITEKEY, appearance: "interaction-only", callback: (t) => { tsToken = t; }, "expired-callback": () => { tsToken = ""; } }); } catch (e) {} };
+    const sc = document.createElement("script"); sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTsLoad&render=explicit"; sc.async = true; document.head.appendChild(sc);
+  }
+  const waitToken = () => new Promise((res) => { let n = 0; const t = setInterval(() => { if (tsToken || ++n > 30 || !C.TURNSTILE_SITEKEY) { clearInterval(t); res(tsToken); } }, 100); });
   const post = (path, body) => fetch(W + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then((r) => r.json());
   const close = () => { list.hidden = true; addr.setAttribute("aria-expanded", "false"); idx = -1; };
   const draw = () => {
@@ -132,7 +140,8 @@
     if (!it) return;
     addr.value = it.text.replace(/, USA$/, ""); close(); items = [];
     factsEl.hidden = false; factsEl.textContent = "Looking up public records…";
-    post("/facts", { id: it.id, session }).then((d) => {
+    waitToken().then((ts) => post("/facts", { id: it.id, session, ts })).then((d) => {
+      tsToken = ""; try { if (tsId !== null) turnstile.reset(tsId); } catch (e) {}
       session = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
       if (d.address) addr.value = d.address;
       const fx = d.facts;
