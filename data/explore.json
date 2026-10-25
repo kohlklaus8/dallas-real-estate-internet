@@ -1,6 +1,6 @@
 {
  "_how_to_update": "Edit this file on GitHub (pencil icon). Each list is independent. Add an item by copying an existing one. Keep 'last_checked' honest — it shows on the site. Eat/drink/do entries need: name, area (city), hood, kind, why, known_for, address, website, lat, lon, reviews (Google Maps search link). Markets need: name, area, hood, kind, when, season, address, website, lat, lon. Festivals need: name, area, place, kind, usually, latest, start/end (ISO, or null), url, month (1-12).",
- "last_checked": "2026-10-21",
+ "last_checked": "2026-10-25",
  "developments": [
   {
    "name": "Universal Kids Resort",
@@ -131,6 +131,46 @@
    "summary": "A 28.7-acre Trammell Crow Company project with up to 248 apartments and a 222-room Sandman Signature Hotel near Grapevine Mills.",
    "source": "Community Impact (June 2026)",
    "url": "https://communityimpact.com/grapevine-colleyville-southlake/development/287-acre-development-to-add-hotels-multifamily-housing-near-grapevine-mills/"
+  },
+  {
+   "name": "Westside Village",
+   "city": "Fort Worth",
+   "type": "Mixed-use district",
+   "status": "Under construction",
+   "timing": "Construction began February 2026; first phase scheduled for delivery by 2028, full build-out over about 15 years",
+   "summary": "A $1.7 billion, 37-acre development at University Drive and Westside Drive on the edge of the Cultural District, planned for offices, shops, about 1,785 homes and a hotel. The first phase includes an office building, apartments, a restaurant and a jazz club.",
+   "source": "Commercial Property Executive (March 2026)",
+   "url": "https://www.commercialsearch.com/news/1-7b-mixed-use-project-breaks-ground-in-fort-worth/"
+  },
+  {
+   "name": "Klyde Warren Park expansion",
+   "city": "Dallas",
+   "type": "Park",
+   "status": "Planned",
+   "timing": "Construction expected to begin before the end of 2026 and take about 24 months",
+   "summary": "Adds 1.7 acres on the west end of the deck park over Woodall Rogers Freeway, including a lawn that becomes an ice rink in winter, an overlook and a two-level event pavilion.",
+   "source": "CultureMap Dallas (June 2026)",
+   "url": "https://dallas.culturemap.com/news/city-life/klyde-warren-park-expansion-2026/"
+  },
+  {
+   "name": "Halperin Park (Phase One)",
+   "city": "Dallas",
+   "type": "Park",
+   "status": "Open",
+   "timing": "Opened May 9, 2026",
+   "summary": "A deck park over I-35E in Oak Cliff next to the Dallas Zoo. Phase One covers about 2.8 acres of a planned five-acre park.",
+   "source": "Dallas Express (May 2026)",
+   "url": "https://dallasexpress.com/city/halperin-park-grand-opening-oak-cliff-deck-park-opens-saturday/"
+  },
+  {
+   "name": "IKEA Rockwall",
+   "city": "Rockwall",
+   "type": "Major retail",
+   "status": "Open",
+   "timing": "Opened May 13, 2026",
+   "summary": "A smaller-format IKEA at 1801 E. Interstate 30, anchoring a 65-plus-acre mixed-use development.",
+   "source": "CultureMap Dallas (May 2026)",
+   "url": "https://dallas.culturemap.com/news/home-design/furniture-fave-ikea-reveals-grand-opening-date-for-rockwall-store/"
   }
  ],
  "eat": [
@@ -5029,13 +5069,40 @@
  ],
  "events": [
   {
+   "name": "Autumn at the Arboretum",
+   "start": "2026-09-19",
+   "end": "2026-11-01",
+   "city": "Dallas · Dallas Arboretum",
+   "kind": "Garden",
+   "url": "https://www.dallasarboretum.org/",
+   "source": "Organizer"
+  },
+  {
+   "name": "Festival at the Switchyard",
+   "start": "2026-11-07",
+   "end": null,
+   "city": "Carrollton · Historic Downtown Carrollton",
+   "kind": "Arts & music",
+   "url": "https://www.google.com/maps/search/?api=1&query=Festival+at+the+Switchyard+Carrollton+TX",
+   "source": "Organizer"
+  },
+  {
    "name": "Holiday at the Arboretum (final year of the 12 Days of Christmas gazebos)",
    "start": "2026-11-11",
-   "end": null,
+   "end": "2027-01-03",
    "city": "Dallas Arboretum",
    "kind": "Holiday",
    "url": "https://www.dallasarboretum.org/holiday",
    "source": "FOX 4"
+  },
+  {
+   "name": "Frisco Community Parade",
+   "start": "2026-11-14",
+   "end": null,
+   "city": "Frisco · Main Street",
+   "kind": "Parade",
+   "url": "https://www.friscotexas.gov/221/Special-Events",
+   "source": "Organizer"
   },
   {
    "name": "Fort Worth Parade of Lights",
@@ -5065,6 +5132,15 @@
    "source": "YMCA of Metropolitan Dallas"
   },
   {
+   "name": "Home for the Holidays",
+   "start": "2026-11-27",
+   "end": "2026-11-29",
+   "city": "McKinney · Historic Downtown McKinney",
+   "kind": "Holiday",
+   "url": "https://downtownmckinney.com/events/home-for-the-holidays",
+   "source": "Organizer"
+  },
+  {
    "name": "Parade of Lights",
    "start": "2026-12-03",
    "end": null,
@@ -5090,6 +5166,24 @@
    "kind": "Holiday",
    "url": "https://www.klydewarrenpark.org/signature-events-2026",
    "source": "Klyde Warren Park"
+  },
+  {
+   "name": "Prosper Christmas Festival",
+   "start": "2026-12-05",
+   "end": null,
+   "city": "Prosper · Downtown Prosper",
+   "kind": "Holiday",
+   "url": "https://prospertx.gov/christmasfestival",
+   "source": "Organizer"
+  },
+  {
+   "name": "Christmas in the Park",
+   "start": "2026-12-05",
+   "end": null,
+   "city": "Murphy · Murphy",
+   "kind": "Holiday",
+   "url": "https://murphytx.org/330",
+   "source": "Organizer"
   },
   {
    "name": "BMW Dallas Marathon race weekend",
@@ -5125,7 +5219,7 @@
    "city": "Fort Worth · Will Rogers",
    "kind": "Rodeo",
    "url": "https://www.fwssr.com/",
-   "source": "Event listing; confirm at fwssr.com"
+   "source": "Visit Fort Worth"
   },
   {
    "name": "PGA Championship",
@@ -5135,78 +5229,6 @@
    "kind": "Golf",
    "url": "https://www.pgachampionship.com/",
    "source": "Visit Frisco"
-  },
-  {
-   "name": "Autumn at the Arboretum",
-   "start": "2026-09-19",
-   "end": "2026-11-01",
-   "city": "Dallas · Dallas Arboretum",
-   "kind": "Garden",
-   "url": "https://www.dallasarboretum.org/",
-   "source": "Organizer"
-  },
-  {
-   "name": "McKinney Wine & Music Festival",
-   "start": "2026-10-24",
-   "end": null,
-   "city": "McKinney · District 121",
-   "kind": "Food & drink",
-   "url": "https://www.google.com/maps/search/?api=1&query=McKinney+Wine+%26+Music+Festival+McKinney+TX",
-   "source": "Organizer"
-  },
-  {
-   "name": "Home for the Holidays",
-   "start": "2026-11-27",
-   "end": "2026-11-29",
-   "city": "McKinney · Historic Downtown McKinney",
-   "kind": "Holiday",
-   "url": "https://downtownmckinney.com/events/home-for-the-holidays",
-   "source": "Organizer"
-  },
-  {
-   "name": "Festival at the Switchyard",
-   "start": "2026-11-07",
-   "end": null,
-   "city": "Carrollton · Historic Downtown Carrollton",
-   "kind": "Arts & music",
-   "url": "https://www.google.com/maps/search/?api=1&query=Festival+at+the+Switchyard+Carrollton+TX",
-   "source": "Organizer"
-  },
-  {
-   "name": "Beware! of the Square",
-   "start": "2026-10-24",
-   "end": null,
-   "city": "Celina · Downtown Square",
-   "kind": "Holiday",
-   "url": "https://www.celina-tx.gov/987/Events",
-   "source": "Organizer"
-  },
-  {
-   "name": "Prosper Christmas Festival",
-   "start": "2026-12-05",
-   "end": null,
-   "city": "Prosper · Downtown Prosper",
-   "kind": "Holiday",
-   "url": "https://prospertx.gov/christmasfestival",
-   "source": "Organizer"
-  },
-  {
-   "name": "Frisco Community Parade",
-   "start": "2026-11-14",
-   "end": null,
-   "city": "Frisco · Main Street",
-   "kind": "Parade",
-   "url": "https://www.friscotexas.gov/221/Special-Events",
-   "source": "Organizer"
-  },
-  {
-   "name": "Christmas in the Park",
-   "start": "2026-12-05",
-   "end": null,
-   "city": "Murphy · Murphy",
-   "kind": "Holiday",
-   "url": "https://murphytx.org/330",
-   "source": "Organizer"
   }
  ],
  "social": [
