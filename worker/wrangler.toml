@@ -25,11 +25,10 @@ WORKER_URL = "https://dallas-re-ai.klauspropertymgmt.workers.dev"
 #   LEAD_WEBHOOK   (optional)
 
 # ---------- Home search: account store ----------
-# Create it once:   npx wrangler kv namespace create VOW
-# then uncomment these 3 lines and paste the id it prints.
-# [[kv_namespaces]]
-# binding = "VOW"
-# id = "PASTE_ID_HERE"
+# Account store (created Oct 25, 2026).
+[[kv_namespaces]]
+binding = "VOW"
+id = "b3926d2a54e543e898397107c72ca54a"
 
 # Daily alert emails at about 8 a.m. Central (13:07 UTC). Does nothing until the feed is connected.
 [triggers]
