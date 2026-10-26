@@ -1,0 +1,21 @@
+{
+  "name": "Dallas Real Estate Internet · Home Search",
+  "short_name": "DFW Homes",
+  "description": "Search DFW homes with the true monthly cost, real sold prices, flood zones, commute times and school ratings.",
+  "id": "/search.html",
+  "start_url": "/search.html?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1463f3",
+  "categories": ["lifestyle", "business"],
+  "icons": [
+    { "src": "/assets/img/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/img/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/img/app-icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Saved homes", "url": "/search.html?view=saved", "icons": [{ "src": "/assets/img/app-icon-192.png", "sizes": "192x192" }] },
+    { "name": "Ask Dallas AI", "url": "/ask.html", "icons": [{ "src": "/assets/img/app-icon-192.png", "sizes": "192x192" }] }
+  ]
+}
