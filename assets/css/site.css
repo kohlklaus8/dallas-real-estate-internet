@@ -875,3 +875,23 @@ i.pi { background: var(--navy); color: #fff; } i.tx { background: var(--brass); 
 .hero-ctas { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; }
 .hero-ctas .hero-ghost { background: rgba(255,255,255,.94); color: var(--ink); border-color: transparent; }
 .hero-ctas .hero-ghost:hover { background: #fff; }
+/* market page: other reports */
+.report-table th[scope='row'] { text-align: left; font-weight: 700; min-width: 190px; }
+.report-table td, .report-table th { vertical-align: top; }
+.report-table tr.rep-extra td { padding-top: 0; border-top: 0; }
+@media (max-width: 640px) {
+  .report-table thead { display: none; }
+  .report-table tr { display: grid; grid-template-columns: 1fr 1fr; gap: .25rem .75rem; padding: .6rem .75rem; border-bottom: 1px solid var(--line); }
+  .report-table tr.rep-extra { padding-top: 0; }
+  .report-table th, .report-table td { display: block; border: 0; padding: 0; }
+  .report-table th[scope='row'], .report-table tr.rep-extra td { grid-column: 1 / -1; }
+  .report-table td::before { display: block; font-size: .72rem; color: var(--mute); text-transform: uppercase; letter-spacing: .04em; }
+  .report-table td:nth-of-type(1)::before { content: "Price"; }
+  .report-table td:nth-of-type(2)::before { content: "Homes for sale"; }
+  .report-table td:nth-of-type(3)::before { content: "Months of supply"; }
+  .report-table td:nth-of-type(4)::before { content: "Days on market"; }
+  .report-table td:nth-of-type(5)::before { content: "Sales"; }
+  .report-table tr.rep-extra td::before { content: none; }
+}
+.report-table th[scope='row'] { font-family: inherit; text-transform: none; letter-spacing: 0; font-size: .95rem; background: transparent; }
+.report-table th[scope='row'] small { font-family: inherit; text-transform: none; letter-spacing: 0; font-weight: 500; }
