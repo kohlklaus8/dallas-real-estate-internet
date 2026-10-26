@@ -1,0 +1,23 @@
+{
+  "_how_to_update": "Hand-updated from public, published reports. Each figure is quoted as the source published it, with a link. Check monthly: MetroTex (mid-month), Realtor.com (end of month), TRERC Texas Housing Insight (mid-month), Freddie Mac PMMS (Thursdays).",
+  "checked": "2026-10-26",
+  "rate": {"name": "Freddie Mac PMMS", "url": "https://www.freddiemac.com/pmms", "week": "2026-10-22", "rate30": 7.32, "rate15": 6.68, "rate30_year_ago": 6.19},
+  "reports": [
+    {"name": "MetroTex Association of REALTORS®", "basis": "NTREIS MLS, single-family", "period": "September 2026", "published": "2026-10-16",
+     "url": "https://www.mymetrotex.com/september-2026-north-texas-housing-market/",
+     "median_price": 385000, "median_price_yoy": -1, "active": 31325, "active_yoy": -2, "moi": 4.3, "dom": 62, "dom_label": "avg. days on market", "sales": 6759, "sales_yoy": -7,
+     "extra": "Pending sales 5,536 (down 19%). Average sale-to-list 93.9%."},
+    {"name": "Realtor.com", "basis": "Listings, Dallas–Fort Worth–Arlington metro", "period": "September 2026", "published": "2026-09-30",
+     "url": "https://www.prnewswire.com/news-releases/price-cuts-reach-yearly-high-as-inventory-nears-pre-pandemic-levels-realtorcom-september-housing-report-302893453.html",
+     "list_price": 422495, "list_price_yoy": -0.6, "active_yoy": -2.3,
+     "extra": "27.5% of listings had a price cut, same as a year ago."},
+    {"name": "Texas Real Estate Research Center (Texas A&M)", "basis": "Texas REALTORS® data, DFW metro", "period": "July 2026", "published": "2026-09-18",
+     "url": "https://trerc.tamu.edu/reports/texas-housing-insight-september-2026/",
+     "moi": 4.6, "active_yoy": -4.3, "sales_yoy": -1.5,
+     "extra": "Prices down 0.2% from a year earlier. Fort Worth–Arlington had a fourth straight month of year-over-year price gains."},
+    {"name": "Zillow Research", "basis": "Typical home value (ZHVI), all homes", "period": "September 2026", "published": "2026-10-26",
+     "url": "https://www.zillow.com/research/data/",
+     "home_value": 358242, "home_value_yoy": -2.0, "moi": 6.2,
+     "extra": "Zillow counts supply differently (all listings it tracks vs. closed sales), so its months-of-supply reads higher than MLS-based reports."}
+  ]
+}
