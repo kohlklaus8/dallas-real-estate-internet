@@ -71,12 +71,12 @@ async function loadData(env) {
   if (dataCache.value && Date.now() - dataCache.at < DATA_TTL_MS) return dataCache.value;
   const base = (env.SITE_URL || "").replace(/\/$/, "");
   const get = async (p) => { try { const r = await fetch(`${base}/data/${p}`, { cf: { cacheTtl: 300 } }); return r.ok ? r.json() : null; } catch { return null; } };
-  const [hoods, articles, market, explore] = await Promise.all([get("neighborhoods.json"), get("articles.json"), get("market.json"), get("explore.json")]);
-  dataCache = { at: Date.now(), value: { hoods, articles, market, explore } };
+  const [hoods, articles, market, explore, reports] = await Promise.all([get("neighborhoods.json"), get("articles.json"), get("market.json"), get("explore.json"), get("market_reports.json")]);
+  dataCache = { at: Date.now(), value: { hoods, articles, market, explore, reports } };
   return dataCache.value;
 }
 
-function compactKnowledge({ hoods, articles, market, explore }) {
+function compactKnowledge({ hoods, articles, market, explore, reports }) {
   const areas = (hoods?.neighborhoods || []).map((n) => ({
     id: n.id, name: n.name, submarket: n.submarket, price_tier: n.price_tier, home_types: n.home_types, home_age: n.home_age,
     lots: n.lot_profile, hoa: n.hoa, taxes: n.tax_profile, isd: n.isd, zips: n.zips, routes: n.routes, commute: n.commute_profile, offpeak_drive_min: n.commute && Object.fromEntries(Object.entries(n.commute).map(([k, v]) => [k, v.min])), tax_rate_2025_per100_excl_mud_pid: n.tax && n.tax.rows.map((r) => r.label + ": " + r.total),
@@ -84,7 +84,7 @@ function compactKnowledge({ hoods, articles, market, explore }) {
     best_for: n.best_for, scores: n.scores, updated: n.last_updated,
   }));
   const guides = (articles?.articles || []).map((a) => ({ slug: a.slug, title: a.title, dek: a.dek, text: (a.body || []).map((b) => (Array.isArray(b[1]) ? b[1].join(" ") : b[1])).join(" ").slice(0, 3000) }));
-  const mk = market ? { as_of: market.as_of, source: market.source, summary: market.summary, metrics: market.metrics, by_area: market.by_area, by_zip: market.by_zip } : null;
+  const mk = market ? { as_of: market.as_of, source: market.source, summary: market.summary, metrics: market.metrics, by_area: market.by_area, by_zip: market.by_zip, other_reports: reports } : null;
   const ex = explore ? {
     last_checked: explore.last_checked,
     developments: explore.developments,
@@ -110,7 +110,7 @@ COVERAGE: You cover ALL of Dallas–Fort Worth: every suburb AND every in-city n
 
 ACCURACY:
 - Never make up numbers, dates, addresses, names or quotes. If you're not sure and can't verify, say so briefly and say where to check.
-- When you give a market number, say where it's from and its date (the site's snapshot is Zillow data; KNOWLEDGE.market.as_of).
+- When you give a market number, say where it's from and its date (the site's snapshot is Zillow data; KNOWLEDGE.market.as_of). KNOWLEDGE.market.other_reports has published figures from MetroTex, Realtor.com, Texas A&M and the latest Freddie Mac mortgage rate: quote them with the source name and period, and note that sources measure months of supply differently.
 - For quick money questions (rough payment, closing costs, net proceeds) you may give a clearly labeled ballpark showing your assumptions, then link the calculator for real numbers: [Affordability](tools.html#affordability), [Move calculator](tools.html#move), [Seller proceeds](tools.html#proceeds), [Compare areas](tools.html#compare), [Where should I live?](tools.html#fit).
 - Never present a value for a specific home as an appraisal. For "what's my home worth," explain what drives value and offer Kohl's free comparative market analysis.
 - Legal, tax-filing and loan-approval questions: give the general picture, then recommend the right licensed pro (real-estate attorney, CPA, lender).
