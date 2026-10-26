@@ -10,7 +10,8 @@ MODEL = "claude-sonnet-5-5"
 # Where the website lives (GitHub Pages URL or your custom domain). The Worker reads /data/*.json from here.
 SITE_URL = "https://dallasrealestateinternet.com/"
 # Comma-separated list of sites allowed to call this Worker.
-ALLOWED_ORIGINS = "https://kohlklaus8.github.io,https://dallasrealestateinternet.com,https://www.dallasrealestateinternet.com"
+# capacitor://localhost and https://localhost are the DFW Homes iPhone and Android apps.
+ALLOWED_ORIGINS = "https://kohlklaus8.github.io,https://dallasrealestateinternet.com,https://www.dallasrealestateinternet.com,capacitor://localhost,https://localhost"
 WEB_SEARCH = "on"
 # Home search: "on" = sold prices only after the visitor clicks the confirm-email link (ask Anne what NTREIS requires).
 VOW_REQUIRE_VERIFY = "off"
