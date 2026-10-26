@@ -82,4 +82,30 @@
   }).catch(() => {
     document.getElementById("m-summary").textContent = "Couldn't load market data. Refresh to try again.";
   });
+
+  // Other published reports, side by side (data/market_reports.json, hand-updated monthly).
+  loadJSON("data/market_reports.json").then((R) => {
+    const pct = (v) => (v == null ? "" : ` <small style="color:${v >= 0 ? "var(--good)" : "var(--bad)"}">${v > 0 ? "+" : ""}${v}% YoY</small>`);
+    const dash = '<span class="muted">—</span>';
+    const r = R.rate;
+    if (r) {
+      const d = new Date(r.week + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+      document.getElementById("rate-card").innerHTML = `<div class="card" style="display:flex;flex-wrap:wrap;gap:1.25rem 2.5rem;align-items:center;margin-bottom:1rem">
+        <div><span class="eyebrow">30-year fixed mortgage rate</span><div style="font-size:2rem;font-weight:800">${r.rate30.toFixed(2)}%</div><small class="muted">${r.rate30_year_ago ? `${r.rate30_year_ago.toFixed(2)}% a year ago · ` : ""}week of ${esc(d)}</small></div>
+        <div><span class="eyebrow">15-year fixed</span><div style="font-size:1.5rem;font-weight:800">${r.rate15.toFixed(2)}%</div></div>
+        <p class="muted" style="font-size:.9rem;margin:0;flex:1;min-width:220px">National average from <a class="link" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>. Your rate depends on credit, down payment and points; see what it means for your payment in the <a class="link" href="tools.html#affordability">affordability calculator</a>.</p></div>`;
+    }
+    const rows = (R.reports || []).map((x) => {
+      const price = x.median_price != null ? `${money(x.median_price)}${pct(x.median_price_yoy)}<br><small class="muted">median sale price</small>`
+        : x.list_price != null ? `${money(x.list_price)}${pct(x.list_price_yoy)}<br><small class="muted">median list price</small>`
+        : x.home_value != null ? `${money(x.home_value)}${pct(x.home_value_yoy)}<br><small class="muted">typical home value</small>` : dash;
+      const active = x.active != null ? `${Number(x.active).toLocaleString("en-US")}${pct(x.active_yoy)}` : x.active_yoy != null ? pct(x.active_yoy).replace(" <small", "<small") : dash;
+      const sales = x.sales != null ? `${Number(x.sales).toLocaleString("en-US")}${pct(x.sales_yoy)}` : x.sales_yoy != null ? pct(x.sales_yoy).replace(" <small", "<small") : dash;
+      return `<tr><th scope="row"><a class="link" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a><br><small class="muted">${esc(x.basis)} · ${esc(x.period)}</small></th>
+        <td>${price}</td><td>${active}</td><td>${x.moi != null ? Number(x.moi).toFixed(1) : dash}</td><td>${x.dom != null ? `${x.dom}<br><small class="muted">${esc(x.dom_label || "days")}</small>` : dash}</td><td>${sales}</td></tr>
+        ${x.extra ? `<tr class="rep-extra"><td colspan="6"><small class="muted">${esc(x.extra)}</small></td></tr>` : ""}`;
+    }).join("");
+    document.getElementById("report-table").innerHTML = `<div class="table-wrap"><table class="report-table"><thead><tr><th>Source</th><th>Price</th><th>Homes for sale</th><th>Months of supply</th><th>Days on market</th><th>Sales</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    document.getElementById("report-note").textContent = `Figures are quoted as each source published them; we link every report so you can check the original. Last checked ${R.checked}.`;
+  }).catch(() => { const s = document.getElementById("reports"); if (s) s.hidden = true; });
 })();
