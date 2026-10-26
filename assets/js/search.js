@@ -627,6 +627,7 @@
     if (/[?&]verified=1/.test(location.search)) { D.toast("✓ Email confirmed. Thanks!"); if (session) session.verified = true; }
     const hq = new URLSearchParams(location.search).get("q"); if (hq) { $("q").value = hq; doSearch(); } else refresh();
     await refreshMe(); updateSavedBadge();
+    if (/[?&]view=saved/.test(location.search)) toggleSavedView();
     const m = location.hash.match(/^#home=([\w%-]+)/); if (m) openListing(decodeURIComponent(m[1]));
     window.addEventListener("hashchange", () => { const h = location.hash.match(/^#home=([\w%-]+)/); if (h && (!$("drawer")._listing || $("drawer")._listing.ListingKey !== decodeURIComponent(h[1]) || !$("drawer").classList.contains("open"))) openListing(decodeURIComponent(h[1])); });
   })();
