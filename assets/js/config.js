@@ -37,6 +37,14 @@ window.DREI_CONFIG = {
   // Leave blank and requests fall back to showing your email/phone so the visitor can reach you directly.
   LEAD_ENDPOINT: "https://formsubmit.co/ajax/f9c197508c0e4ee2ca973c2076cc34b1", // FormSubmit → klauspropertymgmt@gmail.com (same inbox as the KPG site)
 
+  // Home search (search.html)
+  // "sample" shows made-up homes until the MLS feed is approved. Switch to "worker" once FEED_URL/FEED_TOKEN are set on the Worker.
+  LISTINGS_SOURCE: "sample",
+  SEARCH_ACCOUNTS: "worker",   // "worker" = real accounts via the Worker's /vow routes (falls back to this device if the Worker isn't set up); "device" = this browser only
+  SEARCH_RATE: 6.5,            // interest rate used for the monthly cost on each home
+  // Replace with the exact attribution/disclaimer NTREIS requires before going live.
+  IDX_DISCLAIMER: "Listing information is deemed reliable but not guaranteed and should be independently verified. Listings are provided courtesy of the listing brokerage.",
+
   // Analytics (optional)
   GA4_ID: "G-B703VN6CV8",        // e.g. "G-XXXXXXX"
   POSTHOG_KEY: "",     // e.g. "phc_..."

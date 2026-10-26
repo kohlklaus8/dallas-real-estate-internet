@@ -39,7 +39,8 @@
       ["intelligence.html#moving", "All moving guides", ""],
     ] },
     { label: "Real Estate", key: "re", items: [
-      [C.KW_SEARCH_URL || "market.html", "Search homes for sale", "Live listings on Kohl's KW site"],
+      ["search.html", "Search homes", "Map, true monthly cost, sold prices"],
+      [C.KW_SEARCH_URL || "market.html", "Search on Kohl's KW site", "Brokerage listing search"],
       ["home-value.html", "What's my home worth?", "Free market analysis from Kohl"],
       ["market.html", "Market dashboard", "Prices, inventory, timing"],
       ["tools.html#affordability", "Buying: what can I afford?", "Texas taxes included"],
@@ -137,7 +138,7 @@
         <a class="logo" href="index.html" aria-label="${esc(C.BRAND_NAME)} home"><i aria-hidden="true">D</i><span><b>${esc(C.BRAND_NAME)}</b><small>Live · Move · Invest in DFW</small></span></a>
         <ul class="menu" id="menu">${panels}
           <li><details class="dd"><summary>Tools</summary><div class="panel">
-            ${[["tools.html#fit", "Where should I live?", "A shortlist in a minute"], ["tools.html#affordability", "What can I afford?", ""], ["tools.html#proceeds", "Seller proceeds", ""], ["tools.html#move", "Move calculator", ""], ["tools.html#compare", "Compare areas", ""], ["profile.html", "My saved stuff", "Areas, questions, results"]].map(link).join("")}
+            ${[["search.html", "Home search", "Map, monthly cost, sold prices"], ["tools.html#fit", "Where should I live?", "A shortlist in a minute"], ["tools.html#affordability", "What can I afford?", ""], ["tools.html#proceeds", "Seller proceeds", ""], ["tools.html#move", "Move calculator", ""], ["tools.html#compare", "Compare areas", ""], ["profile.html", "My saved stuff", "Areas, questions, results"]].map(link).join("")}
           </div></details></li>
         </ul>
         <div class="hdr-actions">
@@ -194,7 +195,7 @@
             <li><a href="why.html">Why DFW</a></li><li><a href="neighborhoods.html">Neighborhoods</a></li><li><a href="schools.html">Schools</a></li><li><a href="intelligence.html#moving">Moving Here</a></li>
             <li><a href="intelligence.html#living">Living Here</a></li><li><a href="intelligence.html#real-estate">Real Estate</a></li><li><a href="ask.html">Ask AI</a></li></ul></div>
           <div><h4>Tools</h4><ul>
-            <li><a href="tools.html#affordability">Affordability</a></li><li><a href="tools.html#move">Move calculator</a></li>
+            <li><a href="search.html">Home search</a></li><li><a href="tools.html#affordability">Affordability</a></li><li><a href="tools.html#move">Move calculator</a></li>
             <li><a href="tools.html#proceeds">Seller proceeds</a></li><li><a href="tools.html#compare">Compare areas</a></li>
             <li><a href="tools.html#fit">Where should I live?</a></li></ul></div>
           <div><h4>Contact</h4><ul>
