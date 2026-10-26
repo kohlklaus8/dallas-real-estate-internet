@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Home Search · Dallas Real Estate Internet</title>
+<meta name="description" content="Search DFW homes on a map with the true monthly cost including Texas property taxes, real sold prices, flood zones, relists, commute times and official school ratings.">
+<link rel="canonical" href="https://dallasrealestateinternet.com/search.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Dallas Real Estate Internet">
+<meta property="og:title" content="Home Search · Dallas Real Estate Internet">
+<meta property="og:description" content="Search DFW homes with the true monthly cost, real sold prices, flood zones and commute times.">
+<meta property="og:url" content="https://dallasrealestateinternet.com/search.html">
+<meta property="og:image" content="https://dallasrealestateinternet.com/assets/img/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="assets/css/site.css?v=20261022a">
+<link rel="stylesheet" href="assets/css/search.css?v=20261025a">
+</head>
+<body class="search-page">
+<header id="site-header"></header>
+
+<div class="srch-top">
+  <div class="srch-row">
+    <div class="seg" role="tablist" aria-label="Buy or sold">
+      <button type="button" id="tSale" class="on" role="tab" aria-selected="true">Buy</button>
+      <button type="button" id="tSold" role="tab" aria-selected="false">Sold</button>
+    </div>
+    <form class="bigsearch" id="searchForm" role="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <label class="sr-only" for="q">City or ZIP</label>
+      <input id="q" placeholder="City or ZIP, like Frisco or 75034" autocomplete="off" list="qList">
+      <datalist id="qList"></datalist>
+      <button type="submit">Search</button>
+    </form>
+    <div class="acct">
+      <button type="button" class="pill" id="savedBtn">♥<span class="lbl"> Saved</span><span class="n" id="savedN" hidden>0</span></button>
+      <button type="button" class="pill dark" id="acctBtn">Sign in</button>
+    </div>
+  </div>
+  <div class="fchips" id="chips">
+    <span class="fchip"><select id="fMax" aria-label="Price"><option value="">Any price</option></select></span>
+    <span class="fchip"><select id="fBeds" aria-label="Bedrooms"><option value="0">Any beds</option><option value="2">2+ beds</option><option value="3">3+ beds</option><option value="4">4+ beds</option><option value="5">5+ beds</option></select></span>
+    <span class="fchip" id="payChip"><select id="fPay" aria-label="Monthly budget"><option value="">Any monthly</option></select></span>
+    <span class="fchip"><select id="fWork" aria-label="Commute to"><option value="">Commute to…</option></select></span>
+    <span class="fchip" id="soldChip" hidden><select id="fSoldWithin" aria-label="Sold within"><option value="90">Last 3 months</option><option value="180">Last 6 months</option><option value="365" selected>Last 12 months</option></select></span>
+    <button type="button" class="morebtn" id="moreBtn" aria-expanded="false" aria-controls="more">More filters</button>
+    <button type="button" class="clear" id="clearBtn" hidden>Clear</button>
+    <span class="promise"><span>✓ Real Texas tax math</span><span>✓ Your info goes only to Kohl</span></span>
+  </div>
+  <div id="more" hidden>
+    <div><div class="grp">Lowest price</div><select id="fMin"><option value="">No minimum</option></select></div>
+    <div><div class="grp">Bathrooms</div><select id="fBaths"><option value="0">Any</option><option value="2">2+</option><option value="3">3+</option></select></div>
+    <div><div class="grp">Home type</div><select id="fType"><option value="">Any</option><option>Single Family</option><option>Townhouse</option><option>Condo</option></select></div>
+    <div><div class="grp">Sort by</div><select id="fSort"><option value="new">Newest first</option><option value="plo">Lowest price</option><option value="phi">Highest price</option><option value="ppsf">Best value ($/sq ft)</option><option value="drive">Shortest commute</option></select></div>
+    <div><div class="grp">Max drive to work</div><select id="fDrive"><option value="">Any</option><option value="15">15 min or less</option><option value="20">20 min or less</option><option value="30">30 min or less</option><option value="45">45 min or less</option></select></div>
+    <div class="togs">
+      <label class="tog"><input type="checkbox" id="fNoMud"> No extra tax districts (MUD/PID)</label>
+      <label class="tog"><input type="checkbox" id="fNoHoa"> No HOA</label>
+      <label class="tog"><input type="checkbox" id="fNoFlood"> Not in a flood zone</label>
+      <label class="tog" id="pendWrap"><input type="checkbox" id="fPend" checked> Show homes under contract</label>
+      <label class="tog"><input type="checkbox" id="fBounds" checked> Update list when I move the map</label>
+    </div>
+  </div>
+</div>
+
+<main class="srch-main">
+  <section id="list" aria-live="polite"></section>
+  <div id="mapWrap"><div id="map" role="region" aria-label="Map of homes"></div></div>
+</main>
+<button type="button" class="mobtoggle" id="mobBtn">Show map</button>
+<div class="srch-legal wrap" id="srchLegal"></div>
+<aside id="drawer" aria-hidden="true" aria-label="Home details" tabindex="-1"></aside>
+
+<footer id="site-footer"></footer>
+<script src="assets/js/config.js?v=20261025a"></script>
+<script src="assets/js/app.js?v=20261025a"></script>
+<script src="assets/js/schools.js?v=20261022a"></script>
+<script src="assets/js/search-sample.js?v=20261025a"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="assets/js/search.js?v=20261025a"></script>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2281685b4c78498faca01eefbcb5d450"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -8,6 +8,7 @@ An AI-first real-estate site for all of Dallas–Fort Worth, live at https://dal
   ask.html            Ask Dallas AI: chat with sources, follow-ups and handoff to a person
   neighborhoods.html  19 area profiles (#frisco, #richardson, …)
   market.html         Market dashboard (fills in from data/market.json)
+  search.html         Home search: map, true monthly cost, sold prices, saved homes, alerts
   tools.html          Affordability · Move · Seller proceeds · Compare · Where should I live?
   intelligence.html   Guides & explainers (#slug)
   about.html          Who's behind it + contact
@@ -52,7 +53,16 @@ Pick one option and set `LEAD_ENDPOINT` in `config.js`:
 
 Each request carries a context brief: goal, timeline, recent questions, saved areas, latest tool results and an intent score. Your first call starts where the AI left off. With no endpoint set, visitors see your phone and email plus a copy-ready summary.
 
-## 4. Keep it fresh (Explore page)
+## 4. Home search (search.html)
+
+A map search with the true monthly cost (2025 Texas tax rates from `data/neighborhoods.json`), sold prices behind a free account,
+saved homes, email alerts, commute times, official TEA school ratings and FEMA flood zones.
+
+- Right now it shows **sample homes** (`LISTINGS_SOURCE: "sample"` in `config.js`). They're clearly labeled.
+- Turn on real accounts and, after Anne/NTREIS approve a data feed, real listings: see **worker/README-search.md**.
+- Before going live with MLS data: get `terms.html` (draft) and the `IDX_DISCLAIMER` text approved.
+
+## 5. Keep it fresh (Explore page)
 
 Everything on **Explore** (developments, eat & drink, things to do, sports, events calendar, follow local) lives in `data/explore.json`.
 Edit it right on GitHub (open the file, click the pencil, save). Update `last_checked` when you review it; that date shows on the site.
