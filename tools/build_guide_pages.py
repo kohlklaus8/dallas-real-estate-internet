@@ -35,6 +35,7 @@ for a in A["articles"]:
     out = (TPL.replace("{{TITLE}}", e(a["title"] + " · Dallas Real Estate Internet")).replace("{{OGTITLE}}", e(a["title"]))
            .replace("{{DESC}}", e(a["dek"])).replace("{{URL}}", url).replace("{{SLUG}}", a["slug"]).replace("{{BODY}}", body)
            .replace("{{LD}}", json.dumps(ld, ensure_ascii=False)).replace("{{V}}", V))
+    if os.path.exists(f"assets/img/og/guide-{a['slug']}.jpg"): out = out.replace("assets/img/og-share.jpg", f"assets/img/og/guide-{a['slug']}.jpg")
     open(f"guides/{a['slug']}.html", "w").write(out)
 sm = open("sitemap.xml").read()
 sm = re.sub(r"  <url><loc>[^<]*/guides/[^<]*</loc>.*?</url>\n", "", sm)

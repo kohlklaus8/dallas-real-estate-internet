@@ -15,8 +15,9 @@ fmt = lambda r: (("%.4f" % r).rstrip("0").rstrip("."))
 TPL = open("tools/area_template.html").read()
 urls = []
 for n in J["neighborhoods"]:
-    place = n["name"] if n["name"] == n["city"] or n["city"] in n["name"] else f'{n["name"]}, {n["city"]}'
-    title = f"Living in {place}, TX: Homes, Schools, Commutes & Taxes"
+    city1 = n["city"].split("/")[0].strip()
+    place = n["name"] if n["name"] == n["city"] or city1 in n["name"] else f'{n["name"]}, {n["city"]}'
+    title = f"Living in {place}, TX: Homes, Schools & Commutes"
     desc = n["lifestyle_summary"]
     if len(desc) > 158: desc = desc[:155].rsplit(" ", 1)[0] + "…"
     ph = P.get(n.get("photo") or "", {})

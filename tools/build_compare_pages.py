@@ -79,11 +79,12 @@ for a_id, b_id in PAIRS:
 <div class="grid grid-2" style="margin-top:1.5rem">{side(A)}{side(B)}</div>
 <h2>Still deciding?</h2>
 <p>Tell the free DFW AI your commute, budget and must-haves and it will weigh {e(sa)} and {e(sb)} for you, or talk it through with Kohl.</p>
-<p><a class="btn btn-brass" href="https://calendly.com/kohlklaus-kw/30min">Book a free 30-minute call</a> <a class="btn" href="ask.html">Ask the DFW AI</a> <a class="btn btn-ghost" href="tools.html#fit">Where should I live?</a></p>'''
+<p><a class="btn btn-brass" href="https://calendly.com/kohlklaus-kw/30min">Book a free 30-minute call</a> <a class="btn" href="ask.html">Ask the DFW AI</a> <a class="btn btn-ghost" href="https://kohlklaus.kw.com/search" target="_blank" rel="noopener" data-kw="compare">Browse homes for sale</a></p>'''
     ld = {"@context": "https://schema.org", "@type": "Article", "headline": title, "description": desc, "datePublished": "2026-10-22",
           "author": {"@type": "Person", "name": "Kohl Klaus"}, "publisher": {"@type": "Organization", "name": "The Dallas Real Estate Internet"}, "mainEntityOfPage": url}
     out = (TPL.replace("{{TITLE}}", e(title + " · Dallas Real Estate Internet")).replace("{{OGTITLE}}", e(title)).replace("{{DESC}}", e(desc))
            .replace("{{URL}}", url).replace("{{SLUG}}", slug).replace("{{BODY}}", body).replace("{{LD}}", json.dumps(ld, ensure_ascii=False)).replace("{{V}}", V))
+    out = out.replace("assets/img/og-share.jpg", f"assets/img/og/compare-{slug}.jpg")
     open(f"compare/{slug}.html", "w").write(out)
     cards.append(f'<a class="card compare-card" href="compare/{slug}.html"><strong>{e(sa)} vs {e(sb)}</strong><span class="muted">{e(verdict)}</span></a>')
 # index
