@@ -264,7 +264,7 @@
   function initMap() {
     if (!window.L) { $("map").innerHTML = '<div class="empty">The map could not load.</div>'; $("fBounds").checked = false; return; }
     map = L.map("map", { zoomControl: true }).setView([33.0, -96.8], 10);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>' }).addTo(map);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
     layer = L.layerGroup().addTo(map); workLayer = L.layerGroup().addTo(map);
     map.on("moveend", () => { if ($("fBounds").checked && !savedView) refresh(); else renderMarkers(); });
   }
