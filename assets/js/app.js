@@ -39,6 +39,7 @@
       ["intelligence.html#moving", "All moving guides", ""],
     ] },
     { label: "Real Estate", key: "re", items: [
+      [C.KW_SEARCH_URL || "market.html", "Search homes for sale", "Live listings on Kohl's KW site"],
       ["home-value.html", "What's my home worth?", "Free market analysis from Kohl"],
       ["market.html", "Market dashboard", "Prices, inventory, timing"],
       ["tools.html#affordability", "Buying: what can I afford?", "Texas taxes included"],
