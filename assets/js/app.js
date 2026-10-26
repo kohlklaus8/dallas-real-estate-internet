@@ -414,5 +414,30 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wireCal); else wireCal();
 
+  // Share row on guides, comparisons and area pages (Facebook, LinkedIn, X, email, copy link, phone share sheet).
+  function shareRow() {
+    if (!/^\/(areas|guides|compare)\//.test(location.pathname) || document.getElementById("share-row")) return;
+    const main = document.querySelector("main"); if (!main) return;
+    const url = location.origin + location.pathname, title = (document.querySelector('meta[property="og:title"]') || {}).content || document.title;
+    const u = encodeURIComponent(url), t = encodeURIComponent(title);
+    const row = document.createElement("div");
+    row.id = "share-row"; row.className = "share-row wrap";
+    row.innerHTML = `<span>Share this page:</span>` +
+      (navigator.share ? `<button type="button" data-share="native">Share…</button>` : "") +
+      `<a href="https://www.facebook.com/sharer/sharer.php?u=${u}" target="_blank" rel="noopener" data-share="facebook">Facebook</a>` +
+      `<a href="https://www.linkedin.com/sharing/share-offsite/?url=${u}" target="_blank" rel="noopener" data-share="linkedin">LinkedIn</a>` +
+      `<a href="https://x.com/intent/post?url=${u}&text=${t}" target="_blank" rel="noopener" data-share="x">X</a>` +
+      `<a href="mailto:?subject=${t}&body=${u}" data-share="email">Email</a>` +
+      `<button type="button" data-share="copy">Copy link</button>`;
+    row.addEventListener("click", async (e) => {
+      const el = e.target.closest("[data-share]"); if (!el) return;
+      track("share", { via: el.dataset.share });
+      if (el.dataset.share === "native") { e.preventDefault(); try { await navigator.share({ title, url }); } catch (x) { /* closed */ } }
+      if (el.dataset.share === "copy") { try { await navigator.clipboard.writeText(url); toast("\u2713 Link copied"); } catch (x) { prompt("Copy this link:", url); } }
+    });
+    main.appendChild(row);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", shareRow); else shareRow();
+
   window.DREI = { guideForm, sendLead, C, esc, money, pct, store, track, loadJSON, tier, shield, shields, openHandoff, TIER_LABEL, photoUrl, photoCredit, areaCard, GRADS, toast };
 })();

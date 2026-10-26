@@ -137,6 +137,7 @@
           ${tier(n.price_tier)}
           <button class="btn btn-sm ${isSaved ? "btn-brass" : ""}" type="button" id="save-btn">${isSaved ? "Saved ✓" : "Save area"}</button>
           <a class="btn btn-sm btn-ghost" href="ask.html" id="ask-btn">Ask AI about ${esc(n.name)}</a>
+          ${window.DREI.C.KW_SEARCH_URL ? `<a class="btn btn-sm btn-brass" href="${esc(window.DREI.C.KW_SEARCH_URL)}" target="_blank" rel="noopener" data-kw="area-${esc(n.id)}">Homes for sale ↗</a>` : ""}
           <button class="btn btn-sm btn-ghost" type="button" data-handoff="area-${esc(n.id)}" data-reason="I'd like help with homes in ${esc(n.name)}.">Talk to a local expert</button>
         </div>
         <span class="stamp">Source: ${esc(n.source)} · last updated ${esc(n.last_updated)}</span>

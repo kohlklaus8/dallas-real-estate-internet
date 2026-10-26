@@ -18,18 +18,34 @@
 
   // ---------- rendering ----------
   function mdLite(text) {
-    // Safe, minimal markdown: paragraphs, bullet lists, **bold**, [label](relative-or-https link)
+    // Safe, minimal markdown: headings, paragraphs, bullet and numbered lists (even mixed into one block),
+    // **bold**, and [label](link) for site pages (areas/x.html, guides/y.html#z) or https links.
     const inline = (s) => esc(s)
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\[([^\]]+)\]\(((?:https:\/\/|[a-z0-9-]+\.html)[^)\s]*)\)/gi, (m, l, h) => `<a class="link" href="${h}"${h.startsWith("https") ? ' target="_blank" rel="noopener"' : ""}>${l}</a>`);
-    const blocks = String(text || "").trim().split(/\n{2,}/);
-    return blocks.map((b) => {
-      const lines = b.split("\n");
-      if (/^#{1,4}\s+/.test(lines[0])) { const h = `<h4 style="margin:.2rem 0 .3rem">${inline(lines[0].replace(/^#{1,4}\s+/, ""))}</h4>`; const rest = lines.slice(1); if (!rest.length) return h; if (rest.every((l) => /^\s*[-•*]\s+/.test(l))) return h + "<ul>" + rest.map((l) => `<li>${inline(l.replace(/^\s*[-•*]\s+/, ""))}</li>`).join("") + "</ul>"; return h + `<p>${rest.map(inline).join("<br>")}</p>`; }
-      if (lines.every((l) => /^\s*\d+[.)]\s+/.test(l))) return "<ol>" + lines.map((l) => `<li>${inline(l.replace(/^\s*\d+[.)]\s+/, ""))}</li>`).join("") + "</ol>";
-      if (lines.every((l) => /^\s*[-•*]\s+/.test(l))) return "<ul>" + lines.map((l) => `<li>${inline(l.replace(/^\s*[-•*]\s+/, ""))}</li>`).join("") + "</ul>";
-      return `<p>${lines.map(inline).join("<br>")}</p>`;
-    }).join("");
+      .replace(/\[([^\]]+)\]\(((?:https:\/\/|(?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.html)[^)\s]*)\)/gi, (m, l, h) => `<a class="link" href="${h}"${h.startsWith("https") ? ' target="_blank" rel="noopener"' : ""}>${l}</a>`)
+      .replace(/\(((?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.html(?:#[a-z0-9_-]+)?)\)/gi, (m, h) => `(<a class="link" href="${h}">${h.replace(/\.html.*$/, "").split("/").pop().replace(/-/g, " ")}</a>)`);
+    const BUL = /^\s*[-\u2022*]\s+/, NUM = /^\s*\d+[.)]\s+/, HEAD = /^#{1,4}\s+/;
+    const out = [];
+    let list = null; // { tag, items }
+    let para = [];
+    const flushPara = () => { if (para.length) { out.push(`<p>${para.map(inline).join("<br>")}</p>`); para = []; } };
+    const flushList = () => { if (list) { out.push(`<${list.tag}>${list.items.map((x) => `<li>${inline(x)}</li>`).join("")}</${list.tag}>`); list = null; } };
+    String(text || "").replace(/\r/g, "").trim().split("\n").forEach((line) => {
+      if (!line.trim()) { flushPara(); flushList(); return; }
+      if (HEAD.test(line)) { flushPara(); flushList(); out.push(`<h4 style="margin:.6rem 0 .3rem">${inline(line.replace(HEAD, ""))}</h4>`); return; }
+      const tag = BUL.test(line) ? "ul" : NUM.test(line) ? "ol" : "";
+      if (tag) {
+        flushPara();
+        if (list && list.tag !== tag) flushList();
+        if (!list) list = { tag, items: [] };
+        list.items.push(line.replace(tag === "ul" ? BUL : NUM, ""));
+        return;
+      }
+      if (list && /^\s{2,}\S/.test(line)) { list.items[list.items.length - 1] += " " + line.trim(); return; }
+      flushList(); para.push(line);
+    });
+    flushPara(); flushList();
+    return out.join("");
   }
 
   function addUser(text) {
@@ -126,10 +142,13 @@
   // restore conversation
   const prior = store.get("conversation", []);
   if (prior.length) {
-    prior.slice(-20).forEach((m) => (m.role === "user" ? addUser(m.content) : addAI({ html: `<p>${esc(m.content)}</p>` })));
+    prior.slice(-20).forEach((m) => (m.role === "user" ? addUser(m.content) : addAI({ html: mdLite(m.content) })));
   } else greet();
   renderContext();
 
-  const pending = store.get("pendingQ", "");
+  // A question can arrive from the home page box or from a shared link: ask.html?q=Frisco+or+McKinney%3F
+  const fromUrl = new URLSearchParams(location.search).get("q");
+  if (fromUrl) { history.replaceState(null, "", location.pathname); track("ask_link", {}); }
+  const pending = (fromUrl || "").slice(0, 400) || store.get("pendingQ", "");
   if (pending) { store.set("pendingQ", ""); ask(pending); }
 })();
