@@ -114,8 +114,12 @@
   $("tSold").addEventListener("click", () => setMode("sold"));
   $("searchForm").addEventListener("submit", (e) => { e.preventDefault(); savedView = false; doSearch(); });
   $("savedBtn").addEventListener("click", toggleSavedView);
-  $("acctBtn").addEventListener("click", () => (session ? signOut() : openVow("sold")));
-  $("mobBtn").addEventListener("click", () => { const on = document.body.classList.toggle("showmap"); $("mobBtn").textContent = on ? "Show list" : "Show map"; if (on && map) setTimeout(() => map.invalidateSize(), 60); });
+  $("acctBtn").addEventListener("click", () => (session ? accountSheet() : openVow("sold")));
+  $("mobBtn").addEventListener("click", () => {
+    const on = document.body.classList.toggle("showmap"); $("mobBtn").textContent = on ? "Show list" : "Show map";
+    // The map starts hidden on phones, so size it and frame the homes the first time it's shown.
+    if (on && map) setTimeout(() => { map.invalidateSize(); if (!map._framed) { map._framed = true; const pts = (results.length ? results : RAW).filter((l) => l.Latitude).map((l) => [l.Latitude, l.Longitude]); if (pts.length) map.fitBounds(L.latLngBounds(pts).pad(0.08), { maxZoom: 14 }); } }, 60);
+  });
 
   function setMode(m) {
     mode = m; savedView = false;
@@ -268,7 +272,7 @@
     layer = L.layerGroup().addTo(map); workLayer = L.layerGroup().addTo(map);
     map.on("moveend", () => { if ($("fBounds").checked && !savedView) refresh(); else renderMarkers(); });
   }
-  function fitAll() { if (map && RAW.length) map.fitBounds(L.latLngBounds(RAW.filter((l) => l.Latitude).map((l) => [l.Latitude, l.Longitude])).pad(0.05)); }
+  function fitAll() { if (map && $("mapWrap").offsetWidth) map._framed = true; if (map && RAW.length) map.fitBounds(L.latLngBounds(RAW.filter((l) => l.Latitude).map((l) => [l.Latitude, l.Longitude])).pad(0.05)); }
   function renderMarkers() {
     if (!map) return;
     layer.clearLayers(); workLayer.clearLayers(); markers = {};
@@ -545,6 +549,31 @@
     setSession(null); saved.clear(); alerts = []; persistSaved(); store.set("searchAlerts", alerts);
     savedView = false; closeDrawer(); refresh(); D.toast("Signed out");
   }
+  function accountSheet() {
+    const w = document.createElement("div");
+    w.className = "modal"; w.setAttribute("role", "dialog"); w.setAttribute("aria-modal", "true");
+    w.innerHTML = `<div class="modal-card" style="max-width:420px">
+      <button class="modal-close" type="button" data-close>Close ✕</button>
+      <div class="stack" style="gap:.3rem"><h2 style="font-size:1.4rem">Your account</h2><p class="muted">${esc(session.name || "")}<br>${esc(session.email || "")}</p></div>
+      <p class="private">${saved.size} saved home${saved.size === 1 ? "" : "s"} · ${alerts.length} email alert${alerts.length === 1 ? "" : "s"}</p>
+      <button type="button" class="btn btn-brass" data-a="out" style="justify-content:center">Sign out</button>
+      <button type="button" class="btn btn-ghost" data-a="del" style="justify-content:center;color:var(--bad)">Delete my account</button>
+      <p class="private" data-msg></p></div>`;
+    document.body.appendChild(w);
+    const close = () => w.remove();
+    w.addEventListener("click", async (e) => {
+      if (e.target === w || e.target.hasAttribute("data-close")) return close();
+      const b = e.target.closest("[data-a]"); if (!b) return;
+      if (b.dataset.a === "out") { close(); signOut(); return; }
+      if (b.dataset.a === "del") {
+        if (!b.dataset.sure) { b.dataset.sure = "1"; b.textContent = "Tap again to permanently delete"; w.querySelector("[data-msg]").textContent = "This removes your account, saved homes and alerts."; return; }
+        b.disabled = true; b.textContent = "Deleting…";
+        try { if (session.remote) await api("/vow/delete", {}); } catch (x) { if (x.status !== 401) { b.disabled = false; b.textContent = "Try again"; w.querySelector("[data-msg]").textContent = "Couldn't delete right now. Check your connection."; return; } }
+        store.set("vowDevice", null); setSession(null); saved.clear(); alerts = []; persistSaved(); store.set("searchAlerts", alerts);
+        track("account_deleted", {}); close(); savedView = false; closeDrawer(); refresh(); D.toast("Your account was deleted");
+      }
+    });
+  }
   async function refreshMe() {
     if (!session || !session.remote) return;
     try {
@@ -610,7 +639,7 @@
 
   // ---------- share ----------
   async function shareHome(l) {
-    const url = location.origin + location.pathname + "#home=" + encodeURIComponent(l.ListingKey), title = `${addr(l)}, ${l.City}`;
+    const url = (C.SHARE_URL || location.origin + location.pathname) + "#home=" + encodeURIComponent(l.ListingKey), title = `${addr(l)}, ${l.City}`;
     track("share_home", { id: l.ListingKey });
     try { if (navigator.share) { await navigator.share({ title, text: `${title}: ${money(priceOf(l))}`, url }); return; } await navigator.clipboard.writeText(url); D.toast("✓ Link copied"); }
     catch (e) { if (e && e.name === "AbortError") return; D.toast("Link: " + url); }
