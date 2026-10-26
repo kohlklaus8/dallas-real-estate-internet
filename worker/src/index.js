@@ -5,6 +5,7 @@
  *   POST /chat  { messages:[{role,content}], profile:{}, page }  ->  { reply, followups[], handoff, reason, intent, sources[{title,url}] }
  *   POST /lead  { name, email, kind?:"guide", ...brief }            ->  emails Kohl a lead alert (and the visitor the guide) via Resend
  *   GET  /health
+ *   Home search (see vow.js): GET /listings, /listing, /flood · /vow/* accounts, saved homes, alerts · daily alert emails (cron)
  *
  * Secrets / vars (Cloudflare dashboard → Worker → Settings → Variables and Secrets, or wrangler.toml):
  *   ANTHROPIC_API_KEY  (secret)   Claude API key — never put this in the website
@@ -15,6 +16,8 @@
  *   RESEND_API_KEY     (secret)   Resend key for lead alerts and the guide email
  *   LEAD_TO / REPLY_TO / MAIL_FROM / PUBLIC_URL (vars, optional) — defaults: KPG inbox, kohl@dallasrealestateinternet.com, https://dallasrealestateinternet.com
  */
+
+import { handleSearch, runAlerts } from "./vow.js";
 
 const DATA_TTL_MS = 10 * 60 * 1000;
 const RATE = { windowMs: 60_000, max: 12 };
@@ -28,7 +31,7 @@ export default {
     const cors = {
       "Access-Control-Allow-Origin": allowed.includes(origin) ? origin : allowed[0] || "*",
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
       "Vary": "Origin",
     };
     if (request.method === "OPTIONS") return new Response(null, { headers: cors });
@@ -36,7 +39,11 @@ export default {
     const url = new URL(request.url);
     const json = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
 
-    if (url.pathname === "/health" || url.pathname === "/") { const k0 = String(env.ANTHROPIC_API_KEY || "").trim(); return json({ ok: true, model: env.MODEL || "claude-sonnet-5-5", key: !!k0, key_format_ok: /^sk-ant-[A-Za-z0-9_-]{20,}$/.test(k0), key_len: k0.length, email: !!env.RESEND_API_KEY }); }
+    if (url.pathname === "/health" || url.pathname === "/") { const k0 = String(env.ANTHROPIC_API_KEY || "").trim(); return json({ ok: true, model: env.MODEL || "claude-sonnet-5-5", key: !!k0, key_format_ok: /^sk-ant-[A-Za-z0-9_-]{20,}$/.test(k0), key_len: k0.length, email: !!env.RESEND_API_KEY, accounts: !!env.VOW, feed: !!(env.FEED_URL && env.FEED_TOKEN) }); }
+    if (/^\/(listings|listing|flood)$/.test(url.pathname) || url.pathname.startsWith("/vow/")) {
+      if (request.method === "POST" && allowed.length && !allowed.includes(origin)) return json({ error: "Origin not allowed" }, 403);
+      return handleSearch(request, env, url, json, { sendMail, shell, escH, lead: (b) => handleLead(b, env, json) });
+    }
     if (request.method !== "POST") return json({ error: "Use POST" }, 405);
     if (allowed.length && !allowed.includes(origin)) return json({ error: "Origin not allowed" }, 403);
     if (url.pathname === "/addr" || url.pathname === "/facts") return handleAddress(url.pathname, request, env, json);
@@ -53,6 +60,10 @@ export default {
     if (url.pathname === "/lead") return handleLead(body, env, json);
     if (url.pathname === "/chat") return handleChat(body, env, json);
     return json({ error: "Not found" }, 404);
+  },
+  // Daily search-alert emails. Schedule is set in wrangler.toml ([triggers] crons).
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(runAlerts(env, { sendMail, shell, escH }, env.WORKER_URL || ""));
   },
 };
 
