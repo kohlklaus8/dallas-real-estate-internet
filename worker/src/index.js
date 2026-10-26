@@ -120,7 +120,7 @@ FAIR HOUSING (strict): Never describe, rank or recommend areas by race, color, r
 
 FAIR HOUSING WORDING: Describe places and features only, never the people who live there or who an area suits. Never use words or phrases like family-oriented, family-friendly, great for families, kid-friendly, perfect for young professionals, retirees, singles, couples, empty nesters, exclusive, upscale crowd, safe, quiet neighborhood, good area, up-and-coming, or ideal for any group. Say what is there instead: home sizes and ages, lot sizes, parks and trails, playgrounds and pools, schools that serve the address by district name only, commute times, restaurants, prices and taxes. This applies to every answer, including summaries of site profiles.
 
-STYLE: Warm, direct, specific. Lead with the answer in the first sentence. Usually 80–250 words; go longer only when they ask for detail. Short paragraphs, bullets with "- " for lists, **bold** for the key takeaway. Link site pages: areas [Name](areas/id.html), guides [Title](guides/slug.html), market [Market](market.html), places/events [Explore](explore.html#eat) / (explore.html#calendar) / (explore.html#markets) / (explore.html#festivals) / (explore.html#developments), schools [Schools](schools.html#id). For outside sources use full https links. No emojis.
+STYLE: Warm, direct, specific. Lead with the answer in the first sentence. Usually 80–250 words; keep it under 350 words even when comparing several areas, and offer to go deeper on any part instead of covering everything. Short paragraphs, bullets with "- " for lists, **bold** for the key takeaway. Link site pages: areas [Name](areas/id.html), guides [Title](guides/slug.html), market [Market](market.html), places/events [Explore](explore.html#eat) / (explore.html#calendar) / (explore.html#markets) / (explore.html#festivals) / (explore.html#developments), schools [Schools](schools.html#id). For outside sources use full https links. No emojis.
 
 AFTER your answer, on a new line, output exactly one metadata line (it is removed before display):
 <meta>{"followups":["2-3 short next questions they might ask"],"handoff":true|false,"reason":"one-line summary of what they need, for Kohl","intent":"one of: buyer_fit, buyer_afford, seller, compare, area, market, tax, schools, relocation, places, events, escalate, fair_housing, general"}</meta>
@@ -149,7 +149,7 @@ async function handleChat(body, env, json) {
     method: "POST",
     headers: { "x-api-key": String(env.ANTHROPIC_API_KEY).trim(), "anthropic-version": "2023-06-01", "content-type": "application/json" },
     body: JSON.stringify({
-      model: env.MODEL || "claude-sonnet-5-5", max_tokens: 1600,
+      model: env.MODEL || "claude-sonnet-5-5", max_tokens: 3000,
       system: [
         // Large, stable block is cached between requests (prompt caching) to cut cost and latency.
         { type: "text", text: systemPrompt(k, today), cache_control: { type: "ephemeral" } },
@@ -166,10 +166,10 @@ async function handleChat(body, env, json) {
     return json({ error: "AI service error", status: res.status, type }, 502);
   }
   const data = await res.json();
-  return json(parseReply(data.content || []));
+  return json(parseReply(data.content || [], data.stop_reason));
 }
 
-function parseReply(content) {
+function parseReply(content, stop) {
   // Join text blocks (web-search answers arrive as several text blocks with citations).
   let text = content.filter((c) => c.type === "text").map((c) => c.text).join("").trim();
   const sources = [];
@@ -177,6 +177,12 @@ function parseReply(content) {
   content.forEach((c) => (c.citations || []).forEach((ct) => {
     if (ct.url && !seen.has(ct.url)) { seen.add(ct.url); sources.push({ title: ct.title || new URL(ct.url).hostname, url: ct.url }); }
   }));
+  if (stop === "max_tokens") { // ran out of room: drop any half-written metadata and end on a whole paragraph
+    text = text.replace(/<meta>[\s\S]*$/i, "").trim();
+    const cut = text.lastIndexOf("\n\n");
+    if (cut > 200) text = text.slice(0, cut).trim();
+    text += "\n\n(Ask me to keep going for the rest.)";
+  }
   let meta = {};
   const m = text.match(/<meta>([\s\S]*?)<\/meta>/i);
   if (m) {
