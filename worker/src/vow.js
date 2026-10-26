@@ -10,6 +10,7 @@
  *   POST /vow/register  { name, email, password, phone?, agree:true, website? }  → { token, user }
  *   POST /vow/login     { email, password }        → { token, user }
  *   POST /vow/logout    (auth)                     → { ok }
+ *   POST /vow/delete    (auth)                     → { ok, deleted }   deletes the account and its saved homes and alerts
  *   GET  /vow/me        (auth)                     → { user }
  *   POST /vow/saved     (auth) { saved:[ListingKey] }          → { saved }
  *   POST /vow/alerts    (auth) { alerts:[{ id, label, filters }] } → { alerts }
@@ -117,6 +118,10 @@ export async function handleSearch(request, env, url, json, mail) {
     const s = await sessionUser(request, env);
     if (!s) return json({ error: "signin" }, 401);
     if (p === "/vow/logout") { await env.VOW.delete("s:" + s.tok); return json({ ok: true }); }
+    if (p === "/vow/delete") { // account deletion (required by the App Store for apps with sign-up)
+      await env.VOW.delete("u:" + s.u.email); await env.VOW.delete("s:" + s.tok);
+      return json({ ok: true, deleted: true });
+    }
     if (p === "/vow/saved") {
       s.u.saved = [...new Set((Array.isArray(body.saved) ? body.saved : []).map(String).filter((k) => /^[\w-]{1,64}$/.test(k)))].slice(0, 300);
       await env.VOW.put("u:" + s.u.email, JSON.stringify(s.u));
