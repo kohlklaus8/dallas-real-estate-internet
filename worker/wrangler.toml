@@ -10,7 +10,25 @@ SITE_URL = "https://dallasrealestateinternet.com/"
 # Comma-separated list of sites allowed to call this Worker.
 ALLOWED_ORIGINS = "https://kohlklaus8.github.io,https://dallasrealestateinternet.com,https://www.dallasrealestateinternet.com"
 WEB_SEARCH = "on"
+# Home search: "on" = sold prices only after the visitor clicks the confirm-email link (ask Anne what NTREIS requires).
+VOW_REQUIRE_VERIFY = "off"
+WORKER_URL = "https://dallas-re-ai.klauspropertymgmt.workers.dev"
+# When Anne/NTREIS approve a data feed: uncomment and fill in the vendor's RESO Web API URL,
+# then add the token as a secret:  npx wrangler secret put FEED_TOKEN
+# FEED_URL = "https://api.your-vendor.com/reso/odata"
+# FEED_MAX = "350"
 
 # Secrets (set with `npx wrangler secret put NAME`, never commit them):
 #   ANTHROPIC_API_KEY
 #   LEAD_WEBHOOK   (optional)
+
+# ---------- Home search: account store ----------
+# Create it once:   npx wrangler kv namespace create VOW
+# then uncomment these 3 lines and paste the id it prints.
+# [[kv_namespaces]]
+# binding = "VOW"
+# id = "PASTE_ID_HERE"
+
+# Daily alert emails at about 8 a.m. Central (13:07 UTC). Does nothing until the feed is connected.
+[triggers]
+crons = ["7 13 * * *"]
