@@ -7,6 +7,8 @@
  *   "worker"  live listings from the Worker's /listings route (RESO Web API feed)
  * Accounts use the Worker's /vow/* routes when it has an account store; otherwise they fall back to
  * this device and the sign-up still goes to Kohl as a lead.
+ * VOW_REQUIRED (config.js) = NTREIS VOW mode: every home needs a signed-in account with a confirmed email
+ * and current access (the Worker enforces this too). No device-only fallback in this mode.
  */
 (function () {
   "use strict";
@@ -14,7 +16,8 @@
   const $ = (id) => document.getElementById(id);
   const API = (C.AI_WORKER_URL || "").replace(/\/$/, "");
   const LIVE = C.LISTINGS_SOURCE === "worker" && !!API;
-  const REMOTE_ACCOUNTS = !!API && C.SEARCH_ACCOUNTS !== "device";
+  const REQUIRED = !!C.VOW_REQUIRED && !!API;
+  const REMOTE_ACCOUNTS = REQUIRED || (!!API && C.SEARCH_ACCOUNTS !== "device");
   const ASSUME = { down: 0.2, rate: +(C.SEARCH_RATE || 6.5), years: 30, insPct: 0.8, mudExtra: 0.75 };
   // Commute points match data/neighborhoods.json (drive times there come from OSRM routing).
   const POINTS = [
@@ -29,6 +32,7 @@
   let AREAS = [], RAW = [], results = [], mode = "sale", savedView = false, map, layer, workLayer, markers = {}, pending = null;
   let liveTimer = null, liveSeq = 0, liveState = { signin: false, capped: false, error: false };
   let session = store.get("vowSession", null);
+  if (REQUIRED && session && !session.remote) session = null; // device-only accounts don't count in VOW mode
   let saved = new Set(store.get("savedHomes", []));
   let snaps = store.get("savedSnaps", {});
   let alerts = store.get("searchAlerts", []);
@@ -38,13 +42,16 @@
   const money = (n) => (isFinite(n) ? "$" + Math.round(n).toLocaleString("en-US") : "—");
   const short = (n) => (n >= 1e6 ? "$" + (n / 1e6).toFixed(2).replace(/\.?0+$/, "") + "M" : "$" + Math.round(n / 1e3) + "K");
   const s = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
-  const addr = (l) => [l.StreetNumber, l.StreetName, l.StreetSuffix].filter(Boolean).join(" ") + (l.UnitNumber ? " #" + l.UnitNumber : "");
+  const addr = (l) => (l.AddressHidden ? "Address not shown" : [l.StreetNumber, l.StreetName, l.StreetSuffix].filter(Boolean).join(" ") + (l.UnitNumber ? " #" + l.UnitNumber : ""));
+  const listedBy = (l) => [l.ListAgentFullName, l.ListOfficeName].filter(Boolean).join(", ");
   const fmtDate = (d) => (d ? new Date(String(d).slice(0, 10) + "T12:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "");
   const median = (a) => { if (!a.length) return 0; const v = [...a].sort((x, y) => x - y), m = v.length >> 1; return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2; };
   const isSold = (l) => l.StandardStatus === "Closed";
   const isPend = (l) => l.StandardStatus === "Pending";
   const priceOf = (l) => (isSold(l) ? l.ClosePrice : l.ListPrice) || 0;
-  const canSeeSold = () => !!session && session.soldAccess !== false;
+  const hasAccess = () => !!session && session.remote && session.access === "ok";
+  const canSeeSold = () => (REQUIRED ? hasAccess() : !!session && session.soldAccess !== false);
+  const locked = () => REQUIRED && !hasAccess();
   const hue = (k) => { let h = 0; for (const c of String(k)) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
   const safePhoto = (u) => /^https:\/\/[^\s'"()<>\\]+$/.test(String(u || ""));
   const phStyle = (l) => (safePhoto(l.Photo) ? `background-image:url('${esc(l.Photo)}')` : `background:linear-gradient(135deg,hsl(${hue(l.ListingKey)} 60% 84%),hsl(${(hue(l.ListingKey) + 35) % 360} 65% 70%));color:#0f1b33`);
@@ -114,7 +121,7 @@
   $("tSold").addEventListener("click", () => setMode("sold"));
   $("searchForm").addEventListener("submit", (e) => { e.preventDefault(); savedView = false; doSearch(); });
   $("savedBtn").addEventListener("click", toggleSavedView);
-  $("acctBtn").addEventListener("click", () => (session ? accountSheet() : openVow("sold")));
+  $("acctBtn").addEventListener("click", () => (session ? accountSheet() : openVow(REQUIRED ? "gate" : "sold", REQUIRED ? "in" : "join")));
   $("mobBtn").addEventListener("click", () => {
     const on = document.body.classList.toggle("showmap"); $("mobBtn").textContent = on ? "Show list" : "Show map";
     // The map starts hidden on phones, so size it and frame the homes the first time it's shown.
@@ -127,7 +134,7 @@
     $("tSale").setAttribute("aria-selected", String(m === "sale")); $("tSold").setAttribute("aria-selected", String(m === "sold"));
     $("soldChip").hidden = m !== "sold"; $("payChip").hidden = m !== "sale"; $("pendWrap").hidden = m !== "sale";
     closeDrawer(); refresh();
-    if (m === "sold" && !canSeeSold()) setTimeout(() => openVow("sold"), 250);
+    if (m === "sold" && !canSeeSold() && !REQUIRED) setTimeout(() => openVow("sold"), 250);
   }
   function queryArea() {
     const q = $("q").value.trim().toLowerCase();
@@ -191,10 +198,12 @@
     const j = await r.json();
     if (seq !== liveSeq) return null; // a newer search started
     if (!j.configured) { console.warn("Listings feed isn't configured on the Worker yet; showing sample homes."); return { fallback: true }; }
-    liveState = { signin: !!j.signin, capped: !!j.capped, error: false };
+    liveState = { signin: !!j.signin, capped: !!j.capped, error: false, slow: j.error === "slow" ? j.message : "" };
+    if (j.signin && REQUIRED && session && j.access && j.access !== session.access) setSession({ ...session, access: j.access });
     return remember(j.listings || []);
   }
   function refresh() {
+    if (locked()) { clearTimeout(liveTimer); $("list").classList.remove("loading"); return render(); }
     if (!LIVE || savedView) return render();
     clearTimeout(liveTimer);
     $("list").classList.add("loading");
@@ -209,6 +218,7 @@
     }, 300);
   }
   function render() {
+    if (locked()) { results = []; markSet(); renderGate(); renderMarkers(); return; }
     results = savedView ? [...saved].map((k) => byKey.get(k) || snaps[k]).filter(Boolean) : clientFilter(RAW, !LIVE || liveState.sample);
     markSet(); renderList(); renderMarkers();
   }
@@ -233,7 +243,7 @@
         <div class="hfacts">${s(l.BedroomsTotal || 0, "bed")} · ${s(l.BathroomsTotalInteger || 0, "bath")} · ${(l.LivingArea || 0).toLocaleString()} sq ft</div>
         <div class="addr">${esc(addr(l))}, ${esc(l.City)}</div>
         <div class="chipline">${!sold ? `<span class="mo">${money(monthly(l, l.ListPrice).total)}/mo</span>` : ""}${h ? `<span class="flag${h.bad ? "" : " good"}">${h.s}</span>` : ""}${w ? `<span class="commute">${driveMin(l, w)} min to ${esc(w.short)}</span>` : ""}</div>
-        <div class="court">Listing courtesy of ${esc(l.ListOfficeName || "")}</div></div></article>`;
+        <div class="court">Listed by ${esc(listedBy(l))}</div></div></article>`;
   }
   function renderList() {
     const locked = mode === "sold" && !canSeeSold(), r = results;
@@ -246,6 +256,7 @@
     if (locked) h += `<div class="gate"><div><b>See what homes really sold for</b><br><span style="opacity:.9">Texas doesn't publish sale prices. A free account shows them. Your info goes only to Kohl.</span></div><button type="button" class="btn btn-brass" data-act="unlock">Unlock sold prices</button></div>`;
     const qa = queryArea();
     if (qa) h += `<a class="hoodlink" href="areas/${esc(qa.id)}.html"><div>Moving to ${esc(qa.name)}? Schools, taxes, commutes and the honest pros and cons.</div><span>Read the guide →</span></a>`;
+    if (liveState.slow) h += `<div class="note" style="margin-bottom:14px">${esc(liveState.slow)}</div>`;
     if (LIVE && !liveState.sample && liveState.error) h += `<div class="note" style="margin-bottom:14px">We couldn't reach the listings right now. Try again in a minute.</div>`;
     const mid = r.length && !locked ? ` · typical price <b>${short(median(r.map(priceOf)))}</b>` : "";
     const isOn = mode === "sale" && alerts.some((a) => sameAlert(a.filters, alertFilters()));
@@ -258,7 +269,7 @@
   $("list").addEventListener("click", (e) => {
     const sv = e.target.closest("[data-save]"); if (sv) { e.stopPropagation(); toggleSave(sv.dataset.save); return; }
     const act = e.target.closest("[data-act]");
-    if (act) { const a = act.dataset.act; if (a === "unlock") openVow("sold"); if (a === "alert") alertSearch(); if (a === "back") toggleSavedView(); if (a === "clear") resetAll(); return; }
+    if (act) { const a = act.dataset.act; if (a === "unlock") openVow("sold"); if (a === "join") openVow("gate"); if (a === "signin") openVow("gate", "in"); if (a === "checkv") checkVerified(act); if (a === "resend") resendVerify(act); if (a === "renew") renewSheet(); if (a === "alert") alertSearch(); if (a === "back") toggleSavedView(); if (a === "clear") resetAll(); return; }
     const c = e.target.closest(".hcard"); if (c) openListing(c.dataset.k);
   });
   $("list").addEventListener("keydown", (e) => { const c = e.target.closest(".hcard"); if (c && e.key === "Enter") openListing(c.dataset.k); });
@@ -298,14 +309,16 @@
 
   // ---------- listing detail ----------
   async function findListing(k) {
+    if (locked()) return null;
     if (byKey.has(k)) return byKey.get(k);
     if (LIVE) {
-      try { const j = await fetch(`${API}/listing?id=${encodeURIComponent(k)}`, { headers: session && session.token ? { Authorization: "Bearer " + session.token } : {} }).then((r) => r.json()); if (j.listing) { remember([j.listing]); return j.listing; } if (j.signin) { openVow("sold"); return null; } } catch (e) {}
+      try { const j = await fetch(`${API}/listing?id=${encodeURIComponent(k)}`, { headers: session && session.token ? { Authorization: "Bearer " + session.token } : {} }).then((r) => r.json()); if (j.listing) { remember([j.listing]); return j.listing; } if (j.signin) { REQUIRED ? gateAction() : openVow("sold"); return null; } } catch (e) {}
     }
     return snaps[k] || null;
   }
   async function openListing(k) {
     const l = await findListing(k);
+    if (locked()) { pending = () => openListing(k); gateAction(); return; }
     if (!l) { D.toast("That home isn't available anymore."); return; }
     if (isSold(l) && !canSeeSold()) { pending = () => openListing(k); openVow("sold"); return; }
     track("view_home", { id: k, city: l.City, status: l.StandardStatus });
@@ -347,7 +360,8 @@
           ${row("Days for sale", totalDays(l))}${row("Flood zone", '<span id="dFz">' + (l.FloodZone ? esc(l.FloodZone) : "Checking…") + "</span>")}${row("Tax rate", taxRate(l) + "%")}${row("MLS #", esc(l.ListingId || ""))}
           ${l.PublicRemarks ? `<p style="margin-top:10px;font-size:.92rem;color:var(--ink-2)">${esc(l.PublicRemarks)}</p>` : ""}</div></details>
       </div>
-      <p class="disc">Listing courtesy of ${esc(l.ListOfficeName || "")}. ${esc(C.IDX_DISCLAIMER || "Information deemed reliable but not guaranteed.")}${l._sample ? " SAMPLE HOME: not a real listing." : ""}</p>
+      <p class="listedby">Listed by ${esc(listedBy(l))}</p>
+      <p class="disc">${esc(C.IDX_DISCLAIMER || "Information deemed reliable but not guaranteed.")}${l._sample ? " SAMPLE HOME: not a real listing." : ""}</p>
     </div>`;
     const dr = $("drawer");
     dr._listing = l;
@@ -382,7 +396,7 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
 
   async function checkFlood(l) {
-    if (l.FloodZone || !API || l._sample) { if (!l.FloodZone && $("dFz")) $("dFz").textContent = "Not checked"; return; }
+    if (l.FloodZone || !API || l._sample || l.AddressHidden) { if (!l.FloodZone && $("dFz")) $("dFz").textContent = "Not checked"; return; }
     try {
       const r = await fetch(`${API}/flood?lat=${l.Latitude}&lon=${l.Longitude}`).then((x) => x.json());
       if (r.zone) { l.FloodZone = r.zone; }
@@ -442,7 +456,60 @@
     sold: ["See what homes sold for", "Texas doesn't publish sale prices. A free account shows them.", "Show me sold prices"],
     save: ["Save homes you love", "A free account keeps your saved homes in one place.", "Save this home"],
     alert: ["Get new homes first", "We'll email you when new homes match. Free, and you can stop anytime.", "Turn on alerts"],
+    gate: ["Create your free account to see homes", "MLS rules let us show every home for sale and what homes sold for once you have a free account. Takes 30 seconds.", "Create my free account"],
   };
+  // ---------- VOW gate (C.VOW_REQUIRED) ----------
+  function gateAction() {
+    if (!session) return openVow("gate");
+    if (session.access === "verify") return verifySheet();
+    if (session.access === "expired") return renewSheet();
+    return openVow("gate", "in");
+  }
+  function renderGate() {
+    const st = session ? session.access : "signin";
+    const first = session && session.name ? esc(session.name.split(/\s+/)[0]) : "";
+    const body = st === "verify"
+      ? `<b>Almost there${first ? ", " + first : ""}. Confirm your email.</b><span>We sent a link to <b>${esc(session.email)}</b>. Tap it and homes appear here. Check spam if you don't see it.</span><div class="gate-acts"><button type="button" class="btn btn-brass" data-act="checkv">I confirmed it</button><button type="button" class="btn btn-ghost" data-act="resend">Send it again</button></div>`
+      : st === "expired"
+      ? `<b>Welcome back${first ? ", " + first : ""}.</b><span>MLS rules ask you to re-accept the Terms of Use every so often. It takes one click.</span><div class="gate-acts"><button type="button" class="btn btn-brass" data-act="renew">Renew my access</button></div>`
+      : `<b>Every home for sale and what homes really sold for.</b><span>NTREIS MLS data, free with an account. Your info goes only to ${esc(C.AGENT_NAME)}. Never sold.</span><div class="gate-acts"><button type="button" class="btn btn-brass" data-act="join">Create free account</button><button type="button" class="btn btn-ghost" data-act="signin">Sign in</button></div>`;
+    $("list").innerHTML = `<div class="vowgate">${body}<p class="private">Listing data shown here is from NTREIS and is for your personal, non-commercial home search. <a class="link" href="terms.html">Terms of Use</a> · <a class="link" href="privacy.html">Privacy</a></p></div>`;
+  }
+  function verifySheet() { renderGate(); const b = $("list").querySelector("[data-act=checkv]"); if (b) b.focus(); }
+  async function checkVerified(btn) {
+    if (btn) { btn.disabled = true; btn.textContent = "Checking…"; }
+    await refreshMe();
+    if (hasAccess()) { D.toast("✓ You're in. Happy hunting!"); refresh(); const f = pending; pending = null; if (f) f(); }
+    else { render(); D.toast(session && session.access === "verify" ? "Not confirmed yet. Tap the link in the email." : "Please sign in again."); }
+  }
+  async function resendVerify(btn) {
+    btn.disabled = true; btn.textContent = "Sending…";
+    try { await api("/vow/resend", {}); D.toast("✓ Sent. Check your inbox."); btn.textContent = "Sent"; }
+    catch (x) { D.toast(x.message || "Couldn't send right now."); btn.disabled = false; btn.textContent = "Send it again"; }
+  }
+  function renewSheet() {
+    if (document.getElementById("vowModal")) return;
+    const w = document.createElement("div");
+    w.className = "modal"; w.id = "vowModal"; w.setAttribute("role", "dialog"); w.setAttribute("aria-modal", "true");
+    w.innerHTML = `<div class="modal-card" style="max-width:460px"><button class="modal-close" type="button" data-close>Close ✕</button>
+      <div class="stack" style="gap:.35rem"><h2 style="font-size:1.5rem">Renew your access</h2><p class="muted">Your saved homes and alerts are still here.</p></div>
+      <form class="vow-form" novalidate>${termsBox()}<p class="vow-err" role="alert"></p><button class="btn btn-brass" type="submit">Renew my access</button></form></div>`;
+    document.body.appendChild(w);
+    const form = w.querySelector("form"), err = w.querySelector(".vow-err"), close = () => w.remove();
+    w.addEventListener("click", (e) => { if (e.target === w || e.target.hasAttribute("data-close")) close(); });
+    w.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!form.agree.checked) return (err.textContent = "Check the box to agree to the terms.");
+      try { const j = await api("/vow/renew", { agree: true }); setSession({ ...session, ...j.user }); close(); D.toast("✓ Renewed"); refresh(); const f = pending; pending = null; if (f) f(); }
+      catch (x) { err.textContent = x.message || "Something went wrong. Try again."; }
+    });
+  }
+  function termsBox() {
+    return REQUIRED
+      ? `<label class="terms" data-join><input type="checkbox" name="agree"> <span>I agree to the <a class="link" href="terms.html" target="_blank">Terms of Use</a>. I'm a consumer working with ${esc(C.AGENT_NAME)} of ${esc(C.BROKER_NAME || "")} (no cost, no contract), I'm genuinely interested in buying, selling or leasing, and I'll use the listing data only for my own personal, non-commercial use. I agree to be contacted about my search by email, phone or text.</span></label>`
+      : `<label class="terms" data-join><input type="checkbox" name="agree"> <span>I agree to the <a class="link" href="terms.html" target="_blank">Terms of Use</a>, including that I'm working with ${esc(C.AGENT_NAME)} of ${esc(C.BROKER_NAME || "")} and will use listing data only for my own home search. I agree to be contacted about my search by email, phone or text.</span></label>`;
+  }
   function openVow(reason = "sold", tab = "join") {
     if (document.getElementById("vowModal")) return;
     const t = COPY[reason] || COPY.sold, prof = store.get("profile", {});
@@ -459,7 +526,7 @@
         <input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel" value="${esc(prof.phone || "")}" data-join>
         <input type="password" name="password" placeholder="Password (8+ characters)" autocomplete="current-password" required>
         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <label class="terms" data-join><input type="checkbox" name="agree"> <span>I agree to the <a class="link" href="terms.html" target="_blank">Terms of Use</a>, including that I'm working with ${esc(C.AGENT_NAME)} of ${esc(C.BROKER_NAME || "")} and will use listing data only for my own home search. I agree to be contacted about my search by email, phone or text.</span></label>
+        ${termsBox()}
         <p class="vow-err" role="alert"></p>
         <button class="btn btn-brass" type="submit">${t[2]}</button>
       </form></div>`;
@@ -488,7 +555,8 @@
       const btn = form.querySelector("button[type=submit]"); btn.disabled = true; btn.textContent = "One moment…";
       try {
         await (tab === "join" ? register(v) : signIn(v));
-        const f = pending; w.remove(); pending = null;
+        const f = pending; w.remove(); if (!REQUIRED || hasAccess()) pending = null;
+        if (REQUIRED && !hasAccess()) { render(); window.scrollTo({ top: 0, behavior: "smooth" }); if (session && session.access === "expired") renewSheet(); return; }
         if (!f) D.toast(tab === "join" ? `✓ Welcome, ${v.name.trim().split(/\s+/)[0]}! Sold prices are unlocked.` : "✓ Signed in");
         render(); if (LIVE) refresh();
         if (f) f();
@@ -516,10 +584,11 @@
       try {
         const j = await api("/vow/register", { ...person, password: v.password, agree: true, website: v.website || "" });
         setSession({ token: j.token, ...j.user, remote: true, soldAccess: j.soldAccess });
+        if (REQUIRED) { saved.clear(); alerts = []; persistSaved(); }
         await syncSaved(); await syncAlerts();
         track("handoff_submit", { kind: "search_signup" });
         return;
-      } catch (x) { if (!unreachable(x)) throw x; }
+      } catch (x) { if (REQUIRED || !unreachable(x)) throw unreachable(x) ? new Error("We couldn't reach the home search right now. Try again in a minute.") : x; }
     }
     // Device-only account: everything stays in this browser, and the sign-up goes to Kohl as a lead.
     if (v.website) return;
@@ -536,7 +605,7 @@
         j.user.saved.forEach((k) => saved.add(k)); persistSaved();
         alerts = mergeAlerts(alerts, j.user.alerts); store.set("searchAlerts", alerts);
         await syncSaved(); updateSavedBadge(); return;
-      } catch (x) { if (!unreachable(x)) throw x; }
+      } catch (x) { if (REQUIRED || !unreachable(x)) throw unreachable(x) && x.status !== 401 ? new Error("We couldn't reach the home search right now. Try again in a minute.") : x; }
     }
     const local = store.get("vowDevice", null);
     if (local && local.email.toLowerCase() === v.email.trim().toLowerCase() && local.pw === (await digest(v.password))) { setSession(local); return; }
@@ -555,7 +624,7 @@
     w.innerHTML = `<div class="modal-card" style="max-width:420px">
       <button class="modal-close" type="button" data-close>Close ✕</button>
       <div class="stack" style="gap:.3rem"><h2 style="font-size:1.4rem">Your account</h2><p class="muted">${esc(session.name || "")}<br>${esc(session.email || "")}</p></div>
-      <p class="private">${saved.size} saved home${saved.size === 1 ? "" : "s"} · ${alerts.length} email alert${alerts.length === 1 ? "" : "s"}</p>
+      <p class="private">${saved.size} saved home${saved.size === 1 ? "" : "s"} · ${alerts.length} email alert${alerts.length === 1 ? "" : "s"}${session.accessUntil ? ` · access through ${fmtDate(session.accessUntil)}` : ""}</p>
       <button type="button" class="btn btn-brass" data-a="out" style="justify-content:center">Sign out</button>
       <button type="button" class="btn btn-ghost" data-a="del" style="justify-content:center;color:var(--bad)">Delete my account</button>
       <p class="private" data-msg></p></div>`;
@@ -579,9 +648,10 @@
     try {
       const j = await api("/vow/me");
       setSession({ ...session, ...j.user, soldAccess: j.soldAccess });
+      if (REQUIRED && j.user.access !== "ok") return;
       j.user.saved.forEach((k) => saved.add(k)); persistSaved();
       alerts = mergeAlerts(alerts, j.user.alerts); store.set("searchAlerts", alerts);
-    } catch (x) { if (x.status === 401) setSession(null); }
+    } catch (x) { if (x.status === 401) { setSession(null); if (REQUIRED) render(); } }
   }
 
   // ---------- saved homes ----------
@@ -593,6 +663,7 @@
   }
   async function syncSaved() { if (session && session.remote) { try { const j = await api("/vow/saved", { saved: [...saved] }); saved = new Set(j.saved); persistSaved(); } catch (e) {} } }
   function toggleSave(k) {
+    if (locked()) { pending = () => toggleSave(k); gateAction(); return; }
     if (!session) { pending = () => toggleSave(k); openVow("save"); return; }
     const on = !saved.has(k);
     on ? saved.add(k) : saved.delete(k);
@@ -603,6 +674,7 @@
     if (savedView) render();
   }
   async function toggleSavedView() {
+    if (locked() && !savedView) { pending = () => toggleSavedView(); gateAction(); return; }
     if (!session && !savedView) { pending = () => toggleSavedView(); openVow("save"); return; }
     savedView = !savedView; closeDrawer();
     if (savedView && LIVE) await Promise.all([...saved].filter((k) => !byKey.has(k)).slice(0, 40).map(findListing));
@@ -630,7 +702,7 @@
     }
     render();
   }
-  function alertSearch() { if (!session) { pending = () => alertSearch(); openVow("alert"); return; } addAlert(alertFilters(), "toggle"); }
+  function alertSearch() { if (locked()) { pending = () => alertSearch(); gateAction(); return; } if (!session) { pending = () => alertSearch(); openVow("alert"); return; } addAlert(alertFilters(), "toggle"); }
   function alertLike(l) {
     if (!session) { pending = () => alertLike(l); openVow("alert"); return; }
     const a = areaFor(l);
@@ -649,13 +721,16 @@
   (async function boot() {
     try { AREAS = (await D.loadJSON("data/neighborhoods.json")).neighborhoods || []; } catch (e) { AREAS = []; }
     const dl = $("qList"); [...new Set(AREAS.map((a) => a.name))].sort().forEach((n) => dl.appendChild(new Option(n)));
-    $("srchLegal").innerHTML = esc(C.IDX_DISCLAIMER || "") + (LIVE ? "" : " <b>Sample homes are shown until the MLS listing feed is connected. They are not real listings.</b>") + ` Monthly costs are estimates with ${ASSUME.down * 100}% down at ${ASSUME.rate}%, 2025 tax rates and an insurance estimate. Not a loan offer.`;
+    $("srchLegal").innerHTML = esc(C.IDX_DISCLAIMER || "") + (LIVE ? "" : " <b>Sample homes are shown until the MLS listing feed is connected. They are not real listings.</b>") + (REQUIRED ? " Accounts are free and are needed to see listing data under NTREIS rules." : "") + ` Monthly costs are estimates with ${ASSUME.down * 100}% down at ${ASSUME.rate}%, 2025 tax rates and an insurance estimate. Not a loan offer.`;
     setSession(session); updateSavedBadge();
     initMap();
     if (!LIVE) { RAW = remember(window.DREI_SAMPLE(AREAS)); liveState.sample = true; fitAll(); }
-    if (/[?&]verified=1/.test(location.search)) { D.toast("✓ Email confirmed. Thanks!"); if (session) session.verified = true; }
+    if (/[?&]verified=1/.test(location.search)) { D.toast(session ? "✓ Email confirmed. Thanks!" : "✓ Email confirmed. Sign in to start searching."); if (session) session.verified = true; history.replaceState(null, "", location.pathname + location.hash); }
+    if (/[?&]verified=0/.test(location.search)) D.toast("That confirm link expired. Sign in and tap Send it again.");
+    if (REQUIRED && session) await refreshMe();
     const hq = new URLSearchParams(location.search).get("q"); if (hq) { $("q").value = hq; doSearch(); } else refresh();
-    await refreshMe(); updateSavedBadge();
+    if (!REQUIRED) await refreshMe(); else if (hasAccess()) refresh(); else render();
+    updateSavedBadge();
     if (/[?&]view=saved/.test(location.search)) toggleSavedView();
     const m = location.hash.match(/^#home=([\w%-]+)/); if (m) openListing(decodeURIComponent(m[1]));
     window.addEventListener("hashchange", () => { const h = location.hash.match(/^#home=([\w%-]+)/); if (h && (!$("drawer")._listing || $("drawer")._listing.ListingKey !== decodeURIComponent(h[1]) || !$("drawer").classList.contains("open"))) openListing(decodeURIComponent(h[1])); });

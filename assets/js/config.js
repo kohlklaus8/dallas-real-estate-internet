@@ -40,10 +40,11 @@ window.DREI_CONFIG = {
   // Home search (search.html)
   // "sample" shows made-up homes until the MLS feed is approved. Switch to "worker" once FEED_URL/FEED_TOKEN are set on the Worker.
   LISTINGS_SOURCE: "sample",
+  VOW_REQUIRED: true,          // NTREIS VOW: visitors need a free account (confirmed email) to see any listing data
   SEARCH_ACCOUNTS: "worker",   // "worker" = real accounts via the Worker's /vow routes (falls back to this device if the Worker isn't set up); "device" = this browser only
   SEARCH_RATE: 6.5,            // interest rate used for the monthly cost on each home
-  // Replace with the exact attribution/disclaimer NTREIS requires before going live.
-  IDX_DISCLAIMER: "Listing information is deemed reliable but not guaranteed and should be independently verified. Listings are provided courtesy of the listing brokerage.",
+  // Swap in NTREIS's exact required wording if their VOW rules give one.
+  IDX_DISCLAIMER: "Listing data © North Texas Real Estate Information Systems, Inc. (NTREIS). Information is deemed reliable but is not guaranteed accurate by the MLS or Keller Williams Realty Urban Dallas, and should be independently verified. Provided for consumers' personal, non-commercial use only, and may not be used for any purpose other than to identify properties consumers may be interested in buying, selling or leasing.",
 
   // Analytics (optional)
   GA4_ID: "G-B703VN6CV8",        // e.g. "G-XXXXXXX"
