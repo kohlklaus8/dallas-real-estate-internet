@@ -13,8 +13,10 @@ SITE_URL = "https://dallasrealestateinternet.com/"
 # capacitor://localhost and https://localhost are the DFW Homes iPhone and Android apps.
 ALLOWED_ORIGINS = "https://kohlklaus8.github.io,https://dallasrealestateinternet.com,https://www.dallasrealestateinternet.com,capacitor://localhost,https://localhost"
 WEB_SEARCH = "on"
-# Home search: "on" = sold prices only after the visitor clicks the confirm-email link (ask Anne what NTREIS requires).
-VOW_REQUIRE_VERIFY = "off"
+# Home search (NTREIS VOW). Defaults in code are the strict VOW settings, so these are optional:
+#   VOW_GATE "all" = every listing needs an account; VOW_VERIFY "on" = email must be confirmed first;
+#   VOW_ACCESS_DAYS "180" = re-accept the terms every 180 days; FEED_OPTOUT "on" = honor seller opt-outs.
+VOW_TERMS_VERSION = "2026-10-28"
 WORKER_URL = "https://dallas-re-ai.klauspropertymgmt.workers.dev"
 # When Anne/NTREIS approve a data feed: uncomment and fill in the vendor's RESO Web API URL,
 # then add the token as a secret:  npx wrangler secret put FEED_TOKEN
