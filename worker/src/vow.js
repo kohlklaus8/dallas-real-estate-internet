@@ -4,14 +4,17 @@
  * Routes (all JSON; auth = "Authorization: Bearer <session token>")
  *   GET  /listings?mode=sale|sold&n=&s=&e=&w=&min=&max=&beds=&baths=&type=&q=&days=&pending=1
  *                                  → { configured, listings:[RESO-shaped records], count, capped }
- *                                    Sold (Closed) records require a signed-in account (VOW rule).
- *   GET  /listing?id=<ListingKey>  → { listing }   (Closed requires sign-in)
+ *                                    VOW: every listing requires a signed-in, email-verified account with current
+ *                                    access (VOW_GATE "all", the default). VOW_GATE "sold" gates only sold records.
+ *   GET  /listing?id=<ListingKey>  → { listing }   (same gate)
  *   GET  /flood?lat=&lon=          → { zone, subtype, sfha }   FEMA flood zone for one point (cached)
  *   POST /vow/register  { name, email, password, phone?, agree:true, website? }  → { token, user }
  *   POST /vow/login     { email, password }        → { token, user }
  *   POST /vow/logout    (auth)                     → { ok }
- *   POST /vow/delete    (auth)                     → { ok, deleted }   deletes the account and its saved homes and alerts
- *   GET  /vow/me        (auth)                     → { user }
+ *   POST /vow/delete    (auth)                     → { ok, deleted }   deletes the account; keeps a short audit record (VOW rule)
+ *   POST /vow/resend    (auth)                     → { ok }   sends the confirm-email link again
+ *   POST /vow/renew     (auth) { agree:true }      → { user }  re-accepts the Terms of Use and restarts access
+ *   GET  /vow/me        (auth)                     → { user }   user.access = "ok" | "verify" | "expired"
  *   POST /vow/saved     (auth) { saved:[ListingKey] }          → { saved }
  *   POST /vow/alerts    (auth) { alerts:[{ id, label, filters }] } → { alerts }
  *   GET  /vow/verify?t=                            → redirects to the site after confirming the email
@@ -27,7 +30,16 @@
  *   FEED_MEDIA         (var)         "expand" (default) adds $expand=Media for the first photo; "none" skips photos
  *   FEED_MAX           (var)         max listings per search, default 350 (the MLS may set a lower cap)
  *   FEED_MUD_FIELD     (var)         optional feed field that flags MUD/PID/special tax districts
- *   VOW_REQUIRE_VERIFY (var)         "on" = sold prices only after the visitor clicks the email link. Default "off".
+ *   VOW_GATE           (var)         "all" (default) = all listing data needs an account; "sold" = only sold records
+ *   VOW_VERIFY         (var)         "on" (default) = data only after the visitor clicks the confirm-email link
+ *   VOW_ACCESS_DAYS    (var)         days of access before the visitor must re-accept the terms, default 180 (min 90)
+ *   VOW_AUDIT_DAYS     (var)         days to keep a record of deleted accounts, default 200 (MLS rule: 180 after expiry)
+ *   VOW_TERMS_VERSION  (var)         version label saved with each terms acceptance, e.g. "2026-10-28"
+ *   VOW_RATE_MIN       (var)         listing searches per account per minute, default 40 (anti-scraping)
+ *   VOW_RATE_DAY       (var)         listing searches per account per day, default 1500
+ *   FEED_OPTOUT        (var)         "on" (default) = honor seller opt-outs via the RESO fields
+ *                                    InternetEntireListingDisplayYN / InternetAddressDisplayYN. Set "off" only if the
+ *                                    vendor confirms the feed already removes opted-out listings and addresses.
  *   VOW_SESSION_DAYS   (var)         default 30
  *   FEMA_NFHL_URL      (var)         flood-zone layer query URL (default: FEMA NFHL public layer 28)
  */
@@ -40,8 +52,11 @@ const SELECT = [
   "ListingContractDate", "OnMarketDate", "PurchaseContractDate", "OriginalEntryTimestamp", "ModificationTimestamp", "DaysOnMarket", "CumulativeDaysOnMarket",
   "BedroomsTotal", "BathroomsTotalInteger", "LivingArea", "LotSizeAcres", "YearBuilt", "StreetNumber", "StreetName", "StreetSuffix", "UnitNumber",
   "City", "StateOrProvince", "PostalCode", "CountyOrParish", "Latitude", "Longitude", "AssociationFee", "AssociationFeeFrequency", "TaxAnnualAmount", "TaxYear",
-  "ListOfficeName", "PublicRemarks", "ElementarySchool", "MiddleOrJuniorSchool", "HighSchool", "HighSchoolDistrict",
+  "ListOfficeName", "ListAgentFullName", "PublicRemarks", "ElementarySchool", "MiddleOrJuniorSchool", "HighSchool", "HighSchoolDistrict",
 ];
+const OPTOUT_FIELDS = ["InternetEntireListingDisplayYN", "InternetAddressDisplayYN"];
+const optOut = (env) => String(env.FEED_OPTOUT || "on") !== "off";
+const selectFor = (env) => SELECT.concat(optOut(env) ? OPTOUT_FIELDS : [], env.FEED_MUD_FIELD ? [env.FEED_MUD_FIELD] : []).join(",");
 const memo = new Map(); // short in-isolate cache for feed queries
 const hits = new Map(); // best-effort rate limit for sign-in attempts
 
@@ -68,7 +83,21 @@ function limited(key, max, windowMs = 60_000) {
   if (rec.length >= max) return true;
   rec.push(now); hits.set(key, rec); return false;
 }
-const publicUser = (u) => ({ name: u.name, email: u.email, phone: u.phone || "", verified: !!u.verified, saved: u.saved || [], alerts: (u.alerts || []).map(({ unsub, ...a }) => a), created: u.created });
+// ---------- VOW access: signed in + email confirmed + terms accepted within the access period ----------
+const accessDays = (env) => Math.max(90, Math.min(365, +(env.VOW_ACCESS_DAYS || 180)));
+const accessUntil = (env, u) => u.accessUntil || new Date(Date.parse(u.termsAcceptedAt || u.created) + accessDays(env) * 864e5).toISOString();
+function accessState(env, u) {
+  if (!u) return "signin";
+  if (String(env.VOW_VERIFY || "on") !== "off" && !u.verified) return "verify";
+  if (Date.parse(accessUntil(env, u)) < Date.now()) return "expired";
+  return "ok";
+}
+const hasAccess = (env, s) => !!s && accessState(env, s.u) === "ok";
+const gateAll = (env) => String(env.VOW_GATE || "all") !== "sold";
+function searchLimited(env, email) {
+  return limited("q" + email, Math.max(10, +(env.VOW_RATE_MIN || 40))) || limited("qd" + email, Math.max(200, +(env.VOW_RATE_DAY || 1500)), 864e5);
+}
+const publicUser = (u, env) => ({ name: u.name, email: u.email, phone: u.phone || "", verified: !!u.verified, access: accessState(env, u), accessUntil: accessUntil(env, u), saved: u.saved || [], alerts: (u.alerts || []).map(({ unsub, ...a }) => a), created: u.created });
 
 async function sessionUser(request, env) {
   if (!env.VOW) return null;
@@ -85,7 +114,7 @@ async function newSession(env, email) {
   await env.VOW.put("s:" + t, email, { expirationTtl: days * 86400 });
   return t;
 }
-const canSeeSold = (env, s) => !!s && (String(env.VOW_REQUIRE_VERIFY || "off") !== "on" || s.u.verified);
+const canSeeSold = hasAccess;
 
 // ---------- main router ----------
 export async function handleSearch(request, env, url, json, mail) {
@@ -101,7 +130,7 @@ export async function handleSearch(request, env, url, json, mail) {
     if (!env.VOW) return json({ error: "Accounts aren't set up yet", setup: "kv" }, 503);
     if (p === "/vow/me" && request.method === "GET") {
       const s = await sessionUser(request, env);
-      return s ? json({ user: publicUser(s.u), soldAccess: canSeeSold(env, s) }) : json({ error: "signin" }, 401);
+      return s ? json({ user: publicUser(s.u, env), soldAccess: canSeeSold(env, s), gate: gateAll(env) ? "all" : "sold" }) : json({ error: "signin" }, 401);
     }
     if (request.method !== "POST") return json({ error: "Use POST" }, 405);
     let body = {};
@@ -119,8 +148,29 @@ export async function handleSearch(request, env, url, json, mail) {
     if (!s) return json({ error: "signin" }, 401);
     if (p === "/vow/logout") { await env.VOW.delete("s:" + s.tok); return json({ ok: true }); }
     if (p === "/vow/delete") { // account deletion (required by the App Store for apps with sign-up)
-      await env.VOW.delete("u:" + s.u.email); await env.VOW.delete("s:" + s.tok);
+      // VOW rule: keep who registered, when, and their terms acceptance for 180+ days after access ends.
+      const u = s.u, now = new Date().toISOString();
+      const days = Math.max(180, +(env.VOW_AUDIT_DAYS || 200));
+      await env.VOW.put(`a:${u.email}:${now}`, JSON.stringify({ name: u.name, email: u.email, phone: u.phone || "", created: u.created, verifiedAt: u.verifiedAt || null, termsAcceptedAt: u.termsAcceptedAt, termsVersion: u.termsVersion, renewals: u.renewals || [], lastLogin: u.lastLogin || null, deletedAt: now }), { expirationTtl: days * 86400 });
+      await env.VOW.delete("u:" + u.email); await env.VOW.delete("s:" + s.tok);
       return json({ ok: true, deleted: true });
+    }
+    if (p === "/vow/resend") {
+      if (s.u.verified) return json({ ok: true, verified: true });
+      if (limited("resend" + s.u.email, 3, 10 * 60_000)) return json({ error: "We just sent it. Check your inbox and spam folder, then try again in a few minutes." }, 429);
+      const vt = token(24);
+      await env.VOW.put("v:" + vt, s.u.email, { expirationTtl: 3 * 86400 });
+      let sent = false; try { sent = await sendVerify(env, mail, s.u, `${url.origin}/vow/verify?t=${vt}`); } catch (e) {}
+      return sent ? json({ ok: true }) : json({ error: "Couldn't send the email right now. Call or text 337-794-9971." }, 502);
+    }
+    if (p === "/vow/renew") {
+      if (!body.agree) return json({ error: "Please accept the Terms of Use." }, 400);
+      const now = new Date().toISOString();
+      s.u.termsAcceptedAt = now; s.u.termsVersion = env.VOW_TERMS_VERSION || "draft-1";
+      s.u.accessUntil = new Date(Date.now() + accessDays(env) * 864e5).toISOString();
+      s.u.renewals = [...(s.u.renewals || []), now].slice(-20);
+      await env.VOW.put("u:" + s.u.email, JSON.stringify(s.u));
+      return json({ user: publicUser(s.u, env), soldAccess: canSeeSold(env, s) });
     }
     if (p === "/vow/saved") {
       s.u.saved = [...new Set((Array.isArray(body.saved) ? body.saved : []).map(String).filter((k) => /^[\w-]{1,64}$/.test(k)))].slice(0, 300);
@@ -134,7 +184,7 @@ export async function handleSearch(request, env, url, json, mail) {
         return { id, label: String(a.label || "My search").slice(0, 80), filters: cleanFilters(a.filters || {}), created: old?.created || new Date().toISOString(), lastRun: old?.lastRun || new Date().toISOString(), paused: !!a.paused, unsub: old?.unsub || token(12) };
       });
       await env.VOW.put("u:" + s.u.email, JSON.stringify(s.u));
-      return json({ alerts: publicUser(s.u).alerts });
+      return json({ alerts: publicUser(s.u, env).alerts });
     }
     return json({ error: "Not found" }, 404);
   } catch (e) {
@@ -152,7 +202,7 @@ async function register(b, env, json, mail, url) {
   if (await env.VOW.get("u:" + email)) return json({ error: "That email already has an account. Sign in instead.", code: "exists" }, 409);
   const { salt, hash } = await hashPassword(pw);
   const now = new Date().toISOString();
-  const u = { name, email, phone, salt, hash, verified: false, created: now, termsAcceptedAt: now, termsVersion: env.VOW_TERMS_VERSION || "draft-1", ip: (b._ip || ""), saved: [], alerts: [] };
+  const u = { name, email, phone, salt, hash, verified: false, created: now, termsAcceptedAt: now, termsVersion: env.VOW_TERMS_VERSION || "draft-1", accessUntil: new Date(Date.now() + accessDays(env) * 864e5).toISOString(), saved: [], alerts: [] };
   await env.VOW.put("u:" + email, JSON.stringify(u));
   const vt = token(24);
   await env.VOW.put("v:" + vt, email, { expirationTtl: 3 * 86400 });
@@ -160,7 +210,7 @@ async function register(b, env, json, mail, url) {
   // Emails: verification for the visitor, lead alert for Kohl. Failures here never block the sign-up.
   try { await sendVerify(env, mail, u, `${url.origin}/vow/verify?t=${vt}`); } catch (e) {}
   try { if (mail.lead) await mail.lead({ name, email, phone, kind: "search_signup", goal: "Home search account", source: "search", request: "Created a free home search account (sold prices, saved homes, alerts)", submitted_at: now }); } catch (e) {}
-  return json({ token: t, user: publicUser(u), soldAccess: canSeeSold(env, { u }) });
+  return json({ token: t, user: publicUser(u, env), soldAccess: canSeeSold(env, { u }) });
 }
 async function login(b, env, json) {
   const email = normEmail(b.email), pw = String(b.password || "");
@@ -171,7 +221,7 @@ async function login(b, env, json) {
   u.lastLogin = new Date().toISOString();
   await env.VOW.put("u:" + email, JSON.stringify(u));
   const t = await newSession(env, email);
-  return json({ token: t, user: publicUser(u), soldAccess: canSeeSold(env, { u }) });
+  return json({ token: t, user: publicUser(u, env), soldAccess: canSeeSold(env, { u }) });
 }
 async function verify(url, env) {
   const site = (env.PUBLIC_URL || "https://dallasrealestateinternet.com").replace(/\/$/, "");
@@ -189,7 +239,7 @@ async function sendVerify(env, mail, u, link) {
   const site = (env.PUBLIC_URL || "https://dallasrealestateinternet.com").replace(/\/$/, "");
   const first = u.name.split(/\s+/)[0];
   const html = mail.shell(`<h1 style="margin:0 0 12px;font-size:24px">Welcome, ${mail.escH(first)}!</h1>
-<p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#2a3550">Your free home search account is ready. You can see sold prices, save homes and get alerts when new homes match your search.</p>
+<p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#2a3550">One quick step: confirm your email to open your free home search. Then you can see every home for sale and what homes sold for, save favorites, and get alerts when new homes match.</p>
 <p style="margin:0 0 22px"><a href="${link}" style="display:inline-block;background:#ff7a1a;color:#0f1b33;font-weight:bold;text-decoration:none;padding:14px 24px;border-radius:999px">Confirm my email</a></p>
 <p style="margin:0 0 8px;font-size:14px;line-height:1.6;color:#44506a">Your info goes only to me. It's never sold. Questions about a home? Just reply, or call or text <b>337-794-9971</b>.</p>
 <p style="margin:16px 0 0;font-size:15px">Kohl</p>`, site);
@@ -207,8 +257,9 @@ function cleanFilters(f) {
   o.mode = f.mode === "sold" ? "sold" : "sale";
   return o;
 }
-function buildFilter(f, sinceIso) {
+function buildFilter(f, sinceIso, env = {}) {
   const c = ["PropertyType eq 'Residential'"];
+  if (optOut(env)) c.push("InternetEntireListingDisplayYN ne false"); // seller opted out of internet display
   if (f.mode === "sold") {
     const days = Math.min(730, Math.max(7, f.days || 365));
     c.push("StandardStatus eq 'Closed'", `CloseDate ge ${new Date(Date.now() - days * 864e5).toISOString().slice(0, 10)}`);
@@ -231,9 +282,8 @@ function buildFilter(f, sinceIso) {
 async function feedQuery(env, f, sinceIso) {
   if (!env.FEED_URL || !env.FEED_TOKEN) return null;
   const max = Math.max(25, Math.min(1000, +(env.FEED_MAX || 350)));
-  const qs = new URLSearchParams({ $filter: buildFilter(f, sinceIso), $select: SELECT.join(","), $top: String(max), $orderby: "ModificationTimestamp desc" });
+  const qs = new URLSearchParams({ $filter: buildFilter(f, sinceIso, env), $select: selectFor(env), $top: String(max), $orderby: "ModificationTimestamp desc" });
   if ((env.FEED_MEDIA || "expand") === "expand") qs.set("$expand", "Media($select=MediaURL,Order;$orderby=Order;$top=1)");
-  if (env.FEED_MUD_FIELD) qs.set("$select", SELECT.concat(env.FEED_MUD_FIELD).join(","));
   const u = `${env.FEED_URL.replace(/\/$/, "")}/${env.FEED_RESOURCE || "Property"}?${qstr(Object.fromEntries(qs))}`;
   const hit = memo.get(u);
   if (hit && Date.now() - hit.at < 120_000) return hit.v;
@@ -248,7 +298,14 @@ async function feedQuery(env, f, sinceIso) {
 function normalize(x, env) {
   const o = {};
   SELECT.forEach((k) => { if (x[k] != null) o[k] = x[k]; });
+  OPTOUT_FIELDS.forEach((k) => delete o[k]);
   if (x.StandardStatus === "Active Under Contract") o.StandardStatus = "Pending";
+  if (optOut(env) && x.InternetAddressDisplayYN === false) { // seller asked that the address not be shown
+    ["StreetNumber", "StreetName", "StreetSuffix", "UnitNumber"].forEach((k) => delete o[k]);
+    if (o.Latitude) o.Latitude = +(+o.Latitude).toFixed(2);
+    if (o.Longitude) o.Longitude = +(+o.Longitude).toFixed(2);
+    o.AddressHidden = true;
+  }
   const m = Array.isArray(x.Media) && x.Media[0];
   if (m && m.MediaURL) o.Photo = m.MediaURL;
   if (env.FEED_MUD_FIELD) o.MUD = !!x[env.FEED_MUD_FIELD] && !/^(no|none|false|0)$/i.test(String(x[env.FEED_MUD_FIELD]));
@@ -260,9 +317,10 @@ function normalize(x, env) {
 async function listings(url, request, env) {
   const f = cleanFilters(Object.fromEntries(url.searchParams));
   if (!env.FEED_URL || !env.FEED_TOKEN) return { configured: false, listings: [] };
-  if (f.mode === "sold") {
+  if (gateAll(env) || f.mode === "sold") {
     const s = await sessionUser(request, env);
-    if (!canSeeSold(env, s)) return { configured: true, listings: [], signin: true };
+    if (!hasAccess(env, s)) return { configured: true, listings: [], signin: true, access: s ? accessState(env, s.u) : "signin" };
+    if (searchLimited(env, s.u.email)) return { configured: true, listings: [], error: "slow", message: "That's a lot of searches. Take a short break and try again." };
   }
   const v = (await feedQuery(env, f)) || [];
   await addFlood(env, v);
@@ -271,14 +329,15 @@ async function listings(url, request, env) {
 async function oneListing(url, request, env) {
   const id = String(url.searchParams.get("id") || "");
   if (!/^[\w-]{1,64}$/.test(id) || !env.FEED_URL || !env.FEED_TOKEN) return { listing: null };
-  const qs = new URLSearchParams({ $filter: `ListingKey eq ${odq(id)}`, $select: SELECT.join(","), $top: "1" });
+  const qs = new URLSearchParams({ $filter: `ListingKey eq ${odq(id)}`, $select: selectFor(env), $top: "1" });
   if ((env.FEED_MEDIA || "expand") === "expand") qs.set("$expand", "Media($select=MediaURL,Order;$orderby=Order;$top=1)");
   const r = await fetch(`${env.FEED_URL.replace(/\/$/, "")}/${env.FEED_RESOURCE || "Property"}?${qstr(Object.fromEntries(qs))}`, { headers: { Authorization: `Bearer ${String(env.FEED_TOKEN).trim()}`, Accept: "application/json" } });
   if (!r.ok) return { listing: null };
   const x = ((await r.json()).value || [])[0];
   if (!x) return { listing: null };
+  if (optOut(env) && x.InternetEntireListingDisplayYN === false) return { listing: null };
   const l = normalize(x, env);
-  if (l.StandardStatus === "Closed" && !canSeeSold(env, await sessionUser(request, env))) return { listing: null, signin: true };
+  if ((gateAll(env) || l.StandardStatus === "Closed") && !hasAccess(env, await sessionUser(request, env))) return { listing: null, signin: true };
   await addFlood(env, [l]);
   return { listing: l };
 }
@@ -300,7 +359,7 @@ async function flood(env, lat, lon) {
   } catch (e) { return { zone: null }; }
 }
 async function addFlood(env, list) {
-  const todo = list.filter((l) => l.Latitude && l.Longitude).slice(0, 120);
+  const todo = list.filter((l) => l.Latitude && l.Longitude && !l.AddressHidden).slice(0, 120);
   let i = 0;
   const worker = async () => { while (i < todo.length) { const l = todo[i++]; const r = await flood(env, l.Latitude, l.Longitude); if (r.zone) { l.FloodZone = r.zone; l.FloodSFHA = r.sfha; } } };
   await Promise.all(Array.from({ length: 6 }, worker));
@@ -329,6 +388,7 @@ export async function runAlerts(env, mail, workerOrigin) {
     for (const k of page.keys) {
       const u = await env.VOW.get(k.name, "json");
       if (!u || !(u.alerts || []).some((a) => !a.paused)) continue;
+      if (accessState(env, u) !== "ok") continue; // VOW: no listing data to accounts without current access
       let changed = false;
       for (const a of u.alerts) {
         if (a.paused) continue;
@@ -339,15 +399,15 @@ export async function runAlerts(env, mail, workerOrigin) {
         if (!homes.length) continue;
         const rows = homes.slice(0, 8).map((h) => `<tr><td style="padding:12px 0;border-bottom:1px solid #e3e9f4">
           <a href="${site}/search.html#home=${encodeURIComponent(h.ListingKey)}" style="color:#0f1b33;text-decoration:none"><b style="font-size:18px">$${Number(h.ListPrice || 0).toLocaleString()}</b><br>
-          <span style="font-size:14px;color:#44506a">${h.BedroomsTotal || "?"} bd · ${h.BathroomsTotalInteger || "?"} ba · ${Number(h.LivingArea || 0).toLocaleString()} sq ft<br>${mail.escH([h.StreetNumber, h.StreetName, h.StreetSuffix].filter(Boolean).join(" "))}, ${mail.escH(h.City || "")}</span></a>
-          <br><span style="font-size:11px;color:#6b7690">Listing courtesy of ${mail.escH(h.ListOfficeName || "")}</span></td></tr>`).join("");
+          <span style="font-size:14px;color:#44506a">${h.BedroomsTotal || "?"} bd · ${h.BathroomsTotalInteger || "?"} ba · ${Number(h.LivingArea || 0).toLocaleString()} sq ft<br>${h.AddressHidden ? "Address not shown at the seller's request" : mail.escH([h.StreetNumber, h.StreetName, h.StreetSuffix].filter(Boolean).join(" "))}, ${mail.escH(h.City || "")}</span></a>
+          <br><span style="font-size:14px;color:#44506a">Listed by ${mail.escH([h.ListAgentFullName, h.ListOfficeName].filter(Boolean).join(", "))}</span></td></tr>`).join("");
         const off = origin ? `${origin}/vow/unsub?u=${encodeURIComponent(u.email)}&a=${encodeURIComponent(a.id)}&t=${encodeURIComponent(a.unsub)}` : `${site}/search.html`;
         const html = mail.shell(`<p style="margin:0 0 4px;font-size:13px;color:#b54708;font-weight:bold;letter-spacing:.08em">NEW HOMES FOR YOU</p>
 <h1 style="margin:0 0 6px;font-size:22px">${homes.length} new match${homes.length === 1 ? "" : "es"}: ${mail.escH(a.label)}</h1>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table>
 <p style="margin:18px 0 0"><a href="${site}/search.html" style="display:inline-block;background:#ff7a1a;color:#0f1b33;font-weight:bold;text-decoration:none;padding:12px 20px;border-radius:999px">See all on the map</a></p>
 <p style="margin:18px 0 0;font-size:13px;color:#44506a">Want to see one in person? Just reply. Kohl</p>
-<p style="margin:14px 0 0;font-size:11px;color:#6b7690">Listing data from NTREIS, deemed reliable but not guaranteed. <a href="${off}" style="color:#6b7690">Unsubscribe from this search</a></p>`, site);
+<p style="margin:14px 0 0;font-size:11px;color:#6b7690">${mail.escH(env.VOW_DISCLAIMER || "Information is deemed reliable but is not guaranteed accurate by the MLS or Keller Williams Realty Urban Dallas. Listing data © NTREIS.")} <a href="${off}" style="color:#6b7690">Unsubscribe from this search</a></p>`, site);
         const ok = await mail.sendMail(env, { from: env.MAIL_FROM || "Kohl Klaus <kohl@dallasrealestateinternet.com>", to: [u.email], reply_to: env.REPLY_TO || env.LEAD_TO || "klauspropertymgmt@gmail.com", subject: `${homes.length} new home${homes.length === 1 ? "" : "s"}: ${a.label}`, html });
         if (ok) sent++;
       }
