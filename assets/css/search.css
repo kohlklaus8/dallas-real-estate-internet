@@ -72,7 +72,15 @@
 .mo { color: var(--sky); background: var(--sky-soft); }
 .flag { background: #fdecea; color: var(--bad); } .flag.good { background: var(--teal-soft); color: var(--teal); }
 .commute { background: var(--surface-2); color: var(--ink); }
-.court { font-size: .7rem; color: var(--mute); margin-top: 8px; }
+.court { font-size: .95rem; color: var(--ink-2); margin-top: 8px; } /* VOW: listing firm at least as large as the listing details */
+.listedby { font-size: 1rem; color: var(--ink-2); margin-top: 18px; font-weight: 600; }
+.vowgate { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 26px 24px; display: flex; flex-direction: column; gap: 10px; max-width: 640px; }
+.vowgate > b { font-size: 1.35rem; line-height: 1.25; }
+.vowgate > span { opacity: .92; line-height: 1.5; }
+.vowgate .gate-acts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.vowgate .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.6); }
+.vowgate .private { color: rgba(255,255,255,.75); margin-top: 6px; }
+.vowgate .link { color: #fff; }
 .blur .price, .blur .soldnote { filter: blur(7px); user-select: none; }
 .soldnote { font-size: .82rem; color: var(--mute); }
 
