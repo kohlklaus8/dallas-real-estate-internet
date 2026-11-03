@@ -4,8 +4,9 @@
  * Routes (all JSON; auth = "Authorization: Bearer <session token>")
  *   GET  /listings?mode=sale|sold&n=&s=&e=&w=&min=&max=&beds=&baths=&type=&q=&days=&pending=1
  *                                  → { configured, listings:[RESO-shaped records], count, capped }
- *                                    VOW: every listing requires a signed-in, email-verified account with current
- *                                    access (VOW_GATE "all", the default). VOW_GATE "sold" gates only sold records.
+ *                                    IDX + VOW: active and pending listings are public (IDX). Sold (Closed) records
+ *                                    need a signed-in, email-verified account with current access (VOW_GATE "sold",
+ *                                    the default). VOW_GATE "all" gates every listing.
  *   GET  /listing?id=<ListingKey>  → { listing }   (same gate)
  *   GET  /flood?lat=&lon=          → { zone, subtype, sfha }   FEMA flood zone for one point (cached)
  *   POST /vow/register  { name, email, password, phone?, agree:true, website? }  → { token, user }
@@ -24,19 +25,22 @@
  * Setup (see worker/README-search.md):
  *   VOW                (KV binding)  accounts, sessions, alerts, flood-zone cache. Without it, accounts return 503
  *                                    and the website falls back to on-device accounts.
- *   FEED_URL           (var)         RESO Web API base URL from the MLS/IDX vendor, e.g. https://api.vendor.com/reso/odata
- *   FEED_TOKEN         (secret)      the vendor's bearer token
+ *   FEED_URL           (var)         RESO Web API base URL for the IDX feed (active listings), e.g. https://api.vendor.com/reso/odata
+ *   FEED_TOKEN         (secret)      that feed's bearer token
+ *   SOLD_FEED_URL      (var)         optional: separate VOW feed URL for sold data. Defaults to FEED_URL.
+ *   SOLD_FEED_TOKEN    (secret)      optional: the VOW feed's token. Defaults to FEED_TOKEN.
  *   FEED_RESOURCE      (var)         resource name, default "Property"
  *   FEED_MEDIA         (var)         "expand" (default) adds $expand=Media for the first photo; "none" skips photos
  *   FEED_MAX           (var)         max listings per search, default 350 (the MLS may set a lower cap)
  *   FEED_MUD_FIELD     (var)         optional feed field that flags MUD/PID/special tax districts
- *   VOW_GATE           (var)         "all" (default) = all listing data needs an account; "sold" = only sold records
+ *   VOW_GATE           (var)         "sold" (default) = only sold records need an account; "all" = every listing does
  *   VOW_VERIFY         (var)         "on" (default) = data only after the visitor clicks the confirm-email link
  *   VOW_ACCESS_DAYS    (var)         days of access before the visitor must re-accept the terms, default 180 (min 90)
  *   VOW_AUDIT_DAYS     (var)         days to keep a record of deleted accounts, default 200 (MLS rule: 180 after expiry)
  *   VOW_TERMS_VERSION  (var)         version label saved with each terms acceptance, e.g. "2026-10-28"
  *   VOW_RATE_MIN       (var)         listing searches per account per minute, default 40 (anti-scraping)
  *   VOW_RATE_DAY       (var)         listing searches per account per day, default 1500
+ *   IDX_RATE_MIN       (var)         public (signed-out) searches per visitor IP per minute, default 30
  *   FEED_OPTOUT        (var)         "on" (default) = honor seller opt-outs via the RESO fields
  *                                    InternetEntireListingDisplayYN / InternetAddressDisplayYN. Set "off" only if the
  *                                    vendor confirms the feed already removes opted-out listings and addresses.
@@ -93,7 +97,7 @@ function accessState(env, u) {
   return "ok";
 }
 const hasAccess = (env, s) => !!s && accessState(env, s.u) === "ok";
-const gateAll = (env) => String(env.VOW_GATE || "all") !== "sold";
+const gateAll = (env) => String(env.VOW_GATE || "sold") === "all";
 function searchLimited(env, email) {
   return limited("q" + email, Math.max(10, +(env.VOW_RATE_MIN || 40))) || limited("qd" + email, Math.max(200, +(env.VOW_RATE_DAY || 1500)), 864e5);
 }
@@ -166,7 +170,7 @@ export async function handleSearch(request, env, url, json, mail) {
     if (p === "/vow/renew") {
       if (!body.agree) return json({ error: "Please accept the Terms of Use." }, 400);
       const now = new Date().toISOString();
-      s.u.termsAcceptedAt = now; s.u.termsVersion = env.VOW_TERMS_VERSION || "draft-1";
+      s.u.termsAcceptedAt = now; s.u.termsVersion = env.VOW_TERMS_VERSION || "2026-11-02";
       s.u.accessUntil = new Date(Date.now() + accessDays(env) * 864e5).toISOString();
       s.u.renewals = [...(s.u.renewals || []), now].slice(-20);
       await env.VOW.put("u:" + s.u.email, JSON.stringify(s.u));
@@ -202,7 +206,7 @@ async function register(b, env, json, mail, url) {
   if (await env.VOW.get("u:" + email)) return json({ error: "That email already has an account. Sign in instead.", code: "exists" }, 409);
   const { salt, hash } = await hashPassword(pw);
   const now = new Date().toISOString();
-  const u = { name, email, phone, salt, hash, verified: false, created: now, termsAcceptedAt: now, termsVersion: env.VOW_TERMS_VERSION || "draft-1", accessUntil: new Date(Date.now() + accessDays(env) * 864e5).toISOString(), saved: [], alerts: [] };
+  const u = { name, email, phone, salt, hash, verified: false, created: now, termsAcceptedAt: now, termsVersion: env.VOW_TERMS_VERSION || "2026-11-02", accessUntil: new Date(Date.now() + accessDays(env) * 864e5).toISOString(), saved: [], alerts: [] };
   await env.VOW.put("u:" + email, JSON.stringify(u));
   const vt = token(24);
   await env.VOW.put("v:" + vt, email, { expirationTtl: 3 * 86400 });
@@ -279,15 +283,21 @@ function buildFilter(f, sinceIso, env = {}) {
   if (sinceIso) c.push(`OriginalEntryTimestamp gt ${sinceIso}`);
   return c.join(" and ");
 }
+// IDX feed for active/pending; VOW feed (if separate) for sold.
+function feedFor(env, sold) {
+  const url = (sold && env.SOLD_FEED_URL) || env.FEED_URL, tok = (sold && env.SOLD_FEED_TOKEN) || env.FEED_TOKEN;
+  return url && tok ? { url: url.replace(/\/$/, ""), tok: String(tok).trim() } : null;
+}
 async function feedQuery(env, f, sinceIso) {
-  if (!env.FEED_URL || !env.FEED_TOKEN) return null;
+  const feed = feedFor(env, f.mode === "sold");
+  if (!feed) return null;
   const max = Math.max(25, Math.min(1000, +(env.FEED_MAX || 350)));
   const qs = new URLSearchParams({ $filter: buildFilter(f, sinceIso, env), $select: selectFor(env), $top: String(max), $orderby: "ModificationTimestamp desc" });
   if ((env.FEED_MEDIA || "expand") === "expand") qs.set("$expand", "Media($select=MediaURL,Order;$orderby=Order;$top=1)");
-  const u = `${env.FEED_URL.replace(/\/$/, "")}/${env.FEED_RESOURCE || "Property"}?${qstr(Object.fromEntries(qs))}`;
+  const u = `${feed.url}/${env.FEED_RESOURCE || "Property"}?${qstr(Object.fromEntries(qs))}`;
   const hit = memo.get(u);
   if (hit && Date.now() - hit.at < 120_000) return hit.v;
-  const r = await fetch(u, { headers: { Authorization: `Bearer ${String(env.FEED_TOKEN).trim()}`, Accept: "application/json" } });
+  const r = await fetch(u, { headers: { Authorization: `Bearer ${feed.tok}`, Accept: "application/json" } });
   if (!r.ok) throw new Error("Feed " + r.status);
   const d = await r.json();
   const v = (d.value || []).map((x) => normalize(x, env));
@@ -316,11 +326,14 @@ function normalize(x, env) {
 }
 async function listings(url, request, env) {
   const f = cleanFilters(Object.fromEntries(url.searchParams));
-  if (!env.FEED_URL || !env.FEED_TOKEN) return { configured: false, listings: [] };
+  if (!feedFor(env, false)) return { configured: false, listings: [] };
   if (gateAll(env) || f.mode === "sold") {
     const s = await sessionUser(request, env);
     if (!hasAccess(env, s)) return { configured: true, listings: [], signin: true, access: s ? accessState(env, s.u) : "signin" };
     if (searchLimited(env, s.u.email)) return { configured: true, listings: [], error: "slow", message: "That's a lot of searches. Take a short break and try again." };
+  }
+  else if (limited("qip" + (request.headers.get("CF-Connecting-IP") || "anon"), Math.max(10, +(env.IDX_RATE_MIN || 30)))) {
+    return { configured: true, listings: [], error: "slow", message: "That's a lot of searches. Take a short break and try again." };
   }
   const v = (await feedQuery(env, f)) || [];
   await addFlood(env, v);
@@ -328,12 +341,15 @@ async function listings(url, request, env) {
 }
 async function oneListing(url, request, env) {
   const id = String(url.searchParams.get("id") || "");
-  if (!/^[\w-]{1,64}$/.test(id) || !env.FEED_URL || !env.FEED_TOKEN) return { listing: null };
+  if (!/^[\w-]{1,64}$/.test(id) || !feedFor(env, false)) return { listing: null };
   const qs = new URLSearchParams({ $filter: `ListingKey eq ${odq(id)}`, $select: selectFor(env), $top: "1" });
   if ((env.FEED_MEDIA || "expand") === "expand") qs.set("$expand", "Media($select=MediaURL,Order;$orderby=Order;$top=1)");
-  const r = await fetch(`${env.FEED_URL.replace(/\/$/, "")}/${env.FEED_RESOURCE || "Property"}?${qstr(Object.fromEntries(qs))}`, { headers: { Authorization: `Bearer ${String(env.FEED_TOKEN).trim()}`, Accept: "application/json" } });
-  if (!r.ok) return { listing: null };
-  const x = ((await r.json()).value || [])[0];
+  let x = null;
+  for (const feed of [feedFor(env, false), env.SOLD_FEED_URL ? feedFor(env, true) : null]) {
+    if (!feed || x) continue;
+    const r = await fetch(`${feed.url}/${env.FEED_RESOURCE || "Property"}?${qstr(Object.fromEntries(qs))}`, { headers: { Authorization: `Bearer ${feed.tok}`, Accept: "application/json" } });
+    if (r.ok) x = ((await r.json()).value || [])[0] || null;
+  }
   if (!x) return { listing: null };
   if (optOut(env) && x.InternetEntireListingDisplayYN === false) return { listing: null };
   const l = normalize(x, env);
@@ -379,7 +395,7 @@ async function unsub(url, env, mail) {
   return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
 }
 export async function runAlerts(env, mail, workerOrigin) {
-  if (!env.VOW || !env.FEED_URL || !env.FEED_TOKEN || !env.RESEND_API_KEY) return { skipped: true };
+  if (!env.VOW || !feedFor(env, false) || !env.RESEND_API_KEY) return { skipped: true };
   const site = (env.PUBLIC_URL || "https://dallasrealestateinternet.com").replace(/\/$/, "");
   const origin = (env.WORKER_URL || workerOrigin || "").replace(/\/$/, "");
   let cursor, sent = 0;
