@@ -45,11 +45,10 @@ Vendor differences you might need to adjust in `src/vow.js`:
 
 ## Step 3: Rules to confirm with Anne
 
-- VOW mode is on by default (NTREIS VOW rules): every listing needs a free account with a confirmed email,
+- IDX + VOW mode is the default: active listings are public (IDX), and sold data needs a free account with a confirmed email (VOW),
   access lasts `VOW_ACCESS_DAYS` (180) and then the visitor re-accepts the terms with one click, deleted accounts
   leave an audit record for `VOW_AUDIT_DAYS` (200), searches are rate-limited per account (`VOW_RATE_MIN` 40,
-  `VOW_RATE_DAY` 1500), and seller opt-outs are honored (`FEED_OPTOUT` "on"). Set `VOW_GATE` to `"sold"` only
-  if you switch to a public IDX feed. Bump `VOW_TERMS_VERSION` whenever terms.html changes.
+  `VOW_RATE_DAY` 1500), and seller opt-outs are honored (`FEED_OPTOUT` "on"). Public searches are rate-limited per visitor (`IDX_RATE_MIN` 30). Set `VOW_GATE` to `"all"` to put every listing behind sign-in. If NTREIS issues separate IDX and VOW feeds, set `SOLD_FEED_URL` and the `SOLD_FEED_TOKEN` secret for the VOW feed. Bump `VOW_TERMS_VERSION` whenever terms.html changes.
 - The Terms of Use page (`terms.html`) is a **draft**. Anne and NTREIS need to approve it.
 - The listing disclaimer and attribution text (`IDX_DISCLAIMER` in config.js).
 
