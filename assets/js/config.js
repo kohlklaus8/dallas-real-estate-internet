@@ -40,7 +40,8 @@ window.DREI_CONFIG = {
   // Home search (search.html)
   // "sample" shows made-up homes until the MLS feed is approved. Switch to "worker" once FEED_URL/FEED_TOKEN are set on the Worker.
   LISTINGS_SOURCE: "sample",
-  VOW_REQUIRED: true,          // NTREIS VOW: visitors need a free account (confirmed email) to see any listing data
+  VOW_REQUIRED: true,          // NTREIS IDX + VOW: accounts are real (confirmed email, terms, 180-day access); no device-only accounts
+  VOW_GATE: "sold",            // "sold" = active listings public (IDX), sold data behind sign-in (VOW). "all" = every listing behind sign-in
   SEARCH_ACCOUNTS: "worker",   // "worker" = real accounts via the Worker's /vow routes (falls back to this device if the Worker isn't set up); "device" = this browser only
   SEARCH_RATE: 6.5,            // interest rate used for the monthly cost on each home
   // Swap in NTREIS's exact required wording if their VOW rules give one.

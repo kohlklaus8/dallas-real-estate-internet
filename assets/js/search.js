@@ -7,8 +7,9 @@
  *   "worker"  live listings from the Worker's /listings route (RESO Web API feed)
  * Accounts use the Worker's /vow/* routes when it has an account store; otherwise they fall back to
  * this device and the sign-up still goes to Kohl as a lead.
- * VOW_REQUIRED (config.js) = NTREIS VOW mode: every home needs a signed-in account with a confirmed email
- * and current access (the Worker enforces this too). No device-only fallback in this mode.
+ * VOW_REQUIRED (config.js) = NTREIS IDX + VOW mode: active listings are public (IDX); sold data, saved homes and
+ * alerts need a signed-in account with a confirmed email and current access (VOW). VOW_GATE "all" gates every
+ * listing instead. The Worker enforces the same rules. No device-only accounts in this mode.
  */
 (function () {
   "use strict";
@@ -51,7 +52,9 @@
   const priceOf = (l) => (isSold(l) ? l.ClosePrice : l.ListPrice) || 0;
   const hasAccess = () => !!session && session.remote && session.access === "ok";
   const canSeeSold = () => (REQUIRED ? hasAccess() : !!session && session.soldAccess !== false);
-  const locked = () => REQUIRED && !hasAccess();
+  const GATE_ALL = REQUIRED && C.VOW_GATE === "all";
+  const needAcct = () => REQUIRED && !hasAccess();                    // saved homes, alerts, sold data
+  const locked = () => needAcct() && (GATE_ALL || mode === "sold");  // the current list view is behind the gate
   const hue = (k) => { let h = 0; for (const c of String(k)) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
   const safePhoto = (u) => /^https:\/\/[^\s'"()<>\\]+$/.test(String(u || ""));
   const phStyle = (l) => (safePhoto(l.Photo) ? `background-image:url('${esc(l.Photo)}')` : `background:linear-gradient(135deg,hsl(${hue(l.ListingKey)} 60% 84%),hsl(${(hue(l.ListingKey) + 35) % 360} 65% 70%));color:#0f1b33`);
@@ -121,7 +124,7 @@
   $("tSold").addEventListener("click", () => setMode("sold"));
   $("searchForm").addEventListener("submit", (e) => { e.preventDefault(); savedView = false; doSearch(); });
   $("savedBtn").addEventListener("click", toggleSavedView);
-  $("acctBtn").addEventListener("click", () => (session ? accountSheet() : openVow(REQUIRED ? "gate" : "sold", REQUIRED ? "in" : "join")));
+  $("acctBtn").addEventListener("click", () => (session ? accountSheet() : openVow(REQUIRED ? (GATE_ALL ? "gate" : "sold") : "sold", REQUIRED ? "in" : "join")));
   $("mobBtn").addEventListener("click", () => {
     const on = document.body.classList.toggle("showmap"); $("mobBtn").textContent = on ? "Show list" : "Show map";
     // The map starts hidden on phones, so size it and frame the homes the first time it's shown.
@@ -309,18 +312,18 @@
 
   // ---------- listing detail ----------
   async function findListing(k) {
-    if (locked()) return null;
+    if (GATE_ALL && needAcct()) return null;
     if (byKey.has(k)) return byKey.get(k);
     if (LIVE) {
-      try { const j = await fetch(`${API}/listing?id=${encodeURIComponent(k)}`, { headers: session && session.token ? { Authorization: "Bearer " + session.token } : {} }).then((r) => r.json()); if (j.listing) { remember([j.listing]); return j.listing; } if (j.signin) { REQUIRED ? gateAction() : openVow("sold"); return null; } } catch (e) {}
+      try { const j = await fetch(`${API}/listing?id=${encodeURIComponent(k)}`, { headers: session && session.token ? { Authorization: "Bearer " + session.token } : {} }).then((r) => r.json()); if (j.listing) { remember([j.listing]); return j.listing; } if (j.signin) { REQUIRED ? gateAction("sold") : openVow("sold"); return null; } } catch (e) {}
     }
     return snaps[k] || null;
   }
   async function openListing(k) {
     const l = await findListing(k);
-    if (locked()) { pending = () => openListing(k); gateAction(); return; }
+    if (GATE_ALL && needAcct()) { pending = () => openListing(k); gateAction(); return; }
     if (!l) { D.toast("That home isn't available anymore."); return; }
-    if (isSold(l) && !canSeeSold()) { pending = () => openListing(k); openVow("sold"); return; }
+    if (isSold(l) && !canSeeSold()) { pending = () => openListing(k); REQUIRED ? gateAction("sold") : openVow("sold"); return; }
     track("view_home", { id: k, city: l.City, status: l.StandardStatus });
     const sold = isSold(l), p = priceOf(l), m = monthly(l, p), hs = heads(l), a = areaFor(l), w = work(), K = esc(l.ListingKey);
     const newTax = Math.round((p * taxRate(l)) / 100);
@@ -407,7 +410,7 @@
   }
   async function loadComps(l) {
     const el = $("dComps");
-    if (!canSeeSold()) { el.innerHTML = `<p class="private">Nearby sold prices are free with an account. <a class="link" href="#" data-vow="sold">Sign in to see them</a></p>`; return; }
+    if (!canSeeSold()) { el.innerHTML = `<p class="private">Nearby sold prices are free with an account. <a class="link" href="#" data-vow="${REQUIRED ? "gate-sold" : "sold"}">${session ? "Unlock them" : "Sign in to see them"}</a></p>`; return; }
     let pool = RAW.filter(isSold);
     if (LIVE && !liveState.sample) {
       el.innerHTML = `<p class="private">Loading nearby sales…</p>`;
@@ -421,7 +424,7 @@
       .sort((a, b) => Math.abs((a.LivingArea || 0) - (l.LivingArea || 0)) - Math.abs((b.LivingArea || 0) - (l.LivingArea || 0))).slice(0, 4);
     el.innerHTML = comps.length ? comps.map((c) => `<div class="line2" style="cursor:pointer" data-act="comp" data-k="${esc(c.ListingKey)}"><span>${esc(addr(c))} · ${s(c.BedroomsTotal || 0, "bed")} · ${(c.LivingArea || 0).toLocaleString()} sf · ${fmtDate(c.CloseDate)}</span><b>${money(c.ClosePrice)}</b></div>`).join("") + `<p class="private">Sold within about 1.5 miles in the last year.</p>` : `<p class="private">No recent sales close by.</p>`;
   }
-  $("drawer").addEventListener("click", (e) => { const v = e.target.closest("[data-vow]"); if (v) { e.preventDefault(); openVow(v.dataset.vow); } });
+  $("drawer").addEventListener("click", (e) => { const v = e.target.closest("[data-vow]"); if (v) { e.preventDefault(); v.dataset.vow === "gate-sold" ? gateAction("sold") : openVow(v.dataset.vow); } });
 
   const schoolCache = new Map();
   async function loadSchools(l) {
@@ -459,28 +462,48 @@
     gate: ["Create your free account to see homes", "MLS rules let us show every home for sale and what homes sold for once you have a free account. Takes 30 seconds.", "Create my free account"],
   };
   // ---------- VOW gate (C.VOW_REQUIRED) ----------
-  function gateAction() {
-    if (!session) return openVow("gate");
+  function gateAction(reason) {
+    const r = GATE_ALL ? "gate" : reason || (mode === "sold" ? "sold" : "gate");
+    if (!session) return openVow(r);
     if (session.access === "verify") return verifySheet();
     if (session.access === "expired") return renewSheet();
-    return openVow("gate", "in");
+    return openVow(r, "in");
   }
   function renderGate() {
+    $("list").innerHTML = `<div class="vowgate">${gateBody()}</div>`;
+  }
+  function gateBody() {
     const st = session ? session.access : "signin";
     const first = session && session.name ? esc(session.name.split(/\s+/)[0]) : "";
     const body = st === "verify"
-      ? `<b>Almost there${first ? ", " + first : ""}. Confirm your email.</b><span>We sent a link to <b>${esc(session.email)}</b>. Tap it and homes appear here. Check spam if you don't see it.</span><div class="gate-acts"><button type="button" class="btn btn-brass" data-act="checkv">I confirmed it</button><button type="button" class="btn btn-ghost" data-act="resend">Send it again</button></div>`
+      ? `<b>Almost there${first ? ", " + first : ""}. Confirm your email.</b><span>We sent a link to <b>${esc(session.email)}</b>. Tap it to unlock ${GATE_ALL ? "every home" : "sold prices, saved homes and alerts"}. Check spam if you don't see it.</span><div class="gate-acts"><button type="button" class="btn btn-brass" data-act="checkv">I confirmed it</button><button type="button" class="btn btn-ghost" data-act="resend">Send it again</button></div>`
       : st === "expired"
       ? `<b>Welcome back${first ? ", " + first : ""}.</b><span>MLS rules ask you to re-accept the Terms of Use every so often. It takes one click.</span><div class="gate-acts"><button type="button" class="btn btn-brass" data-act="renew">Renew my access</button></div>`
-      : `<b>Every home for sale and what homes really sold for.</b><span>NTREIS MLS data, free with an account. Your info goes only to ${esc(C.AGENT_NAME)}. Never sold.</span><div class="gate-acts"><button type="button" class="btn btn-brass" data-act="join">Create free account</button><button type="button" class="btn btn-ghost" data-act="signin">Sign in</button></div>`;
-    $("list").innerHTML = `<div class="vowgate">${body}<p class="private">Listing data shown here is from NTREIS and is for your personal, non-commercial home search. <a class="link" href="terms.html">Terms of Use</a> · <a class="link" href="privacy.html">Privacy</a></p></div>`;
+      : GATE_ALL ? `<b>Every home for sale and what homes really sold for.</b><span>NTREIS MLS data, free with an account. Your info goes only to ${esc(C.AGENT_NAME)}. Never sold.</span><div class="gate-acts"><button type="button" class="btn btn-brass" data-act="join">Create free account</button><button type="button" class="btn btn-ghost" data-act="signin">Sign in</button></div>`
+      : `<b>See what homes really sold for.</b><span>Texas doesn't publish sale prices. A free account shows you recent sales from the MLS. Your info goes only to ${esc(C.AGENT_NAME)}. Never sold.</span><div class="gate-acts"><button type="button" class="btn btn-brass" data-act="join">Create free account</button><button type="button" class="btn btn-ghost" data-act="signin">Sign in</button></div>`;
+    return body + `<p class="private">Sold data is from NTREIS and is for your personal, non-commercial home search. <a class="link" href="terms.html">Terms of Use</a> · <a class="link" href="privacy.html">Privacy</a></p>`;
   }
-  function verifySheet() { renderGate(); const b = $("list").querySelector("[data-act=checkv]"); if (b) b.focus(); }
+  function verifySheet() {
+    if (locked()) { renderGate(); const b = $("list").querySelector("[data-act=checkv]"); if (b) b.focus(); return; }
+    if (document.getElementById("vowModal")) return;
+    const w = document.createElement("div");
+    w.className = "modal"; w.id = "vowModal"; w.setAttribute("role", "dialog"); w.setAttribute("aria-modal", "true");
+    w.innerHTML = `<div class="modal-card" style="max-width:460px"><button class="modal-close" type="button" data-close>Close ✕</button><div class="vowgate" style="max-width:none">${gateBody()}</div></div>`;
+    document.body.appendChild(w);
+    const close = () => w.remove();
+    w.addEventListener("click", (e) => {
+      if (e.target === w || e.target.hasAttribute("data-close")) return close();
+      const a = e.target.closest("[data-act]"); if (!a) return;
+      if (a.dataset.act === "checkv") checkVerified(a).then(() => { if (hasAccess()) close(); });
+      if (a.dataset.act === "resend") resendVerify(a);
+    });
+    w.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  }
   async function checkVerified(btn) {
     if (btn) { btn.disabled = true; btn.textContent = "Checking…"; }
     await refreshMe();
-    if (hasAccess()) { D.toast("✓ You're in. Happy hunting!"); refresh(); const f = pending; pending = null; if (f) f(); }
-    else { render(); D.toast(session && session.access === "verify" ? "Not confirmed yet. Tap the link in the email." : "Please sign in again."); }
+    if (hasAccess()) { D.toast("✓ You're in. Sold prices are unlocked."); refresh(); const f = pending; pending = null; if (f) f(); }
+    else { if (locked()) render(); else if (btn) { btn.disabled = false; btn.textContent = "I confirmed it"; } D.toast(session && session.access === "verify" ? "Not confirmed yet. Tap the link in the email." : "Please sign in again."); }
   }
   async function resendVerify(btn) {
     btn.disabled = true; btn.textContent = "Sending…";
@@ -556,7 +579,7 @@
       try {
         await (tab === "join" ? register(v) : signIn(v));
         const f = pending; w.remove(); if (!REQUIRED || hasAccess()) pending = null;
-        if (REQUIRED && !hasAccess()) { render(); window.scrollTo({ top: 0, behavior: "smooth" }); if (session && session.access === "expired") renewSheet(); return; }
+        if (REQUIRED && !hasAccess()) { render(); if (session && session.access === "expired") renewSheet(); else if (locked()) window.scrollTo({ top: 0, behavior: "smooth" }); else verifySheet(); return; }
         if (!f) D.toast(tab === "join" ? `✓ Welcome, ${v.name.trim().split(/\s+/)[0]}! Sold prices are unlocked.` : "✓ Signed in");
         render(); if (LIVE) refresh();
         if (f) f();
@@ -663,7 +686,7 @@
   }
   async function syncSaved() { if (session && session.remote) { try { const j = await api("/vow/saved", { saved: [...saved] }); saved = new Set(j.saved); persistSaved(); } catch (e) {} } }
   function toggleSave(k) {
-    if (locked()) { pending = () => toggleSave(k); gateAction(); return; }
+    if (needAcct()) { pending = () => toggleSave(k); gateAction("save"); return; }
     if (!session) { pending = () => toggleSave(k); openVow("save"); return; }
     const on = !saved.has(k);
     on ? saved.add(k) : saved.delete(k);
@@ -674,7 +697,7 @@
     if (savedView) render();
   }
   async function toggleSavedView() {
-    if (locked() && !savedView) { pending = () => toggleSavedView(); gateAction(); return; }
+    if (needAcct() && !savedView) { pending = () => toggleSavedView(); gateAction("save"); return; }
     if (!session && !savedView) { pending = () => toggleSavedView(); openVow("save"); return; }
     savedView = !savedView; closeDrawer();
     if (savedView && LIVE) await Promise.all([...saved].filter((k) => !byKey.has(k)).slice(0, 40).map(findListing));
@@ -702,7 +725,7 @@
     }
     render();
   }
-  function alertSearch() { if (locked()) { pending = () => alertSearch(); gateAction(); return; } if (!session) { pending = () => alertSearch(); openVow("alert"); return; } addAlert(alertFilters(), "toggle"); }
+  function alertSearch() { if (needAcct()) { pending = () => alertSearch(); gateAction("alert"); return; } if (!session) { pending = () => alertSearch(); openVow("alert"); return; } addAlert(alertFilters(), "toggle"); }
   function alertLike(l) {
     if (!session) { pending = () => alertLike(l); openVow("alert"); return; }
     const a = areaFor(l);
@@ -721,7 +744,7 @@
   (async function boot() {
     try { AREAS = (await D.loadJSON("data/neighborhoods.json")).neighborhoods || []; } catch (e) { AREAS = []; }
     const dl = $("qList"); [...new Set(AREAS.map((a) => a.name))].sort().forEach((n) => dl.appendChild(new Option(n)));
-    $("srchLegal").innerHTML = esc(C.IDX_DISCLAIMER || "") + (LIVE ? "" : " <b>Sample homes are shown until the MLS listing feed is connected. They are not real listings.</b>") + (REQUIRED ? " Accounts are free and are needed to see listing data under NTREIS rules." : "") + ` Monthly costs are estimates with ${ASSUME.down * 100}% down at ${ASSUME.rate}%, 2025 tax rates and an insurance estimate. Not a loan offer.`;
+    $("srchLegal").innerHTML = esc(C.IDX_DISCLAIMER || "") + (LIVE ? "" : " <b>Sample homes are shown until the MLS listing feed is connected. They are not real listings.</b>") + (REQUIRED ? (GATE_ALL ? " Accounts are free and are needed to see listing data under NTREIS rules." : " Sold data requires a free account under NTREIS rules.") : "") + ` Monthly costs are estimates with ${ASSUME.down * 100}% down at ${ASSUME.rate}%, 2025 tax rates and an insurance estimate. Not a loan offer.`;
     setSession(session); updateSavedBadge();
     initMap();
     if (!LIVE) { RAW = remember(window.DREI_SAMPLE(AREAS)); liveState.sample = true; fitAll(); }
@@ -729,7 +752,7 @@
     if (/[?&]verified=0/.test(location.search)) D.toast("That confirm link expired. Sign in and tap Send it again.");
     if (REQUIRED && session) await refreshMe();
     const hq = new URLSearchParams(location.search).get("q"); if (hq) { $("q").value = hq; doSearch(); } else refresh();
-    if (!REQUIRED) await refreshMe(); else if (hasAccess()) refresh(); else render();
+    if (!REQUIRED) await refreshMe(); else if (hasAccess() || !locked()) refresh(); else render();
     updateSavedBadge();
     if (/[?&]view=saved/.test(location.search)) toggleSavedView();
     const m = location.hash.match(/^#home=([\w%-]+)/); if (m) openListing(decodeURIComponent(m[1]));
