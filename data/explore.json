@@ -1,6 +1,6 @@
 {
   "_how_to_update": "Edit this file on GitHub (pencil icon). Each list is independent. Add an item by copying an existing one. Keep 'last_checked' honest — it shows on the site. Eat/drink/do entries need: name, area (city), hood, kind, why, known_for, address, website, lat, lon, reviews (Google Maps search link). Markets need: name, area, hood, kind, when, season, address, website, lat, lon. Festivals need: name, area, place, kind, usually, latest, start/end (ISO, or null), url, month (1-12).",
-  "last_checked": "2026-11-02",
+  "last_checked": "2026-11-09",
   "developments": [
     {
       "name": "Universal Kids Resort",
@@ -201,6 +201,56 @@
       "summary": "Garland approved an agreement for an H-E-B store on a 21-acre site between Crist Road and Firewheel Parkway along the George Bush Turnpike. A separate Joe V's Smart Shop is planned at Centerville Road and LBJ Freeway.",
       "source": "City of Garland (May 2026)",
       "url": "https://www.garlandtx.gov/m/newsflash/home/detail/3772"
+    },
+    {
+      "name": "TEXRail extension to the Medical District",
+      "city": "Fort Worth",
+      "type": "Transit",
+      "status": "Under construction",
+      "timing": "Groundbreaking October 29, 2026; opening date not stated",
+      "summary": "A $270 million, 2.1-mile extension of the TEXRail commuter line into Fort Worth's Near Southside and Medical District, connecting it to downtown Fort Worth and DFW Airport. A new station is planned at 1308 Leslie St.",
+      "source": "FOX 4 (October 2026)",
+      "url": "https://www.fox4news.com/news/texrail-breaks-ground-270-million-extension-fort-worths-medical-district"
+    },
+    {
+      "name": "Community Park at Fair Park",
+      "city": "Dallas",
+      "type": "Park",
+      "status": "Planned",
+      "timing": "City Council approved up to $3M in gap funding August 12, 2026; construction anticipated to begin later in 2026; completion slated for December 2028",
+      "summary": "A roughly 10.5-acre public park at Fair Park, led by Fair Park First, with an estimated total cost of $40.6 million.",
+      "source": "City of Dallas (August 2026)",
+      "url": "https://content.govdelivery.com/accounts/TXDALLAS/bulletins/424ab74"
+    },
+    {
+      "name": "Cannon Beach surf and adventure park",
+      "city": "McKinney",
+      "type": "Entertainment",
+      "status": "Under construction",
+      "timing": "Broke ground December 2025; Phase 1 projected to open late 2027",
+      "summary": "A $200 million, 35-acre development at Stacy Road and SH 121 with a 3-acre surf lagoon, lazy river, hot springs and a resort hotel.",
+      "source": "Visit McKinney (September 2026)",
+      "url": "https://www.visitmckinney.com/cannon-beach-surf-adventure-park/"
+    },
+    {
+      "name": "Downtown mixed-use project near City Office Tower",
+      "city": "Arlington",
+      "type": "Mixed-use",
+      "status": "Planned",
+      "timing": "Agreement announced September 3, 2026; construction must begin by September 2027 and finish by September 2031",
+      "summary": "A Trammell Crow Company project on 7.3 acres of surface parking near Abram and Mesquite streets, with at least 390 apartments, office space, restaurant and retail space, and a 600-space garage that includes free public parking.",
+      "source": "City of Arlington (September 2026)",
+      "url": "https://www.arlingtontx.gov/News-Articles/2026/Downtown-Arlington-to-Welcome-Transformative-Mixed-Use-Development"
+    },
+    {
+      "name": "AT&T Stadium improvement plan",
+      "city": "Arlington",
+      "type": "Sports",
+      "status": "Planned",
+      "timing": "Approved by Arlington City Council April 21, 2026; city payments begin in 2028; renovations expected to be completed by 2043",
+      "summary": "A deal worth more than $1 billion, with at least $750 million from the Cowboys and up to $273 million from the city, for stadium renovations plus security, traffic and pedestrian improvements. The lease is extended to 2055.",
+      "source": "NBC DFW (April 2026)",
+      "url": "https://www.nbcdfw.com/news/local/att-stadium-investment-approved-arlington-council-vote/4013536/"
     }
   ],
   "eat": [
@@ -5098,15 +5148,6 @@
     }
   ],
   "events": [
-    {
-      "name": "Festival at the Switchyard",
-      "start": "2026-11-07",
-      "end": null,
-      "city": "Carrollton · Historic Downtown Carrollton",
-      "kind": "Arts & music",
-      "url": "https://www.google.com/maps/search/?api=1&query=Festival+at+the+Switchyard+Carrollton+TX",
-      "source": "Organizer"
-    },
     {
       "name": "Holiday at the Arboretum (final year of the 12 Days of Christmas gazebos)",
       "start": "2026-11-11",
